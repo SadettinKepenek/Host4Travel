@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\berka\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\berka\.Rider2019.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\berka\.Rider2019.2\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\berka\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\berka\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.1964724786.00" t="ExcludeRecursive" />
+    <e p="C:\Users\berka\RiderProjects\Host4Travel" t="IncludeFlat">
+      <e p="Host4Travel.API" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="WeatherForecastController.cs" t="Include" />
+        </e>
+        <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.API.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="WeatherForecast.cs" t="Include" />
+      </e>
+      <e p="Host4Travel.BLL" t="IncludeRecursive">
+        <e p="Abstract" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Concrete" t="Include" />
+        <e p="Host4Travel.BLL.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.BLL.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Host4Travel.Core" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BusinessLogicLayer" t="Include">
+          <e p="IEntityService.cs" t="Include" />
+        </e>
+        <e p="DataAccessLayer" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="IEntityRepository.cs" t="Include" />
+          </e>
+          <e p="EntityFramework" t="Include">
+            <e p="EfEntityFrameworkBase.cs" t="Include" />
+          </e>
+        </e>
+        <e p="EntityLayer" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="IEntity.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.Core.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Host4Travel.DAL" t="IncludeRecursive">
+        <e p="Abstract" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Concrete" t="Include">
+          <e p="EntityFramework" t="Include">
+            <e p="Host4TravelDbContext.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Host4Travel.DAL.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.DAL.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Host4Travel.Entities" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ComplexTypes" t="Include" />
+        <e p="Concrete" t="Include">
+          <e p="AspNetRoleClaims.cs" t="Include" />
+          <e p="AspNetRoles.cs" t="Include" />
+          <e p="AspNetUserClaims.cs" t="Include" />
+          <e p="AspNetUserLogins.cs" t="Include" />
+          <e p="AspNetUserRoles.cs" t="Include" />
+          <e p="AspNetUsers.cs" t="Include" />
+          <e p="AspNetUserTokens.cs" t="Include" />
+          <e p="Category.cs" t="Include" />
+          <e p="CategoryReward.cs" t="Include" />
+          <e p="Chat.cs" t="Include" />
+          <e p="ChatMessage.cs" t="Include" />
+          <e p="Post.cs" t="Include" />
+          <e p="PostApplication.cs" t="Include" />
+          <e p="PostCategoryReward.cs" t="Include" />
+          <e p="PostCheckIn.cs" t="Include" />
+          <e p="PostDiscussion.cs" t="Include" />
+          <e p="PostImage.cs" t="Include" />
+          <e p="PostRating.cs" t="Include" />
+          <e p="Reward.cs" t="Include" />
+        </e>
+        <e p="Host4Travel.Entities.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.Entities.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Host4Travel.sln" t="IncludeFlat" />
+      <e p="Host4Travel.UI" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="Areas" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include" />
+        <e p="ExtensionMethods" t="Include" />
+        <e p="Host4Travel.UI.csproj" t="IncludeRecursive" />
+        <e p="Identity" t="Include">
+          <e p="ApplicationIdentityRole.cs" t="Include" />
+          <e p="ApplicationIdentityUser.cs" t="Include" />
+        </e>
+        <e p="Middlewares" t="Include" />
+        <e p="Migrations" t="Include">
+          <e p="Host4TravelDb" t="Include">
+            <e p="20191110205115_initial_db_context.cs" t="Include" />
+            <e p="20191110205115_initial_db_context.Designer.cs" t="Include" />
+            <e p="20191110205525_Add_IdentityUser_Columns.cs" t="Include" />
+            <e p="20191110205525_Add_IdentityUser_Columns.Designer.cs" t="Include" />
+            <e p="20191110205643_Delete_IdentityUser_Columns.cs" t="Include" />
+            <e p="20191110205643_Delete_IdentityUser_Columns.Designer.cs" t="Include" />
+            <e p="20191110222505_Add_IpAddressColumn_IdentityUser.cs" t="Include" />
+            <e p="20191110222505_Add_IpAddressColumn_IdentityUser.Designer.cs" t="Include" />
+            <e p="20191110223056_Change.cs" t="Include" />
+            <e p="20191110223056_Change.Designer.cs" t="Include" />
+            <e p="20191110223214_Add_IpAddressColumn.cs" t="Include" />
+            <e p="20191110223214_Add_IpAddressColumn.Designer.cs" t="Include" />
+            <e p="20191110223415_Add_IpAddressColumn_.cs" t="Include" />
+            <e p="20191110223415_Add_IpAddressColumn_.Designer.cs" t="Include" />
+            <e p="20191110223625_Modify_IpAddress_Required.cs" t="Include" />
+            <e p="20191110223625_Modify_IpAddress_Required.Designer.cs" t="Include" />
+            <e p="20191110223655_Cookie_Accepted_Column.cs" t="Include" />
+            <e p="20191110223655_Cookie_Accepted_Column.Designer.cs" t="Include" />
+            <e p="20191110223907_Cookie_Accepted_Column_Modify.cs" t="Include" />
+            <e p="20191110223907_Cookie_Accepted_Column_Modify.Designer.cs" t="Include" />
+            <e p="Host4TravelDbContextModelSnapshot.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Models" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Host4Travel.UI.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include" />
+        <e p="Startup.cs" t="Include" />
+        <e p="TagHelpers" t="Include" />
+        <e p="ViewComponents" t="Include" />
+        <e p="Views" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
