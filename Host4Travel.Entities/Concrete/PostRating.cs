@@ -16,5 +16,6 @@ namespace Host4Travel.UI
 
         public virtual PostApplication Application { get; set; }
         public virtual AspNetUsers Owner { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

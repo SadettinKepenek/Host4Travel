@@ -11,6 +11,7 @@ namespace Host4Travel.UI
             PostCategoryReward = new HashSet<PostCategoryReward>();
             PostDiscussion = new HashSet<PostDiscussion>();
             PostImage = new HashSet<PostImage>();
+            PostRating = new HashSet<PostRating>();
         }
 
         public Guid PostId { get; set; }
@@ -30,5 +31,6 @@ namespace Host4Travel.UI
         public virtual ICollection<PostCategoryReward> PostCategoryReward { get; set; }
         public virtual ICollection<PostDiscussion> PostDiscussion { get; set; }
         public virtual ICollection<PostImage> PostImage { get; set; }
+        public virtual ICollection<PostRating> PostRating { get; set; }
     }
 }

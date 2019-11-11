@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\berka\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
@@ -7,6 +7,7 @@
     <e p="C:\Users\berka\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\berka\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.1964724786.00" t="ExcludeRecursive" />
     <e p="C:\Users\berka\RiderProjects\Host4Travel" t="IncludeFlat">
+      <e p=".git\info\exclude" t="IncludeRecursive" />
       <e p="Host4Travel.API" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
@@ -133,7 +134,9 @@
           <e p="ApplicationIdentityRole.cs" t="Include" />
           <e p="ApplicationIdentityUser.cs" t="Include" />
         </e>
-        <e p="Middlewares" t="Include" />
+        <e p="Middlewares" t="Include">
+          <e p="ApplicationBuilderExtensions.cs" t="Include" />
+        </e>
         <e p="Migrations" t="Include">
           <e p="Host4TravelDb" t="Include">
             <e p="20191110205115_initial_db_context.cs" t="Include" />
@@ -160,6 +163,7 @@
           </e>
         </e>
         <e p="Models" t="Include" />
+        <e p="node_modules\jquery" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -167,6 +171,8 @@
             </e>
           </e>
         </e>
+        <e p="package-lock.json" t="Include" />
+        <e p="package.json" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
@@ -176,6 +182,7 @@
         <e p="TagHelpers" t="Include" />
         <e p="ViewComponents" t="Include" />
         <e p="Views" t="Include" />
+        <e p="wwwroot" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>

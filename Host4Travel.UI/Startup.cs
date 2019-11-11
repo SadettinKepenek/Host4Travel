@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Host4Travel.UI.Identity;
+using Host4Travel.UI.Middlewares;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -92,7 +93,7 @@ namespace Host4Travel.UI
             }
 
             app.UseFileServer();
-//            app.UseNodeModules(env.ContentRootPath);
+            app.UseNodeModules(env.ContentRootPath);
             app.UseStaticFiles();
 //            app.UseStaticFiles(new StaticFileOptions()
 //            {

@@ -39,7 +39,7 @@ namespace Host4Travel.UI
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=94.73.170.2;initial catalog=u8206796_bnbdb;User Id=u8206796_bnbuser;Password=XFvn39D9MCyr76F");
             }
         }
@@ -127,9 +127,16 @@ namespace Host4Travel.UI
                     .IsUnique()
                     .HasFilter("([NormalizedUserName] IS NOT NULL)");
 
+                entity.Property(e => e.CookieAccepted)
+                    .IsRequired()
+                    .HasDefaultValueSql("(CONVERT([bit],(0)))");
+
                 entity.Property(e => e.Email).HasMaxLength(256);
-                entity.Property(e => e.IpAddress).HasMaxLength(192).IsRequired();
-                entity.Property(e => e.CookieAccepted).IsRequired();
+
+                entity.Property(e => e.IpAddress)
+                    .IsRequired()
+                    .HasMaxLength(192);
+
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
@@ -375,6 +382,11 @@ namespace Host4Travel.UI
                     .WithMany(p => p.PostRating)
                     .HasForeignKey(d => d.OwnerId)
                     .HasConstraintName("FK_PostRating_AspNetUsers");
+
+                entity.HasOne(d => d.Post)
+                    .WithMany(p => p.PostRating)
+                    .HasForeignKey(d => d.PostId)
+                    .HasConstraintName("FK_PostRating_Post");
             });
 
             modelBuilder.Entity<Reward>(entity =>
