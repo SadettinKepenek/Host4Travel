@@ -14,7 +14,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="UserController.cs" t="Include" />
-          <e p="WeatherForecastController.cs" t="Include" />
         </e>
         <e p="extensions" t="Include">
           <e p="JwtExtension.cs" t="Include" />
@@ -32,7 +31,6 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-        <e p="WeatherForecast.cs" t="Include" />
       </e>
       <e p="Host4Travel.BLL" t="IncludeRecursive">
         <e p="Abstract" t="Include" />
@@ -145,8 +143,8 @@
           <e p="ApplicationBuilderExtensions.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20191111202518_DenemeContext123.cs" t="Include" />
-          <e p="20191111202518_DenemeContext123.Designer.cs" t="Include" />
+          <e p="20191111205559_AddDbContextInitial.cs" t="Include" />
+          <e p="20191111205559_AddDbContextInitial.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

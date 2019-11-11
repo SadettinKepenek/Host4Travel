@@ -40,7 +40,7 @@ namespace Host4Travel.API
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(
-                    Configuration.GetConnectionString("Deneme"),b => b.MigrationsAssembly("Host4Travel.UI"));
+                    Configuration.GetConnectionString("Host4Travel"),b => b.MigrationsAssembly("Host4Travel.UI"));
             });
             
             services.AddIdentity<ApplicationIdentityUser, ApplicationIdentityRole>(options => { })

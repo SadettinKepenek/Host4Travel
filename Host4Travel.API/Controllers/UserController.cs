@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +33,12 @@ namespace Host4Travel.API.Controllers
             _signInManager = signInManager;
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_userManager.Users.ToList());
+        }
+
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] User userParam)
@@ -50,10 +58,9 @@ namespace Host4Travel.API.Controllers
             // return null if user not found
             if (user == null)
                 return null;
-            _signInManager.
-            var result = _signInManager.PasswordSignInAsync(user.Email, password, false, false);
+            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(user, password, false).Result.Succeeded;
             
-            if (result.Result.Succeeded)
+            if (resultSucceeded)
             {
                 // authentication successful so generate jwt token
 

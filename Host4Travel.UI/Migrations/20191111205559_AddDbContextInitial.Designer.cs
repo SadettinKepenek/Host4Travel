@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Host4Travel.UI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191111202518_DenemeContext123")]
-    partial class DenemeContext123
+    [Migration("20191111205559_AddDbContextInitial")]
+    partial class AddDbContextInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
