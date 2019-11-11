@@ -33,7 +33,7 @@ namespace Host4Travel.API.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpGet]
+        [HttpGet("GetUsers")]
         public IActionResult GetAll()
         {
             return Ok(_userManager.Users.ToList());
@@ -65,10 +65,12 @@ namespace Host4Travel.API.Controllers
                 // authentication successful so generate jwt token
 
                 string tokenString = GenerateToken(user.UserName, user.Email);
-
+                
                 // remove password before returning
 
-                return new UserAuthorizeModel() {Token = tokenString, Username = user.Id};
+                var userAuthorizeModel = new UserAuthorizeModel() {Token = tokenString, Username = user.Id};
+                userAuthorizeModel.ExpireTime = DateTime.Now.AddDays(7);
+                return userAuthorizeModel;
             }
 
             return null;
@@ -101,7 +103,8 @@ namespace Host4Travel.API.Controllers
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.Name, userId)
+                new Claim(ClaimTypes.Name, userId),
+                
             };
             var signingCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
@@ -115,6 +118,17 @@ namespace Host4Travel.API.Controllers
             return tokenHandler.WriteToken(token);
         }
 
+        [HttpPost("CheckTokenIsAlive")]
+        public async Task<IActionResult> CheckTokenIsAlive()
+        {
+            var tokenExpiration = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "exp")?.Value;
+            if (DateTime.Now.Millisecond<=int.Parse(tokenExpiration))
+            {
+                return Ok(true);
+            }
+            
+            return BadRequest();
+        }
       
     }
 }

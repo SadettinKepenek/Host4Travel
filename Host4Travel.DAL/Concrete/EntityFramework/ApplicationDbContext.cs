@@ -4,16 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Host4Travel.UI
 {
-    public partial class ApplicationDbContext:IdentityDbContext<ApplicationIdentityUser>
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser>
     {
         public ApplicationDbContext()
         {
-            
         }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryReward> CategoryReward { get; set; }
         public virtual DbSet<Chat> Chat { get; set; }
@@ -26,18 +27,27 @@ namespace Host4Travel.UI
         public virtual DbSet<PostImage> PostImage { get; set; }
         public virtual DbSet<PostRating> PostRating { get; set; }
         public virtual DbSet<Reward> Reward { get; set; }
-        
-        
-          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("data source=DESKTOP-29H0538\\SQLEXPRESS;initial catalog=ApplicationTestContext;Trusted_Connection=true;");
+                optionsBuilder.UseSqlServer(
+                    "data source=DESKTOP-29H0538\\SQLEXPRESS;initial catalog=ApplicationTestContext;Trusted_Connection=true;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ApplicationIdentityUser>(b =>
+                {
+                    b.Property(e => e.CookieAcceptIpAddress).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.SSN).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.Firstname).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.Lastname).IsRequired().HasMaxLength(100);
+                }
+            );
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.Property(e => e.CategoryId).ValueGeneratedNever();
@@ -301,7 +311,5 @@ namespace Host4Travel.UI
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-        
-        
     }
 }
