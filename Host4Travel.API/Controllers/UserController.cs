@@ -104,6 +104,7 @@ namespace Host4Travel.API.Controllers
             var claims = new Claim[]
             {
                 new Claim(ClaimTypes.Name, userId),
+                new Claim(ClaimTypes.Email,email), 
                 
             };
             var signingCredentials =
