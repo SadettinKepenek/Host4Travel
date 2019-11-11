@@ -1,0 +1,8 @@
+﻿POST https://localhost:44361/api/User/Authenticate?username=test&password=test
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-11-11T101443.415.json
+
+###
+

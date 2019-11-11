@@ -1,0 +1,113 @@
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using Host4Travel.API.Models;
+using Host4Travel.Core.AppSettings;
+using Host4Travel.UI;
+using Host4Travel.UI.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+
+namespace Host4Travel.API.Controllers
+{
+    // GET
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
+    {
+        private readonly AppSettings _appSettings;
+        private UserManager<ApplicationIdentityUser> _userManager;
+        private SignInManager<ApplicationIdentityUser> _signInManager;
+        public UserController(UserManager<ApplicationIdentityUser> userManager, IOptions<AppSettings>  appSettings, SignInManager<ApplicationIdentityUser> signInManager)
+        {
+            _userManager = userManager;
+            _appSettings = appSettings.Value;
+            _signInManager = signInManager;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] User userParam)
+        {
+            var user = Authenticate(userParam.Username, userParam.Password);
+
+
+            if (user == null)
+                return BadRequest(new {message = "Username or password is incorrect"});
+
+            return Ok(user);
+        }
+
+        public UserAuthorizeModel Authenticate(string username, string password)
+        {
+            var user = _userManager.FindByNameAsync(username).Result;
+            // return null if user not found
+            if (user == null)
+                return null;
+            _signInManager.
+            var result = _signInManager.PasswordSignInAsync(user.Email, password, false, false);
+            
+            if (result.Result.Succeeded)
+            {
+                // authentication successful so generate jwt token
+
+                string tokenString = GenerateToken(user.UserName, user.Email);
+
+                // remove password before returning
+
+                return new UserAuthorizeModel() {Token = tokenString, Username = user.Id};
+            }
+
+            return null;
+        }
+        [HttpPost("register")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register([FromBody] User user)
+        {
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            var createdUser =
+                await _userManager.CreateAsync(
+                    new ApplicationIdentityUser() {Email = user.Email, UserName = user.Username}, user.Password);
+            if (createdUser.Succeeded)
+            {
+                return StatusCode(201);
+            }
+            return BadRequest("Kullanıcı oluşturulamadı");
+        }
+
+        private string GenerateToken(string userId, string email)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var claims = new Claim[]
+            {
+                new Claim(ClaimTypes.Name, userId)
+            };
+            var signingCredentials =
+                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = signingCredentials
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+
+      
+    }
+}
