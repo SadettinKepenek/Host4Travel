@@ -103,11 +103,11 @@ namespace Host4Travel.UI
             provider.Mappings[".rtf"] = "application/x-msdownload";
             app.UseFileServer();
 //            app.UseNodeModules(env.ContentRootPath);
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Assets")),
-                RequestPath = "/Assets",
-            });
+//            app.UseStaticFiles(new StaticFileOptions()
+//            {
+//                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Assets")),
+//                RequestPath = "/Assets",
+//            });
             app.UseStaticFiles();
 //            app.UseStaticFiles(new StaticFileOptions()
 //            {
