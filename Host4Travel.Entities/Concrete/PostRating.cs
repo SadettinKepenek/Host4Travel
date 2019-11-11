@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Host4Travel.UI.Identity;
 
 namespace Host4Travel.UI
 {
@@ -15,7 +16,7 @@ namespace Host4Travel.UI
         public Guid? ApplicationId { get; set; }
 
         public virtual PostApplication Application { get; set; }
-        public virtual AspNetUsers Owner { get; set; }
+        public virtual ApplicationIdentityUser Owner { get; set; }
         public virtual Post Post { get; set; }
     }
 }

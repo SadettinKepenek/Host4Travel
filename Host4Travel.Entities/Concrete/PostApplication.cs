@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Host4Travel.UI.Identity;
 
 namespace Host4Travel.UI
 {
@@ -19,7 +20,7 @@ namespace Host4Travel.UI
         public DateTime ApplicationEndDate { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual AspNetUsers Applicent { get; set; }
+        public virtual ApplicationIdentityUser Applicent { get; set; }
         public virtual ICollection<PostCheckIn> PostCheckIn { get; set; }
         public virtual ICollection<PostRating> PostRating { get; set; }
     }

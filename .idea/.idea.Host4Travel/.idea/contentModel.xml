@@ -13,7 +13,11 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="UserController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />
+        </e>
+        <e p="extensions" t="Include">
+          <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -44,6 +48,16 @@
         </e>
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
+        <e p="API" t="Include">
+          <e p="Abstract" t="Include" />
+          <e p="Helpers" t="Include" />
+          <e p="Models" t="Include">
+            <e p="UserAuthorizeModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="AppSettings" t="Include">
+          <e p="AppSettings.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="BusinessLogicLayer" t="Include">
           <e p="IEntityService.cs" t="Include" />
@@ -62,6 +76,7 @@
           </e>
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
+        <e p="Identity" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -75,7 +90,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Concrete" t="Include">
           <e p="EntityFramework" t="Include">
-            <e p="Host4TravelDbContext.cs" t="Include" />
+            <e p="ApplicationDbContext.cs" t="Include" />
           </e>
         </e>
         <e p="Host4Travel.DAL.csproj" t="IncludeRecursive" />
@@ -91,13 +106,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ComplexTypes" t="Include" />
         <e p="Concrete" t="Include">
-          <e p="AspNetRoleClaims.cs" t="Include" />
-          <e p="AspNetRoles.cs" t="Include" />
-          <e p="AspNetUserClaims.cs" t="Include" />
-          <e p="AspNetUserLogins.cs" t="Include" />
-          <e p="AspNetUserRoles.cs" t="Include" />
-          <e p="AspNetUsers.cs" t="Include" />
-          <e p="AspNetUserTokens.cs" t="Include" />
+          <e p="ApplicationIdentityRole.cs" t="Include" />
+          <e p="ApplicationIdentityUser.cs" t="Include" />
           <e p="Category.cs" t="Include" />
           <e p="CategoryReward.cs" t="Include" />
           <e p="Chat.cs" t="Include" />
@@ -110,6 +120,7 @@
           <e p="PostImage.cs" t="Include" />
           <e p="PostRating.cs" t="Include" />
           <e p="Reward.cs" t="Include" />
+          <e p="User.cs" t="Include" />
         </e>
         <e p="Host4Travel.Entities.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -130,37 +141,13 @@
         <e p="Controllers" t="Include" />
         <e p="ExtensionMethods" t="Include" />
         <e p="Host4Travel.UI.csproj" t="IncludeRecursive" />
-        <e p="Identity" t="Include">
-          <e p="ApplicationIdentityRole.cs" t="Include" />
-          <e p="ApplicationIdentityUser.cs" t="Include" />
-        </e>
         <e p="Middlewares" t="Include">
           <e p="ApplicationBuilderExtensions.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="Host4TravelDb" t="Include">
-            <e p="20191110205115_initial_db_context.cs" t="Include" />
-            <e p="20191110205115_initial_db_context.Designer.cs" t="Include" />
-            <e p="20191110205525_Add_IdentityUser_Columns.cs" t="Include" />
-            <e p="20191110205525_Add_IdentityUser_Columns.Designer.cs" t="Include" />
-            <e p="20191110205643_Delete_IdentityUser_Columns.cs" t="Include" />
-            <e p="20191110205643_Delete_IdentityUser_Columns.Designer.cs" t="Include" />
-            <e p="20191110222505_Add_IpAddressColumn_IdentityUser.cs" t="Include" />
-            <e p="20191110222505_Add_IpAddressColumn_IdentityUser.Designer.cs" t="Include" />
-            <e p="20191110223056_Change.cs" t="Include" />
-            <e p="20191110223056_Change.Designer.cs" t="Include" />
-            <e p="20191110223214_Add_IpAddressColumn.cs" t="Include" />
-            <e p="20191110223214_Add_IpAddressColumn.Designer.cs" t="Include" />
-            <e p="20191110223415_Add_IpAddressColumn_.cs" t="Include" />
-            <e p="20191110223415_Add_IpAddressColumn_.Designer.cs" t="Include" />
-            <e p="20191110223625_Modify_IpAddress_Required.cs" t="Include" />
-            <e p="20191110223625_Modify_IpAddress_Required.Designer.cs" t="Include" />
-            <e p="20191110223655_Cookie_Accepted_Column.cs" t="Include" />
-            <e p="20191110223655_Cookie_Accepted_Column.Designer.cs" t="Include" />
-            <e p="20191110223907_Cookie_Accepted_Column_Modify.cs" t="Include" />
-            <e p="20191110223907_Cookie_Accepted_Column_Modify.Designer.cs" t="Include" />
-            <e p="Host4TravelDbContextModelSnapshot.cs" t="Include" />
-          </e>
+          <e p="20191111202518_DenemeContext123.cs" t="Include" />
+          <e p="20191111202518_DenemeContext123.Designer.cs" t="Include" />
+          <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
         <e p="node_modules\jquery" t="IncludeRecursive" />

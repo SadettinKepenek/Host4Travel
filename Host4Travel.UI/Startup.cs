@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,13 +32,13 @@ namespace Host4Travel.UI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Host4TravelDbContext>(opt =>
+            services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(
-                    _configuration.GetConnectionString("Host4Travel"),b => b.MigrationsAssembly("Host4Travel.UI"));
+                    _configuration.GetConnectionString("Deneme"), b => b.MigrationsAssembly("Host4Travel.UI"));
             });
             services.AddIdentity<ApplicationIdentityUser, ApplicationIdentityRole>(options => { })
-                .AddEntityFrameworkStores<Host4TravelDbContext>().AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
                 {
                     options.Password.RequireDigit = true;
@@ -93,7 +94,13 @@ namespace Host4Travel.UI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".myapp"] = "application/x-msdownload";
+            provider.Mappings[".htm3"] = "text/html";
+            provider.Mappings[".image"] = "image/png";
+            // Replace an existing mapping
+            provider.Mappings[".rtf"] = "application/x-msdownload";
             app.UseFileServer();
 //            app.UseNodeModules(env.ContentRootPath);
             app.UseStaticFiles(new StaticFileOptions()

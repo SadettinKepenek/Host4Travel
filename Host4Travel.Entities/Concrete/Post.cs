@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Host4Travel.UI.Identity;
 
 namespace Host4Travel.UI
 {
@@ -26,7 +27,7 @@ namespace Host4Travel.UI
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
 
-        public virtual AspNetUsers Owner { get; set; }
+        public virtual ApplicationIdentityUser Owner { get; set; }
         public virtual ICollection<Chat> Chat { get; set; }
         public virtual ICollection<PostCategoryReward> PostCategoryReward { get; set; }
         public virtual ICollection<PostDiscussion> PostDiscussion { get; set; }
