@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Host4Travel.UI.Migrations
 {
-    public partial class DenemeContext123 : Migration
+    public partial class AddDbContextInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
