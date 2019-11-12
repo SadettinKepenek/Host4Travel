@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Host4Travel.UI.Identity;
 
 namespace Host4Travel.UI
@@ -14,7 +15,7 @@ namespace Host4Travel.UI
             PostImage = new HashSet<PostImage>();
             PostRating = new HashSet<PostRating>();
         }
-
+        [Key]
         public Guid PostId { get; set; }
         public string PostTitle { get; set; }
         public DateTime StartDate { get; set; }

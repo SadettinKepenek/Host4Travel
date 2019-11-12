@@ -143,10 +143,8 @@
           <e p="ApplicationBuilderExtensions.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20191111205559_AddDbContextInitial.cs" t="Include" />
-          <e p="20191111205559_AddDbContextInitial.Designer.cs" t="Include" />
-          <e p="20191111222144_AddIdentityUserColumns.cs" t="Include" />
-          <e p="20191111222144_AddIdentityUserColumns.Designer.cs" t="Include" />
+          <e p="20191112133403_Initial.cs" t="Include" />
+          <e p="20191112133403_Initial.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

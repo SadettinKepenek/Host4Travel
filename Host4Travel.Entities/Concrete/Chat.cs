@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Host4Travel.UI
 {
@@ -9,7 +10,7 @@ namespace Host4Travel.UI
         {
             ChatMessage = new HashSet<ChatMessage>();
         }
-
+        [Key]
         public Guid ChatId { get; set; }
         public Guid? PostId { get; set; }
         public string Side1 { get; set; }

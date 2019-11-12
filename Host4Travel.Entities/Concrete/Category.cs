@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Host4Travel.UI
 {
@@ -11,6 +12,8 @@ namespace Host4Travel.UI
             InverseCategoryParent = new HashSet<Category>();
             PostCategoryReward = new HashSet<PostCategoryReward>();
         }
+        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }

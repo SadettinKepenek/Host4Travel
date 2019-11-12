@@ -1,4 +1,5 @@
-﻿using Host4Travel.UI.Identity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -50,7 +51,7 @@ namespace Host4Travel.UI
             );
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.Property(e => e.CategoryId).ValueGeneratedNever();
+                entity.Property(e => e.CategoryId).UseIdentityColumn();
 
                 entity.Property(e => e.CategoryDescription)
                     .IsRequired()
@@ -74,7 +75,7 @@ namespace Host4Travel.UI
             {
                 entity.ToTable("Category_Reward");
 
-                entity.Property(e => e.CategoryRewardId).ValueGeneratedNever();
+                entity.Property(e => e.CategoryRewardId).HasDefaultValueSql("NEWID()");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.CategoryReward)
@@ -91,7 +92,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<Chat>(entity =>
             {
-                entity.Property(e => e.ChatId).ValueGeneratedNever();
+                entity.Property(e => e.ChatId).HasDefaultValueSql("NEWID()");;
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
@@ -113,7 +114,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<ChatMessage>(entity =>
             {
-                entity.Property(e => e.ChatMessageId).ValueGeneratedNever();
+                entity.Property(e => e.ChatMessageId).HasDefaultValueSql("NEWID()");;
 
                 entity.Property(e => e.Message).IsRequired();
 
@@ -132,7 +133,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<Post>(entity =>
             {
-                entity.Property(e => e.PostId).ValueGeneratedNever();
+                entity.Property(e => e.PostId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
@@ -161,7 +162,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<PostApplication>(entity =>
             {
-                entity.Property(e => e.PostApplicationId).ValueGeneratedNever();
+                entity.Property(e => e.PostApplicationId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.ApplicationDate).HasColumnType("datetime");
 
@@ -184,7 +185,7 @@ namespace Host4Travel.UI
             {
                 entity.ToTable("Post_Category_Reward");
 
-                entity.Property(e => e.PostCategoryRewardId).ValueGeneratedNever();
+                entity.Property(e => e.PostCategoryRewardId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.RewardValue)
                     .IsRequired()
@@ -211,7 +212,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<PostCheckIn>(entity =>
             {
-                entity.Property(e => e.PostCheckInId).ValueGeneratedNever();
+                entity.Property(e => e.PostCheckInId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.CheckInEndDate).HasColumnType("datetime");
 
@@ -226,7 +227,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<PostDiscussion>(entity =>
             {
-                entity.Property(e => e.PostDiscussionId).ValueGeneratedNever();
+                entity.Property(e => e.PostDiscussionId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.Comment)
                     .IsRequired()
@@ -250,7 +251,7 @@ namespace Host4Travel.UI
             {
                 entity.HasKey(e => e.ImageId);
 
-                entity.Property(e => e.ImageId).ValueGeneratedNever();
+                entity.Property(e => e.ImageId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.AltText)
                     .IsRequired()
@@ -269,7 +270,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<PostRating>(entity =>
             {
-                entity.Property(e => e.PostRatingId).ValueGeneratedNever();
+                entity.Property(e => e.PostRatingId).HasDefaultValueSql("NEWID()");
 
                 entity.Property(e => e.OwnerId).HasMaxLength(450);
 
@@ -295,7 +296,7 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<Reward>(entity =>
             {
-                entity.Property(e => e.RewardId).ValueGeneratedNever();
+                entity.Property(e => e.RewardId).UseIdentityColumn();
 
                 entity.Property(e => e.RewardDescription)
                     .IsRequired()

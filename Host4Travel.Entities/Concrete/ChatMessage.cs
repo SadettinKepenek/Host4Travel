@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Host4Travel.UI
 {
     public partial class ChatMessage
     {
+        [Key]
         public Guid ChatMessageId { get; set; }
         public string Message { get; set; }
         public string OwnerId { get; set; }

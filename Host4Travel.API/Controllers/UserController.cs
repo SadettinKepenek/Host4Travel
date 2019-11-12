@@ -5,11 +5,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Host4Travel.API.Extensions;
 using Host4Travel.API.Models;
 using Host4Travel.Core.AppSettings;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -83,6 +85,7 @@ namespace Host4Travel.API.Controllers
 
             if (!ModelState.IsValid)
             {
+                Response.AddApplicationError("Veri istenildiği gibi getirilemedi.");
                 return BadRequest(ModelState);
             }
 

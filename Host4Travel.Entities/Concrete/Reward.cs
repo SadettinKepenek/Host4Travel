@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Host4Travel.UI
 {
@@ -10,6 +11,8 @@ namespace Host4Travel.UI
             CategoryReward = new HashSet<CategoryReward>();
             PostCategoryReward = new HashSet<PostCategoryReward>();
         }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         public int RewardId { get; set; }
         public string RewardName { get; set; }

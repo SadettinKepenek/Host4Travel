@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Host4Travel.UI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191111205559_AddDbContextInitial")]
-    partial class AddDbContextInitial
+    [Migration("20191112133403_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,11 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.Category", b =>
                 {
                     b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CategoryDescription")
                         .IsRequired()
@@ -60,7 +64,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.CategoryReward", b =>
                 {
                     b.Property<Guid>("CategoryRewardId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -83,7 +89,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.Chat", b =>
                 {
                     b.Property<Guid>("ChatId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime");
@@ -117,7 +125,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.ChatMessage", b =>
                 {
                     b.Property<Guid>("ChatMessageId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<Guid>("ChatId")
                         .HasColumnType("uniqueidentifier");
@@ -156,12 +166,27 @@ namespace Host4Travel.UI.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CookieAcceptIpAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -185,6 +210,11 @@ namespace Host4Travel.UI.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SSN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -212,7 +242,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.Post", b =>
                 {
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime");
@@ -259,7 +291,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostApplication", b =>
                 {
                     b.Property<Guid>("PostApplicationId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<DateTime>("ApplicationDate")
                         .HasColumnType("datetime");
@@ -291,7 +325,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostCategoryReward", b =>
                 {
                     b.Property<Guid>("PostCategoryRewardId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -324,7 +360,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostCheckIn", b =>
                 {
                     b.Property<Guid>("PostCheckInId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<Guid>("ApplicationId")
                         .HasColumnType("uniqueidentifier");
@@ -348,7 +386,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostDiscussion", b =>
                 {
                     b.Property<Guid>("PostDiscussionId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Comment")
                         .IsRequired()
@@ -385,7 +425,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostImage", b =>
                 {
                     b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("AltText")
                         .IsRequired()
@@ -413,7 +455,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostRating", b =>
                 {
                     b.Property<Guid>("PostRatingId")
-                        .HasColumnType("uniqueidentifier");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<Guid?>("ApplicationId")
                         .HasColumnType("uniqueidentifier");
@@ -453,7 +497,11 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.Reward", b =>
                 {
                     b.Property<int>("RewardId")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

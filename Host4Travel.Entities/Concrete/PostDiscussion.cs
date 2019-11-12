@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Host4Travel.UI
 {
@@ -10,6 +11,7 @@ namespace Host4Travel.UI
             InverseCommentNavigation = new HashSet<PostDiscussion>();
         }
 
+        [Key]
         public Guid PostDiscussionId { get; set; }
         public Guid PostId { get; set; }
         public Guid? OwnerId { get; set; }
