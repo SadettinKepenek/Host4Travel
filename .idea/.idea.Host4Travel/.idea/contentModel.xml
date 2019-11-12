@@ -21,6 +21,8 @@
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
+          <e p="RolesAddModel.cs" t="Include" />
+          <e p="RolesAssignRoleModel.cs" t="Include" />
           <e p="UserAuthorizeModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -56,7 +58,15 @@
       <e p="Host4Travel.Core" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="BLL" t="Include">
-          <e p="IEntityService.cs" t="Include" />
+          <e p="Abstract" t="Include">
+            <e p="IEntityService.cs" t="Include" />
+          </e>
+          <e p="Concrete" t="Include">
+            <e p="AuthService" t="Include">
+              <e p="AuthenticateModel.cs" t="Include" />
+              <e p="UserCheckModel.cs" t="Include" />
+            </e>
+          </e>
         </e>
         <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
@@ -144,8 +154,8 @@
           <e p="ApplicationBuilderExtensions.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20191112133403_Initial.cs" t="Include" />
-          <e p="20191112133403_Initial.Designer.cs" t="Include" />
+          <e p="20191112144910_Initial.cs" t="Include" />
+          <e p="20191112144910_Initial.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

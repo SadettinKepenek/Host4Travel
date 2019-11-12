@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,40 +39,28 @@ namespace Host4Travel.API.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("Login")]
         public IActionResult Login([FromBody] User userParam)
         {
-            var user=_userManager.FindByNameAsync(userParam.Username).Result;
-            if (user==null)
+            var result=_authService.Authenticate(userParam);
+            if (result.StatusCode==HttpStatusCode.OK)
             {
-                return BadRequest("Kullanıcı adı veya şifre geçersiz");
-            }
-            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(user, userParam.Password, false).Result.Succeeded;
-            if (resultSucceeded)
-            {
-                string tokenString =_authService.GenerateToken(user);
-                var userAuthorizeModel = new UserAuthorizeModel() {Token = tokenString, Username = user.UserName};
-                userAuthorizeModel.ExpireTime = DateTime.Now.AddDays(7);
-                return Ok(userAuthorizeModel);
+                return Ok(result);
             }
 
             return Unauthorized("Kullanıcı adı veya şifre yanlış");
         }
 
      
-        [HttpPost]
+        [HttpPost("Register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] User user)
         {
-
-
             if (!ModelState.IsValid)
             {
                 Response.AddApplicationError("Veri istenildiği gibi getirilemedi.");
                 return BadRequest(ModelState);
             }
-
-
             var identityUser = new ApplicationIdentityUser
             {
                 Email = user.Email,
@@ -91,9 +80,8 @@ namespace Host4Travel.API.Controllers
             }
             return BadRequest("Kullanıcı oluşturulamadı");
         }
-
-
-        [HttpPost]
+        
+        [HttpGet("IsTokenAlive")]
         public async Task<IActionResult> CheckTokenIsAlive()
         {
             return _authService.CheckTokenExpiration();

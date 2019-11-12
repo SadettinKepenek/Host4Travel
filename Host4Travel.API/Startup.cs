@@ -37,22 +37,23 @@ namespace Host4Travel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddControllers().AddNewtonsoftJson(opt =>
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddScoped<IAuthService, AuthService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(
-                    Configuration.GetConnectionString("Host4Travel"),b => b.MigrationsAssembly("Host4Travel.UI"));
+                    Configuration.GetConnectionString("Host4Travel"), b => b.MigrationsAssembly("Host4Travel.UI"));
             });
-            
+
             services.AddIdentity<ApplicationIdentityUser, ApplicationIdentityRole>(options => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
-            
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
-            
+
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);

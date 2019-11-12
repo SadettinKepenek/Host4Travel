@@ -1,4 +1,100 @@
-﻿POST https://localhost:44361/api/User/Authenticate?username=test&password=test
+﻿GET https://localhost:44361/api/Roles/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIxIiwiZW1haWwiOiJiZXJrYXkueWFsY2luMjBAaG90bWFpbC5jb20iLCJuYmYiOjE1NzM1NjgyMTQsImV4cCI6MTU3NDE3MzAxNCwiaWF0IjoxNTczNTY4MjE0fQ.050LziTEJcvYFe8gu7U-1FeD04697OnUh1t3ORPgJ2E
+
+<> 2019-11-12T054519.500.txt
+
+###
+
+GET https://localhost:44361/api/Roles/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIxIiwiZW1haWwiOiJiZXJrYXkueWFsY2luMjBAaG90bWFpbC5jb20iLCJuYmYiOjE1NzM1NjgyMTQsImV4cCI6MTU3NDE3MzAxNCwiaWF0IjoxNTczNTY4MjE0fQ.050LziTEJcvYFe8gu7U-1FeD04697OnUh1t3ORPgJ2E
+
+<> 2019-11-12T054334.500.txt
+
+###
+
+GET https://localhost:44361/api/Roles/
+Accept: application/json
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIxIiwiZW1haWwiOiJiZXJrYXkueWFsY2luMjBAaG90bWFpbC5jb20iLCJuYmYiOjE1NzM1Njk1ODUsImV4cCI6MTU3NDE3NDM4NSwiaWF0IjoxNTczNTY5NTg1fQ.6kEqKwPTfBLcdIkSRk6glbygA93xVfFmR5BH8Y8_66U"
+
+###
+
+GET https://localhost:44361/api/Roles/
+Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIxIiwiZW1haWwiOiJiZXJrYXkueWFsY2luMjBAaG90bWFpbC5jb20iLCJuYmYiOjE1NzM1Njk1ODUsImV4cCI6MTU3NDE3NDM4NSwiaWF0IjoxNTczNTY5NTg1fQ.6kEqKwPTfBLcdIkSRk6glbygA93xVfFmR5BH8Y8_66U"
+
+###
+
+POST https://localhost:44361/api/User/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "Berkay.XX0553"
+}
+
+<> 2019-11-12T053945.200.json
+
+###
+
+POST https://localhost:44361/api/User/login
+Content-Type: application/json
+{"username": "user1","password":"Berkay.XX0553"}
+
+<> 2019-11-12T053746.400.html
+
+###
+
+POST https://localhost:44361/api/User/login
+Content-Type: application/json
+{"username": "user1","password":"Berkay.XX0553"}
+
+<> 2019-11-12T053738.400.html
+
+###
+
+POST https://localhost:44361/api/User/login
+
+{"username":"user1","password":"Berkay.XX0553"}
+
+<> 2019-11-12T053711.415.json
+
+###
+
+POST https://localhost:44361/api/User/login
+
+{"username":"user1","password":"Berkay.XX0553"}
+
+###
+
+POST https://localhost:44361/api/User/Login
+
+{"username":"user1","password":"Berkay.XX0553"}
+
+###
+
+POST https://localhost:44361/api/User/Login
+Accept: */*
+Cache-Control: no-cache
+{"username": "user1","password":"Berkay.XX0553"}
+
+<> 2019-11-12T053330.400.html
+
+###
+
+GET https://localhost:44361/api/Roles
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST https://localhost:44361/api/Roles
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST https://localhost:44361/api/User/Authenticate?username=test&password=test
 Accept: */*
 Cache-Control: no-cache
 

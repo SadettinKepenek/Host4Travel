@@ -1,10 +1,14 @@
-﻿﻿using Host4Travel.Core.AppSettings;
+﻿﻿using System.Linq;
+ using System.Threading.Tasks;
+ using Host4Travel.API.Models;
+ using Host4Travel.Core.AppSettings;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+ using Microsoft.Extensions.Options;
 
-namespace Host4Travel.API.Controllers
+ namespace Host4Travel.API.Controllers
 {
     [Authorize]
     [ApiController]
@@ -14,13 +18,63 @@ namespace Host4Travel.API.Controllers
         private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
+        private RoleManager<ApplicationIdentityRole> _roleManager;
 
-        public RolesController(AppSettings appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager)
+        public RolesController(IOptions<AppSettings> appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, RoleManager<ApplicationIdentityRole> roleManager)
         {
-            _appSettings = appSettings;
+            _appSettings = appSettings.Value;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var roles = _roleManager.Roles.ToList();
+            if (roles.Count==0)
+            {
+                return NotFound();
+            }
+            return Ok(roles);
+        }
+        [HttpPost("AddRole")]
+        public async Task<IActionResult> Add([FromBody] RolesAddModel role)
+        {
+            bool isRoleExists = await _roleManager.RoleExistsAsync(role.RoleName);
+            if (isRoleExists)
+            {
+                return BadRequest("Rol zaten mevcut");
+            }
+            var identityRole=new ApplicationIdentityRole();
+            identityRole.Name = role.RoleName;
+            var result = await _roleManager.CreateAsync(identityRole);
+            if (!result.Succeeded)
+            {
+                return Problem("Rol eklenirken hata oluştu lütfen site sahibi ile iletişime geçiniz.");
+            }
+            return Ok(identityRole);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole([FromBody] RolesAssignRoleModel roleModel)
+        {
+            var user = await _userManager.FindByNameAsync(roleModel.Username);
+            var role = await _roleManager.FindByNameAsync(roleModel.Rolename);
+            if (user==null)
+            {
+                return BadRequest("Kullanıcı bulunamadı");
+            }
+
+            if (role==null)
+            {
+                
+            }
+            
+            return Ok();
+        }
+        
+        
         
     }
 }
