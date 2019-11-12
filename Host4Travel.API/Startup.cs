@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Host4Travel.BLL.Abstract;
+using Host4Travel.BLL.Concrete;
 using Host4Travel.Core.AppSettings;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +38,8 @@ namespace Host4Travel.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(
@@ -45,7 +48,7 @@ namespace Host4Travel.API
             
             services.AddIdentity<ApplicationIdentityUser, ApplicationIdentityRole>(options => { })
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-            
+
             
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

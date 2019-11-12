@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Host4Travel.UI.Migrations
 {
-    public partial class AddDbContextInitial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,11 @@ namespace Host4Travel.UI.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Firstname = table.Column<string>(maxLength: 100, nullable: false),
+                    Lastname = table.Column<string>(maxLength: 100, nullable: false),
+                    SSN = table.Column<string>(maxLength: 100, nullable: false),
+                    CookieAcceptIpAddress = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,7 +54,8 @@ namespace Host4Travel.UI.Migrations
                 name: "Category",
                 columns: table => new
                 {
-                    CategoryId = table.Column<int>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryName = table.Column<string>(maxLength: 250, nullable: false),
                     CategoryDescription = table.Column<string>(maxLength: 250, nullable: false),
                     CategoryLevel = table.Column<int>(nullable: false),
@@ -73,7 +78,8 @@ namespace Host4Travel.UI.Migrations
                 name: "Reward",
                 columns: table => new
                 {
-                    RewardId = table.Column<int>(nullable: false),
+                    RewardId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RewardName = table.Column<string>(maxLength: 250, nullable: false),
                     RewardDescription = table.Column<string>(maxLength: 250, nullable: false),
                     IsActive = table.Column<bool>(nullable: false)
@@ -193,7 +199,7 @@ namespace Host4Travel.UI.Migrations
                 name: "Post",
                 columns: table => new
                 {
-                    PostId = table.Column<Guid>(nullable: false),
+                    PostId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostTitle = table.Column<string>(maxLength: 250, nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -220,7 +226,7 @@ namespace Host4Travel.UI.Migrations
                 name: "PostApplication",
                 columns: table => new
                 {
-                    PostApplicationId = table.Column<Guid>(nullable: false),
+                    PostApplicationId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: false),
                     ApplicentId = table.Column<string>(maxLength: 450, nullable: false),
                     ApplicationDate = table.Column<DateTime>(type: "datetime", nullable: false),
@@ -243,7 +249,7 @@ namespace Host4Travel.UI.Migrations
                 name: "Category_Reward",
                 columns: table => new
                 {
-                    CategoryRewardId = table.Column<Guid>(nullable: false),
+                    CategoryRewardId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     CategoryId = table.Column<int>(nullable: false),
                     RewardId = table.Column<int>(nullable: false),
                     IsActive = table.Column<bool>(nullable: false)
@@ -269,7 +275,7 @@ namespace Host4Travel.UI.Migrations
                 name: "Chat",
                 columns: table => new
                 {
-                    ChatId = table.Column<Guid>(nullable: false),
+                    ChatId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: true),
                     Side1 = table.Column<string>(maxLength: 450, nullable: false),
                     Side2 = table.Column<string>(maxLength: 450, nullable: false),
@@ -292,7 +298,7 @@ namespace Host4Travel.UI.Migrations
                 name: "Post_Category_Reward",
                 columns: table => new
                 {
-                    PostCategoryRewardId = table.Column<Guid>(nullable: false),
+                    PostCategoryRewardId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     RewardId = table.Column<int>(nullable: false),
@@ -326,7 +332,7 @@ namespace Host4Travel.UI.Migrations
                 name: "PostDiscussion",
                 columns: table => new
                 {
-                    PostDiscussionId = table.Column<Guid>(nullable: false),
+                    PostDiscussionId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: false),
                     OwnerId = table.Column<Guid>(nullable: true),
                     CommentId = table.Column<Guid>(nullable: true),
@@ -356,7 +362,7 @@ namespace Host4Travel.UI.Migrations
                 name: "PostImage",
                 columns: table => new
                 {
-                    ImageId = table.Column<Guid>(nullable: false),
+                    ImageId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: false),
                     ImageUrl = table.Column<string>(maxLength: 500, nullable: false),
                     AltText = table.Column<string>(maxLength: 500, nullable: false),
@@ -377,7 +383,7 @@ namespace Host4Travel.UI.Migrations
                 name: "PostCheckIn",
                 columns: table => new
                 {
-                    PostCheckInId = table.Column<Guid>(nullable: false),
+                    PostCheckInId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     CheckInStartDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     CheckInEndDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ApplicationId = table.Column<Guid>(nullable: false),
@@ -398,7 +404,7 @@ namespace Host4Travel.UI.Migrations
                 name: "PostRating",
                 columns: table => new
                 {
-                    PostRatingId = table.Column<Guid>(nullable: false),
+                    PostRatingId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     PostId = table.Column<Guid>(nullable: true),
                     RatingValue = table.Column<int>(nullable: true),
                     RatingComment = table.Column<string>(maxLength: 250, nullable: true),
@@ -434,7 +440,7 @@ namespace Host4Travel.UI.Migrations
                 name: "ChatMessage",
                 columns: table => new
                 {
-                    ChatMessageId = table.Column<Guid>(nullable: false),
+                    ChatMessageId = table.Column<Guid>(nullable: false, defaultValueSql: "NEWID()"),
                     Message = table.Column<string>(nullable: false),
                     OwnerId = table.Column<string>(maxLength: 450, nullable: false),
                     SendDate = table.Column<DateTime>(type: "datetime", nullable: false),

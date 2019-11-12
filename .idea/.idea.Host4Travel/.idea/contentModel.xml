@@ -13,12 +13,16 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="RolesController.cs" t="Include" />
           <e p="UserController.cs" t="Include" />
         </e>
         <e p="extensions" t="Include">
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="UserAuthorizeModel.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -33,9 +37,13 @@
         <e p="Startup.cs" t="Include" />
       </e>
       <e p="Host4Travel.BLL" t="IncludeRecursive">
-        <e p="Abstract" t="Include" />
+        <e p="Abstract" t="Include">
+          <e p="IAuthService.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Concrete" t="Include" />
+        <e p="Concrete" t="Include">
+          <e p="AuthService.cs" t="Include" />
+        </e>
         <e p="Host4Travel.BLL.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -46,21 +54,11 @@
         </e>
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
-        <e p="API" t="Include">
-          <e p="Abstract" t="Include" />
-          <e p="Helpers" t="Include" />
-          <e p="Models" t="Include">
-            <e p="UserAuthorizeModel.cs" t="Include" />
-          </e>
-        </e>
-        <e p="AppSettings" t="Include">
-          <e p="AppSettings.cs" t="Include" />
-        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="BusinessLogicLayer" t="Include">
+        <e p="BLL" t="Include">
           <e p="IEntityService.cs" t="Include" />
         </e>
-        <e p="DataAccessLayer" t="Include">
+        <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
             <e p="IEntityRepository.cs" t="Include" />
           </e>
@@ -68,19 +66,22 @@
             <e p="EfEntityFrameworkBase.cs" t="Include" />
           </e>
         </e>
-        <e p="EntityLayer" t="Include">
+        <e p="Entities" t="Include">
           <e p="Abstract" t="Include">
             <e p="IEntity.cs" t="Include" />
           </e>
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
-        <e p="Identity" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
               <e p="Host4Travel.Core.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AppSettings.cs" t="Include" />
+          <e p="IAppSettings.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.DAL" t="IncludeRecursive">

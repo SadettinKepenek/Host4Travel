@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Host4Travel.API.Extensions;
 using Host4Travel.API.Models;
+using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.AppSettings;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -26,57 +28,39 @@ namespace Host4Travel.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly AppSettings _appSettings;
-        private UserManager<ApplicationIdentityUser> _userManager;
-        private SignInManager<ApplicationIdentityUser> _signInManager;
-        public UserController(UserManager<ApplicationIdentityUser> userManager, IOptions<AppSettings>  appSettings, SignInManager<ApplicationIdentityUser> signInManager)
+        private readonly UserManager<ApplicationIdentityUser> _userManager;
+        private readonly SignInManager<ApplicationIdentityUser> _signInManager;
+        private IAuthService _authService;
+        public UserController(UserManager<ApplicationIdentityUser> userManager, IOptions<AppSettings>  appSettings, SignInManager<ApplicationIdentityUser> signInManager, IAuthService authService)
         {
             _userManager = userManager;
             _appSettings = appSettings.Value;
             _signInManager = signInManager;
-        }
-
-        [HttpGet("GetUsers")]
-        public IActionResult GetAll()
-        {
-            return Ok(_userManager.Users.ToList());
+            _authService = authService;
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login([FromBody] User userParam)
         {
-            var user = Authenticate(userParam.Username, userParam.Password);
-
-
-            if (user == null)
-                return BadRequest(new {message = "Username or password is incorrect"});
-
-            return Ok(user);
-        }
-
-        public UserAuthorizeModel Authenticate(string username, string password)
-        {
-            var user = _userManager.FindByNameAsync(username).Result;
-            // return null if user not found
-            if (user == null)
-                return null;
-            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(user, password, false).Result.Succeeded;
-            
+            var user=_userManager.FindByNameAsync(userParam.Username).Result;
+            if (user==null)
+            {
+                return BadRequest("Kullanıcı adı veya şifre geçersiz");
+            }
+            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(user, userParam.Password, false).Result.Succeeded;
             if (resultSucceeded)
             {
-                // authentication successful so generate jwt token
-
-                string tokenString = GenerateToken(user.UserName, user.Email);
-                
-                // remove password before returning
-
-                var userAuthorizeModel = new UserAuthorizeModel() {Token = tokenString, Username = user.Id};
+                string tokenString =_authService.GenerateToken(user);
+                var userAuthorizeModel = new UserAuthorizeModel() {Token = tokenString, Username = user.UserName};
                 userAuthorizeModel.ExpireTime = DateTime.Now.AddDays(7);
-                return userAuthorizeModel;
+                return Ok(userAuthorizeModel);
             }
 
-            return null;
+            return Unauthorized("Kullanıcı adı veya şifre yanlış");
         }
+
+     
         [HttpPost("register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] User user)
@@ -90,9 +74,17 @@ namespace Host4Travel.API.Controllers
             }
 
 
+            var identityUser = new ApplicationIdentityUser();
+            identityUser.Email = user.Email;
+            identityUser.UserName = user.Username;
+            identityUser.Firstname = user.Firstname;
+            identityUser.Lastname = user.Lastname;
+            identityUser.CookieAcceptIpAddress = user.CookieAcceptIpAddress;
+            identityUser.SSN = user.SSN;
+            
             var createdUser =
                 await _userManager.CreateAsync(
-                    new ApplicationIdentityUser() {Email = user.Email, UserName = user.Username}, user.Password);
+                    identityUser, user.Password);
             if (createdUser.Succeeded)
             {
                 return StatusCode(201);
@@ -100,38 +92,11 @@ namespace Host4Travel.API.Controllers
             return BadRequest("Kullanıcı oluşturulamadı");
         }
 
-        private string GenerateToken(string userId, string email)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var claims = new Claim[]
-            {
-                new Claim(ClaimTypes.Name, userId),
-                new Claim(ClaimTypes.Email,email), 
-                
-            };
-            var signingCredentials =
-                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = signingCredentials
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
-        }
 
         [HttpPost("CheckTokenIsAlive")]
         public async Task<IActionResult> CheckTokenIsAlive()
         {
-            var tokenExpiration = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "exp")?.Value;
-            if (DateTime.Now.Millisecond<=int.Parse(tokenExpiration))
-            {
-                return Ok(true);
-            }
-            
-            return BadRequest();
+            return _authService.CheckTokenExpiration();
         }
       
     }
