@@ -17,19 +17,18 @@ namespace Host4Travel.BLL.Concrete
 {
     public class AuthService:IAuthService
     {
-        private readonly AppSettings AppSettings;
-        private IHttpContextAccessor _httpContext;
-        private IConfiguration _configuration;
+        private readonly AppSettings _appSettings;
+        private readonly IHttpContextAccessor _httpContext;
 
-        public AuthService(IOptions<AppSettings>  appSettings, IHttpContextAccessor httpContext)
+        public AuthService(IOptions<AppSettings>  appSettings, IHttpContextAccessor httpContext )
         {
-            AppSettings = appSettings.Value;
+            _appSettings = appSettings.Value;
             _httpContext = httpContext;
         }
         public string GenerateToken(ApplicationIdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(AppSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));
             claims.Add(new Claim(ClaimTypes.Email,user.Email));
@@ -49,6 +48,7 @@ namespace Host4Travel.BLL.Concrete
         public StatusCodeResult CheckTokenExpiration()
         {
             var tokenExpiration = _httpContext.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "exp")?.Value;
+            
             if (DateTime.Now.Millisecond<=int.Parse(tokenExpiration))
             {
                 return new OkResult();

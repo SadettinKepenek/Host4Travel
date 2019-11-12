@@ -27,20 +27,18 @@ namespace Host4Travel.API.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
-        private IAuthService _authService;
-        public UserController(UserManager<ApplicationIdentityUser> userManager, IOptions<AppSettings>  appSettings, SignInManager<ApplicationIdentityUser> signInManager, IAuthService authService)
+        private readonly IAuthService _authService;
+        public UserController(UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, IAuthService authService)
         {
             _userManager = userManager;
-            _appSettings = appSettings.Value;
             _signInManager = signInManager;
             _authService = authService;
         }
 
         [AllowAnonymous]
-        [HttpPost("login")]
+        [HttpPost]
         public IActionResult Login([FromBody] User userParam)
         {
             var user=_userManager.FindByNameAsync(userParam.Username).Result;
@@ -61,7 +59,7 @@ namespace Host4Travel.API.Controllers
         }
 
      
-        [HttpPost("register")]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] User user)
         {
@@ -74,14 +72,16 @@ namespace Host4Travel.API.Controllers
             }
 
 
-            var identityUser = new ApplicationIdentityUser();
-            identityUser.Email = user.Email;
-            identityUser.UserName = user.Username;
-            identityUser.Firstname = user.Firstname;
-            identityUser.Lastname = user.Lastname;
-            identityUser.CookieAcceptIpAddress = user.CookieAcceptIpAddress;
-            identityUser.SSN = user.SSN;
-            
+            var identityUser = new ApplicationIdentityUser
+            {
+                Email = user.Email,
+                UserName = user.Username,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                CookieAcceptIpAddress = user.CookieAcceptIpAddress,
+                SSN = user.SSN
+            };
+
             var createdUser =
                 await _userManager.CreateAsync(
                     identityUser, user.Password);
@@ -93,7 +93,7 @@ namespace Host4Travel.API.Controllers
         }
 
 
-        [HttpPost("CheckTokenIsAlive")]
+        [HttpPost]
         public async Task<IActionResult> CheckTokenIsAlive()
         {
             return _authService.CheckTokenExpiration();

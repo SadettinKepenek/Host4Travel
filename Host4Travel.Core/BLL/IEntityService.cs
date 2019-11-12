@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Host4Travel.Core.BusinessLogicLayer
+namespace Host4Travel.Core.BLL
 {
     public interface IEntityService<T>
     {
