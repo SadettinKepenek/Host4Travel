@@ -29,6 +29,7 @@ using Microsoft.AspNetCore.Mvc;
         }
 
         [HttpGet("GetAll")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAll()
         {
             var roles = _roleManager.Roles.ToList();

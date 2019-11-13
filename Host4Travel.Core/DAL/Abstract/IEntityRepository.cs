@@ -5,7 +5,7 @@ using Host4Travel.Core.EntityLayer.Abstract;
 
 namespace Host4Travel.Core.DataAccessLayer.Abstract
 {
-    public interface IEntityRepository<T> where T:class,IEntity,new()
+    public interface IEntityRepository<T> where T:class,new()
     {
         T Get(Expression<Func<T,bool>> filter=null);
         List<T> GetList(Expression<Func<T, bool>> filter = null);

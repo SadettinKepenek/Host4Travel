@@ -113,11 +113,36 @@
         </e>
       </e>
       <e p="Host4Travel.DAL" t="IncludeRecursive">
-        <e p="Abstract" t="Include" />
+        <e p="Abstract" t="Include">
+          <e p="ICategoryDal.cs" t="Include" />
+          <e p="ICategoryRewardDal.cs" t="Include" />
+          <e p="IChatDal.cs" t="Include" />
+          <e p="IChatMessageDal.cs" t="Include" />
+          <e p="IPostApplicationDal.cs" t="Include" />
+          <e p="IPostCategoryRewardDal.cs" t="Include" />
+          <e p="IPostCheckInDal.cs" t="Include" />
+          <e p="IPostDal.cs" t="Include" />
+          <e p="IPostDiscussionDal.cs" t="Include" />
+          <e p="IPostImageDal.cs" t="Include" />
+          <e p="IPostRatingDal.cs" t="Include" />
+          <e p="IRewardDal.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Concrete" t="Include">
           <e p="EntityFramework" t="Include">
             <e p="ApplicationDbContext.cs" t="Include" />
+            <e p="EfCategoryRepository.cs" t="Include" />
+            <e p="EfCategoryRewardRepository.cs" t="Include" />
+            <e p="EfChatMessageRepository.cs" t="Include" />
+            <e p="EfChatRepository.cs" t="Include" />
+            <e p="EfPostApplicationRepository.cs" t="Include" />
+            <e p="EfPostCategoryRewardRepository.cs" t="Include" />
+            <e p="EfPostCheckInRepository.cs" t="Include" />
+            <e p="EfPostDiscussionRepository.cs" t="Include" />
+            <e p="EfPostImageRepository.cs" t="Include" />
+            <e p="EfPostRatingRepository.cs" t="Include" />
+            <e p="EfPostRepository.cs" t="Include" />
+            <e p="EfRewardRepository.cs" t="Include" />
           </e>
         </e>
         <e p="Host4Travel.DAL.csproj" t="IncludeRecursive" />
