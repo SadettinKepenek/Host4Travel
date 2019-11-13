@@ -72,7 +72,7 @@ namespace Host4Travel.API.Controllers
             {
                 return Ok(new UsersRegisterResponseModel()
                 {
-                    Message = result.Message,
+                    Message = "Kullanıcı başarı ile oluşturuldu",
                     StatusCode = HttpStatusCode.OK
                 });
             }

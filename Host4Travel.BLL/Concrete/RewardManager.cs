@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _rewardDal = rewardDal;
         }
-        public Reward GetById(Expression<Func<Reward, bool>> filter = null)
+        public Reward Get(Expression<Func<Reward, bool>> filter = null)
         {
             return null;
         }

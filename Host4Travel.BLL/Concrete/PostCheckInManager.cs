@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postCheckInDal = postCheckInDal;
         }
-        public PostCheckIn GetById(Expression<Func<PostCheckIn, bool>> filter = null)
+        public PostCheckIn Get(Expression<Func<PostCheckIn, bool>> filter = null)
         {
             return null;
         }

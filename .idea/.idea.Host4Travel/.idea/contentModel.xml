@@ -13,6 +13,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
+          <e p="PostsController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
         </e>
@@ -75,6 +76,9 @@
               <e p="Host4Travel.BLL.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="Validators" t="Include">
+          <e p="PostValidator.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
