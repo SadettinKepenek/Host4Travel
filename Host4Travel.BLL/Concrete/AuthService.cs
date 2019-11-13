@@ -6,8 +6,8 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.AppSettings;
 using Host4Travel.Core.BLL.Concrete.AuthService;
+using Host4Travel.Core.SystemProperties;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Http;
@@ -22,46 +22,46 @@ namespace Host4Travel.BLL.Concrete
     public class AuthService:IAuthService
     {
         private readonly AppSettings _appSettings;
-        private readonly IHttpContextAccessor _httpContext;
-        private UserManager<ApplicationIdentityUser> _userManager;
-        private RoleManager<ApplicationIdentityRole> _roleManager;
-        private SignInManager<ApplicationIdentityUser> _signInManager;
+        private readonly UserManager<ApplicationIdentityUser> _userManager;
+        private readonly SignInManager<ApplicationIdentityUser> _signInManager;
 
-        public AuthService(IOptions<AppSettings>  appSettings, IHttpContextAccessor httpContext, UserManager<ApplicationIdentityUser> userManager, RoleManager<ApplicationIdentityRole> roleManager, SignInManager<ApplicationIdentityUser> signInManager)
+        public AuthService(IOptions<AppSettings>  appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager)
         {
             _appSettings = appSettings.Value;
-            _httpContext = httpContext;
             _userManager = userManager;
-            _roleManager = roleManager;
             _signInManager = signInManager;
         }
-        public AuthenticateModel Authenticate(User userParam)
+        public AuthenticateModel Login(UsersLoginModel userParam)
         {
             
             var user=_userManager.FindByNameAsync(userParam.Username).Result;
-            bool resultSucceeded = CheckUserIsValid(userParam,user);
+            bool resultSucceeded = MatchPasswordAndHash(user,userParam.Password);
             if (resultSucceeded)
             {
-                return GenerateToken(user);
-            }
-            else
-            {
-                return new AuthenticateModel()
+              
+                var generateTokenModel = GenerateToken(user);
+                var authenticateModel=new AuthenticateModel()
                 {
-                    Token = String.Empty,
-                    Username = String.Empty,
-                    StatusCode = HttpStatusCode.Unauthorized,
-                    ResponseMessage = "Yetkisiz İşlem.",
-                    TokenExpireDate = DateTime.Now
+                    Username = user.UserName,
+                    Token = generateTokenModel.Token,
+                    ResponseMessage = "Success",
+                    StatusCode = HttpStatusCode.OK,
+                    TokenExpireDate = generateTokenModel.TokenExpireDate
                 };
+                return authenticateModel;
             }
-            
+
+            var model = new AuthenticateModel();
+            model.Token = String.Empty;
+            model.Username = String.Empty;
+            model.StatusCode = HttpStatusCode.Unauthorized;
+            model.ResponseMessage = "Yetkisiz İşlem.";
+            model.TokenExpireDate = DateTime.Now;
+            return model;
+
         }
 
-      
-     
-
-        public AuthenticateModel GenerateToken(ApplicationIdentityUser user)
+        public GenerateTokenModel GenerateToken(ApplicationIdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
@@ -69,7 +69,11 @@ namespace Host4Travel.BLL.Concrete
 
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
-
+            var roles = _userManager.GetRolesAsync(user).Result.ToList();
+            foreach (string role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role,role));
+            }
             var signingCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
             var expirationDate = DateTime.UtcNow.AddDays(7);
@@ -80,22 +84,48 @@ namespace Host4Travel.BLL.Concrete
                 SigningCredentials = signingCredentials
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var generateTokenModel = new AuthenticateModel()
-            {
-                Token = tokenHandler.WriteToken(token),
-                Username = user.UserName,
-                ResponseMessage = "Success",
-                StatusCode = HttpStatusCode.OK,
-                TokenExpireDate = expirationDate
-            };
-            return generateTokenModel;
+            var model=new GenerateTokenModel();
+            model.Token = tokenHandler.WriteToken(token);
+            model.TokenExpireDate = expirationDate;
+            
+            return model;
         }
 
-        public StatusCodeResult CheckTokenExpiration()
+        public RegisterModel Register(UsersRegisterModel registerModel)
         {
-            var tokenExpiration = _httpContext.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "exp")?.Value;
+            var identityUser = new ApplicationIdentityUser
+            {
+                Email = registerModel.Email,
+                UserName = registerModel.Username,
+                Firstname = registerModel.Firstname,
+                Lastname = registerModel.Lastname,
+                CookieAcceptIpAddress = registerModel.CookieAcceptIpAddress,
+                SSN = registerModel.Ssn
+            };
+
+            var createdUser =
+                _userManager.CreateAsync(
+                    identityUser, registerModel.Password);
+            if (createdUser.Result.Succeeded)
+            {
+                return new RegisterModel()
+                {
+                    Message = "Kullanıcı başarı ile oluşturuldu",
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+
+            return new RegisterModel
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Message = String.Join(',',createdUser.Result.Errors.ToList())
+            };
+        }
+
+        public StatusCodeResult CheckTokenExpiration(string expirationTime)
+        {
             
-            if (DateTime.Now.Millisecond<=int.Parse(tokenExpiration))
+            if (DateTime.Now.Millisecond<=int.Parse(expirationTime))
             {
                 return new OkResult();
             }
@@ -103,14 +133,14 @@ namespace Host4Travel.BLL.Concrete
             return new BadRequestResult();
         }
 
-        public bool CheckUserIsValid(User userParam, ApplicationIdentityUser applicationIdentityUser)
+        public bool MatchPasswordAndHash(ApplicationIdentityUser applicationIdentityUser,string password)
         {
             if (applicationIdentityUser==null)
             {
                 return false;
             }
             
-            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(applicationIdentityUser, userParam.Password, false).Result.Succeeded;
+            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(applicationIdentityUser, password, false).Result.Succeeded;
             return resultSucceeded;
         }
     }

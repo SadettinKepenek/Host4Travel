@@ -14,16 +14,17 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="RolesController.cs" t="Include" />
-          <e p="UserController.cs" t="Include" />
+          <e p="UsersController.cs" t="Include" />
         </e>
         <e p="extensions" t="Include">
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
-          <e p="RolesAddModel.cs" t="Include" />
-          <e p="RolesAssignRoleModel.cs" t="Include" />
-          <e p="UserAuthorizeModel.cs" t="Include" />
+          <e p="Roles" t="Include">
+            <e p="RolesAddModel.cs" t="Include" />
+            <e p="RolesAssignRoleModel.cs" t="Include" />
+          </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -62,9 +63,22 @@
             <e p="IEntityService.cs" t="Include" />
           </e>
           <e p="Concrete" t="Include">
-            <e p="AuthService" t="Include">
-              <e p="AuthenticateModel.cs" t="Include" />
-              <e p="UserCheckModel.cs" t="Include" />
+            <e p="Services" t="Include">
+              <e p="AuthService" t="Include">
+                <e p="AuthenticateModel.cs" t="Include" />
+                <e p="GenerateTokenModel.cs" t="Include" />
+                <e p="RegisterModel.cs" t="Include" />
+              </e>
+            </e>
+            <e p="WebAPI" t="Include">
+              <e p="Users" t="Include">
+                <e p="UsersLoginModel.cs" t="Include" />
+                <e p="UsersLoginResponseModel.cs" t="Include" />
+                <e p="UsersRegisterModel.cs" t="Include" />
+                <e p="UsersRegisterResponseModel.cs" t="Include" />
+                <e p="UsersTokenValidationModel.cs" t="Include" />
+                <e p="UsersTokenValidationResponseModel.cs" t="Include" />
+              </e>
             </e>
           </e>
         </e>
@@ -89,7 +103,7 @@
             </e>
           </e>
         </e>
-        <e p="Properties" t="Include">
+        <e p="SystemProperties" t="Include">
           <e p="AppSettings.cs" t="Include" />
           <e p="IAppSettings.cs" t="Include" />
         </e>

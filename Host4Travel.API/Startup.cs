@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Concrete;
-using Host4Travel.Core.AppSettings;
+using Host4Travel.Core.SystemProperties;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

@@ -1,8 +1,8 @@
 ﻿﻿using System.Linq;
  using System.Threading.Tasks;
  using Host4Travel.API.Models;
- using Host4Travel.Core.AppSettings;
-using Host4Travel.UI.Identity;
+ using Host4Travel.Core.SystemProperties;
+ using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
  namespace Host4Travel.API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class RolesController : Controller
@@ -28,7 +28,7 @@ using Microsoft.AspNetCore.Mvc;
             _roleManager = roleManager;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var roles = _roleManager.Roles.ToList();
@@ -56,7 +56,7 @@ using Microsoft.AspNetCore.Mvc;
             return Ok(identityRole);
         }
 
-        [HttpPost]
+        [HttpPost("AssignRole")]
         public async Task<IActionResult> AssignRole([FromBody] RolesAssignRoleModel roleModel)
         {
             var user = await _userManager.FindByNameAsync(roleModel.Username);
@@ -68,10 +68,17 @@ using Microsoft.AspNetCore.Mvc;
 
             if (role==null)
             {
-                
+                return BadRequest("Rol Bulunamadı");
+            }
+
+            var result = await _userManager.AddToRoleAsync(user, role.Name);
+            if (result.Succeeded)
+            {
+                return Ok("Rol atama işlemi başarılı");
             }
             
-            return Ok();
+            
+            return Problem("Rol atama işlemi yapılamadı lütfen site yöneticisi ile iletişime geçin");
         }
         
         
