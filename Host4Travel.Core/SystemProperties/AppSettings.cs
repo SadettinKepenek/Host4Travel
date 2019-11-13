@@ -1,4 +1,4 @@
-﻿﻿namespace Host4Travel.Core.AppSettings
+﻿﻿ namespace Host4Travel.Core.SystemProperties
 {
     public class AppSettings:IAppSettings
     {

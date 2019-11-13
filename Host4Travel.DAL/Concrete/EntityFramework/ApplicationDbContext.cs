@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Host4Travel.UI
 {
-    public partial class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser>
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser,ApplicationIdentityRole,string>
     {
         public ApplicationDbContext()
         {
