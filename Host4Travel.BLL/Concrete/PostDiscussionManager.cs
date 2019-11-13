@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postDiscussionDal = postDiscussionDal;
         }
-        public PostDiscussion GetById(Expression<Func<PostDiscussion, bool>> filter = null)
+        public PostDiscussion Get(Expression<Func<PostDiscussion, bool>> filter = null)
         {
             return null;
         }

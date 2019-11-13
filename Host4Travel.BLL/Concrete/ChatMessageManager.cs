@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _chatMessageDal = chatMessageDal;
         }
-        public ChatMessage GetById(Expression<Func<ChatMessage, bool>> filter = null)
+        public ChatMessage Get(Expression<Func<ChatMessage, bool>> filter = null)
         {
             return null;
         }

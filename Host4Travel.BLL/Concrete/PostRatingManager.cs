@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postRatingDal = postRatingDal;
         }
-        public PostRating GetById(Expression<Func<PostRating, bool>> filter = null)
+        public PostRating Get(Expression<Func<PostRating, bool>> filter = null)
         {
             return null;
         }

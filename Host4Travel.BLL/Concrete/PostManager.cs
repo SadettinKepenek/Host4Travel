@@ -9,32 +9,35 @@ namespace Host4Travel.BLL.Concrete
 {
     public class PostManager:IPostService
     {
-        private IPostDal _postDal;
+        private readonly IPostDal _postDal;
 
         public PostManager(IPostDal postDal)
         {
             _postDal = postDal;
         }
-        public Post GetById(Expression<Func<Post, bool>> filter = null)
+        public Post Get(Expression<Func<Post, bool>> filter = null)
         {
-            return null;
+            return filter==null ? _postDal.Get() : _postDal.Get(filter);
         }
 
         public List<Post> GetAll(Expression<Func<Post, bool>> filter = null)
         {
-            return null;
+            return _postDal.GetList();
         }
 
         public void Add(Post entity)
         {
+            _postDal.Add(entity);
         }
 
         public void Update(Post entity)
         {
+            _postDal.Update(entity);
         }
 
         public void Delete(Post entity)
         {
+            _postDal.Delete(entity);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Host4Travel.BLL.Concrete
             _categoryDal = categoryDal;
         }
 
-        public Category GetById(Expression<Func<Category, bool>> filter = null)
+        public Category Get(Expression<Func<Category, bool>> filter = null)
         {
             return null;
         }

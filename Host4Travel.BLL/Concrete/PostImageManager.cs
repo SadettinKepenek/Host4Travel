@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postImageDal = postImageDal;
         }
-        public PostImage GetById(Expression<Func<PostImage, bool>> filter = null)
+        public PostImage Get(Expression<Func<PostImage, bool>> filter = null)
         {
             return null;
         }

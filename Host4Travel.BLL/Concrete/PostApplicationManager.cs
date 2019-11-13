@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postApplicationDal = postApplicationDal;
         }
-        public PostApplication GetById(Expression<Func<PostApplication, bool>> filter = null)
+        public PostApplication Get(Expression<Func<PostApplication, bool>> filter = null)
         {
             return null;
         }

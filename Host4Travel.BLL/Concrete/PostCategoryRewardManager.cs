@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postCategoryRewardDal = postCategoryRewardDal;
         }
-        public PostCategoryReward GetById(Expression<Func<PostCategoryReward, bool>> filter = null)
+        public PostCategoryReward Get(Expression<Func<PostCategoryReward, bool>> filter = null)
         {
             return null;
         }
