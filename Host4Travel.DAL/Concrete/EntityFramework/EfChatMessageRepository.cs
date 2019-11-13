@@ -1,4 +1,4 @@
-﻿using Host4Travel.Core.DAL.EntityFramework;
+﻿using Host4Travel.Core.DAL.Concrete.EntityFramework;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 

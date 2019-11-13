@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using Host4Travel.Core.DAL.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace Host4Travel.Core.DAL.EntityFramework
+namespace Host4Travel.Core.DAL.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity,TContext>:IEntityRepository<TEntity>
         where TEntity:class,new()
