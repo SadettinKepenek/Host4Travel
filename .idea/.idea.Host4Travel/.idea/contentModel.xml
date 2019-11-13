@@ -37,10 +37,34 @@
       <e p="Host4Travel.BLL" t="IncludeRecursive">
         <e p="Abstract" t="Include">
           <e p="IAuthService.cs" t="Include" />
+          <e p="ICategoryRewardService.cs" t="Include" />
+          <e p="ICategoryService.cs" t="Include" />
+          <e p="IChatMessageService.cs" t="Include" />
+          <e p="IChatService.cs" t="Include" />
+          <e p="IPostApplicationService.cs" t="Include" />
+          <e p="IPostCategoryRewardService.cs" t="Include" />
+          <e p="IPostCheckInService.cs" t="Include" />
+          <e p="IPostDiscussionService.cs" t="Include" />
+          <e p="IPostImageService.cs" t="Include" />
+          <e p="IPostRatingService.cs" t="Include" />
+          <e p="IPostService.cs" t="Include" />
+          <e p="IRewardService.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Concrete" t="Include">
-          <e p="AuthService.cs" t="Include" />
+          <e p="AuthManager.cs" t="Include" />
+          <e p="CategoryManager.cs" t="Include" />
+          <e p="CategoryRewardManager.cs" t="Include" />
+          <e p="ChatManager.cs" t="Include" />
+          <e p="ChatMessageManager.cs" t="Include" />
+          <e p="PostApplicationManager.cs" t="Include" />
+          <e p="PostCategoryRewardManager.cs" t="Include" />
+          <e p="PostCheckInManager.cs" t="Include" />
+          <e p="PostDiscussionManager.cs" t="Include" />
+          <e p="PostImageManager.cs" t="Include" />
+          <e p="PostManager.cs" t="Include" />
+          <e p="PostRatingManager.cs" t="Include" />
+          <e p="RewardManager.cs" t="Include" />
         </e>
         <e p="Host4Travel.BLL.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

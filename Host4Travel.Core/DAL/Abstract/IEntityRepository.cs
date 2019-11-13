@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Host4Travel.Core.EntityLayer.Abstract;
 
-namespace Host4Travel.Core.DataAccessLayer.Abstract
+namespace Host4Travel.Core.DAL.Abstract
 {
     public interface IEntityRepository<T> where T:class,new()
     {
