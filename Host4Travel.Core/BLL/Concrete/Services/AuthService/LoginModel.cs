@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
 
-namespace Host4Travel.Core.BLL.Concrete.AuthService
+namespace Host4Travel.Core.BLL.Concrete.Services.AuthService
 {
-    public class AuthenticateModel
+    public class LoginModel
     {
         public string Token { get; set; }
         public DateTime TokenExpireDate { get; set; }

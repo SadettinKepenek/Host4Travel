@@ -1,4 +1,4 @@
-﻿namespace Host4Travel.API.Models
+﻿namespace Host4Travel.Core.BLL.Concrete.WebAPI.Roles
 {
     public class RolesAssignRoleModel
     {

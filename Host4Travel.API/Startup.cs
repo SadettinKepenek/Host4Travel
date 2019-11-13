@@ -41,6 +41,10 @@ namespace Host4Travel.API
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddScoped<IAuthService, AuthService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
+            
+            
+            
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 opt.UseSqlServer(

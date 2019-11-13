@@ -20,12 +20,7 @@
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
-        <e p="Models" t="Include">
-          <e p="Roles" t="Include">
-            <e p="RolesAddModel.cs" t="Include" />
-            <e p="RolesAssignRoleModel.cs" t="Include" />
-          </e>
-        </e>
+        <e p="Models" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -65,19 +60,28 @@
           <e p="Concrete" t="Include">
             <e p="Services" t="Include">
               <e p="AuthService" t="Include">
-                <e p="AuthenticateModel.cs" t="Include" />
+                <e p="DeleteModel.cs" t="Include" />
                 <e p="GenerateTokenModel.cs" t="Include" />
+                <e p="LoginModel.cs" t="Include" />
                 <e p="RegisterModel.cs" t="Include" />
+                <e p="UpdateModel.cs" t="Include" />
               </e>
             </e>
             <e p="WebAPI" t="Include">
+              <e p="Roles" t="Include">
+                <e p="RolesAddModel.cs" t="Include" />
+                <e p="RolesAssignRoleModel.cs" t="Include" />
+              </e>
               <e p="Users" t="Include">
+                <e p="UsersDeleteResponseModel.cs" t="Include" />
                 <e p="UsersLoginModel.cs" t="Include" />
                 <e p="UsersLoginResponseModel.cs" t="Include" />
                 <e p="UsersRegisterModel.cs" t="Include" />
                 <e p="UsersRegisterResponseModel.cs" t="Include" />
                 <e p="UsersTokenValidationModel.cs" t="Include" />
                 <e p="UsersTokenValidationResponseModel.cs" t="Include" />
+                <e p="UsersUpdateModel.cs" t="Include" />
+                <e p="UsersUpdateResponseModel.cs" t="Include" />
               </e>
             </e>
           </e>

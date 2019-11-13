@@ -7,6 +7,8 @@ using System.Security.Claims;
 using System.Text;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.BLL.Concrete.AuthService;
+using Host4Travel.Core.BLL.Concrete.Services.AuthService;
+using Host4Travel.Core.BLL.Concrete.WebAPI.Users;
 using Host4Travel.Core.SystemProperties;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
@@ -24,14 +26,16 @@ namespace Host4Travel.BLL.Concrete
         private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
+        private readonly IPasswordHasher<ApplicationIdentityUser> _passwordHasher;
 
-        public AuthService(IOptions<AppSettings>  appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager)
+        public AuthService(IOptions<AppSettings>  appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, IPasswordHasher<ApplicationIdentityUser> passwordHasher)
         {
             _appSettings = appSettings.Value;
             _userManager = userManager;
             _signInManager = signInManager;
+            _passwordHasher = passwordHasher;
         }
-        public AuthenticateModel Login(UsersLoginModel userParam)
+        public LoginModel Login(UsersLoginModel userParam)
         {
             
             var user=_userManager.FindByNameAsync(userParam.Username).Result;
@@ -40,7 +44,7 @@ namespace Host4Travel.BLL.Concrete
             {
               
                 var generateTokenModel = GenerateToken(user);
-                var authenticateModel=new AuthenticateModel()
+                var authenticateModel=new LoginModel()
                 {
                     Username = user.UserName,
                     Token = generateTokenModel.Token,
@@ -51,7 +55,7 @@ namespace Host4Travel.BLL.Concrete
                 return authenticateModel;
             }
 
-            var model = new AuthenticateModel();
+            var model = new LoginModel();
             model.Token = String.Empty;
             model.Username = String.Empty;
             model.StatusCode = HttpStatusCode.Unauthorized;
@@ -120,6 +124,53 @@ namespace Host4Travel.BLL.Concrete
                 StatusCode = HttpStatusCode.BadRequest,
                 Message = String.Join(',',createdUser.Result.Errors.ToList())
             };
+        }
+
+        public UpdateModel Update(UsersUpdateModel updateModel)
+        {
+            var user = _userManager.FindByIdAsync(updateModel.Id).Result;
+            user.Firstname = updateModel.Firstname;
+            user.Lastname = updateModel.Lastname;
+            user.Email = updateModel.Email;
+            user.SSN = updateModel.Ssn;
+            var newPassword = _passwordHasher.HashPassword(user, updateModel.Password);
+            user.PasswordHash = newPassword;
+            var result=_userManager.UpdateAsync(user).Result;
+            if (result.Succeeded)
+            {
+                return   new UpdateModel()
+                {
+                    Message = "Kullanıcı başarılı bir şekilde güncellendi",
+                    StatusCode = HttpStatusCode.OK
+                };
+            }
+            return new UpdateModel()
+            {
+                Message = string.Join(',',result.Errors),
+                StatusCode = HttpStatusCode.BadRequest
+            };
+        }
+
+        public DeleteModel Delete(string userId)
+        {
+            var result = _userManager.DeleteAsync(_userManager.FindByIdAsync(userId).Result);
+            var returnModel=new DeleteModel();
+            if (result.IsCompletedSuccessfully)
+            {
+                returnModel.Message = "Kullanıcı başarı ile silindi";
+                returnModel.StatusCode = HttpStatusCode.OK;
+            }
+            else if (result.IsFaulted)
+            {
+                returnModel.Message = "Kullanıcıyı silerken hata oluştu";
+                returnModel.StatusCode = HttpStatusCode.BadRequest;
+            }
+            else if (result.IsCanceled)
+            {
+                returnModel.Message = "Kullanıcı silinme işlemi iptal edildi.";
+                returnModel.StatusCode = HttpStatusCode.BadRequest;
+            }
+            return returnModel;
         }
 
         public StatusCodeResult CheckTokenExpiration(string expirationTime)
