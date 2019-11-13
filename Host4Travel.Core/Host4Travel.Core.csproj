@@ -14,4 +14,9 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="CommonModels" />
+      <Folder Include="DAL\Concrete" />
+    </ItemGroup>
+
 </Project>

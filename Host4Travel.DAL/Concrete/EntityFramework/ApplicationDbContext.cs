@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -305,6 +307,12 @@ namespace Host4Travel.UI
                 entity.Property(e => e.RewardName)
                     .IsRequired()
                     .HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Log>(entity =>
+            {
+                entity.Property(e => e.LogId).HasDefaultValueSql("NEWID()");
+                entity.Property(e => e.LogDate).HasDefaultValueSql("getutcdate()");
             });
 
             base.OnModelCreating(modelBuilder);

@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Host4Travel.Core\Host4Travel.Core.csproj" />
+      <ProjectReference Include="..\Host4Travel.DAL\Host4Travel.DAL.csproj" />
       <ProjectReference Include="..\Host4Travel.Entities\Host4Travel.Entities.csproj" />
     </ItemGroup>
 

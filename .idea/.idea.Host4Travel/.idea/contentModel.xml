@@ -20,7 +20,6 @@
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
-        <e p="Models" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -37,10 +36,37 @@
       <e p="Host4Travel.BLL" t="IncludeRecursive">
         <e p="Abstract" t="Include">
           <e p="IAuthService.cs" t="Include" />
+          <e p="ICategoryRewardService.cs" t="Include" />
+          <e p="ICategoryService.cs" t="Include" />
+          <e p="IChatMessageService.cs" t="Include" />
+          <e p="IChatService.cs" t="Include" />
+          <e p="ICryptoService.cs" t="Include" />
+          <e p="ILogService.cs" t="Include" />
+          <e p="IPostApplicationService.cs" t="Include" />
+          <e p="IPostCategoryRewardService.cs" t="Include" />
+          <e p="IPostCheckInService.cs" t="Include" />
+          <e p="IPostDiscussionService.cs" t="Include" />
+          <e p="IPostImageService.cs" t="Include" />
+          <e p="IPostRatingService.cs" t="Include" />
+          <e p="IPostService.cs" t="Include" />
+          <e p="IRewardService.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Concrete" t="Include">
-          <e p="AuthService.cs" t="Include" />
+          <e p="AuthManager.cs" t="Include" />
+          <e p="CategoryManager.cs" t="Include" />
+          <e p="CategoryRewardManager.cs" t="Include" />
+          <e p="ChatManager.cs" t="Include" />
+          <e p="ChatMessageManager.cs" t="Include" />
+          <e p="DatabaseLogManager.cs" t="Include" />
+          <e p="PostApplicationManager.cs" t="Include" />
+          <e p="PostCategoryRewardManager.cs" t="Include" />
+          <e p="PostCheckInManager.cs" t="Include" />
+          <e p="PostDiscussionManager.cs" t="Include" />
+          <e p="PostImageManager.cs" t="Include" />
+          <e p="PostManager.cs" t="Include" />
+          <e p="PostRatingManager.cs" t="Include" />
+          <e p="RewardManager.cs" t="Include" />
         </e>
         <e p="Host4Travel.BLL.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -58,31 +84,35 @@
             <e p="IEntityService.cs" t="Include" />
           </e>
           <e p="Concrete" t="Include">
-            <e p="Services" t="Include">
-              <e p="AuthService" t="Include">
-                <e p="DeleteModel.cs" t="Include" />
-                <e p="GenerateTokenModel.cs" t="Include" />
-                <e p="LoginModel.cs" t="Include" />
-                <e p="RegisterModel.cs" t="Include" />
-                <e p="UpdateModel.cs" t="Include" />
-              </e>
+            <e p="LogLevel.cs" t="Include" />
+            <e p="LogModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="CommonModels" t="Include">
+          <e p="Services" t="Include">
+            <e p="AuthService" t="Include">
+              <e p="DeleteModel.cs" t="Include" />
+              <e p="GenerateTokenModel.cs" t="Include" />
+              <e p="LoginModel.cs" t="Include" />
+              <e p="RegisterModel.cs" t="Include" />
+              <e p="UpdateModel.cs" t="Include" />
             </e>
-            <e p="WebAPI" t="Include">
-              <e p="Roles" t="Include">
-                <e p="RolesAddModel.cs" t="Include" />
-                <e p="RolesAssignRoleModel.cs" t="Include" />
-              </e>
-              <e p="Users" t="Include">
-                <e p="UsersDeleteResponseModel.cs" t="Include" />
-                <e p="UsersLoginModel.cs" t="Include" />
-                <e p="UsersLoginResponseModel.cs" t="Include" />
-                <e p="UsersRegisterModel.cs" t="Include" />
-                <e p="UsersRegisterResponseModel.cs" t="Include" />
-                <e p="UsersTokenValidationModel.cs" t="Include" />
-                <e p="UsersTokenValidationResponseModel.cs" t="Include" />
-                <e p="UsersUpdateModel.cs" t="Include" />
-                <e p="UsersUpdateResponseModel.cs" t="Include" />
-              </e>
+          </e>
+          <e p="WebAPI" t="Include">
+            <e p="Roles" t="Include">
+              <e p="RolesAddModel.cs" t="Include" />
+              <e p="RolesAssignRoleModel.cs" t="Include" />
+            </e>
+            <e p="Users" t="Include">
+              <e p="UsersDeleteResponseModel.cs" t="Include" />
+              <e p="UsersLoginModel.cs" t="Include" />
+              <e p="UsersLoginResponseModel.cs" t="Include" />
+              <e p="UsersRegisterModel.cs" t="Include" />
+              <e p="UsersRegisterResponseModel.cs" t="Include" />
+              <e p="UsersTokenValidationModel.cs" t="Include" />
+              <e p="UsersTokenValidationResponseModel.cs" t="Include" />
+              <e p="UsersUpdateModel.cs" t="Include" />
+              <e p="UsersUpdateResponseModel.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -90,8 +120,10 @@
           <e p="Abstract" t="Include">
             <e p="IEntityRepository.cs" t="Include" />
           </e>
-          <e p="EntityFramework" t="Include">
-            <e p="EfEntityFrameworkBase.cs" t="Include" />
+          <e p="Concrete" t="Include">
+            <e p="EntityFramework" t="Include">
+              <e p="EfEntityFrameworkBase.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="Entities" t="Include">
@@ -113,11 +145,38 @@
         </e>
       </e>
       <e p="Host4Travel.DAL" t="IncludeRecursive">
-        <e p="Abstract" t="Include" />
+        <e p="Abstract" t="Include">
+          <e p="ICategoryDal.cs" t="Include" />
+          <e p="ICategoryRewardDal.cs" t="Include" />
+          <e p="IChatDal.cs" t="Include" />
+          <e p="IChatMessageDal.cs" t="Include" />
+          <e p="ILogDal.cs" t="Include" />
+          <e p="IPostApplicationDal.cs" t="Include" />
+          <e p="IPostCategoryRewardDal.cs" t="Include" />
+          <e p="IPostCheckInDal.cs" t="Include" />
+          <e p="IPostDal.cs" t="Include" />
+          <e p="IPostDiscussionDal.cs" t="Include" />
+          <e p="IPostImageDal.cs" t="Include" />
+          <e p="IPostRatingDal.cs" t="Include" />
+          <e p="IRewardDal.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Concrete" t="Include">
           <e p="EntityFramework" t="Include">
             <e p="ApplicationDbContext.cs" t="Include" />
+            <e p="EfCategoryRepository.cs" t="Include" />
+            <e p="EfCategoryRewardRepository.cs" t="Include" />
+            <e p="EfChatMessageRepository.cs" t="Include" />
+            <e p="EfChatRepository.cs" t="Include" />
+            <e p="EfLogRepository.cs" t="Include" />
+            <e p="EfPostApplicationRepository.cs" t="Include" />
+            <e p="EfPostCategoryRewardRepository.cs" t="Include" />
+            <e p="EfPostCheckInRepository.cs" t="Include" />
+            <e p="EfPostDiscussionRepository.cs" t="Include" />
+            <e p="EfPostImageRepository.cs" t="Include" />
+            <e p="EfPostRatingRepository.cs" t="Include" />
+            <e p="EfPostRepository.cs" t="Include" />
+            <e p="EfRewardRepository.cs" t="Include" />
           </e>
         </e>
         <e p="Host4Travel.DAL.csproj" t="IncludeRecursive" />
@@ -139,6 +198,7 @@
           <e p="CategoryReward.cs" t="Include" />
           <e p="Chat.cs" t="Include" />
           <e p="ChatMessage.cs" t="Include" />
+          <e p="Log.cs" t="Include" />
           <e p="Post.cs" t="Include" />
           <e p="PostApplication.cs" t="Include" />
           <e p="PostCategoryReward.cs" t="Include" />
@@ -174,6 +234,8 @@
         <e p="Migrations" t="Include">
           <e p="20191112144910_Initial.cs" t="Include" />
           <e p="20191112144910_Initial.Designer.cs" t="Include" />
+          <e p="20191113203829_Add_Log_Table.cs" t="Include" />
+          <e p="20191113203829_Add_Log_Table.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
