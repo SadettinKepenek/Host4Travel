@@ -128,9 +128,10 @@ namespace Host4Travel.BLL.Concrete
 
         public UpdateModel Update(UsersUpdateModel updateModel)
         {
-            var user = _userManager.FindByIdAsync(updateModel.Id).Result;
+            var user = _userManager.FindByNameAsync(updateModel.Username).Result;
             user.Firstname = updateModel.Firstname;
             user.Lastname = updateModel.Lastname;
+            
             user.Email = updateModel.Email;
             user.SSN = updateModel.Ssn;
             var newPassword = _passwordHasher.HashPassword(user, updateModel.Password);
