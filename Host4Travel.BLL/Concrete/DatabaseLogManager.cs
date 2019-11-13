@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.BLL.Concrete;
+using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 
 namespace Host4Travel.BLL.Concrete
 {
     public class DatabaseLogManager:ILogService
     {
-        
-        public void Log(string message, LogLevel logLevel)
+        private ILogDal _logDal;
+
+        public DatabaseLogManager(ILogDal logDal)
+        {
+            _logDal = logDal;
+        }
+        public void Log(Log log)
         {
         }
 
