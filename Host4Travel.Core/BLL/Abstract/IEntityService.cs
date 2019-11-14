@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.Core.BLL.Concrete;
+using Host4Travel.Core.BLL.Concrete.EntityService;
 
 namespace Host4Travel.Core.BLL.Abstract
 {

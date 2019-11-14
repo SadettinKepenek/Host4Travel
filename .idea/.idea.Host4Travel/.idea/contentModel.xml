@@ -135,6 +135,7 @@
             </e>
             <e p="EntityService" t="Include">
               <e p="ResultModel.cs" t="Include" />
+              <e p="ResultType.cs" t="Include" />
             </e>
             <e p="LoggerService" t="Include">
               <e p="LogLevel.cs" t="Include" />
