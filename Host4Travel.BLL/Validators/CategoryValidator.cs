@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Validators
     {
         public CategoryValidator()
         {
-            RuleFor(x => x.CategoryDescription).NotEmpty().NotNull().WithMessage("Kategori açıklaması belirtilmelidir.");
+            RuleFor(x => x.CategoryDescription).Cascade(CascadeMode.StopOnFirstFailure).NotEmpty().NotNull().WithMessage("Kategori açıklaması belirtilmelidir.");
             RuleFor(x => x.CategoryDescription).MinimumLength(10)
                 .WithMessage("Kategori açıklaması minimum 10 karakterden oluşmalıdır");
             RuleFor(x => x.CategoryDescription).MaximumLength(150)

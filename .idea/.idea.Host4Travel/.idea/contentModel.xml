@@ -78,8 +78,10 @@
           </e>
         </e>
         <e p="Validators" t="Include">
+          <e p="CategoryRewardValidator.cs" t="Include" />
           <e p="CategoryValidator.cs" t="Include" />
           <e p="PostValidator.cs" t="Include" />
+          <e p="RewardValidator.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
