@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,6 +16,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postRatingDal = postRatingDal;
         }
+
         public PostRating Get(Expression<Func<PostRating, bool>> filter = null)
         {
             return null;
@@ -25,16 +27,19 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void Add(PostRating entity)
+        public ResultModel Add(PostRating entity)
         {
+            return null;
         }
 
-        public void Update(PostRating entity)
+        public ResultModel Update(PostRating entity)
         {
+            return null;
         }
 
-        public void Delete(PostRating entity)
+        public ResultModel Delete(PostRating entity)
         {
+            return null;
         }
     }
 }

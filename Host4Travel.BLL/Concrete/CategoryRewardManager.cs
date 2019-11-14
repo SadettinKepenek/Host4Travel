@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,6 +16,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _categoryRewardDal = categoryRewardDal;
         }
+
         public CategoryReward Get(Expression<Func<CategoryReward, bool>> filter = null)
         {
             return null;
@@ -25,16 +27,19 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void Add(CategoryReward entity)
+        public ResultModel Add(CategoryReward entity)
         {
+            return null;
         }
 
-        public void Update(CategoryReward entity)
+        public ResultModel Update(CategoryReward entity)
         {
+            return null;
         }
 
-        public void Delete(CategoryReward entity)
+        public ResultModel Delete(CategoryReward entity)
         {
+            return null;
         }
     }
 }

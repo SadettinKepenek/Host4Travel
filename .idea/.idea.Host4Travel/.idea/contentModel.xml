@@ -113,6 +113,7 @@
           <e p="Concrete" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
+            <e p="ResultModel.cs" t="Include" />
           </e>
         </e>
         <e p="CommonModels" t="Include">
@@ -167,7 +168,6 @@
           </e>
         </e>
         <e p="SystemProperties" t="Include">
-          <e p="AppSettings.cs" t="Include" />
           <e p="Configuration.cs" t="Include" />
         </e>
       </e>

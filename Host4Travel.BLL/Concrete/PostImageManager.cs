@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,6 +16,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _postImageDal = postImageDal;
         }
+
         public PostImage Get(Expression<Func<PostImage, bool>> filter = null)
         {
             return null;
@@ -25,16 +27,19 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void Add(PostImage entity)
+        public ResultModel Add(PostImage entity)
         {
+            return null;
         }
 
-        public void Update(PostImage entity)
+        public ResultModel Update(PostImage entity)
         {
+            return null;
         }
 
-        public void Delete(PostImage entity)
+        public ResultModel Delete(PostImage entity)
         {
+            return null;
         }
     }
 }

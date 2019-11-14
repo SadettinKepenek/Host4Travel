@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,29 +16,30 @@ namespace Host4Travel.BLL.Concrete
         {
             _postDal = postDal;
         }
+
         public Post Get(Expression<Func<Post, bool>> filter = null)
         {
-            return filter==null ? _postDal.Get() : _postDal.Get(filter);
+            return null;
         }
 
         public List<Post> GetAll(Expression<Func<Post, bool>> filter = null)
         {
-            return _postDal.GetList();
+            return null;
         }
 
-        public void Add(Post entity)
+        public ResultModel Add(Post entity)
         {
-            _postDal.Add(entity);
+            return null;
         }
 
-        public void Update(Post entity)
+        public ResultModel Update(Post entity)
         {
-            _postDal.Update(entity);
+            return null;
         }
 
-        public void Delete(Post entity)
+        public ResultModel Delete(Post entity)
         {
-            _postDal.Delete(entity);
+            return null;
         }
     }
 }

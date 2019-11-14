@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -28,16 +29,19 @@ namespace Host4Travel.BLL.Concrete
             return categories;
         }
 
-        public void Add(Category entity)
+        public ResultModel Add(Category entity)
         {
+            return null;
         }
 
-        public void Update(Category entity)
+        public ResultModel Update(Category entity)
         {
+            return null;
         }
 
-        public void Delete(Category entity)
+        public ResultModel Delete(Category entity)
         {
+            return null;
         }
     }
 }

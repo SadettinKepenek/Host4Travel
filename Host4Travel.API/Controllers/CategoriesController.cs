@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Host4Travel.API.Models.Concrete.Categories;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,13 @@ namespace Host4Travel.API.Controllers
             model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
             model.HttpStatusCode = HttpStatusCode.OK;
             return Ok(model);
+        }
+
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add(Category category)
+        {
+            
+            return Ok();
         }
     }
 }

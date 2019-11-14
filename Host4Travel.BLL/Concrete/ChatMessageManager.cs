@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -25,16 +26,19 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void Add(ChatMessage entity)
+        public ResultModel Add(ChatMessage entity)
         {
+            return null;
         }
 
-        public void Update(ChatMessage entity)
+        public ResultModel Update(ChatMessage entity)
         {
+            return null;
         }
 
-        public void Delete(ChatMessage entity)
+        public ResultModel Delete(ChatMessage entity)
         {
+            return null;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,6 +16,7 @@ namespace Host4Travel.BLL.Concrete
         {
             _chatDal = chatDal;
         }
+
         public Chat Get(Expression<Func<Chat, bool>> filter = null)
         {
             return null;
@@ -25,16 +27,19 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void Add(Chat entity)
+        public ResultModel Add(Chat entity)
         {
+            return null;
         }
 
-        public void Update(Chat entity)
+        public ResultModel Update(Chat entity)
         {
+            return null;
         }
 
-        public void Delete(Chat entity)
+        public ResultModel Delete(Chat entity)
         {
+            return null;
         }
     }
 }
