@@ -85,6 +85,7 @@
           <e p="LogValidator.cs" t="Include" />
           <e p="PostApplicationValidator.cs" t="Include" />
           <e p="PostCategoryRewardValidator.cs" t="Include" />
+          <e p="PostCheckInValidator.cs" t="Include" />
           <e p="PostValidator.cs" t="Include" />
           <e p="RewardValidator.cs" t="Include" />
           <e p="UserValidator.cs" t="Include" />
