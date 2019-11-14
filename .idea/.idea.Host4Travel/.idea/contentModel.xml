@@ -133,10 +133,7 @@
               <e p="RegisterModel.cs" t="Include" />
               <e p="UpdateModel.cs" t="Include" />
             </e>
-            <e p="EntityService" t="Include">
-              <e p="ResultModel.cs" t="Include" />
-              <e p="ResultType.cs" t="Include" />
-            </e>
+            <e p="EntityService" t="Include" />
             <e p="LoggerService" t="Include">
               <e p="LogLevel.cs" t="Include" />
               <e p="LogModel.cs" t="Include" />
@@ -157,6 +154,9 @@
           <e p="Abstract" t="Include">
             <e p="IEntity.cs" t="Include" />
           </e>
+        </e>
+        <e p="Exceptions" t="Include">
+          <e p="ValidationFailureException.cs" t="Include" />
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">

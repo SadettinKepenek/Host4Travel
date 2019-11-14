@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="BLL\Concrete\EntityService" />
       <Folder Include="DAL\Concrete" />
     </ItemGroup>
 

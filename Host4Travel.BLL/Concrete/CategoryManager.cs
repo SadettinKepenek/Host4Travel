@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators;
 using Host4Travel.Core.BLL.Concrete;
-using Host4Travel.Core.BLL.Concrete.EntityService;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 using Microsoft.Data.SqlClient;
