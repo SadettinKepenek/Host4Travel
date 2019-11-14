@@ -78,6 +78,7 @@
           </e>
         </e>
         <e p="Validators" t="Include">
+          <e p="CategoryValidator.cs" t="Include" />
           <e p="PostValidator.cs" t="Include" />
         </e>
       </e>
