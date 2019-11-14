@@ -23,19 +23,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Models\**" />
+      <Folder Include="Models\Concrete" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="Models\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Models\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Remove="Models\**" />
     </ItemGroup>
 
 </Project>

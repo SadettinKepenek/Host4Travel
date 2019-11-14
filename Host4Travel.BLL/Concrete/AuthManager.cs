@@ -23,14 +23,12 @@ namespace Host4Travel.BLL.Concrete
 {
     public class AuthService:IAuthService
     {
-        private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly IPasswordHasher<ApplicationIdentityUser> _passwordHasher;
 
-        public AuthService(IOptions<AppSettings>  appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, IPasswordHasher<ApplicationIdentityUser> passwordHasher)
+        public AuthService(UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, IPasswordHasher<ApplicationIdentityUser> passwordHasher)
         {
-            _appSettings = appSettings.Value;
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
@@ -68,7 +66,7 @@ namespace Host4Travel.BLL.Concrete
         public GenerateTokenModel GenerateToken(ApplicationIdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(Configuration.SecretKey);
             var claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));

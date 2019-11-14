@@ -13,7 +13,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
-          <e p="PostsController.cs" t="Include" />
+          <e p="CategoriesController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
         </e>
@@ -21,6 +21,16 @@
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="HttpResponseModel.cs" t="Include" />
+          </e>
+          <e p="Concrete" t="Include">
+            <e p="Categories" t="Include">
+              <e p="GetAllModel.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -158,7 +168,7 @@
         </e>
         <e p="SystemProperties" t="Include">
           <e p="AppSettings.cs" t="Include" />
-          <e p="IAppSettings.cs" t="Include" />
+          <e p="Configuration.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.DAL" t="IncludeRecursive">

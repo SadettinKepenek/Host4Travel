@@ -15,14 +15,12 @@ using Microsoft.AspNetCore.Mvc;
     [Route("api/[controller]")]
     public class RolesController : Controller
     {
-        private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private RoleManager<ApplicationIdentityRole> _roleManager;
 
-        public RolesController(IOptions<AppSettings> appSettings, UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, RoleManager<ApplicationIdentityRole> roleManager)
+        public RolesController( UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, RoleManager<ApplicationIdentityRole> roleManager)
         {
-            _appSettings = appSettings.Value;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;

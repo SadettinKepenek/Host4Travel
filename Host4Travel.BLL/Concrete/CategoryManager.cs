@@ -18,12 +18,14 @@ namespace Host4Travel.BLL.Concrete
 
         public Category Get(Expression<Func<Category, bool>> filter = null)
         {
-            return null;
+            var categories = filter == null ? _categoryDal.Get() : _categoryDal.Get(filter);
+            return categories;
         }
 
         public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
         {
-            return null;
+            var categories = filter == null ? _categoryDal.GetList() : _categoryDal.GetList(filter);
+            return categories;
         }
 
         public void Add(Category entity)
