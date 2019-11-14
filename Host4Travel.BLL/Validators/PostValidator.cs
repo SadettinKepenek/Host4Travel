@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using FluentValidation;
 using Host4Travel.UI;
 
@@ -14,6 +15,7 @@ namespace Host4Travel.BLL.Validators
             RuleFor(x => x.StartDate).NotNull().NotEmpty().WithMessage("Başlama tarihi boş geçilemez");
             RuleFor(x => x.StartDate).LessThanOrEqualTo(y => y.EndDate)
                 .WithMessage("Başlama tarihi bitiş tarihinden küçük yada eşit olmalıdır.");
+            RuleFor(x => x.StartDate).GreaterThanOrEqualTo(DateTime.Now).WithMessage("İlan başlangıç tarihi, bugün veya daha ilerisi için olabilir.");
             RuleFor(x => x.EndDate).NotNull().NotEmpty().WithMessage("Bitiş tarihi boş geçilemez.");
             RuleFor(x => x.EndDate).GreaterThanOrEqualTo(y => y.StartDate)
                 .WithMessage("Bitiş tarihi,başlama tarihinden büyük yada eşit olmaldıır.");
