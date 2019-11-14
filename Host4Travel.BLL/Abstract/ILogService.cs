@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.Core.BLL.Concrete;
+using Host4Travel.Core.BLL.Concrete.LoggerService;
 using Host4Travel.Entities.Concrete;
 using Microsoft.Extensions.Logging;
-using LogLevel = Host4Travel.Core.BLL.Concrete.LogLevel;
+using LogLevel = Host4Travel.Core.BLL.Concrete.LoggerService.LogLevel;
 
 namespace Host4Travel.BLL.Abstract
 {

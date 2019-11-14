@@ -8,7 +8,6 @@ using System.Text;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.BLL.Concrete.AuthService;
 using Host4Travel.Core.BLL.Concrete.Services.AuthService;
-using Host4Travel.Core.BLL.Concrete.WebAPI.Users;
 using Host4Travel.Core.SystemProperties;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
@@ -33,11 +32,11 @@ namespace Host4Travel.BLL.Concrete
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
         }
-        public LoginModel Login(UsersLoginModel userParam)
+        public LoginModel Login(ApplicationIdentityUser userParam,string password)
         {
             
-            var user=_userManager.FindByNameAsync(userParam.Username).Result;
-            bool resultSucceeded = MatchPasswordAndHash(user,userParam.Password);
+            var user=_userManager.FindByNameAsync(userParam.UserName).Result;
+            bool resultSucceeded = MatchPasswordAndHash(user,password);
             if (resultSucceeded)
             {
               
@@ -93,21 +92,21 @@ namespace Host4Travel.BLL.Concrete
             return model;
         }
 
-        public RegisterModel Register(UsersRegisterModel registerModel)
+        public RegisterModel Register(ApplicationIdentityUser registerModel,string password)
         {
             var identityUser = new ApplicationIdentityUser
             {
                 Email = registerModel.Email,
-                UserName = registerModel.Username,
+                UserName = registerModel.UserName,
                 Firstname = registerModel.Firstname,
                 Lastname = registerModel.Lastname,
                 CookieAcceptIpAddress = registerModel.CookieAcceptIpAddress,
-                SSN = registerModel.Ssn
+                SSN = registerModel.SSN
             };
 
             var createdUser =
                 _userManager.CreateAsync(
-                    identityUser, registerModel.Password);
+                    identityUser,password);
             if (createdUser.Result.Succeeded)
             {
                 return new RegisterModel()
@@ -124,15 +123,15 @@ namespace Host4Travel.BLL.Concrete
             };
         }
 
-        public UpdateModel Update(UsersUpdateModel updateModel)
+        public UpdateModel Update(ApplicationIdentityUser updateModel,string password)
         {
-            var user = _userManager.FindByNameAsync(updateModel.Username).Result;
+            var user = _userManager.FindByNameAsync(updateModel.UserName).Result;
             user.Firstname = updateModel.Firstname;
             user.Lastname = updateModel.Lastname;
             
             user.Email = updateModel.Email;
-            user.SSN = updateModel.Ssn;
-            var newPassword = _passwordHasher.HashPassword(user, updateModel.Password);
+            user.SSN = updateModel.SSN;
+            var newPassword = _passwordHasher.HashPassword(user, password);
             user.PasswordHash = newPassword;
             var result=_userManager.UpdateAsync(user).Result;
             if (result.Succeeded)

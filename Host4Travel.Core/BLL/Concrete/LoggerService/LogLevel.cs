@@ -1,4 +1,4 @@
-﻿namespace Host4Travel.Core.BLL.Concrete
+﻿namespace Host4Travel.Core.BLL.Concrete.LoggerService
 {
     public enum LogLevel
     {

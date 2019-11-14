@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Host4Travel.Core.BLL.Concrete.Services.AuthService
+namespace Host4Travel.Core.BLL.Concrete.AuthService
 {
     public class UpdateModel
     {

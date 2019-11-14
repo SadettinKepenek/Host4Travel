@@ -29,6 +29,21 @@
             <e p="Categories" t="Include">
               <e p="GetAllModel.cs" t="Include" />
             </e>
+            <e p="Roles" t="Include">
+              <e p="RolesAddModel.cs" t="Include" />
+              <e p="RolesAssignRoleModel.cs" t="Include" />
+            </e>
+            <e p="Users" t="Include">
+              <e p="UsersDeleteResponseModel.cs" t="Include" />
+              <e p="UsersLoginModel.cs" t="Include" />
+              <e p="UsersLoginResponseModel.cs" t="Include" />
+              <e p="UsersRegisterModel.cs" t="Include" />
+              <e p="UsersRegisterResponseModel.cs" t="Include" />
+              <e p="UsersTokenValidationModel.cs" t="Include" />
+              <e p="UsersTokenValidationResponseModel.cs" t="Include" />
+              <e p="UsersUpdateModel.cs" t="Include" />
+              <e p="UsersUpdateResponseModel.cs" t="Include" />
+            </e>
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -111,13 +126,6 @@
             <e p="IEntityService.cs" t="Include" />
           </e>
           <e p="Concrete" t="Include">
-            <e p="LogLevel.cs" t="Include" />
-            <e p="LogModel.cs" t="Include" />
-            <e p="ResultModel.cs" t="Include" />
-          </e>
-        </e>
-        <e p="CommonModels" t="Include">
-          <e p="Services" t="Include">
             <e p="AuthService" t="Include">
               <e p="DeleteModel.cs" t="Include" />
               <e p="GenerateTokenModel.cs" t="Include" />
@@ -125,22 +133,12 @@
               <e p="RegisterModel.cs" t="Include" />
               <e p="UpdateModel.cs" t="Include" />
             </e>
-          </e>
-          <e p="WebAPI" t="Include">
-            <e p="Roles" t="Include">
-              <e p="RolesAddModel.cs" t="Include" />
-              <e p="RolesAssignRoleModel.cs" t="Include" />
+            <e p="EntityService" t="Include">
+              <e p="ResultModel.cs" t="Include" />
             </e>
-            <e p="Users" t="Include">
-              <e p="UsersDeleteResponseModel.cs" t="Include" />
-              <e p="UsersLoginModel.cs" t="Include" />
-              <e p="UsersLoginResponseModel.cs" t="Include" />
-              <e p="UsersRegisterModel.cs" t="Include" />
-              <e p="UsersRegisterResponseModel.cs" t="Include" />
-              <e p="UsersTokenValidationModel.cs" t="Include" />
-              <e p="UsersTokenValidationResponseModel.cs" t="Include" />
-              <e p="UsersUpdateModel.cs" t="Include" />
-              <e p="UsersUpdateResponseModel.cs" t="Include" />
+            <e p="LoggerService" t="Include">
+              <e p="LogLevel.cs" t="Include" />
+              <e p="LogModel.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -167,7 +165,7 @@
             </e>
           </e>
         </e>
-        <e p="SystemProperties" t="Include">
+        <e p="SystemSettings" t="Include">
           <e p="Configuration.cs" t="Include" />
         </e>
       </e>

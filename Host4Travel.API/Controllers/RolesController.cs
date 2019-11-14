@@ -1,6 +1,6 @@
 ﻿﻿using System.Linq;
  using System.Threading.Tasks;
- using Host4Travel.Core.BLL.Concrete.WebAPI.Roles;
+ using Host4Travel.API.Models.Concrete.Roles;
  using Host4Travel.Core.SystemProperties;
  using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
