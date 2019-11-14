@@ -87,6 +87,9 @@ namespace Host4Travel.API
 
         private static void ConfigureInjections(IServiceCollection services)
         {
+            
+            
+            
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();

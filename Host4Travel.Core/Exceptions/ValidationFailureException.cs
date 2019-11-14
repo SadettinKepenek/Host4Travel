@@ -8,7 +8,7 @@ namespace Host4Travel.Core.Exceptions
         public ValidationFailureException(string errorMessage)
             : base($"Veri Doğrulanırken hata oluştu hatalar\n: {errorMessage}")
         {
-
+            
         }
     }
 }
