@@ -80,6 +80,8 @@
         <e p="Validators" t="Include">
           <e p="CategoryRewardValidator.cs" t="Include" />
           <e p="CategoryValidator.cs" t="Include" />
+          <e p="ChatMessageValidator.cs" t="Include" />
+          <e p="ChatValidator.cs" t="Include" />
           <e p="PostValidator.cs" t="Include" />
           <e p="RewardValidator.cs" t="Include" />
         </e>
