@@ -28,19 +28,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(Reward entity)
+        public void Add(Reward entity)
         {
-            return null;
         }
 
-        public ResultModel Update(Reward entity)
+        public void Update(Reward entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(Reward entity)
+        public void Delete(Reward entity)
         {
-            return null;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _postRatingDal = postRatingDal;
         }
 
+
         public PostRating Get(Expression<Func<PostRating, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(PostRating entity)
+        public void Add(PostRating entity)
         {
-            return null;
         }
 
-        public ResultModel Update(PostRating entity)
+        public void Update(PostRating entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(PostRating entity)
+        public void Delete(PostRating entity)
         {
-            return null;
         }
     }
 }

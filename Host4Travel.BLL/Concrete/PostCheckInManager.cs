@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _postCheckInDal = postCheckInDal;
         }
 
+
         public PostCheckIn Get(Expression<Func<PostCheckIn, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(PostCheckIn entity)
+        public void Add(PostCheckIn entity)
         {
-            return null;
         }
 
-        public ResultModel Update(PostCheckIn entity)
+        public void Update(PostCheckIn entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(PostCheckIn entity)
+        public void Delete(PostCheckIn entity)
         {
-            return null;
         }
     }
 }

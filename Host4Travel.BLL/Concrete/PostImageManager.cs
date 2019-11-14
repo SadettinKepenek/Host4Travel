@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _postImageDal = postImageDal;
         }
 
+
         public PostImage Get(Expression<Func<PostImage, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(PostImage entity)
+        public void Add(PostImage entity)
         {
-            return null;
         }
 
-        public ResultModel Update(PostImage entity)
+        public void Update(PostImage entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(PostImage entity)
+        public void Delete(PostImage entity)
         {
-            return null;
         }
     }
 }

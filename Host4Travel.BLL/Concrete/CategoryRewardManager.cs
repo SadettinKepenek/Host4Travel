@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _categoryRewardDal = categoryRewardDal;
         }
 
+
         public CategoryReward Get(Expression<Func<CategoryReward, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(CategoryReward entity)
+        public void Add(CategoryReward entity)
         {
-            return null;
         }
 
-        public ResultModel Update(CategoryReward entity)
+        public void Update(CategoryReward entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(CategoryReward entity)
+        public void Delete(CategoryReward entity)
         {
-            return null;
         }
     }
 }

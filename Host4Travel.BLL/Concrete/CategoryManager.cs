@@ -32,24 +32,18 @@ namespace Host4Travel.BLL.Concrete
             return categories;
         }
 
-        public ResultModel Add(Category entity)
+        public void Add(Category entity)
         {
            
-            return new ResultModel()
-            {
-                Code = ResultType.Failed,
-                Result = ""
-            };
+           
         }
 
-        public ResultModel Update(Category entity)
+        public void Update(Category entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(Category entity)
+        public void Delete(Category entity)
         {
-            return null;
         }
     }
 }

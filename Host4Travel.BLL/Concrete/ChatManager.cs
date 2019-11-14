@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _chatDal = chatDal;
         }
 
+
         public Chat Get(Expression<Func<Chat, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(Chat entity)
+        public void Add(Chat entity)
         {
-            return null;
         }
 
-        public ResultModel Update(Chat entity)
+        public void Update(Chat entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(Chat entity)
+        public void Delete(Chat entity)
         {
-            return null;
         }
     }
 }

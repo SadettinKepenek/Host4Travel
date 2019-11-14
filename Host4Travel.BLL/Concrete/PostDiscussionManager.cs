@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _postDiscussionDal = postDiscussionDal;
         }
 
+
         public PostDiscussion Get(Expression<Func<PostDiscussion, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(PostDiscussion entity)
+        public void Add(PostDiscussion entity)
         {
-            return null;
         }
 
-        public ResultModel Update(PostDiscussion entity)
+        public void Update(PostDiscussion entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(PostDiscussion entity)
+        public void Delete(PostDiscussion entity)
         {
-            return null;
         }
     }
 }

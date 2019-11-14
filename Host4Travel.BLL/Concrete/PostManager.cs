@@ -9,7 +9,7 @@ using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete
 {
-    public class PostManager:IPostService
+    public class PostManager : IPostService
     {
         private readonly IPostDal _postDal;
 
@@ -28,19 +28,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(Post entity)
+        public void Add(Post entity)
         {
-            return null;
         }
 
-        public ResultModel Update(Post entity)
+        public void Update(Post entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(Post entity)
+        public void Delete(Post entity)
         {
-            return null;
         }
     }
 }

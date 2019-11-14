@@ -18,6 +18,7 @@ namespace Host4Travel.BLL.Concrete
             _postApplicationDal = postApplicationDal;
         }
 
+
         public PostApplication Get(Expression<Func<PostApplication, bool>> filter = null)
         {
             return null;
@@ -28,19 +29,16 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public ResultModel Add(PostApplication entity)
+        public void Add(PostApplication entity)
         {
-            return null;
         }
 
-        public ResultModel Update(PostApplication entity)
+        public void Update(PostApplication entity)
         {
-            return null;
         }
 
-        public ResultModel Delete(PostApplication entity)
+        public void Delete(PostApplication entity)
         {
-            return null;
         }
     }
 }

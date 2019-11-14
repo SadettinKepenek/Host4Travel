@@ -11,8 +11,8 @@ namespace Host4Travel.Core.BLL.Abstract
 
         T Get(Expression<Func<T,bool>> filter=null);
         List<T> GetAll(Expression<Func<T, bool>> filter = null);
-        ResultModel Add(T entity);
-        ResultModel Update(T entity);
-        ResultModel Delete(T entity);
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
     }
 }
