@@ -49,6 +49,7 @@ namespace Host4Travel.BLL.Concrete
                 else
                 {
                     throw new ValidationFailureException(validationResult.ToString().Replace("~","\n"));
+                    
                 }
                 
             }
@@ -57,6 +58,10 @@ namespace Host4Travel.BLL.Concrete
                 if (e is SqlException || e is DbUpdateException || e is DbException)
                 {
                     throw new EfCrudException(e.Message);
+                }
+                else if (e is ValidationFailureException)
+                {
+                    throw;
                 }
                 else
                 {

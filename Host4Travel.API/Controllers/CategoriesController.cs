@@ -1,7 +1,9 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.Concrete.Categories;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.Exceptions;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,7 +44,23 @@ namespace Host4Travel.API.Controllers
         [HttpPost("Add")]
         public async Task<IActionResult> Add(Category category)
         {
-            
+            try
+            {
+                _categoryService.Add(category);
+                return Ok("Kategori başarı ile eklendi");
+            }
+            catch (Exception e)
+            {
+                switch (e)
+                {
+                    case ValidationFailureException exception:
+                        return BadRequest("Veriler doğrulanırken hata oluştu\n"+exception.Message);
+                    case EfCrudException _:
+                        return BadRequest("Sistem yöneticinizle görüşün");
+                    default:
+                        return BadRequest("Some error occured");
+                }
+            }
             return Ok();
         }
     }
