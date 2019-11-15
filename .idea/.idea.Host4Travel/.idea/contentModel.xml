@@ -104,6 +104,11 @@
         </e>
         <e p="Validators" t="Include">
           <e p="CategoryRewardValidator.cs" t="Include" />
+          <e p="CategoryService" t="Include">
+            <e p="AddCategoryValidator.cs" t="Include" />
+            <e p="DeleteCategoryValidator.cs" t="Include" />
+            <e p="UpdateCategoryValidator.cs" t="Include" />
+          </e>
           <e p="CategoryValidator.cs" t="Include" />
           <e p="ChatMessageValidator.cs" t="Include" />
           <e p="ChatValidator.cs" t="Include" />
