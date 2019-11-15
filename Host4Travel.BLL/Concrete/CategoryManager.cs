@@ -36,6 +36,7 @@ namespace Host4Travel.BLL.Concrete
 
         public void AddCategory(CategoryAddDto model)
         {
+            
         }
 
         public void UpdateCategory(CategoryUpdateDto model)
