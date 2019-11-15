@@ -6,8 +6,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.BLL.Concrete.AuthService;
-using Host4Travel.Core.BLL.Concrete.Services.AuthService;
+using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.SystemProperties;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
@@ -32,7 +31,7 @@ namespace Host4Travel.BLL.Concrete
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
         }
-        public LoginModel Login(ApplicationIdentityUser userParam,string password)
+        public LoginDto Login(ApplicationIdentityUser userParam,string password)
         {
             
             var user=_userManager.FindByNameAsync(userParam.UserName).Result;
@@ -41,7 +40,7 @@ namespace Host4Travel.BLL.Concrete
             {
               
                 var generateTokenModel = GenerateToken(user);
-                var authenticateModel=new LoginModel()
+                var authenticateModel=new LoginDto()
                 {
                     Username = user.UserName,
                     Token = generateTokenModel.Token,
@@ -52,7 +51,7 @@ namespace Host4Travel.BLL.Concrete
                 return authenticateModel;
             }
 
-            var model = new LoginModel();
+            var model = new LoginDto();
             model.Token = String.Empty;
             model.Username = String.Empty;
             model.StatusCode = HttpStatusCode.Unauthorized;
@@ -62,7 +61,7 @@ namespace Host4Travel.BLL.Concrete
 
         }
 
-        public GenerateTokenModel GenerateToken(ApplicationIdentityUser user)
+        public GenerateTokenDto GenerateToken(ApplicationIdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Configuration.SecretKey);
@@ -85,14 +84,14 @@ namespace Host4Travel.BLL.Concrete
                 SigningCredentials = signingCredentials
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var model=new GenerateTokenModel();
+            var model=new GenerateTokenDto();
             model.Token = tokenHandler.WriteToken(token);
             model.TokenExpireDate = expirationDate;
             
             return model;
         }
 
-        public RegisterModel Register(ApplicationIdentityUser registerModel,string password)
+        public RegisterDto Register(ApplicationIdentityUser registerModel,string password)
         {
             var identityUser = new ApplicationIdentityUser
             {
@@ -109,21 +108,21 @@ namespace Host4Travel.BLL.Concrete
                     identityUser,password);
             if (createdUser.Result.Succeeded)
             {
-                return new RegisterModel()
+                return new RegisterDto()
                 {
                     Message = "Kullanıcı başarı ile oluşturuldu",
                     StatusCode = HttpStatusCode.OK
                 };
             }
 
-            return new RegisterModel
+            return new RegisterDto
             {
                 StatusCode = HttpStatusCode.BadRequest,
                 Message = String.Join(',',createdUser.Result.Errors.ToList())
             };
         }
 
-        public UpdateModel Update(ApplicationIdentityUser updateModel,string password)
+        public UpdateDto Update(ApplicationIdentityUser updateModel,string password)
         {
             var user = _userManager.FindByNameAsync(updateModel.UserName).Result;
             user.Firstname = updateModel.Firstname;
@@ -136,23 +135,23 @@ namespace Host4Travel.BLL.Concrete
             var result=_userManager.UpdateAsync(user).Result;
             if (result.Succeeded)
             {
-                return   new UpdateModel()
+                return   new UpdateDto()
                 {
                     Message = "Kullanıcı başarılı bir şekilde güncellendi",
                     StatusCode = HttpStatusCode.OK
                 };
             }
-            return new UpdateModel()
+            return new UpdateDto()
             {
                 Message = string.Join(',',result.Errors),
                 StatusCode = HttpStatusCode.BadRequest
             };
         }
 
-        public DeleteModel Delete(string userId)
+        public DeleteDto Delete(string userId)
         {
             var result = _userManager.DeleteAsync(_userManager.FindByIdAsync(userId).Result);
-            var returnModel=new DeleteModel();
+            var returnModel=new DeleteDto();
             if (result.IsCompletedSuccessfully)
             {
                 returnModel.Message = "Kullanıcı başarı ile silindi";

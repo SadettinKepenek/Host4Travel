@@ -16,8 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="BLL\Concrete\EntityService" />
+      <Folder Include="BLL\Concrete" />
       <Folder Include="DAL\Concrete" />
+      <Folder Include="DTO" />
     </ItemGroup>
 
 </Project>

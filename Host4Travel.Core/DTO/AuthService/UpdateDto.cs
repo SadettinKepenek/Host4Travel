@@ -1,8 +1,8 @@
 ﻿using System.Net;
 
-namespace Host4Travel.Core.BLL.Concrete.AuthService
+namespace Host4Travel.Core.DTO.AuthService
 {
-    public class DeleteModel
+    public class UpdateDto
     {
         public HttpStatusCode StatusCode { get; set; }
         public string Message { get; set; }

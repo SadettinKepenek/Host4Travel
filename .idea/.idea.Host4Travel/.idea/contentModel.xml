@@ -125,20 +125,7 @@
           <e p="Abstract" t="Include">
             <e p="IEntityService.cs" t="Include" />
           </e>
-          <e p="Concrete" t="Include">
-            <e p="AuthService" t="Include">
-              <e p="DeleteModel.cs" t="Include" />
-              <e p="GenerateTokenModel.cs" t="Include" />
-              <e p="LoginModel.cs" t="Include" />
-              <e p="RegisterModel.cs" t="Include" />
-              <e p="UpdateModel.cs" t="Include" />
-            </e>
-            <e p="EntityService" t="Include" />
-            <e p="LoggerService" t="Include">
-              <e p="LogLevel.cs" t="Include" />
-              <e p="LogModel.cs" t="Include" />
-            </e>
-          </e>
+          <e p="Concrete" t="Include" />
         </e>
         <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
@@ -148,6 +135,19 @@
             <e p="EntityFramework" t="Include">
               <e p="EfEntityFrameworkBase.cs" t="Include" />
             </e>
+          </e>
+        </e>
+        <e p="DTO" t="Include">
+          <e p="AuthService" t="Include">
+            <e p="DeleteDto.cs" t="Include" />
+            <e p="GenerateTokenDto.cs" t="Include" />
+            <e p="LoginDto.cs" t="Include" />
+            <e p="RegisterDto.cs" t="Include" />
+            <e p="UpdateDto.cs" t="Include" />
+          </e>
+          <e p="LoggerService" t="Include">
+            <e p="LogLevel.cs" t="Include" />
+            <e p="LogModel.cs" t="Include" />
           </e>
         </e>
         <e p="Entities" t="Include">

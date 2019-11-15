@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Host4Travel.Core.BLL.Concrete.LoggerService
+namespace Host4Travel.Core.DTO.LoggerService
 {
     public class LogModel
     {
