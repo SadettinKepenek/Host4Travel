@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.Concrete.Categories;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.Exceptions;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;
@@ -24,29 +25,29 @@ namespace Host4Travel.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-//            var categories = _categoryService.GetAll();
-//            var model = new GetAllModel
-//            {
-//                Categories = categories,
-//                
-//            };
-//            if (categories==null)
-//            {
-//                model.ResponseMessage = "Herhangi bir kategori bulunamadı";
-//                model.HttpStatusCode = HttpStatusCode.NotFound;
-//                return NotFound("Herhangi bir kategori bulunamadı");
-//            }
-//            model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
-//            model.HttpStatusCode = HttpStatusCode.OK;
-            return Ok(null);
+            var categories = _categoryService.GetAllCategories();
+            var model = new GetAllModel
+            {
+                Categories = categories,
+                
+            };
+            if (categories==null)
+            {
+                model.ResponseMessage = "Herhangi bir kategori bulunamadı";
+                model.HttpStatusCode = HttpStatusCode.NotFound;
+                return NotFound("Herhangi bir kategori bulunamadı");
+            }
+            model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
+            model.HttpStatusCode = HttpStatusCode.OK;
+            return Ok(model);
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(Category category)
+        public async Task<IActionResult> Add(CategoryAddDto category)
         {
             try
             {
-//                _categoryService.Add(category);
+                _categoryService.AddCategory(category);
                 return Ok("Kategori başarı ile eklendi");
             }
             catch (Exception e)
