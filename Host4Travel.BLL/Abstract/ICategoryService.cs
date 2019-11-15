@@ -8,9 +8,9 @@ namespace Host4Travel.BLL.Abstract
     {
         List<CategoryListDto> GetAllCategories();
         CategoryListDto GetCategoryById(int categoryId);
-        void AddCategory(Category category);
-        void UpdateCategory(Category category);
-        void DeleteCategory(Category category);
+        void AddCategory(CategoryAddDto model);
+        void UpdateCategory(CategoryUpdateDto model);
+        void DeleteCategory(CategoryDeleteDto model);
         
     }
 }

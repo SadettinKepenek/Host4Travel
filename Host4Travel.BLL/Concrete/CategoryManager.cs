@@ -34,15 +34,15 @@ namespace Host4Travel.BLL.Concrete
             return null;
         }
 
-        public void AddCategory(Category category)
+        public void AddCategory(CategoryAddDto model)
         {
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(CategoryUpdateDto model)
         {
         }
 
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(CategoryDeleteDto model)
         {
         }
     }
