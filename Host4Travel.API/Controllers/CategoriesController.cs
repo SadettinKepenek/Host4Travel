@@ -24,21 +24,21 @@ namespace Host4Travel.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            var categories = _categoryService.GetAll();
-            var model = new GetAllModel
-            {
-                Categories = categories,
-                
-            };
-            if (categories==null)
-            {
-                model.ResponseMessage = "Herhangi bir kategori bulunamadı";
-                model.HttpStatusCode = HttpStatusCode.NotFound;
-                return NotFound("Herhangi bir kategori bulunamadı");
-            }
-            model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
-            model.HttpStatusCode = HttpStatusCode.OK;
-            return Ok(model);
+//            var categories = _categoryService.GetAll();
+//            var model = new GetAllModel
+//            {
+//                Categories = categories,
+//                
+//            };
+//            if (categories==null)
+//            {
+//                model.ResponseMessage = "Herhangi bir kategori bulunamadı";
+//                model.HttpStatusCode = HttpStatusCode.NotFound;
+//                return NotFound("Herhangi bir kategori bulunamadı");
+//            }
+//            model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
+//            model.HttpStatusCode = HttpStatusCode.OK;
+            return Ok(null);
         }
 
         [HttpPost("Add")]
@@ -46,7 +46,7 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
-                _categoryService.Add(category);
+//                _categoryService.Add(category);
                 return Ok("Kategori başarı ile eklendi");
             }
             catch (Exception e)

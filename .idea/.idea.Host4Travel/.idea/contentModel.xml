@@ -121,12 +121,6 @@
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="BLL" t="Include">
-          <e p="Abstract" t="Include">
-            <e p="IEntityService.cs" t="Include" />
-          </e>
-          <e p="Concrete" t="Include" />
-        </e>
         <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
             <e p="IEntityRepository.cs" t="Include" />
