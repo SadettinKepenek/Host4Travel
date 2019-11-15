@@ -54,7 +54,7 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                return _exceptionHandler.HandleServiceException(e);
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
             }
         }
 
@@ -68,7 +68,21 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                return _exceptionHandler.HandleServiceException(e);
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
+            }
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(CategoryDeleteDto deleteDto)
+        {
+            try
+            {
+                _categoryService.DeleteCategory(deleteDto);
+                return Ok("Kategori başarı ile silindi");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
             }
         }
     }

@@ -7,35 +7,50 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Host4Travel.Core.Exceptions
 {
-    public class ExceptionHandler:IExceptionHandler
+    public class ExceptionHandler : IExceptionHandler
     {
-        public ObjectResult HandleServiceException(Exception exception)
+        public string HandleServiceException(Exception exception)
         {
+            string exceptionMessage = "";
             switch (exception)
             {
                 case SqlException _:
-                    return new BadRequestObjectResult("Veritabanında hata oluştu.Lütfen site sahibi ile iletişime geçiniz.");
+                    exceptionMessage = "Veritabanında hata oluştu.Lütfen site sahibi ile iletişime geçiniz.";
+                    break;
                 case DbUpdateException _:
-                    return new BadRequestObjectResult("Veritabanında işlem yapılırken hata oluştu.Lütfen site sahibi ile iletişime geçiniz.");
+                    exceptionMessage =
+                        "Veritabanında işlem yapılırken hata oluştu.Lütfen site sahibi ile iletişime geçiniz.";
+                    break;
                 case DbException _:
-                    return new BadRequestObjectResult("Veritabanında hata oluştu.Lütfen site sahibi ile iletişime geçiniz.");
+                    exceptionMessage = "Veritabanında hata oluştu.Lütfen site sahibi ile iletişime geçiniz.";
+                    break;
                 case NullReferenceException _:
-                    return new BadRequestObjectResult("Gönderileren verinin referansına ulaşılamadı.");
+                    exceptionMessage = "Gönderileren verinin referansına ulaşılamadı.";
+                    break;
                 case ArgumentNullException _:
-                    return new BadRequestObjectResult("Gönderilen veri boş.");
+                    exceptionMessage = "Gönderilen veri boş.";
+                    break;    
                 case ArgumentOutOfRangeException _:
-                    return new BadRequestObjectResult("Gönderilen veri sınırlar dışında.");
+                    exceptionMessage = "Gönderilen veri sınırlar dışında.";
+                    break;
                 case TimeoutException _:
-                    return new BadRequestObjectResult("Veritabanında zaman aşımı oluştu.Lütfen site sahibi ile iletişime geçiniz.");
+                    exceptionMessage = "Veritabanında zaman aşımı oluştu.Lütfen site sahibi ile iletişime geçiniz.";
+                    break;
                 case AmbiguousMatchException _:
-                    return new BadRequestObjectResult("Gönderilen verilerin alanlarında çakışma oluştu.");
+                    exceptionMessage = "Gönderilen verilerin alanlarında çakışma oluştu.";
+                    break;
                 case ValidationFailureException _:
-                    return new BadRequestObjectResult($"Veri istenildiği gibi gönderilmedi Detaylar :\n {exception.Message}.");
+                    exceptionMessage = "Veri istenildiği gibi gönderilmedi Detaylar :\n" + exception.Message;
+                    break;
                 case EfCrudException _:
-                    return new BadRequestObjectResult("Veritabanında işlem yapılırken hata oluştu.");
+                    exceptionMessage = "Veritabanında işlem yapılırken hata oluştu.";
+                    break;
                 default:
-                    return new BadRequestObjectResult("Hata tespit edilemedi");
+                    exceptionMessage = "Hata tespit edilemedi";
+                    break;
             }
+            return exceptionMessage;
         }
-    }
+    
+}
 }
