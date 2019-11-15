@@ -18,7 +18,10 @@
     <ItemGroup>
       <Folder Include="BLL\Concrete" />
       <Folder Include="DAL\Concrete" />
-      <Folder Include="DTO" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Host4Travel.Entities\Host4Travel.Entities.csproj" />
     </ItemGroup>
 
 </Project>

@@ -178,12 +178,13 @@ namespace Host4Travel.UI
                 entity.Property(e => e.ApplicentId)
                     .IsRequired()
                     .HasMaxLength(450);
-
+                
                 entity.HasOne(d => d.Applicent)
                     .WithMany(p => p.PostApplication)
                     .HasForeignKey(d => d.ApplicentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostApplication_AspNetUsers");
+                
             });
 
             modelBuilder.Entity<PostCategoryReward>(entity =>
@@ -224,10 +225,11 @@ namespace Host4Travel.UI
                 entity.Property(e => e.CheckInStartDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Application)
-                    .WithMany(p => p.PostCheckIn)
-                    .HasForeignKey(d => d.ApplicationId)
+                    .WithOne(p => p.PostCheckIn)
+                    .HasForeignKey<PostApplication>(d => d.PostApplicationId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostCheckIn_PostApplication");
+                
             });
 
             modelBuilder.Entity<PostDiscussion>(entity =>
@@ -284,8 +286,8 @@ namespace Host4Travel.UI
                 entity.Property(e => e.RatingReply).HasMaxLength(250);
 
                 entity.HasOne(d => d.Application)
-                    .WithMany(p => p.PostRating)
-                    .HasForeignKey(d => d.ApplicationId)
+                    .WithOne(p => p.PostRating)
+                    .HasForeignKey<PostApplication>(d => d.PostApplicationId)
                     .HasConstraintName("FK_PostRating_PostApplication");
 
                 entity.HasOne(d => d.Owner)

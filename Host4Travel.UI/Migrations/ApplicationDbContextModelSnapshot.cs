@@ -31,15 +31,47 @@ namespace Host4Travel.UI.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getutcdate()");
 
-                    b.Property<int>("LogLevel")
-                        .HasColumnType("int");
-
                     b.Property<string>("LogMessage")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LogId");
 
                     b.ToTable("Log");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCategoryReward", b =>
+                {
+                    b.Property<Guid>("PostCategoryRewardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("RewardId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RewardValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.HasKey("PostCategoryRewardId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("RewardId");
+
+                    b.ToTable("Post_Category_Reward");
                 });
 
             modelBuilder.Entity("Host4Travel.UI.Category", b =>
@@ -339,7 +371,6 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostApplication", b =>
                 {
                     b.Property<Guid>("PostApplicationId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
@@ -370,41 +401,6 @@ namespace Host4Travel.UI.Migrations
                     b.ToTable("PostApplication");
                 });
 
-            modelBuilder.Entity("Host4Travel.UI.PostCategoryReward", b =>
-                {
-                    b.Property<Guid>("PostCategoryRewardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("RewardId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RewardValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.HasKey("PostCategoryRewardId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("RewardId");
-
-                    b.ToTable("Post_Category_Reward");
-                });
-
             modelBuilder.Entity("Host4Travel.UI.PostCheckIn", b =>
                 {
                     b.Property<Guid>("PostCheckInId")
@@ -425,8 +421,6 @@ namespace Host4Travel.UI.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("PostCheckInId");
-
-                    b.HasIndex("ApplicationId");
 
                     b.ToTable("PostCheckIn");
                 });
@@ -532,8 +526,6 @@ namespace Host4Travel.UI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PostRatingId");
-
-                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("OwnerId");
 
@@ -673,6 +665,27 @@ namespace Host4Travel.UI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCategoryReward", b =>
+                {
+                    b.HasOne("Host4Travel.UI.Category", "Category")
+                        .WithMany("PostCategoryReward")
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("FK_Post_Category_Reward_Category")
+                        .IsRequired();
+
+                    b.HasOne("Host4Travel.UI.Post", "Post")
+                        .WithMany("PostCategoryReward")
+                        .HasForeignKey("PostId")
+                        .HasConstraintName("FK_Post_Category_Reward_Post")
+                        .IsRequired();
+
+                    b.HasOne("Host4Travel.UI.Reward", "Reward")
+                        .WithMany("PostCategoryReward")
+                        .HasForeignKey("RewardId")
+                        .HasConstraintName("FK_Post_Category_Reward_Reward")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Host4Travel.UI.Category", b =>
                 {
                     b.HasOne("Host4Travel.UI.Category", "CategoryParent")
@@ -729,35 +742,18 @@ namespace Host4Travel.UI.Migrations
                         .HasForeignKey("ApplicentId")
                         .HasConstraintName("FK_PostApplication_AspNetUsers")
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Host4Travel.UI.PostCategoryReward", b =>
-                {
-                    b.HasOne("Host4Travel.UI.Category", "Category")
-                        .WithMany("PostCategoryReward")
-                        .HasForeignKey("CategoryId")
-                        .HasConstraintName("FK_Post_Category_Reward_Category")
-                        .IsRequired();
-
-                    b.HasOne("Host4Travel.UI.Post", "Post")
-                        .WithMany("PostCategoryReward")
-                        .HasForeignKey("PostId")
-                        .HasConstraintName("FK_Post_Category_Reward_Post")
-                        .IsRequired();
-
-                    b.HasOne("Host4Travel.UI.Reward", "Reward")
-                        .WithMany("PostCategoryReward")
-                        .HasForeignKey("RewardId")
-                        .HasConstraintName("FK_Post_Category_Reward_Reward")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.PostCheckIn", b =>
-                {
-                    b.HasOne("Host4Travel.UI.PostApplication", "Application")
-                        .WithMany("PostCheckIn")
-                        .HasForeignKey("ApplicationId")
+                    b.HasOne("Host4Travel.UI.PostCheckIn", "PostCheckIn")
+                        .WithOne("Application")
+                        .HasForeignKey("Host4Travel.UI.PostApplication", "PostApplicationId")
                         .HasConstraintName("FK_PostCheckIn_PostApplication")
+                        .IsRequired();
+
+                    b.HasOne("Host4Travel.UI.PostRating", "PostRating")
+                        .WithOne("Application")
+                        .HasForeignKey("Host4Travel.UI.PostApplication", "PostApplicationId")
+                        .HasConstraintName("FK_PostRating_PostApplication")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -786,11 +782,6 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Host4Travel.UI.PostRating", b =>
                 {
-                    b.HasOne("Host4Travel.UI.PostApplication", "Application")
-                        .WithMany("PostRating")
-                        .HasForeignKey("ApplicationId")
-                        .HasConstraintName("FK_PostRating_PostApplication");
-
                     b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", "Owner")
                         .WithMany("PostRating")
                         .HasForeignKey("OwnerId")

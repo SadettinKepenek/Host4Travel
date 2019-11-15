@@ -145,6 +145,12 @@
             <e p="RegisterDto.cs" t="Include" />
             <e p="UpdateDto.cs" t="Include" />
           </e>
+          <e p="CategoryService" t="Include">
+            <e p="CategoryAddDto.cs" t="Include" />
+            <e p="CategoryDeleteDto.cs" t="Include" />
+            <e p="CategoryListDto.cs" t="Include" />
+            <e p="CategoryUpdateDto.cs" t="Include" />
+          </e>
           <e p="LoggerService" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
@@ -263,6 +269,12 @@
           <e p="20191112144910_Initial.Designer.cs" t="Include" />
           <e p="20191113203829_Add_Log_Table.cs" t="Include" />
           <e p="20191113203829_Add_Log_Table.Designer.cs" t="Include" />
+          <e p="20191115201656_ModifyLog.cs" t="Include" />
+          <e p="20191115201656_ModifyLog.Designer.cs" t="Include" />
+          <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.cs" t="Include" />
+          <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.Designer.cs" t="Include" />
+          <e p="20191115204319_Modify_FK_PostRating_PostApplication.cs" t="Include" />
+          <e p="20191115204319_Modify_FK_PostRating_PostApplication.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
