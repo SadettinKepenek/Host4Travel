@@ -162,6 +162,8 @@
         </e>
         <e p="Exceptions" t="Include">
           <e p="EfCrudException.cs" t="Include" />
+          <e p="ExceptionHandler.cs" t="Include" />
+          <e p="IExceptionHandler.cs" t="Include" />
           <e p="ValidationFailureException.cs" t="Include" />
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />

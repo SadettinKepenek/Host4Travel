@@ -17,10 +17,12 @@ namespace Host4Travel.API.Controllers
     public class CategoriesController : Controller
     {
         private ICategoryService _categoryService;
+        private IExceptionHandler _exceptionHandler;
 
-        public CategoriesController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService, IExceptionHandler exceptionHandler)
         {
             _categoryService = categoryService;
+            _exceptionHandler = exceptionHandler;
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
@@ -52,17 +54,22 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                switch (e)
-                {
-                    case ValidationFailureException exception:
-                        return BadRequest("Veriler doğrulanırken hata oluştu\n"+exception.Message);
-                    case EfCrudException _:
-                        return BadRequest("Sistem yöneticinizle görüşün");
-                    default:
-                        return BadRequest("Some error occured");
-                }
+                return _exceptionHandler.HandleServiceException(e);
             }
-            return Ok();
+        }
+
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update(CategoryUpdateDto categoryUpdateDto)
+        {
+            try
+            {
+                _categoryService.UpdateCategory(categoryUpdateDto);
+                return Ok("Kategori başarı ile güncellendi");
+            }
+            catch (Exception e)
+            {
+                return _exceptionHandler.HandleServiceException(e);
+            }
         }
     }
 }
