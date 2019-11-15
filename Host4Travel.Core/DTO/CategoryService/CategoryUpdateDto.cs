@@ -1,4 +1,4 @@
-﻿namespace Host4Travel.Core.DTO.CategoryService
+﻿﻿namespace Host4Travel.Core.DTO.CategoryService
 {
     public class CategoryUpdateDto
     {

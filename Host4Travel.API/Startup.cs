@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Concrete;
+using Host4Travel.Core.Exceptions;
+using Host4Travel.Core.MappingProfiles;
 using Host4Travel.Core.SystemProperties;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.DAL.Concrete.EntityFramework;
@@ -39,6 +42,7 @@ namespace Host4Travel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureAutoMapperService(services);
             services.AddControllers().AddNewtonsoftJson(opt =>
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             
@@ -85,11 +89,17 @@ namespace Host4Travel.API
             // configure DI for application services
         }
 
+        private static void ConfigureAutoMapperService(IServiceCollection services)
+        {
+            var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+        }
+
         private static void ConfigureInjections(IServiceCollection services)
         {
-            
-            
-            
+            services.AddScoped<IExceptionHandler, ExceptionHandler>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();

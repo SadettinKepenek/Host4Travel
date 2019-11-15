@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.Concrete.Categories;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.Exceptions;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;
@@ -16,15 +17,17 @@ namespace Host4Travel.API.Controllers
     public class CategoriesController : Controller
     {
         private ICategoryService _categoryService;
+        private IExceptionHandler _exceptionHandler;
 
-        public CategoriesController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService, IExceptionHandler exceptionHandler)
         {
             _categoryService = categoryService;
+            _exceptionHandler = exceptionHandler;
         }
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            var categories = _categoryService.GetAll();
+            var categories = _categoryService.GetAllCategories();
             var model = new GetAllModel
             {
                 Categories = categories,
@@ -42,26 +45,45 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(Category category)
+        public async Task<IActionResult> Add(CategoryAddDto category)
         {
             try
             {
-                _categoryService.Add(category);
+                _categoryService.AddCategory(category);
                 return Ok("Kategori başarı ile eklendi");
             }
             catch (Exception e)
             {
-                switch (e)
-                {
-                    case ValidationFailureException exception:
-                        return BadRequest("Veriler doğrulanırken hata oluştu\n"+exception.Message);
-                    case EfCrudException _:
-                        return BadRequest("Sistem yöneticinizle görüşün");
-                    default:
-                        return BadRequest("Some error occured");
-                }
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
             }
-            return Ok();
+        }
+
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update(CategoryUpdateDto categoryUpdateDto)
+        {
+            try
+            {
+                _categoryService.UpdateCategory(categoryUpdateDto);
+                return Ok("Kategori başarı ile güncellendi");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
+            }
+        }
+
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete(CategoryDeleteDto deleteDto)
+        {
+            try
+            {
+                _categoryService.DeleteCategory(deleteDto);
+                return Ok("Kategori başarı ile silindi");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(_exceptionHandler.HandleServiceException(e));
+            }
         }
     }
 }

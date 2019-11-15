@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq.Expressions;
+using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators;
+using Host4Travel.BLL.Validators.CategoryService;
+using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.Exceptions;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
@@ -15,42 +18,54 @@ namespace Host4Travel.BLL.Concrete
     public class CategoryManager : ICategoryService
     {
         private ICategoryDal _categoryDal;
+        private IMapper _mapper;
         
 
-        public CategoryManager(ICategoryDal categoryDal)
+        public CategoryManager(ICategoryDal categoryDal, IMapper mapper)
         {
             _categoryDal = categoryDal;
+            _mapper = mapper;
         }
 
-        public Category Get(Expression<Func<Category, bool>> filter = null)
+
+        public List<CategoryListDto> GetAllCategories()
         {
-            var categories = filter == null ? _categoryDal.Get() : _categoryDal.Get(filter);
-            return categories;
+            var categories = _categoryDal.GetList();
+            if (categories==null)
+            {
+                return null;
+            }
+            var categoriesList = _mapper.Map<List<CategoryListDto>>(categories);
+            return categoriesList;
         }
 
-        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
+        public CategoryListDto GetCategoryById(int categoryId)
         {
-            var categories = filter == null ? _categoryDal.GetList() : _categoryDal.GetList(filter);
-            return categories;
+            var category = _categoryDal.Get(x => x.CategoryId == categoryId);
+            if (category==null)
+            {
+                return null;
+            }
+
+            var categoryReturn = _mapper.Map<CategoryListDto>(category);
+            return categoryReturn;
         }
 
-        public void Add(Category entity)
+        public void AddCategory(CategoryAddDto model)
         {
-            // Start Logging
+            AddCategoryValidator addCategoryValidator=new AddCategoryValidator();
             try
             {
-                CategoryValidator categoryValidator=new CategoryValidator();
-                var validationResult = categoryValidator.Validate(entity);
+                var validationResult = addCategoryValidator.Validate(model);
                 if (validationResult.IsValid)
                 {
-                    _categoryDal.Add(entity);
+                    var categoryToAdd = _mapper.Map<Category>(model);
+                    _categoryDal.Add(categoryToAdd);
                 }
                 else
                 {
                     throw new ValidationFailureException(validationResult.ToString().Replace("~","\n"));
-                    
                 }
-                
             }
             catch (Exception e)
             {
@@ -62,30 +77,25 @@ namespace Host4Travel.BLL.Concrete
                 {
                     throw;
                 }
-                else
-                {
-                    throw new Exception(e.Message);
-                }
+                throw;
             }
-           
-
         }
 
-        public void Update(Category entity)
+        public void UpdateCategory(CategoryUpdateDto model)
         {
+            UpdateCategoryValidator updateCategoryValidator=new UpdateCategoryValidator();
             try
             {
-                CategoryValidator categoryValidator=new CategoryValidator();
-                var validationResult = categoryValidator.Validate(entity);
+                var validationResult = updateCategoryValidator.Validate(model);
                 if (validationResult.IsValid)
                 {
-                    _categoryDal.Update(entity);
+                    var categoryToAdd = _mapper.Map<Category>(model);
+                    _categoryDal.Update(categoryToAdd);
                 }
                 else
                 {
                     throw new ValidationFailureException(validationResult.ToString().Replace("~","\n"));
                 }
-                
             }
             catch (Exception e)
             {
@@ -93,28 +103,29 @@ namespace Host4Travel.BLL.Concrete
                 {
                     throw new EfCrudException(e.Message);
                 }
-                else
+                else if (e is ValidationFailureException)
                 {
-                    throw new Exception(e.Message);
+                    throw;
                 }
+                throw;
             }
         }
 
-        public void Delete(Category entity)
+        public void DeleteCategory(CategoryDeleteDto model)
         {
+            DeleteCategoryValidator deleteCategoryValidator=new DeleteCategoryValidator();
             try
             {
-                CategoryValidator categoryValidator=new CategoryValidator();
-                var validationResult = categoryValidator.Validate(entity);
+                var validationResult = deleteCategoryValidator.Validate(model);
                 if (validationResult.IsValid)
                 {
-                    _categoryDal.Delete(entity);
+                    var categoryToAdd = _mapper.Map<Category>(model);
+                    _categoryDal.Delete(categoryToAdd);
                 }
                 else
                 {
                     throw new ValidationFailureException(validationResult.ToString().Replace("~","\n"));
                 }
-                
             }
             catch (Exception e)
             {
@@ -122,10 +133,11 @@ namespace Host4Travel.BLL.Concrete
                 {
                     throw new EfCrudException(e.Message);
                 }
-                else
+                else if (e is ValidationFailureException)
                 {
-                    throw new Exception(e.Message);
+                    throw;
                 }
+                throw;
             }
         }
     }

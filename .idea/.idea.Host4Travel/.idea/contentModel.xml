@@ -104,6 +104,11 @@
         </e>
         <e p="Validators" t="Include">
           <e p="CategoryRewardValidator.cs" t="Include" />
+          <e p="CategoryService" t="Include">
+            <e p="AddCategoryValidator.cs" t="Include" />
+            <e p="DeleteCategoryValidator.cs" t="Include" />
+            <e p="UpdateCategoryValidator.cs" t="Include" />
+          </e>
           <e p="CategoryValidator.cs" t="Include" />
           <e p="ChatMessageValidator.cs" t="Include" />
           <e p="ChatValidator.cs" t="Include" />
@@ -121,12 +126,6 @@
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="BLL" t="Include">
-          <e p="Abstract" t="Include">
-            <e p="IEntityService.cs" t="Include" />
-          </e>
-          <e p="Concrete" t="Include" />
-        </e>
         <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
             <e p="IEntityRepository.cs" t="Include" />
@@ -163,9 +162,14 @@
         </e>
         <e p="Exceptions" t="Include">
           <e p="EfCrudException.cs" t="Include" />
+          <e p="ExceptionHandler.cs" t="Include" />
+          <e p="IExceptionHandler.cs" t="Include" />
           <e p="ValidationFailureException.cs" t="Include" />
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
+        <e p="MappingProfiles" t="Include">
+          <e p="MappingProfile.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
