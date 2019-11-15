@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     </ItemGroup>
 
@@ -15,8 +16,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="CommonModels" />
+      <Folder Include="BLL\Concrete" />
       <Folder Include="DAL\Concrete" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Host4Travel.Entities\Host4Travel.Entities.csproj" />
     </ItemGroup>
 
 </Project>

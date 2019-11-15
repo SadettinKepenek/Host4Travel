@@ -9,7 +9,6 @@ namespace Host4Travel.BLL.Validators
     {
         public LogValidator()
         {
-            RuleFor(x => x.LogLevel).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().WithMessage("Log Seviyesi belirtilmelidir");
             RuleFor(x => x.LogMessage).NotNull().NotEmpty().WithMessage("Log Mesajı boş geçilemez");
             RuleFor(x => x.LogDate).NotNull().NotEmpty().WithMessage("Log tarihi boş geçilemez");
             RuleFor(x => x.LogDate).InclusiveBetween(DateTime.Now.AddMinutes(-10), DateTime.Now.AddMinutes(10))

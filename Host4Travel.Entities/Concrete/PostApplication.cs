@@ -9,8 +9,6 @@ namespace Host4Travel.UI
     {
         public PostApplication()
         {
-            PostCheckIn = new HashSet<PostCheckIn>();
-            PostRating = new HashSet<PostRating>();
         }
 
         [Key]
@@ -23,7 +21,7 @@ namespace Host4Travel.UI
         public bool IsActive { get; set; }
 
         public virtual ApplicationIdentityUser Applicent { get; set; }
-        public virtual ICollection<PostCheckIn> PostCheckIn { get; set; }
-        public virtual ICollection<PostRating> PostRating { get; set; }
+        public virtual PostCheckIn PostCheckIn { get; set; }
+        public virtual PostRating PostRating { get; set; }
     }
 }

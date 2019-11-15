@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete
@@ -15,6 +16,8 @@ namespace Host4Travel.BLL.Concrete
         {
             _postCategoryRewardDal = postCategoryRewardDal;
         }
+
+
         public PostCategoryReward Get(Expression<Func<PostCategoryReward, bool>> filter = null)
         {
             return null;

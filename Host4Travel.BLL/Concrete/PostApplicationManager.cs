@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.BLL.Concrete;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -15,6 +16,8 @@ namespace Host4Travel.BLL.Concrete
         {
             _postApplicationDal = postApplicationDal;
         }
+
+
         public PostApplication Get(Expression<Func<PostApplication, bool>> filter = null)
         {
             return null;

@@ -1,7 +1,6 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
 
-namespace Host4Travel.Core.BLL.Concrete
+namespace Host4Travel.Core.DTO.LoggerService
 {
     public class LogModel
     {

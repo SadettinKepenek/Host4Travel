@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Concrete;
 using Host4Travel.Core.SystemProperties;
+using Host4Travel.DAL.Abstract;
+using Host4Travel.DAL.Concrete.EntityFramework;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,9 +41,12 @@ namespace Host4Travel.API
         {
             services.AddControllers().AddNewtonsoftJson(opt =>
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
+            
+            
+            ConfigureInjections(services);
+
+
+   
             
             
             
@@ -55,12 +60,8 @@ namespace Host4Travel.API
                 .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
-            // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+       
+            var key = Encoding.ASCII.GetBytes(Core.SystemProperties.Configuration.SecretKey);
             
             
             services.AddAuthentication(x =>
@@ -82,6 +83,18 @@ namespace Host4Travel.API
                 });
 
             // configure DI for application services
+        }
+
+        private static void ConfigureInjections(IServiceCollection services)
+        {
+            
+            
+            
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<ICategoryDal, EfCategoryRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

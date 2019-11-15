@@ -31,10 +31,13 @@ namespace Host4Travel.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IAuthService _authService;
+        private UserManager<ApplicationIdentityUser> _userManager;
+        
 
-        public UsersController(IAuthService authService)
+        public UsersController(IAuthService authService, UserManager<ApplicationIdentityUser> userManager)
         {
             _authService = authService;
+            _userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -47,7 +50,8 @@ namespace Host4Travel.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = _authService.Login(userModel);
+            var user = _userManager.FindByNameAsync(userModel.Username).Result;
+            var result = _authService.Login(user,userModel.Password);
             if (result.StatusCode == HttpStatusCode.OK)
             {
                 return Ok(result);
@@ -67,7 +71,11 @@ namespace Host4Travel.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = _authService.Register(user);
+            var newUser=new ApplicationIdentityUser()
+            {
+                //mapping
+            };
+            var result = _authService.Register(newUser,user.Password);
             if (result.StatusCode == HttpStatusCode.OK)
             {
                 return Ok(new UsersRegisterResponseModel()
@@ -115,9 +123,10 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(UsersUpdateModel updateModel)
+        public async Task<IActionResult> Update(ApplicationIdentityUser updateModel,string password)
         {
-            var result = _authService.Update(updateModel);
+            
+            var result = _authService.Update(updateModel,password);
             if (result.StatusCode==HttpStatusCode.OK)
             {
                 return Ok(result);

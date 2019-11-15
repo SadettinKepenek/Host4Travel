@@ -13,7 +13,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
-          <e p="PostsController.cs" t="Include" />
+          <e p="CategoriesController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
         </e>
@@ -21,6 +21,31 @@
           <e p="JwtExtension.cs" t="Include" />
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
+        <e p="Models" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="HttpResponseModel.cs" t="Include" />
+          </e>
+          <e p="Concrete" t="Include">
+            <e p="Categories" t="Include">
+              <e p="GetAllModel.cs" t="Include" />
+            </e>
+            <e p="Roles" t="Include">
+              <e p="RolesAddModel.cs" t="Include" />
+              <e p="RolesAssignRoleModel.cs" t="Include" />
+            </e>
+            <e p="Users" t="Include">
+              <e p="UsersDeleteResponseModel.cs" t="Include" />
+              <e p="UsersLoginModel.cs" t="Include" />
+              <e p="UsersLoginResponseModel.cs" t="Include" />
+              <e p="UsersRegisterModel.cs" t="Include" />
+              <e p="UsersRegisterResponseModel.cs" t="Include" />
+              <e p="UsersTokenValidationModel.cs" t="Include" />
+              <e p="UsersTokenValidationResponseModel.cs" t="Include" />
+              <e p="UsersUpdateModel.cs" t="Include" />
+              <e p="UsersUpdateResponseModel.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
@@ -100,38 +125,7 @@
           <e p="Abstract" t="Include">
             <e p="IEntityService.cs" t="Include" />
           </e>
-          <e p="Concrete" t="Include">
-            <e p="LogLevel.cs" t="Include" />
-            <e p="LogModel.cs" t="Include" />
-          </e>
-        </e>
-        <e p="CommonModels" t="Include">
-          <e p="Services" t="Include">
-            <e p="AuthService" t="Include">
-              <e p="DeleteModel.cs" t="Include" />
-              <e p="GenerateTokenModel.cs" t="Include" />
-              <e p="LoginModel.cs" t="Include" />
-              <e p="RegisterModel.cs" t="Include" />
-              <e p="UpdateModel.cs" t="Include" />
-            </e>
-          </e>
-          <e p="WebAPI" t="Include">
-            <e p="Roles" t="Include">
-              <e p="RolesAddModel.cs" t="Include" />
-              <e p="RolesAssignRoleModel.cs" t="Include" />
-            </e>
-            <e p="Users" t="Include">
-              <e p="UsersDeleteResponseModel.cs" t="Include" />
-              <e p="UsersLoginModel.cs" t="Include" />
-              <e p="UsersLoginResponseModel.cs" t="Include" />
-              <e p="UsersRegisterModel.cs" t="Include" />
-              <e p="UsersRegisterResponseModel.cs" t="Include" />
-              <e p="UsersTokenValidationModel.cs" t="Include" />
-              <e p="UsersTokenValidationResponseModel.cs" t="Include" />
-              <e p="UsersUpdateModel.cs" t="Include" />
-              <e p="UsersUpdateResponseModel.cs" t="Include" />
-            </e>
-          </e>
+          <e p="Concrete" t="Include" />
         </e>
         <e p="DAL" t="Include">
           <e p="Abstract" t="Include">
@@ -143,10 +137,33 @@
             </e>
           </e>
         </e>
+        <e p="DTO" t="Include">
+          <e p="AuthService" t="Include">
+            <e p="DeleteDto.cs" t="Include" />
+            <e p="GenerateTokenDto.cs" t="Include" />
+            <e p="LoginDto.cs" t="Include" />
+            <e p="RegisterDto.cs" t="Include" />
+            <e p="UpdateDto.cs" t="Include" />
+          </e>
+          <e p="CategoryService" t="Include">
+            <e p="CategoryAddDto.cs" t="Include" />
+            <e p="CategoryDeleteDto.cs" t="Include" />
+            <e p="CategoryListDto.cs" t="Include" />
+            <e p="CategoryUpdateDto.cs" t="Include" />
+          </e>
+          <e p="LoggerService" t="Include">
+            <e p="LogLevel.cs" t="Include" />
+            <e p="LogModel.cs" t="Include" />
+          </e>
+        </e>
         <e p="Entities" t="Include">
           <e p="Abstract" t="Include">
             <e p="IEntity.cs" t="Include" />
           </e>
+        </e>
+        <e p="Exceptions" t="Include">
+          <e p="EfCrudException.cs" t="Include" />
+          <e p="ValidationFailureException.cs" t="Include" />
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -156,9 +173,8 @@
             </e>
           </e>
         </e>
-        <e p="SystemProperties" t="Include">
-          <e p="AppSettings.cs" t="Include" />
-          <e p="IAppSettings.cs" t="Include" />
+        <e p="SystemSettings" t="Include">
+          <e p="Configuration.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.DAL" t="IncludeRecursive">
@@ -253,6 +269,12 @@
           <e p="20191112144910_Initial.Designer.cs" t="Include" />
           <e p="20191113203829_Add_Log_Table.cs" t="Include" />
           <e p="20191113203829_Add_Log_Table.Designer.cs" t="Include" />
+          <e p="20191115201656_ModifyLog.cs" t="Include" />
+          <e p="20191115201656_ModifyLog.Designer.cs" t="Include" />
+          <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.cs" t="Include" />
+          <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.Designer.cs" t="Include" />
+          <e p="20191115204319_Modify_FK_PostRating_PostApplication.cs" t="Include" />
+          <e p="20191115204319_Modify_FK_PostRating_PostApplication.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
