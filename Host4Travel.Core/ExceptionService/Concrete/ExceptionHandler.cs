@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Data.Common;
 using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
+using Host4Travel.Core.ExceptionService.Abstract;
+using Host4Travel.Core.ExceptionService.Exceptions;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
-namespace Host4Travel.Core.Exceptions
+namespace Host4Travel.Core.ExceptionService.Concrete
 {
     public class ExceptionHandler : IExceptionHandler
     {
@@ -42,9 +43,7 @@ namespace Host4Travel.Core.Exceptions
                 case ValidationFailureException _:
                     exceptionMessage = exception.Message;
                     break;
-                case EfCrudException _:
-                    exceptionMessage = "Veritabanında işlem yapılırken hata oluştu.";
-                    break;
+              
                 default:
                     exceptionMessage = "Hata tespit edilemedi";
                     break;
@@ -66,8 +65,6 @@ namespace Host4Travel.Core.Exceptions
                     var exceptionMessage = "Veriler eksik detaylar :\n";
                     exceptionMessage += e.Message.Replace("~", "\n");
                     return new ValidationFailureException(exceptionMessage);
-                case EfCrudException _:
-                    return e;
                 case ArgumentNullException _:
                     return e;
                 case NullReferenceException _:

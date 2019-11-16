@@ -1,7 +1,6 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Host4Travel.Core.Exceptions
+namespace Host4Travel.Core.ExceptionService.Abstract
 {
     public interface IExceptionHandler
     {

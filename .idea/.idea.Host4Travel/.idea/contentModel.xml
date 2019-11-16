@@ -165,11 +165,27 @@
             <e p="IEntity.cs" t="Include" />
           </e>
         </e>
-        <e p="Exceptions" t="Include">
-          <e p="EfCrudException.cs" t="Include" />
-          <e p="ExceptionHandler.cs" t="Include" />
-          <e p="IExceptionHandler.cs" t="Include" />
-          <e p="ValidationFailureException.cs" t="Include" />
+        <e p="ExceptionService" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="DatabaseExceptionHandler.cs" t="Include" />
+            <e p="IExceptionHandler.cs" t="Include" />
+          </e>
+          <e p="Concrete" t="Include">
+            <e p="ExceptionHandler.cs" t="Include" />
+            <e p="SqlServerExceptionHandler.cs" t="Include" />
+          </e>
+          <e p="Enum" t="Include">
+            <e p="DatabaseError.cs" t="Include" />
+          </e>
+          <e p="Exceptions" t="Include">
+            <e p="CannotInsertNullException.cs" t="Include" />
+            <e p="EfCrudException.cs" t="Include" />
+            <e p="MaxLengthExceededException.cs" t="Include" />
+            <e p="NumericOverflowException.cs" t="Include" />
+            <e p="ReferenceConstraintException.cs" t="Include" />
+            <e p="UniqueConstraintException.cs" t="Include" />
+            <e p="ValidationFailureException.cs" t="Include" />
+          </e>
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
         <e p="MappingProfiles" t="Include">

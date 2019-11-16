@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.CategoryService;
-using Host4Travel.Core.Exceptions;
+using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
