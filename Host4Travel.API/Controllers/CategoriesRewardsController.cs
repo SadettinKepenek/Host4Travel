@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
@@ -29,6 +30,17 @@ namespace Host4Travel.API.Controllers
                 return NotFound("Herhangi bir sonuç bulunamadı");
             }
             return Ok(entities);
+        }
+
+        [HttpGet("Get")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var entity = _categoryRewardService.GetRelationByIdWithDetails(id);
+            if (entity==null)
+            {
+                return NotFound();
+            }
+            return Ok(entity);
         }
         
     }

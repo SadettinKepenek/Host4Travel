@@ -98,6 +98,11 @@
           </e>
         </e>
         <e p="Validators" t="Include">
+          <e p="CategoryRewardService" t="Include">
+            <e p="CategoryRewardAddValidator.cs" t="Include" />
+            <e p="CategoryRewardDeleteValidator.cs" t="Include" />
+            <e p="CategoryRewardUpdateValidator.cs" t="Include" />
+          </e>
           <e p="CategoryRewardValidator.cs" t="Include" />
           <e p="CategoryService" t="Include">
             <e p="AddCategoryValidator.cs" t="Include" />
