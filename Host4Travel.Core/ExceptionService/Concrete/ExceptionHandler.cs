@@ -25,30 +25,30 @@ namespace Host4Travel.Core.ExceptionService.Concrete
 
             if (exception is UniqueConstraintException)
             {
-                exceptionMessage = exception.ToString();
+                exceptionMessage = exception.Message;
                 return exceptionMessage;
             }
 
             else if (exception is ReferenceConstraintException)
             {
-                exceptionMessage = exception.ToString();
+                exceptionMessage = exception.Message;
                 return exceptionMessage;
             }
 
             else if (exception is CannotInsertNullException)
             {
-                exceptionMessage = exception.ToString();
+                exceptionMessage = exception.Message;
                 return exceptionMessage;
             }
 
             else if (exception is NumericOverflowException)
             {
-                exceptionMessage = exception.ToString();
+                exceptionMessage = exception.Message;
                 return exceptionMessage;
             }
             else if (exception is MaxLengthExceededException)
             {
-                exceptionMessage = exception.ToString();
+                exceptionMessage = exception.Message;
                 return exceptionMessage;
             }
             else if (exception is SqlException)
