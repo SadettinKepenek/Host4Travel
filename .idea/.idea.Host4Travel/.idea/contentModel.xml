@@ -29,12 +29,7 @@
             <e p="RolesAddModel.cs" t="Include" />
             <e p="RolesAssignRoleModel.cs" t="Include" />
           </e>
-          <e p="Users" t="Include">
-            <e p="UsersLoginModel.cs" t="Include" />
-            <e p="UsersRegisterModel.cs" t="Include" />
-            <e p="UsersTokenValidationModel.cs" t="Include" />
-            <e p="UsersUpdateModel.cs" t="Include" />
-          </e>
+          <e p="Users" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
