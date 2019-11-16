@@ -12,7 +12,7 @@ namespace Host4Travel.BLL.Abstract
         CategoryRewardListDto GetRelationById(Guid id);
         CategoryRewardListDto GetRelationByIdWithDetails(Guid id);
         void AddRelation(CategoryRewardAddDto model);
-        void UpdateRelation(CategoryRewardAddDto model);
-        void DeleteRelation(CategoryRewardAddDto model);
+        void UpdateRelation(CategoryRewardUpdateDto model);
+        void DeleteRelation(CategoryRewardDeleteDto model);
     }
 }
