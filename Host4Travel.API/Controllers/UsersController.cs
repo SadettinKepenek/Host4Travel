@@ -7,10 +7,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Host4Travel.API.Extensions;
+using Host4Travel.API.Models.Users;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.BLL.Concrete.AuthService;
 using Host4Travel.Core.BLL.Concrete.WebAPI.Users;
-using Host4Travel.Core.WebAPI.Models.Users;
+using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
@@ -78,7 +79,7 @@ namespace Host4Travel.API.Controllers
             var result = _authService.Register(newUser,user.Password);
             if (result.StatusCode == HttpStatusCode.OK)
             {
-                return Ok(new UsersRegisterResponseModel()
+                return Ok(new RegisterDto()
                 {
                     Message = "Kullanıcı başarı ile oluşturuldu",
                     StatusCode = HttpStatusCode.OK
@@ -87,14 +88,14 @@ namespace Host4Travel.API.Controllers
 
             if (result.StatusCode == HttpStatusCode.BadRequest)
             {
-                return BadRequest(new UsersRegisterResponseModel()
+                return BadRequest(new RegisterDto()
                 {
                     Message = result.Message,
                     StatusCode = HttpStatusCode.OK
                 });
             }
 
-            return Conflict(new UsersRegisterResponseModel()
+            return Conflict(new RegisterDto()
             {
                 Message = result.Message,
                 StatusCode = HttpStatusCode.Conflict
@@ -104,7 +105,7 @@ namespace Host4Travel.API.Controllers
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string userId)
         {
-            UsersDeleteResponseModel deleteResponseModel=new UsersDeleteResponseModel();
+            DeleteDto deleteResponseModel=new DeleteDto();
             var result = _authService.Delete(userId);
             deleteResponseModel.Message = result.Message;
             deleteResponseModel.StatusCode = result.StatusCode;

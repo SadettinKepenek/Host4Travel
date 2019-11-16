@@ -1,4 +1,4 @@
-﻿namespace Host4Travel.Core.BLL.Concrete.AuthService
+﻿namespace Host4Travel.API.Models.Users
 {
     public class UsersLoginModel
     {

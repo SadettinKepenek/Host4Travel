@@ -30,15 +30,10 @@
             <e p="RolesAssignRoleModel.cs" t="Include" />
           </e>
           <e p="Users" t="Include">
-            <e p="UsersDeleteResponseModel.cs" t="Include" />
             <e p="UsersLoginModel.cs" t="Include" />
-            <e p="UsersLoginResponseModel.cs" t="Include" />
             <e p="UsersRegisterModel.cs" t="Include" />
-            <e p="UsersRegisterResponseModel.cs" t="Include" />
             <e p="UsersTokenValidationModel.cs" t="Include" />
-            <e p="UsersTokenValidationResponseModel.cs" t="Include" />
             <e p="UsersUpdateModel.cs" t="Include" />
-            <e p="UsersUpdateResponseModel.cs" t="Include" />
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
