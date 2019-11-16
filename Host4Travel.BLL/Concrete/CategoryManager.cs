@@ -7,7 +7,8 @@ using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators;
 using Host4Travel.BLL.Validators.CategoryService;
 using Host4Travel.Core.DTO.CategoryService;
-using Host4Travel.Core.Exceptions;
+using Host4Travel.Core.ExceptionService.Abstract;
+using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 using Microsoft.Data.SqlClient;
@@ -62,7 +63,14 @@ namespace Host4Travel.BLL.Concrete
                 if (validationResult.IsValid)
                 {
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Add(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryName==categoryToAdd.CategoryName))
+                    {
+                        throw new UniqueConstraintException($"{categoryToAdd.CategoryName} zaten mevcut.");
+                    }
+                    else
+                    {
+                        _categoryDal.Add(categoryToAdd);
+                    }
                 }
                 else
                 {
@@ -84,7 +92,14 @@ namespace Host4Travel.BLL.Concrete
                 if (validationResult.IsValid)
                 {
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Update(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryId==categoryToAdd.CategoryId))
+                    {
+                        _categoryDal.Update(categoryToAdd);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 else
                 {
@@ -106,8 +121,16 @@ namespace Host4Travel.BLL.Concrete
                 var validationResult = deleteCategoryValidator.Validate(model);
                 if (validationResult.IsValid)
                 {
+                    
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Delete(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryId==categoryToAdd.CategoryId))
+                    {
+                        _categoryDal.Delete(categoryToAdd);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 else
                 {

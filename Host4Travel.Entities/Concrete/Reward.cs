@@ -15,6 +15,7 @@ namespace Host4Travel.UI
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RewardId { get; set; }
+        
         public string RewardName { get; set; }
         public string RewardDescription { get; set; }
         public bool IsActive { get; set; }

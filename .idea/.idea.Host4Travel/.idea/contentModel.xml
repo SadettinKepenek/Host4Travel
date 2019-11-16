@@ -14,6 +14,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="CategoriesController.cs" t="Include" />
+          <e p="CategoriesRewardsController.cs" t="Include" />
           <e p="RewardsController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
@@ -143,6 +144,12 @@
             <e p="RegisterDto.cs" t="Include" />
             <e p="UpdateDto.cs" t="Include" />
           </e>
+          <e p="CategoryRewardService" t="Include">
+            <e p="CategoryRewardAddDto.cs" t="Include" />
+            <e p="CategoryRewardDeleteDto.cs" t="Include" />
+            <e p="CategoryRewardListDto.cs" t="Include" />
+            <e p="CategoryRewardUpdateDto.cs" t="Include" />
+          </e>
           <e p="CategoryService" t="Include">
             <e p="CategoryAddDto.cs" t="Include" />
             <e p="CategoryDeleteDto.cs" t="Include" />
@@ -165,11 +172,26 @@
             <e p="IEntity.cs" t="Include" />
           </e>
         </e>
-        <e p="Exceptions" t="Include">
-          <e p="EfCrudException.cs" t="Include" />
-          <e p="ExceptionHandler.cs" t="Include" />
-          <e p="IExceptionHandler.cs" t="Include" />
-          <e p="ValidationFailureException.cs" t="Include" />
+        <e p="ExceptionService" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="IDatabaseExceptionHandler.cs" t="Include" />
+            <e p="IExceptionHandler.cs" t="Include" />
+          </e>
+          <e p="Concrete" t="Include">
+            <e p="ExceptionHandler.cs" t="Include" />
+            <e p="SqlServerExceptionHandler.cs" t="Include" />
+          </e>
+          <e p="Enum" t="Include">
+            <e p="DatabaseError.cs" t="Include" />
+          </e>
+          <e p="Exceptions" t="Include">
+            <e p="CannotInsertNullException.cs" t="Include" />
+            <e p="MaxLengthExceededException.cs" t="Include" />
+            <e p="NumericOverflowException.cs" t="Include" />
+            <e p="ReferenceConstraintException.cs" t="Include" />
+            <e p="UniqueConstraintException.cs" t="Include" />
+            <e p="ValidationFailureException.cs" t="Include" />
+          </e>
         </e>
         <e p="Host4Travel.Core.csproj" t="IncludeRecursive" />
         <e p="MappingProfiles" t="Include">
@@ -284,6 +306,8 @@
           <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.Designer.cs" t="Include" />
           <e p="20191115204319_Modify_FK_PostRating_PostApplication.cs" t="Include" />
           <e p="20191115204319_Modify_FK_PostRating_PostApplication.Designer.cs" t="Include" />
+          <e p="20191116172913_RewardName_UniqueKey.cs" t="Include" />
+          <e p="20191116172913_RewardName_UniqueKey.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

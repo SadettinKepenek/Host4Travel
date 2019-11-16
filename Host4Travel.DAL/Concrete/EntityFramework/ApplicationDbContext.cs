@@ -312,6 +312,7 @@ namespace Host4Travel.UI
                 entity.Property(e => e.RewardName)
                     .IsRequired()
                     .HasMaxLength(250);
+                entity.HasIndex(p => new {p.RewardName}).IsUnique();
             });
 
             modelBuilder.Entity<Log>(entity =>

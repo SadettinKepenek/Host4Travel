@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Host4Travel.Core.Exceptions
+namespace Host4Travel.Core.ExceptionService.Exceptions
 {
     [Serializable]
     public class ValidationFailureException:Exception

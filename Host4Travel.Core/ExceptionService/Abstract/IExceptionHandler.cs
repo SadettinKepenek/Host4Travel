@@ -1,7 +1,8 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
+using Host4Travel.Core.ExceptionService.Enum;
+using Microsoft.Data.SqlClient;
 
-namespace Host4Travel.Core.Exceptions
+namespace Host4Travel.Core.ExceptionService.Abstract
 {
     public interface IExceptionHandler
     {

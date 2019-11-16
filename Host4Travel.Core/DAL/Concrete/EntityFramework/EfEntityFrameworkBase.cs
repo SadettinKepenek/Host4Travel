@@ -18,6 +18,12 @@ namespace Host4Travel.Core.DAL.Concrete.EntityFramework
             
         }
 
+        public bool IsExists(Expression<Func<TEntity, bool>> filter)
+        {
+            using var context=new TContext();
+            return context.Set<TEntity>().Any(filter);
+        }
+
         public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
         {
             using var context = new TContext();
