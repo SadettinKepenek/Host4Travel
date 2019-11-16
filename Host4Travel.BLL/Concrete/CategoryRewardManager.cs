@@ -1,41 +1,84 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using AutoMapper;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.Core.DTO.CategoryRewardService;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete
 {
-    public class CategoryRewardManager:ICategoryRewardService
+    public class CategoryRewardManager : ICategoryRewardService
     {
         private ICategoryRewardDal _categoryRewardDal;
+        private IMapper _mapper;
 
-        public CategoryRewardManager(ICategoryRewardDal categoryRewardDal)
+        public CategoryRewardManager(ICategoryRewardDal categoryRewardDal, IMapper mapper)
         {
             _categoryRewardDal = categoryRewardDal;
+            _mapper = mapper;
         }
 
 
-        public CategoryReward Get(Expression<Func<CategoryReward, bool>> filter = null)
+        public List<CategoryRewardListDto> GetAllRelations()
         {
-            return null;
+            var entities = _categoryRewardDal.GetList();
+            if (entities == null)
+            {
+                return null;
+            }
+
+            var mappedEntities = _mapper.Map<List<CategoryRewardListDto>>(entities);
+            return mappedEntities;
         }
 
-        public List<CategoryReward> GetAll(Expression<Func<CategoryReward, bool>> filter = null)
+        public List<CategoryRewardListDto> GetAllRelationsWithDetails()
         {
-            return null;
+            var entities = _categoryRewardDal.GetAllWithDetails();
+            if (entities == null)
+            {
+                return null;
+            }
+
+            var mappedEntities = _mapper.Map<List<CategoryRewardListDto>>(entities);
+            return mappedEntities;
         }
 
-        public void Add(CategoryReward entity)
+        public CategoryRewardListDto GetRelationById(Guid id)
+        {
+            
+            var entity = _categoryRewardDal.Get(x=>x.CategoryRewardId==id);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var mappedEntity = _mapper.Map<CategoryRewardListDto>(entity);
+            return mappedEntity;
+        }
+
+        public CategoryRewardListDto GetRelationByIdWithDetails(Guid id)
+        {
+            var entity = _categoryRewardDal.GetWithDetails(x=>x.CategoryRewardId==id);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var mappedEntity = _mapper.Map<CategoryRewardListDto>(entity);
+            return mappedEntity;
+        }
+
+        public void AddRelation(CategoryRewardAddDto model)
         {
         }
 
-        public void Update(CategoryReward entity)
+        public void UpdateRelation(CategoryRewardAddDto model)
         {
         }
 
-        public void Delete(CategoryReward entity)
+        public void DeleteRelation(CategoryRewardAddDto model)
         {
         }
     }

@@ -163,7 +163,7 @@
           <e p="RewardService" t="Include">
             <e p="RewardAddDto.cs" t="Include" />
             <e p="RewardDeleteDto.cs" t="Include" />
-            <e p="RewardGetDto.cs" t="Include" />
+            <e p="RewardListDto.cs" t="Include" />
             <e p="RewardUpdateDto.cs" t="Include" />
           </e>
         </e>

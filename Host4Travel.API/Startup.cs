@@ -107,6 +107,8 @@ namespace Host4Travel.API
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
             services.AddScoped<IRewardDal, EfRewardRepository>();
             services.AddScoped<IRewardService, RewardManager>();
+            services.AddScoped<ICategoryRewardService, CategoryRewardManager>();
+            services.AddScoped<ICategoryRewardDal, EfCategoryRewardRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
             

@@ -23,8 +23,12 @@ namespace Host4Travel.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
-            
-            return Ok();
+            var entities = _categoryRewardService.GetAllRelationsWithDetails();
+            if (entities==null)
+            {
+                return NotFound("Herhangi bir sonuç bulunamadı");
+            }
+            return Ok(entities);
         }
         
     }
