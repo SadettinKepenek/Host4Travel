@@ -101,6 +101,7 @@ namespace Host4Travel.API
         private static void ConfigureInjections(IServiceCollection services)
         {
             services.AddScoped<IExceptionHandler, ExceptionHandler>();
+            services.AddScoped<IDatabaseExceptionHandler, SqlServerExceptionHandler>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
