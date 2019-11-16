@@ -14,6 +14,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="CategoriesController.cs" t="Include" />
+          <e p="RewardsController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
         </e>
@@ -153,6 +154,12 @@
           <e p="LoggerService" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
+          </e>
+          <e p="RewardService" t="Include">
+            <e p="RewardAddDto.cs" t="Include" />
+            <e p="RewardDeleteDto.cs" t="Include" />
+            <e p="RewardGetAllDto.cs" t="Include" />
+            <e p="RewardUpdateDto.cs" t="Include" />
           </e>
         </e>
         <e p="Entities" t="Include">
