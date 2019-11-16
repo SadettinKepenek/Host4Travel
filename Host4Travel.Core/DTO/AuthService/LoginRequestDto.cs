@@ -1,6 +1,6 @@
-﻿namespace Host4Travel.API.Models.Users
+﻿namespace Host4Travel.Core.DTO.AuthService
 {
-    public class UsersLoginModel
+    public class LoginRequestDto
     {
         public string Username { get; set; }
         public string Password { get; set; }

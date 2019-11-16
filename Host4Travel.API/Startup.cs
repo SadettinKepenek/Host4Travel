@@ -9,7 +9,6 @@ using Host4Travel.BLL.Concrete;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Concrete;
 using Host4Travel.Core.MappingProfiles;
-using Host4Travel.Core.SystemProperties;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.DAL.Concrete.EntityFramework;
 using Host4Travel.UI;
@@ -66,7 +65,7 @@ namespace Host4Travel.API
 
 
        
-            var key = Encoding.ASCII.GetBytes(Core.SystemProperties.Configuration.SecretKey);
+            var key = Encoding.ASCII.GetBytes(Core.SystemSettings.Configuration.SecretKey);
             
             
             services.AddAuthentication(x =>

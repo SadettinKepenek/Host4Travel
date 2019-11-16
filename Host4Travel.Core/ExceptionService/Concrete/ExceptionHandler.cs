@@ -111,9 +111,14 @@ namespace Host4Travel.Core.ExceptionService.Concrete
                 return exceptionMessage;
 
             }
+            else if (exception is UnauthorizedAccessException)
+            {
+                exceptionMessage = exception.Message;
+                return exceptionMessage;
+            }
             else
             {
-                exceptionMessage = "Hata tespit edilemedi";
+                exceptionMessage = exception.Message==string.Empty ? "Hata tespit edilemedi" : exception.Message;
                 return exceptionMessage;
             }
         }
@@ -179,6 +184,11 @@ namespace Host4Travel.Core.ExceptionService.Concrete
             if (e is AmbiguousMatchException exAmbiguousMatch)
             {
                 return exAmbiguousMatch;
+            }
+
+            if (e is UnauthorizedAccessException exUnauthorizedAccess)
+            {
+                return exUnauthorizedAccess;
             }
 
             return e;
