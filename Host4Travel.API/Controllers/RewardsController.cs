@@ -77,7 +77,7 @@ namespace Host4Travel.API.Controllers
             try
             {
                 _rewardService.DeleteReward(model);
-                return Ok("Reward başarıyla güncellendi");
+                return Ok("Reward başarıyla silindi.");
             }
             catch (Exception e)
             {
