@@ -63,7 +63,14 @@ namespace Host4Travel.BLL.Concrete
                 if (validationResult.IsValid)
                 {
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Add(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryName==categoryToAdd.CategoryName))
+                    {
+                        throw new UniqueConstraintException($"{categoryToAdd.CategoryName} zaten mevcut.");
+                    }
+                    else
+                    {
+                        _categoryDal.Add(categoryToAdd);
+                    }
                 }
                 else
                 {
@@ -85,7 +92,14 @@ namespace Host4Travel.BLL.Concrete
                 if (validationResult.IsValid)
                 {
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Update(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryId==categoryToAdd.CategoryId))
+                    {
+                        _categoryDal.Update(categoryToAdd);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 else
                 {
@@ -107,8 +121,16 @@ namespace Host4Travel.BLL.Concrete
                 var validationResult = deleteCategoryValidator.Validate(model);
                 if (validationResult.IsValid)
                 {
+                    
                     var categoryToAdd = _mapper.Map<Category>(model);
-                    _categoryDal.Delete(categoryToAdd);
+                    if (_categoryDal.IsExists(x=>x.CategoryId==categoryToAdd.CategoryId))
+                    {
+                        _categoryDal.Delete(categoryToAdd);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException();
+                    }
                 }
                 else
                 {

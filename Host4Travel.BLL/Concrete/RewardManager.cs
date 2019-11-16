@@ -95,8 +95,7 @@ namespace Host4Travel.BLL.Concrete
                     }
                     else
                     {
-                        throw new NullReferenceException(
-                            $"{addModel.RewardId} numaralı herhangi bir objeye erişelemedi");
+                        throw new NullReferenceException();
                     }
                 }
                 else
@@ -125,8 +124,7 @@ namespace Host4Travel.BLL.Concrete
                     }
                     else
                     {
-                        throw new NullReferenceException(
-                            $"{addModel.RewardId} numaralı herhangi bir objeye erişelemedi");
+                        throw new NullReferenceException();
                     }
                 }
                 else
