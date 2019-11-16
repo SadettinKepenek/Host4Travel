@@ -558,6 +558,9 @@ namespace Host4Travel.UI.Migrations
 
                     b.HasKey("RewardId");
 
+                    b.HasIndex("RewardName")
+                        .IsUnique();
+
                     b.ToTable("Reward");
                 });
 

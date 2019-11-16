@@ -120,38 +120,38 @@ namespace Host4Travel.Core.ExceptionService.Concrete
 
         public Exception HandleServiceException(Exception e)
         {
-            if (e is SqlException exception)
+            if (e is SqlException  || e is DbUpdateException)
             {
-                var databaseError = _databaseExceptionHandler.GetDatabaseError(exception);
+                var databaseError = _databaseExceptionHandler.GetDatabaseErrorEf(e as DbUpdateException);
                 if (databaseError == DatabaseError.UniqueConstraint)
                 {
                     return new UniqueConstraintException("Eklenmek istenilen veri zaten mevcut",
-                        exception.InnerException);
+                        e.InnerException);
                 }
 
                 if (databaseError == DatabaseError.ReferenceConstraint)
                 {
                     return new ReferenceConstraintException("Silinmek istenilen veri için kullanılan kayıtlar var",
-                        exception.InnerException);
+                        e.InnerException);
                 }
 
                 if (databaseError == DatabaseError.CannotInsertNull)
                 {
-                    return new CannotInsertNullException("NULL Değer eklenilemez", exception.InnerException);
+                    return new CannotInsertNullException("NULL Değer eklenilemez", e.InnerException);
                 }
 
                 if (databaseError == DatabaseError.NumericOverflow)
                 {
                     return new NumericOverflowException("Eklenilmek istenilen veri,bulunduğu alanı taşırıyor",
-                        exception.InnerException);
+                        e.InnerException);
                 }
 
                 if (databaseError == DatabaseError.MaxLength)
                 {
-                    return new MaxLengthExceededException("Veri istenilen boyutun üstünde", exception.InnerException);
+                    return new MaxLengthExceededException("Veri istenilen boyutun üstünde", e.InnerException);
                 }
 
-                return exception;
+                return e;
             }
 
             if (e is ValidationFailureException)

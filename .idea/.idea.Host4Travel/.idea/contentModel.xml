@@ -299,6 +299,8 @@
           <e p="20191115203809_Modify_FK_PostCheckIn_PostApplication.Designer.cs" t="Include" />
           <e p="20191115204319_Modify_FK_PostRating_PostApplication.cs" t="Include" />
           <e p="20191115204319_Modify_FK_PostRating_PostApplication.Designer.cs" t="Include" />
+          <e p="20191116172913_RewardName_UniqueKey.cs" t="Include" />
+          <e p="20191116172913_RewardName_UniqueKey.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
