@@ -9,7 +9,7 @@ namespace Host4Travel.Core.Exceptions
 {
     public class ExceptionHandler : IExceptionHandler
     {
-        public string HandleServiceException(Exception exception)
+        public string HandleControllerException(Exception exception)
         {
             string exceptionMessage = "";
             switch (exception)
@@ -40,7 +40,7 @@ namespace Host4Travel.Core.Exceptions
                     exceptionMessage = "Gönderilen verilerin alanlarında çakışma oluştu.";
                     break;
                 case ValidationFailureException _:
-                    exceptionMessage = "Veri istenildiği gibi gönderilmedi Detaylar :\n" + exception.Message;
+                    exceptionMessage = exception.Message;
                     break;
                 case EfCrudException _:
                     exceptionMessage = "Veritabanında işlem yapılırken hata oluştu.";
@@ -51,6 +51,34 @@ namespace Host4Travel.Core.Exceptions
             }
             return exceptionMessage;
         }
-    
-}
+
+        public Exception HandleServiceException(Exception e)
+        {
+            switch (e)
+            {
+                case SqlException _:
+                    return e;
+                case DbUpdateException _:
+                    return e;
+                case DbException _:
+                    return e;
+                case ValidationFailureException _:
+                    var exceptionMessage = "Veriler eksik detaylar :\n";
+                    exceptionMessage += e.Message.Replace("~", "\n");
+                    return new ValidationFailureException(exceptionMessage);
+                case EfCrudException _:
+                    return e;
+                case ArgumentNullException _:
+                    return e;
+                case NullReferenceException _:
+                    return e;
+                case ArgumentOutOfRangeException _:
+                    return e;
+                case AmbiguousMatchException _:
+                    return e;
+                default:
+                    return e;
+            }
+        }
+    }
 }

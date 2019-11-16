@@ -121,6 +121,11 @@
           <e p="PostImageValidator.cs" t="Include" />
           <e p="PostRatingValidator.cs" t="Include" />
           <e p="PostValidator.cs" t="Include" />
+          <e p="RewardService" t="Include">
+            <e p="AddRewardValidator.cs" t="Include" />
+            <e p="DeleteRewardValidator.cs" t="Include" />
+            <e p="UpdateRewardValidator.cs" t="Include" />
+          </e>
           <e p="RewardValidator.cs" t="Include" />
           <e p="UserValidator.cs" t="Include" />
         </e>
@@ -158,7 +163,7 @@
           <e p="RewardService" t="Include">
             <e p="RewardAddDto.cs" t="Include" />
             <e p="RewardDeleteDto.cs" t="Include" />
-            <e p="RewardGetAllDto.cs" t="Include" />
+            <e p="RewardGetDto.cs" t="Include" />
             <e p="RewardUpdateDto.cs" t="Include" />
           </e>
         </e>

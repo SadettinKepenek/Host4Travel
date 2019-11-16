@@ -19,12 +19,14 @@ namespace Host4Travel.BLL.Concrete
     {
         private ICategoryDal _categoryDal;
         private IMapper _mapper;
+        private IExceptionHandler _handler;
         
 
-        public CategoryManager(ICategoryDal categoryDal, IMapper mapper)
+        public CategoryManager(ICategoryDal categoryDal, IMapper mapper, IExceptionHandler handler)
         {
             _categoryDal = categoryDal;
             _mapper = mapper;
+            _handler = handler;
         }
 
 
@@ -69,15 +71,7 @@ namespace Host4Travel.BLL.Concrete
             }
             catch (Exception e)
             {
-                if (e is SqlException || e is DbUpdateException || e is DbException)
-                {
-                    throw new EfCrudException(e.Message);
-                }
-                else if (e is ValidationFailureException)
-                {
-                    throw;
-                }
-                throw;
+                throw _handler.HandleServiceException(e);
             }
         }
 
@@ -99,15 +93,8 @@ namespace Host4Travel.BLL.Concrete
             }
             catch (Exception e)
             {
-                if (e is SqlException || e is DbUpdateException || e is DbException)
-                {
-                    throw new EfCrudException(e.Message);
-                }
-                else if (e is ValidationFailureException)
-                {
-                    throw;
-                }
-                throw;
+                throw _handler.HandleServiceException(e);
+
             }
         }
 
@@ -129,15 +116,8 @@ namespace Host4Travel.BLL.Concrete
             }
             catch (Exception e)
             {
-                if (e is SqlException || e is DbUpdateException || e is DbException)
-                {
-                    throw new EfCrudException(e.Message);
-                }
-                else if (e is ValidationFailureException)
-                {
-                    throw;
-                }
-                throw;
+                throw _handler.HandleServiceException(e);
+
             }
         }
     }

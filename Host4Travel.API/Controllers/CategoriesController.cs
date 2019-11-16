@@ -54,7 +54,7 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleServiceException(e));
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
             }
         }
 
@@ -68,7 +68,7 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleServiceException(e));
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
             }
         }
 
@@ -82,7 +82,7 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleServiceException(e));
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
             }
         }
     }

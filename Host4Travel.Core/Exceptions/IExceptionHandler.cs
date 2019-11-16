@@ -5,6 +5,7 @@ namespace Host4Travel.Core.Exceptions
 {
     public interface IExceptionHandler
     {
-        string HandleServiceException(Exception exception);
+        string HandleControllerException(Exception exception);
+        Exception HandleServiceException(Exception e);
     }
 }

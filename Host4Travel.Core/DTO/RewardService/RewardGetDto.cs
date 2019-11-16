@@ -1,6 +1,6 @@
 ﻿namespace Host4Travel.Core.DTO.RewardService
 {
-    public class RewardGetAllDto
+    public class RewardGetDto
     {
         public int RewardId { get; set; }
         public string RewardName { get; set; }
