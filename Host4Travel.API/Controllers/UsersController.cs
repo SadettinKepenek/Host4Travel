@@ -75,11 +75,7 @@ namespace Host4Travel.API.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterDto user)
         {
           
-
-            var newUser=new ApplicationIdentityUser()
-            {
-                //mapping
-            };
+            
             try
             {
                 _authService.Register(user,user.Password);
@@ -92,36 +88,32 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(string userId)
+        public async Task<IActionResult> Delete(DeleteDto dto)
         {
-//            DeleteDto deleteResponseModel=new DeleteDto();
-//            var result = _authService.Delete(userId);
-//            deleteResponseModel.Message = result.Message;
-//            deleteResponseModel.StatusCode = result.StatusCode;
-//            if (deleteResponseModel.StatusCode==HttpStatusCode.OK)
-//            {
-//                return Ok(deleteResponseModel);
-//
-//            }
-//
-//            if (deleteResponseModel.StatusCode==HttpStatusCode.BadRequest)
-//            {
-//                return BadRequest(deleteResponseModel);
-//            }
-
-            return Conflict(null);
+            try
+            {
+                _authService.Delete(dto);
+                return Ok("Başarı ile silindi");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
+            }
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(ApplicationIdentityUser updateModel,string password)
+        public async Task<IActionResult> Update(UpdateDto updateModel,string password)
         {
-            
-//            var result = _authService.Update(updateModel,password);
-//            if (result.StatusCode==HttpStatusCode.OK)
-//            {
-//                return Ok(result);
-//            }
-            return BadRequest(null);
+            try
+            {
+                _authService.Update(updateModel,password);
+                return Ok("Başarı ile güncellendi");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
+            }
+//          
         }
     }
 }

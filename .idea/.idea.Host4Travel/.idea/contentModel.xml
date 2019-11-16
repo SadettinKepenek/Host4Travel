@@ -93,7 +93,12 @@
           </e>
         </e>
         <e p="Validators" t="Include">
-          <e p="AuthService" t="Include" />
+          <e p="AuthService" t="Include">
+            <e p="DeleteValidator.cs" t="Include" />
+            <e p="LoginRequestValidator.cs" t="Include" />
+            <e p="RegisterValidator.cs" t="Include" />
+            <e p="UpdateValidator.cs" t="Include" />
+          </e>
           <e p="CategoryRewardService" t="Include">
             <e p="CategoryRewardAddValidator.cs" t="Include" />
             <e p="CategoryRewardDeleteValidator.cs" t="Include" />
@@ -141,7 +146,7 @@
           <e p="AuthService" t="Include">
             <e p="DeleteDto.cs" t="Include" />
             <e p="LoginRequestDto.cs" t="Include" />
-            <e p="LoginReturnDto.cs" t="Include" />
+            <e p="LoginResponseDto.cs" t="Include" />
             <e p="RegisterDto.cs" t="Include" />
             <e p="UpdateDto.cs" t="Include" />
           </e>
