@@ -13,7 +13,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Host4Travel.BLL.Concrete
 {
-    public class RewardManager:IRewardService
+    public class RewardManager : IRewardService
     {
         private IRewardDal _rewardDal;
         private IMapper _mapper;
@@ -30,10 +30,11 @@ namespace Host4Travel.BLL.Concrete
         public List<RewardGetDto> GetAllRewards()
         {
             var rewards = _rewardDal.GetList();
-            if (rewards==null)
+            if (rewards == null)
             {
                 return null;
             }
+
             var rewardToReturn = _mapper.Map<List<RewardGetDto>>(rewards);
             return rewardToReturn;
         }
@@ -41,7 +42,7 @@ namespace Host4Travel.BLL.Concrete
         public RewardGetDto GetRewardById(int rewardId)
         {
             var reward = _rewardDal.Get(x => x.RewardId == rewardId);
-            if (reward==null)
+            if (reward == null)
             {
                 return null;
             }
@@ -52,14 +53,21 @@ namespace Host4Travel.BLL.Concrete
 
         public void AddReward(RewardAddDto model)
         {
-            AddRewardValidator validator=new AddRewardValidator();
+            AddRewardValidator validator = new AddRewardValidator();
             try
             {
                 var validationResult = validator.Validate(model);
                 if (validationResult.IsValid)
                 {
                     var addModel = _mapper.Map<Reward>(model);
-                    _rewardDal.Add(addModel);
+                    if (_rewardDal.IsExists(x => x.RewardName == addModel.RewardName))
+                    {
+                        throw new UniqueConstraintException($"{addModel.RewardName} zaten mevcut");
+                    }
+                    else
+                    {
+                        _rewardDal.Add(addModel);
+                    }
                 }
                 else
                 {
@@ -74,14 +82,22 @@ namespace Host4Travel.BLL.Concrete
 
         public void UpdateReward(RewardUpdateDto model)
         {
-            UpdateRewardValidator validator=new UpdateRewardValidator();
+            UpdateRewardValidator validator = new UpdateRewardValidator();
             try
             {
                 var validationResult = validator.Validate(model);
                 if (validationResult.IsValid)
                 {
                     var addModel = _mapper.Map<Reward>(model);
-                    _rewardDal.Update(addModel);
+                    if (_rewardDal.IsExists(x => x.RewardId == addModel.RewardId))
+                    {
+                        _rewardDal.Update(addModel);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException(
+                            $"{addModel.RewardId} numaralı herhangi bir objeye erişelemedi");
+                    }
                 }
                 else
                 {
@@ -96,14 +112,22 @@ namespace Host4Travel.BLL.Concrete
 
         public void DeleteReward(RewardDeleteDto model)
         {
-            DeleteRewardValidator validator=new DeleteRewardValidator();
+            DeleteRewardValidator validator = new DeleteRewardValidator();
             try
             {
                 var validationResult = validator.Validate(model);
                 if (validationResult.IsValid)
                 {
                     var addModel = _mapper.Map<Reward>(model);
-                    _rewardDal.Delete(addModel);
+                    if (_rewardDal.IsExists(x => x.RewardId == addModel.RewardId))
+                    {
+                        _rewardDal.Delete(addModel);
+                    }
+                    else
+                    {
+                        throw new NullReferenceException(
+                            $"{addModel.RewardId} numaralı herhangi bir objeye erişelemedi");
+                    }
                 }
                 else
                 {

@@ -8,6 +8,10 @@ namespace Host4Travel.Core.ExceptionService.Exceptions
     [Serializable]
     public class UniqueConstraintException:DbUpdateException
     {
+        public UniqueConstraintException(string message) : base(message)
+        {
+        }
+
         public UniqueConstraintException(string message, Exception innerException) : base(message, innerException)
         {
         }
