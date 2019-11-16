@@ -10,6 +10,7 @@ using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

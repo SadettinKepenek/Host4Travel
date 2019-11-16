@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Host4Travel.Core.DTO.CategoryRewardService;
 using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.DTO.RewardService;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
 namespace Host4Travel.Core.MappingProfiles
@@ -14,11 +16,16 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<CategoryUpdateDto, Category>();
             CreateMap<CategoryDeleteDto, Category>();
 
-            CreateMap<Reward, RewardGetDto>().ReverseMap();
+            CreateMap<Reward, RewardListDto>().ReverseMap();
             CreateMap<RewardAddDto, Reward>();
             CreateMap<RewardUpdateDto, Reward>();
             CreateMap<RewardDeleteDto, Reward>();
-
+            
+            CreateMap<CategoryReward, CategoryRewardListDto>().ReverseMap();
+            CreateMap<CategoryRewardAddDto,CategoryReward>();
+            CreateMap<CategoryRewardUpdateDto,CategoryReward>();
+            CreateMap<CategoryRewardDeleteDto,CategoryReward>();
+            
         }
     }
 }

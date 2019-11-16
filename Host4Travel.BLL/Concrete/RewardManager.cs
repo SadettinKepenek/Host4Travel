@@ -27,7 +27,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<RewardGetDto> GetAllRewards()
+        public List<RewardListDto> GetAllRewards()
         {
             var rewards = _rewardDal.GetList();
             if (rewards == null)
@@ -35,11 +35,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var rewardToReturn = _mapper.Map<List<RewardGetDto>>(rewards);
+            var rewardToReturn = _mapper.Map<List<RewardListDto>>(rewards);
             return rewardToReturn;
         }
 
-        public RewardGetDto GetRewardById(int rewardId)
+        public RewardListDto GetRewardById(int rewardId)
         {
             var reward = _rewardDal.Get(x => x.RewardId == rewardId);
             if (reward == null)
@@ -47,7 +47,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var rewardToReturn = _mapper.Map<RewardGetDto>(reward);
+            var rewardToReturn = _mapper.Map<RewardListDto>(reward);
             return rewardToReturn;
         }
 
