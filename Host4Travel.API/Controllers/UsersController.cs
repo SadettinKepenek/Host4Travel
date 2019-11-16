@@ -12,6 +12,7 @@ using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.BLL.Concrete.AuthService;
 using Host4Travel.Core.BLL.Concrete.WebAPI.Users;
 using Host4Travel.Core.DTO.AuthService;
+using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Host4Travel.UI.Identity;
@@ -33,106 +34,94 @@ namespace Host4Travel.API.Controllers
     {
         private readonly IAuthService _authService;
         private UserManager<ApplicationIdentityUser> _userManager;
+        private IExceptionHandler _exceptionHandler;
         
 
-        public UsersController(IAuthService authService, UserManager<ApplicationIdentityUser> userManager)
+        public UsersController(IAuthService authService, UserManager<ApplicationIdentityUser> userManager, IExceptionHandler exceptionHandler)
         {
             _authService = authService;
             _userManager = userManager;
+            _exceptionHandler = exceptionHandler;
         }
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] UsersLoginModel userModel)
+        public IActionResult Login([FromBody] LoginRequestDto userModel)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                Response.AddApplicationError("Kullanıcı verileri düzgün getirilemedi");
-                return BadRequest(ModelState);
+                
+                var result = _authService.Login(userModel);
+                if (result==null)
+                {
+                    return BadRequest();
+                }
+                else
+                {
+                    return Ok(result);
+                }
             }
-
-            var user = _userManager.FindByNameAsync(userModel.Username).Result;
-            var result = _authService.Login(user,userModel.Password);
-            if (result.StatusCode == HttpStatusCode.OK)
+            catch (Exception e)
             {
-                return Ok(result);
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
             }
+            
 
-            return Unauthorized("Kullanıcı adı veya şifre yanlış");
         }
 
 
         [HttpPost("Register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] UsersRegisterModel user)
+        public async Task<IActionResult> Register([FromBody] RegisterDto user)
         {
-            if (!ModelState.IsValid)
-            {
-                Response.AddApplicationError("Veri istenildiği gibi getirilemedi.");
-                return BadRequest(ModelState);
-            }
+          
 
             var newUser=new ApplicationIdentityUser()
             {
                 //mapping
             };
-            var result = _authService.Register(newUser,user.Password);
-            if (result.StatusCode == HttpStatusCode.OK)
+            try
             {
-                return Ok(new RegisterDto()
-                {
-                    Message = "Kullanıcı başarı ile oluşturuldu",
-                    StatusCode = HttpStatusCode.OK
-                });
+                _authService.Register(user,user.Password);
+                return Ok("Kayıt başarılı");
             }
-
-            if (result.StatusCode == HttpStatusCode.BadRequest)
+            catch (Exception e)
             {
-                return BadRequest(new RegisterDto()
-                {
-                    Message = result.Message,
-                    StatusCode = HttpStatusCode.OK
-                });
+                return BadRequest(_exceptionHandler.HandleControllerException(e));
             }
-
-            return Conflict(new RegisterDto()
-            {
-                Message = result.Message,
-                StatusCode = HttpStatusCode.Conflict
-            });
         }
 
         [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(string userId)
         {
-            DeleteDto deleteResponseModel=new DeleteDto();
-            var result = _authService.Delete(userId);
-            deleteResponseModel.Message = result.Message;
-            deleteResponseModel.StatusCode = result.StatusCode;
-            if (deleteResponseModel.StatusCode==HttpStatusCode.OK)
-            {
-                return Ok(deleteResponseModel);
+//            DeleteDto deleteResponseModel=new DeleteDto();
+//            var result = _authService.Delete(userId);
+//            deleteResponseModel.Message = result.Message;
+//            deleteResponseModel.StatusCode = result.StatusCode;
+//            if (deleteResponseModel.StatusCode==HttpStatusCode.OK)
+//            {
+//                return Ok(deleteResponseModel);
+//
+//            }
+//
+//            if (deleteResponseModel.StatusCode==HttpStatusCode.BadRequest)
+//            {
+//                return BadRequest(deleteResponseModel);
+//            }
 
-            }
-
-            if (deleteResponseModel.StatusCode==HttpStatusCode.BadRequest)
-            {
-                return BadRequest(deleteResponseModel);
-            }
-
-            return Conflict(deleteResponseModel);
+            return Conflict(null);
         }
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(ApplicationIdentityUser updateModel,string password)
         {
             
-            var result = _authService.Update(updateModel,password);
-            if (result.StatusCode==HttpStatusCode.OK)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+//            var result = _authService.Update(updateModel,password);
+//            if (result.StatusCode==HttpStatusCode.OK)
+//            {
+//                return Ok(result);
+//            }
+            return BadRequest(null);
         }
     }
 }

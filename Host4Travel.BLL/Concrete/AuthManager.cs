@@ -6,8 +6,11 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.BLL.Validators.AuthService;
 using Host4Travel.Core.DTO.AuthService;
-using Host4Travel.Core.SystemProperties;
+using Host4Travel.Core.ExceptionService.Abstract;
+using Host4Travel.Core.ExceptionService.Exceptions;
+using Host4Travel.Core.SystemSettings;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Http;
@@ -19,49 +22,57 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Host4Travel.BLL.Concrete
 {
-    public class AuthService:IAuthService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly IPasswordHasher<ApplicationIdentityUser> _passwordHasher;
+        private IExceptionHandler _exceptionHandler;
 
-        public AuthService(UserManager<ApplicationIdentityUser> userManager, SignInManager<ApplicationIdentityUser> signInManager, IPasswordHasher<ApplicationIdentityUser> passwordHasher)
+        public AuthService(UserManager<ApplicationIdentityUser> userManager,
+            SignInManager<ApplicationIdentityUser> signInManager,
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
+            _exceptionHandler = exceptionHandler;
         }
-        public LoginDto Login(ApplicationIdentityUser userParam,string password)
+
+        public LoginResponseDto Login(LoginRequestDto dto)
         {
-            
-            var user=_userManager.FindByNameAsync(userParam.UserName).Result;
-            bool resultSucceeded = MatchPasswordAndHash(user,password);
-            if (resultSucceeded)
+            try
             {
-              
-                var generateTokenModel = GenerateToken(user);
-                var authenticateModel=new LoginDto()
+                LoginRequestValidator validator = new LoginRequestValidator();
+                var validationResult = validator.Validate(dto);
+                if (!validationResult.IsValid)
                 {
-                    Username = user.UserName,
-                    Token = generateTokenModel.Token,
-                    ResponseMessage = "Success",
-                    StatusCode = HttpStatusCode.OK,
-                    TokenExpireDate = generateTokenModel.TokenExpireDate
-                };
-                return authenticateModel;
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+
+                var user = _userManager.FindByNameAsync(dto.Username).Result;
+                var resultSucceeded = MatchPasswordAndHash(user, dto.Password);
+                if (resultSucceeded)
+                {
+                    var generateTokenModel = GenerateToken(user, Configuration.TokenExpirationDate);
+                    var authenticateModel = new LoginResponseDto()
+                    {
+                        Username = user.UserName,
+                        Token = generateTokenModel,
+                        TokenExpireDate = Configuration.TokenExpirationDate
+                    };
+                    return authenticateModel;
+                }
+
+                throw new UnauthorizedAccessException("Kullanıcı adı veya şifre yanlış");
             }
-
-            var model = new LoginDto();
-            model.Token = String.Empty;
-            model.Username = String.Empty;
-            model.StatusCode = HttpStatusCode.Unauthorized;
-            model.ResponseMessage = "Yetkisiz İşlem.";
-            model.TokenExpireDate = DateTime.Now;
-            return model;
-
+            catch (Exception e)
+            {
+                throw _exceptionHandler.HandleServiceException(e);
+            }
         }
 
-        public GenerateTokenDto GenerateToken(ApplicationIdentityUser user)
+        private string GenerateToken(ApplicationIdentityUser user, DateTime expireDate)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Configuration.SecretKey);
@@ -72,123 +83,149 @@ namespace Host4Travel.BLL.Concrete
             var roles = _userManager.GetRolesAsync(user).Result.ToList();
             foreach (string role in roles)
             {
-                claims.Add(new Claim(ClaimTypes.Role,role));
+                claims.Add(new Claim(ClaimTypes.Role, role));
             }
+
             var signingCredentials =
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
-            var expirationDate = DateTime.UtcNow.AddDays(7);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = expirationDate,
+                Expires = expireDate,
                 SigningCredentials = signingCredentials
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            var model=new GenerateTokenDto();
-            model.Token = tokenHandler.WriteToken(token);
-            model.TokenExpireDate = expirationDate;
-            
-            return model;
+
+            return tokenHandler.WriteToken(token);
         }
 
-        public RegisterDto Register(ApplicationIdentityUser registerModel,string password)
+        public void Register(RegisterDto registerModel, string password)
         {
-            var identityUser = new ApplicationIdentityUser
+            try
             {
-                Email = registerModel.Email,
-                UserName = registerModel.UserName,
-                Firstname = registerModel.Firstname,
-                Lastname = registerModel.Lastname,
-                CookieAcceptIpAddress = registerModel.CookieAcceptIpAddress,
-                SSN = registerModel.SSN
-            };
-
-            var createdUser =
-                _userManager.CreateAsync(
-                    identityUser,password);
-            if (createdUser.Result.Succeeded)
-            {
-                return new RegisterDto()
+                RegisterValidator validator = new RegisterValidator();
+                var validationResult = validator.Validate(registerModel);
+                if (!validationResult.IsValid)
                 {
-                    Message = "Kullanıcı başarı ile oluşturuldu",
-                    StatusCode = HttpStatusCode.OK
-                };
-            }
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
 
-            return new RegisterDto
-            {
-                StatusCode = HttpStatusCode.BadRequest,
-                Message = String.Join(',',createdUser.Result.Errors.ToList())
-            };
-        }
-
-        public UpdateDto Update(ApplicationIdentityUser updateModel,string password)
-        {
-            var user = _userManager.FindByNameAsync(updateModel.UserName).Result;
-            user.Firstname = updateModel.Firstname;
-            user.Lastname = updateModel.Lastname;
-            
-            user.Email = updateModel.Email;
-            user.SSN = updateModel.SSN;
-            var newPassword = _passwordHasher.HashPassword(user, password);
-            user.PasswordHash = newPassword;
-            var result=_userManager.UpdateAsync(user).Result;
-            if (result.Succeeded)
-            {
-                return   new UpdateDto()
+                var identityUser = new ApplicationIdentityUser
                 {
-                    Message = "Kullanıcı başarılı bir şekilde güncellendi",
-                    StatusCode = HttpStatusCode.OK
+                    Email = registerModel.Email,
+                    UserName = registerModel.Username,
+                    Firstname = registerModel.Firstname,
+                    Lastname = registerModel.Lastname,
+                    CookieAcceptIpAddress = registerModel.CookieAcceptIpAddress,
+                    SSN = registerModel.Ssn
                 };
+
+                var createdUser =
+                    _userManager.CreateAsync(
+                        identityUser, password);
+                if (!createdUser.Result.Succeeded)
+                {
+                    throw new Exception("Kayıt sırasında hata oluştu.");
+                }
             }
-            return new UpdateDto()
+            catch (Exception e)
             {
-                Message = string.Join(',',result.Errors),
-                StatusCode = HttpStatusCode.BadRequest
-            };
+                throw _exceptionHandler.HandleServiceException(e);
+            }
         }
 
-        public DeleteDto Delete(string userId)
+        public void Update(UpdateDto updateModel, string password)
         {
-            var result = _userManager.DeleteAsync(_userManager.FindByIdAsync(userId).Result);
-            var returnModel=new DeleteDto();
-            if (result.IsCompletedSuccessfully)
+            try
             {
-                returnModel.Message = "Kullanıcı başarı ile silindi";
-                returnModel.StatusCode = HttpStatusCode.OK;
+                UpdateValidator validator = new UpdateValidator();
+                var validationResult = validator.Validate(updateModel);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+
+                var user = _userManager.FindByNameAsync(updateModel.Username).Result;
+                if (user == null)
+                {
+                    throw new NullReferenceException();
+                }
+
+                user.Firstname = updateModel.Firstname;
+                user.Lastname = updateModel.Lastname;
+
+                user.Email = updateModel.Email;
+                user.SSN = updateModel.Ssn;
+                var newPassword = _passwordHasher.HashPassword(user, password);
+                user.PasswordHash = newPassword;
+                var result = _userManager.UpdateAsync(user).Result;
+                if (!result.Succeeded)
+                {
+                    throw new Exception("Güncelleme sırasında hata oluştu");
+                }
             }
-            else if (result.IsFaulted)
+            catch (Exception e)
             {
-                returnModel.Message = "Kullanıcıyı silerken hata oluştu";
-                returnModel.StatusCode = HttpStatusCode.BadRequest;
+                throw _exceptionHandler.HandleServiceException(e);
             }
-            else if (result.IsCanceled)
-            {
-                returnModel.Message = "Kullanıcı silinme işlemi iptal edildi.";
-                returnModel.StatusCode = HttpStatusCode.BadRequest;
-            }
-            return returnModel;
         }
 
-        public StatusCodeResult CheckTokenExpiration(string expirationTime)
+        public void Delete(DeleteDto dto)
         {
-            
-            if (DateTime.Now.Millisecond<=int.Parse(expirationTime))
+            try
             {
-                return new OkResult();
+                var validator = new DeleteValidator();
+                var validationResult = validator.Validate(dto);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+                else
+                {
+                    var applicationIdentityUser = _userManager.FindByNameAsync(dto.Username).Result;
+                    if (applicationIdentityUser == null)
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else
+                    {
+                        var result = _userManager.DeleteAsync(applicationIdentityUser);
+                        var returnModel = new DeleteDto();
+                        if (result.IsCompletedSuccessfully)
+                        {
+                            // Do Nothing
+                        }
+                        else if (result.IsFaulted)
+                        {
+                            throw new Exception("Silme sırasında hata oluştu");
+                        }
+                        else if (result.IsCanceled)
+                        {
+                            throw new Exception("Silme iptal edildi");
+                        }
+                    }
+                }
             }
-            
-            return new BadRequestResult();
+            catch (Exception e)
+            {
+                throw _exceptionHandler.HandleServiceException(e);
+            }
         }
 
-        public bool MatchPasswordAndHash(ApplicationIdentityUser applicationIdentityUser,string password)
+        public bool CheckTokenExpiration(string expirationTime)
         {
-            if (applicationIdentityUser==null)
+            return DateTime.Now.Millisecond <= int.Parse(expirationTime);
+        }
+
+        private bool MatchPasswordAndHash(ApplicationIdentityUser applicationIdentityUser, string password)
+        {
+            if (applicationIdentityUser == null)
             {
                 return false;
             }
-            
-            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(applicationIdentityUser, password, false).Result.Succeeded;
+
+            bool resultSucceeded = _signInManager.CheckPasswordSignInAsync(applicationIdentityUser, password, false)
+                .Result.Succeeded;
             return resultSucceeded;
         }
     }
