@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Host4Travel.API.Models.Concrete.Categories;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.Exceptions;
@@ -28,24 +27,17 @@ namespace Host4Travel.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var categories = _categoryService.GetAllCategories();
-            var model = new GetAllModel
-            {
-                Categories = categories,
-                
-            };
+           
             if (categories==null)
             {
-                model.ResponseMessage = "Herhangi bir kategori bulunamadı";
-                model.HttpStatusCode = HttpStatusCode.NotFound;
                 return NotFound("Herhangi bir kategori bulunamadı");
             }
-            model.ResponseMessage = $"{categories.Count} adet kategori listelendi.";
-            model.HttpStatusCode = HttpStatusCode.OK;
-            return Ok(model);
+      
+            return Ok(categories);
         }
 
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(CategoryAddDto category)
+        public async Task<IActionResult> Add([FromBody]CategoryAddDto category)
         {
             try
             {
@@ -59,7 +51,7 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(CategoryUpdateDto categoryUpdateDto)
+        public async Task<IActionResult> Update([FromBody]CategoryUpdateDto categoryUpdateDto)
         {
             try
             {
@@ -73,7 +65,7 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(CategoryDeleteDto deleteDto)
+        public async Task<IActionResult> Delete([FromBody]CategoryDeleteDto deleteDto)
         {
             try
             {

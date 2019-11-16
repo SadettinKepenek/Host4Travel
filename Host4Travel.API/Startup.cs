@@ -103,8 +103,11 @@ namespace Host4Travel.API
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
+            services.AddScoped<IRewardDal, EfRewardRepository>();
+            services.AddScoped<IRewardService, RewardManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

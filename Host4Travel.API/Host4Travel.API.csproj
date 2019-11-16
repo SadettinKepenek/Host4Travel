@@ -24,10 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models\Concrete" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <Folder Include="Models\Categories" />
     </ItemGroup>
 
 </Project>
