@@ -15,6 +15,7 @@
         <e p="Controllers" t="Include">
           <e p="CategoriesController.cs" t="Include" />
           <e p="CategoriesRewardsController.cs" t="Include" />
+          <e p="PostsController.cs" t="Include" />
           <e p="RewardsController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />

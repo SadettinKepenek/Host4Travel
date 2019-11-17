@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.DTO.CategoryRewardService;
 using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.DTO.PostApplicationService;
@@ -68,6 +69,12 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostAddDto,Post>();
             CreateMap<PostUpdateDto,Post>();
             CreateMap<PostDiscussionDeleteDto,Post>();
+
+            CreateMap<ApplicationIdentityUser, ApplicationIdentityUserListDto>().ReverseMap();
+            CreateMap<ApplicationIdentityUserAddDto, ApplicationIdentityUser>();
+            CreateMap<ApplicationIdentityUserUpdateDto, ApplicationIdentityUser>();
+            CreateMap<ApplicationIdentityUserDeleteDto, ApplicationIdentityUser>();
+            
         }
     }
 }

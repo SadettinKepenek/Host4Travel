@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Host4Travel.Core.DTO.AuthService;
+using Host4Travel.Core.DTO.PostApplicationService;
 using Host4Travel.Core.DTO.PostCategoryRewardService;
 using Host4Travel.Core.DTO.PostDiscussionService;
 using Host4Travel.Core.DTO.PostImageService;
@@ -27,5 +28,7 @@ namespace Host4Travel.Core.DTO.PostService
         public virtual ApplicationIdentityUserListDto Owner { get; set; }
         public virtual ICollection<PostImageListDto> PostImage { get; set; }
         public virtual ICollection<PostRatingListDto> PostRating { get; set; }
+        public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
+
     }
 }

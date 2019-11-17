@@ -102,8 +102,10 @@ namespace Host4Travel.API
             services.AddScoped<IExceptionHandler, ExceptionHandler>();
             services.AddScoped<IDatabaseExceptionHandler, SqlServerExceptionHandler>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IPostService, PostManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryRepository>();
+            services.AddScoped<IPostDal, EfPostRepository>();
             services.AddScoped<IRewardDal, EfRewardRepository>();
             services.AddScoped<IRewardService, RewardManager>();
             services.AddScoped<ICategoryRewardService, CategoryRewardManager>();
