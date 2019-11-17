@@ -356,6 +356,10 @@
           <e p="20191116172913_RewardName_UniqueKey.Designer.cs" t="Include" />
           <e p="20191117195036_Add_CategoryName_IX.cs" t="Include" />
           <e p="20191117195036_Add_CategoryName_IX.Designer.cs" t="Include" />
+          <e p="20191117225358_Modify_Relation.cs" t="Include" />
+          <e p="20191117225358_Modify_Relation.Designer.cs" t="Include" />
+          <e p="20191117225538_Modify_Relation_2.cs" t="Include" />
+          <e p="20191117225538_Modify_Relation_2.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

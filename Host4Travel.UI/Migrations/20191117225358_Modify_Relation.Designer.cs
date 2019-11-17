@@ -4,14 +4,16 @@ using Host4Travel.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Host4Travel.UI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191117225358_Modify_Relation")]
+    partial class Modify_Relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -401,7 +403,6 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.UI.PostApplication", b =>
                 {
                     b.Property<Guid>("PostApplicationId")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
@@ -533,10 +534,6 @@ namespace Host4Travel.UI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("PostRatingId");
-
-                    b.HasIndex("ApplicationId")
-                        .IsUnique()
-                        .HasFilter("[ApplicationId] IS NOT NULL");
 
                     b.HasIndex("OwnerId");
 
@@ -765,6 +762,13 @@ namespace Host4Travel.UI.Migrations
                         .HasForeignKey("ApplicentId")
                         .HasConstraintName("FK_PostApplication_AspNetUsers")
                         .IsRequired();
+
+                    b.HasOne("Host4Travel.UI.PostRating", "PostRating")
+                        .WithOne("Application")
+                        .HasForeignKey("Host4Travel.UI.PostApplication", "PostApplicationId")
+                        .HasConstraintName("FK_PostRating_PostApplication")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Host4Travel.UI.PostDiscussion", b =>
@@ -792,11 +796,6 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Host4Travel.UI.PostRating", b =>
                 {
-                    b.HasOne("Host4Travel.UI.PostApplication", "Application")
-                        .WithOne("PostRating")
-                        .HasForeignKey("Host4Travel.UI.PostRating", "ApplicationId")
-                        .HasConstraintName("FK_PostRating_PostApplication");
-
                     b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", "Owner")
                         .WithMany("PostRating")
                         .HasForeignKey("OwnerId")
