@@ -49,6 +49,7 @@ namespace Host4Travel.BLL.Concrete
                     throw new ValidationFailureException(validationResult.ToString());
                 }
 
+                //
                 var user = _userManager.FindByNameAsync(dto.Username).Result;
                 var resultSucceeded = MatchPasswordAndHash(user, dto.Password);
                 if (resultSucceeded)
