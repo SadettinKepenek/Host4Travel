@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostImageService;
+using Host4Travel.Entities.Concrete;
+using Host4Travel.UI;
 
 namespace Host4Travel.Core.DTO.PostService
 {
@@ -15,5 +20,9 @@ namespace Host4Travel.Core.DTO.PostService
         public string OwnerId { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
+
+        public virtual ICollection<PostCategoryRewardUpdateDto> PostCategoryReward { get; set; }
+        public virtual ICollection<PostImageUpdateDto> PostImage { get; set; }
+        
     }
 }

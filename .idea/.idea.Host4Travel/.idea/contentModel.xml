@@ -115,6 +115,7 @@
           <e p="PostDiscussionValidator.cs" t="Include" />
           <e p="PostImageValidator.cs" t="Include" />
           <e p="PostRatingValidator.cs" t="Include" />
+          <e p="PostService" t="Include" />
           <e p="PostValidator.cs" t="Include" />
           <e p="RewardService" t="Include">
             <e p="AddRewardValidator.cs" t="Include" />
