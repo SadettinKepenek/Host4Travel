@@ -309,6 +309,8 @@
           <e p="20191115204319_Modify_FK_PostRating_PostApplication.Designer.cs" t="Include" />
           <e p="20191116172913_RewardName_UniqueKey.cs" t="Include" />
           <e p="20191116172913_RewardName_UniqueKey.Designer.cs" t="Include" />
+          <e p="20191117195036_Add_CategoryName_IX.cs" t="Include" />
+          <e p="20191117195036_Add_CategoryName_IX.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

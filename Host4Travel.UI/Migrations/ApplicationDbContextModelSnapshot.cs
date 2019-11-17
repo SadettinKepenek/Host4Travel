@@ -19,195 +19,7 @@ namespace Host4Travel.UI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Host4Travel.Entities.Concrete.Log", b =>
-                {
-                    b.Property<Guid>("LogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<DateTime>("LogDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getutcdate()");
-
-                    b.Property<string>("LogMessage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LogId");
-
-                    b.ToTable("Log");
-                });
-
-            modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCategoryReward", b =>
-                {
-                    b.Property<Guid>("PostCategoryRewardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("RewardId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RewardValue")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
-
-                    b.HasKey("PostCategoryRewardId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("RewardId");
-
-                    b.ToTable("Post_Category_Reward");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<int>("CategoryLevel")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<int?>("CategoryParentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CategoryUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("CategoryId");
-
-                    b.HasIndex("CategoryParentId");
-
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.CategoryReward", b =>
-                {
-                    b.Property<Guid>("CategoryRewardId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("RewardId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryRewardId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("RewardId");
-
-                    b.ToTable("Category_Reward");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.Chat", b =>
-                {
-                    b.Property<Guid>("ChatId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("PostId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Side1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasMaxLength(450);
-
-                    b.Property<string>("Side2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasMaxLength(450);
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("ChatId");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("Chat");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.ChatMessage", b =>
-                {
-                    b.Property<Guid>("ChatMessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<Guid>("ChatId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OwnerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)")
-                        .HasMaxLength(450);
-
-                    b.Property<DateTime>("SendDate")
-                        .HasColumnType("datetime");
-
-                    b.HasKey("ChatMessageId");
-
-                    b.HasIndex("ChatId");
-
-                    b.ToTable("ChatMessage");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.Identity.ApplicationIdentityRole", b =>
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.ApplicationIdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -234,7 +46,7 @@ namespace Host4Travel.UI.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Host4Travel.UI.Identity.ApplicationIdentityUser", b =>
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.ApplicationIdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -319,6 +131,221 @@ namespace Host4Travel.UI.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<int>("CategoryLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<int?>("CategoryParentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CategoryUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("CategoryName")
+                        .IsUnique();
+
+                    b.HasIndex("CategoryParentId");
+
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.CategoryReward", b =>
+                {
+                    b.Property<Guid>("CategoryRewardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RewardId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoryRewardId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("RewardId");
+
+                    b.ToTable("Category_Reward");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.Chat", b =>
+                {
+                    b.Property<Guid>("ChatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Side1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
+
+                    b.Property<string>("Side2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ChatId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Chat");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.ChatMessage", b =>
+                {
+                    b.Property<Guid>("ChatMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<Guid>("ChatId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OwnerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)")
+                        .HasMaxLength(450);
+
+                    b.Property<DateTime>("SendDate")
+                        .HasColumnType("datetime");
+
+                    b.HasKey("ChatMessageId");
+
+                    b.HasIndex("ChatId");
+
+                    b.ToTable("ChatMessage");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.Log", b =>
+                {
+                    b.Property<Guid>("LogId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<DateTime>("LogDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getutcdate()");
+
+                    b.Property<string>("LogMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LogId");
+
+                    b.ToTable("Log");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCategoryReward", b =>
+                {
+                    b.Property<Guid>("PostCategoryRewardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("RewardId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RewardValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.HasKey("PostCategoryRewardId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PostId");
+
+                    b.HasIndex("RewardId");
+
+                    b.ToTable("Post_Category_Reward");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCheckIn", b =>
+                {
+                    b.Property<Guid>("PostCheckInId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<Guid>("ApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CheckInEndDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<DateTime>("CheckInStartDate")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("PostCheckInId");
+
+                    b.ToTable("PostCheckIn");
+                });
+
             modelBuilder.Entity("Host4Travel.UI.Post", b =>
                 {
                     b.Property<Guid>("PostId")
@@ -399,30 +426,6 @@ namespace Host4Travel.UI.Migrations
                     b.HasIndex("ApplicentId");
 
                     b.ToTable("PostApplication");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.PostCheckIn", b =>
-                {
-                    b.Property<Guid>("PostCheckInId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<Guid>("ApplicationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CheckInEndDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<DateTime>("CheckInStartDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("PostCheckInId");
-
-                    b.ToTable("PostCheckIn");
                 });
 
             modelBuilder.Entity("Host4Travel.UI.PostDiscussion", b =>
@@ -668,9 +671,49 @@ namespace Host4Travel.UI.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.Category", b =>
+                {
+                    b.HasOne("Host4Travel.Entities.Concrete.Category", "CategoryParent")
+                        .WithMany("InverseCategoryParent")
+                        .HasForeignKey("CategoryParentId")
+                        .HasConstraintName("FK_Category_Category");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.CategoryReward", b =>
+                {
+                    b.HasOne("Host4Travel.Entities.Concrete.Category", "Category")
+                        .WithMany("CategoryReward")
+                        .HasForeignKey("CategoryId")
+                        .HasConstraintName("FK_Category_Reward_Category")
+                        .IsRequired();
+
+                    b.HasOne("Host4Travel.UI.Reward", "Reward")
+                        .WithMany("CategoryReward")
+                        .HasForeignKey("RewardId")
+                        .HasConstraintName("FK_Category_Reward_Reward")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.Chat", b =>
+                {
+                    b.HasOne("Host4Travel.UI.Post", "Post")
+                        .WithMany("Chat")
+                        .HasForeignKey("PostId")
+                        .HasConstraintName("FK_Chat_Post");
+                });
+
+            modelBuilder.Entity("Host4Travel.Entities.Concrete.ChatMessage", b =>
+                {
+                    b.HasOne("Host4Travel.Entities.Concrete.Chat", "Chat")
+                        .WithMany("ChatMessage")
+                        .HasForeignKey("ChatId")
+                        .HasConstraintName("FK_ChatMessage_Chat")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCategoryReward", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Category", "Category")
+                    b.HasOne("Host4Travel.Entities.Concrete.Category", "Category")
                         .WithMany("PostCategoryReward")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Post_Category_Reward_Category")
@@ -689,49 +732,9 @@ namespace Host4Travel.UI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Host4Travel.UI.Category", b =>
-                {
-                    b.HasOne("Host4Travel.UI.Category", "CategoryParent")
-                        .WithMany("InverseCategoryParent")
-                        .HasForeignKey("CategoryParentId")
-                        .HasConstraintName("FK_Category_Category");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.CategoryReward", b =>
-                {
-                    b.HasOne("Host4Travel.UI.Category", "Category")
-                        .WithMany("CategoryReward")
-                        .HasForeignKey("CategoryId")
-                        .HasConstraintName("FK_Category_Reward_Category")
-                        .IsRequired();
-
-                    b.HasOne("Host4Travel.UI.Reward", "Reward")
-                        .WithMany("CategoryReward")
-                        .HasForeignKey("RewardId")
-                        .HasConstraintName("FK_Category_Reward_Reward")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.Chat", b =>
-                {
-                    b.HasOne("Host4Travel.UI.Post", "Post")
-                        .WithMany("Chat")
-                        .HasForeignKey("PostId")
-                        .HasConstraintName("FK_Chat_Post");
-                });
-
-            modelBuilder.Entity("Host4Travel.UI.ChatMessage", b =>
-                {
-                    b.HasOne("Host4Travel.UI.Chat", "Chat")
-                        .WithMany("ChatMessage")
-                        .HasForeignKey("ChatId")
-                        .HasConstraintName("FK_ChatMessage_Chat")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Host4Travel.UI.Post", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", "Owner")
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", "Owner")
                         .WithMany("Post")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_Post_AspNetUsers")
@@ -740,13 +743,13 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Host4Travel.UI.PostApplication", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", "Applicent")
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", "Applicent")
                         .WithMany("PostApplication")
                         .HasForeignKey("ApplicentId")
                         .HasConstraintName("FK_PostApplication_AspNetUsers")
                         .IsRequired();
 
-                    b.HasOne("Host4Travel.UI.PostCheckIn", "PostCheckIn")
+                    b.HasOne("Host4Travel.Entities.Concrete.PostCheckIn", "PostCheckIn")
                         .WithOne("Application")
                         .HasForeignKey("Host4Travel.UI.PostApplication", "PostApplicationId")
                         .HasConstraintName("FK_PostCheckIn_PostApplication")
@@ -785,7 +788,7 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Host4Travel.UI.PostRating", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", "Owner")
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", "Owner")
                         .WithMany("PostRating")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_PostRating_AspNetUsers");
@@ -798,7 +801,7 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityRole", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -807,7 +810,7 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -816,7 +819,7 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -825,13 +828,13 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityRole", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -840,7 +843,7 @@ namespace Host4Travel.UI.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Host4Travel.UI.Identity.ApplicationIdentityUser", null)
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

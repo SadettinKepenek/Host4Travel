@@ -68,7 +68,7 @@ namespace Host4Travel.UI
                 entity.Property(e => e.CategoryUrl)
                     .IsRequired()
                     .HasMaxLength(250);
-
+                entity.HasIndex(p => new {p.CategoryName}).IsUnique();
                 entity.HasOne(d => d.CategoryParent)
                     .WithMany(p => p.InverseCategoryParent)
                     .HasForeignKey(d => d.CategoryParentId)
