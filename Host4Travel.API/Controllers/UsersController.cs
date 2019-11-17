@@ -42,7 +42,7 @@ namespace Host4Travel.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] LoginRequestDto userModel)
+        public IActionResult Login([FromBody] IdentityLoginRequestDto userModel)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Host4Travel.API.Controllers
 
         [HttpPost("Register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] RegisterDto user)
+        public async Task<IActionResult> Register([FromBody] ApplicationIdentityUserAddDto user)
         {
           
             
@@ -84,7 +84,7 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(DeleteDto dto)
+        public async Task<IActionResult> Delete(ApplicationIdentityUserDeleteDto dto)
         {
             try
             {
@@ -98,11 +98,11 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(UpdateDto updateModel,string password)
+        public async Task<IActionResult> Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel,string password)
         {
             try
             {
-                _authService.Update(updateModel,password);
+                _authService.Update(applicationIdentityUserUpdateModel,password);
                 return Ok("Başarı ile güncellendi");
             }
             catch (Exception e)

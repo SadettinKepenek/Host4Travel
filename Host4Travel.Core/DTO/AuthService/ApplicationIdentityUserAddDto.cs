@@ -1,8 +1,9 @@
-﻿namespace Host4Travel.Core.DTO.AuthService
+﻿using System.Net;
+
+namespace Host4Travel.Core.DTO.AuthService
 {
-    public class UpdateDto
+    public class ApplicationIdentityUserAddDto
     {
-        public string UserId { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Firstname { get; set; }

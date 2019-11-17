@@ -8,13 +8,13 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IAuthService
     {
-        LoginResponseDto Login(LoginRequestDto model);
+        IdentityLoginResponseDto Login(IdentityLoginRequestDto model);
         bool CheckTokenExpiration(string exprationTime);
 
-        void Register(RegisterDto registerModel, string password);
+        void Register(ApplicationIdentityUserAddDto applicationIdentityUserAddModel, string password);
 
-        void Update(UpdateDto updateModel, string password);
-        void Delete(DeleteDto dto);
+        void Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel, string password);
+        void Delete(ApplicationIdentityUserDeleteDto dto);
 
 
     }

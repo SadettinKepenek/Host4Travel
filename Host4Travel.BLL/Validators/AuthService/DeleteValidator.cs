@@ -3,7 +3,7 @@ using Host4Travel.Core.DTO.AuthService;
 
 namespace Host4Travel.BLL.Validators.AuthService
 {
-    public class DeleteValidator:AbstractValidator<DeleteDto>
+    public class DeleteValidator:AbstractValidator<ApplicationIdentityUserDeleteDto>
     {
         public DeleteValidator()
         {
