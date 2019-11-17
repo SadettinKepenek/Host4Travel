@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Host4Travel.Core.DAL;
 using Host4Travel.Core.SystemSettings;
 using Host4Travel.Entities.Concrete;
-using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

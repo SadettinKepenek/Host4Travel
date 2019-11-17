@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Host4Travel.UI
+namespace Host4Travel.Entities.Concrete
 {
     public partial class ChatMessage
     {

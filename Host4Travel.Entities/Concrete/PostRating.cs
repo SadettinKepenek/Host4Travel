@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Host4Travel.UI.Identity;
+using Host4Travel.Entities.Concrete;
 
 namespace Host4Travel.UI
 {

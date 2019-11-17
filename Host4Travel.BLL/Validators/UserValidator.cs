@@ -1,7 +1,6 @@
 ﻿using System.Data;
 using FluentValidation;
 using Host4Travel.Entities.Concrete;
-using Host4Travel.UI.Identity;
 
 namespace Host4Travel.BLL.Validators
 {

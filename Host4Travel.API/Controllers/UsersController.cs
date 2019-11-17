@@ -12,7 +12,6 @@ using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
-using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;

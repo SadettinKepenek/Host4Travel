@@ -12,7 +12,6 @@ using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.Core.SystemSettings;
 using Host4Travel.Entities.Concrete;
-using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

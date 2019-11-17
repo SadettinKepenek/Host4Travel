@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Host4Travel.UI;
 using Microsoft.AspNetCore.Identity;
 
-namespace Host4Travel.UI.Identity
+namespace Host4Travel.Entities.Concrete
 {
     public class ApplicationIdentityUser:IdentityUser
     {

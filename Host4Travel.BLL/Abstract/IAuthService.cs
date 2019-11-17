@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Entities.Concrete;
-using Host4Travel.UI.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

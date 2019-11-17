@@ -13,7 +13,6 @@ namespace Host4Travel.Entities.Concrete
         }
         
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
