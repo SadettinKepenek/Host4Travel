@@ -1,5 +1,7 @@
 ﻿using System;
 using FluentValidation;
+using Host4Travel.BLL.Validators.PostCategoryRewardService;
+using Host4Travel.BLL.Validators.PostImageService;
 using Host4Travel.Core.DTO.PostService;
 
 namespace Host4Travel.BLL.Validators.PostService
@@ -31,6 +33,14 @@ namespace Host4Travel.BLL.Validators.PostService
             RuleFor(x => x.PostTitle).MaximumLength(150)
                 .WithMessage("Post Başlığı Maximum 150 karakterden oluşmalıdır.");
             RuleFor(x => x.PostType).NotNull().NotEmpty().WithMessage("Post Türü Seçilmelidir");
+
+            RuleFor(x => x.PostImage).NotNull().NotEmpty().WithMessage("Post Resimleri Boş Olamaz");
+            RuleForEach(x => x.PostImage).NotNull().NotEmpty().SetValidator(new AddPostImageValidator()).WithMessage("Post Resimleri Doğru Değil");
+            RuleFor(x => x.PostCategoryReward).NotNull().NotEmpty()
+                .WithMessage("Post Category & Rewardleri Boş olamaz");
+            RuleForEach(x => x.PostCategoryReward).SetValidator(new AddPostCategoryRewardValidator())
+                .WithMessage("Post Category Rewardleri doğru değil");
+
         }
     }
 }
