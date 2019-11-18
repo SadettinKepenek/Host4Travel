@@ -111,12 +111,24 @@
           <e p="ChatValidator.cs" t="Include" />
           <e p="LogValidator.cs" t="Include" />
           <e p="PostApplicationValidator.cs" t="Include" />
+          <e p="PostCategoryRewardService" t="Include">
+            <e p="AddPostCategoryRewardValidator.cs" t="Include" />
+            <e p="DeletePostCategoryRewardValidator.cs" t="Include" />
+          </e>
           <e p="PostCategoryRewardValidator.cs" t="Include" />
           <e p="PostCheckInValidator.cs" t="Include" />
           <e p="PostDiscussionValidator.cs" t="Include" />
+          <e p="PostImageService" t="Include">
+            <e p="AddPostImageValidator.cs" t="Include" />
+            <e p="DeletePostImageValidator.cs" t="Include" />
+          </e>
           <e p="PostImageValidator.cs" t="Include" />
           <e p="PostRatingValidator.cs" t="Include" />
-          <e p="PostService" t="Include" />
+          <e p="PostService" t="Include">
+            <e p="PostAddValidator.cs" t="Include" />
+            <e p="PostDeleteValidator.cs" t="Include" />
+            <e p="PostUpdateValidator.cs" t="Include" />
+          </e>
           <e p="PostValidator.cs" t="Include" />
           <e p="RewardService" t="Include">
             <e p="AddRewardValidator.cs" t="Include" />
@@ -174,7 +186,6 @@
             <e p="PostCategoryRewardAddDto.cs" t="Include" />
             <e p="PostCategoryRewardDeleteDto.cs" t="Include" />
             <e p="PostCategoryRewardListDto.cs" t="Include" />
-            <e p="PostCategoryRewardUpdateDto.cs" t="Include" />
           </e>
           <e p="PostCheckInService" t="Include">
             <e p="PostCheckInAddDto.cs" t="Include" />
@@ -192,7 +203,6 @@
             <e p="PostImageAddDto.cs" t="Include" />
             <e p="PostImageDeleteDto.cs" t="Include" />
             <e p="PostImageListDto.cs" t="Include" />
-            <e p="PostImageUpdateDto.cs" t="Include" />
           </e>
           <e p="PostRatingService" t="Include">
             <e p="PostRatingAddDto.cs" t="Include" />

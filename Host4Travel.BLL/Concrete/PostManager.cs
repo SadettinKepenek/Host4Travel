@@ -47,6 +47,15 @@ namespace Host4Travel.BLL.Concrete
 
         public void AddPost(PostAddDto model)
         {
+            try
+            {
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;   
+            }
             // TODO
         }
 

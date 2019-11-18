@@ -41,7 +41,6 @@ namespace Host4Travel.Core.MappingProfiles
             
             CreateMap<PostCategoryReward, PostCategoryRewardListDto>().ReverseMap();
             CreateMap<PostCategoryRewardAddDto,PostCategoryReward>();
-            CreateMap<PostCategoryRewardUpdateDto,PostCategoryReward>();
             CreateMap<PostCategoryRewardDeleteDto,PostCategoryReward>();
             
             CreateMap<PostCheckIn, PostCheckInListDto>().ReverseMap();
@@ -56,7 +55,6 @@ namespace Host4Travel.Core.MappingProfiles
             
             CreateMap<PostImage, PostImageListDto>().ReverseMap();
             CreateMap<PostImageAddDto,PostImage>();
-            CreateMap<PostImageUpdateDto,PostImage>();
             CreateMap<PostImageDeleteDto,PostImage>();
             
             CreateMap<PostRating, PostRatingListDto>().ReverseMap();
