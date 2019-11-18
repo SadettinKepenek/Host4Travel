@@ -8,6 +8,7 @@ using Host4Travel.Core.DTO.PostImageService;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete

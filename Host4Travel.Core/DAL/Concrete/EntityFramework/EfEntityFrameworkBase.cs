@@ -34,18 +34,21 @@ namespace Host4Travel.Core.DAL.Concrete.EntityFramework
         {
             using var context = new TContext();
             var addedEntry = context.Entry(entity);
-            addedEntry.State = EntityState.Added;
+//            addedEntry.State = EntityState.Added;
+            context.Add(entity);
             // Unit of work design patern entity framework
             // Change Tracking
             
             context.SaveChanges();
         }
+        
 
         public void Update(TEntity entity)
         {
             using var context = new TContext();
             var updatedEntry = context.Entry(entity);
-            updatedEntry.State = EntityState.Modified;
+//            updatedEntry.State = EntityState.Modified;
+            context.Update(entity);
             context.SaveChanges();
 
         }
@@ -55,6 +58,15 @@ namespace Host4Travel.Core.DAL.Concrete.EntityFramework
             using var context = new TContext();
             var deletedEntry = context.Entry(entity);
             deletedEntry.State = EntityState.Deleted;
+            
+            context.SaveChanges();
+        }
+
+        public void AddRange(List<TEntity> entities)
+        {
+            using var context=new TContext();
+            var addedEntities = context.Entry(entities);
+            addedEntities.State = EntityState.Added;
             context.SaveChanges();
         }
     }

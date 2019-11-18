@@ -168,6 +168,8 @@ namespace Host4Travel.UI
                     .HasForeignKey<PostCheckIn>(d => d.PostId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostCheckIn_Post");
+                
+                
             });
 
             modelBuilder.Entity<PostApplication>(entity =>

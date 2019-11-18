@@ -8,6 +8,7 @@ using Host4Travel.Core.DTO.PostService;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete
@@ -15,6 +16,7 @@ namespace Host4Travel.BLL.Concrete
     public class PostManager : IPostService
     {
         private readonly IPostDal _postDal;
+   
         private IMapper _mapper;
         private IExceptionHandler _exceptionHandler;
 
@@ -23,6 +25,7 @@ namespace Host4Travel.BLL.Concrete
             _postDal = postDal;
             _mapper = mapper;
             _exceptionHandler = exceptionHandler;
+      
         }
 
 
@@ -80,6 +83,8 @@ namespace Host4Travel.BLL.Concrete
             
         }
 
+    
+
         public void UpdatePost(PostUpdateDto model)
         {
             try
@@ -128,6 +133,7 @@ namespace Host4Travel.BLL.Concrete
                     else
                     {
                         var mappedEntity = _mapper.Map<Post>(model);
+                        
                         _postDal.Delete(mappedEntity);
                     }
                 }
