@@ -4,14 +4,16 @@ using Host4Travel.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Host4Travel.UI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191118182152_Modify_Relations")]
+    partial class Modify_Relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,8 +348,7 @@ namespace Host4Travel.UI.Migrations
 
                     b.HasKey("PostCheckInId");
 
-                    b.HasIndex("ApplicationId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("PostId")
                         .IsUnique();
@@ -751,9 +752,9 @@ namespace Host4Travel.UI.Migrations
             modelBuilder.Entity("Host4Travel.Entities.Concrete.PostCheckIn", b =>
                 {
                     b.HasOne("Host4Travel.UI.PostApplication", "Application")
-                        .WithOne("PostCheckIn")
-                        .HasForeignKey("Host4Travel.Entities.Concrete.PostCheckIn", "ApplicationId")
-                        .HasConstraintName("FK_PostApplication_PostCheckIn")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Host4Travel.UI.Post", "Post")

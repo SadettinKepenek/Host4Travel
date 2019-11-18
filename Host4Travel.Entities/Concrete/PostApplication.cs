@@ -21,7 +21,10 @@ namespace Host4Travel.UI
         public bool IsActive { get; set; }
 
         public virtual ApplicationIdentityUser Applicent { get; set; }
-        public virtual PostCheckIn PostCheckIn { get; set; }
         public virtual PostRating PostRating { get; set; }
+
+        public virtual PostCheckIn PostCheckIn { get; set; }
+        
+        public virtual Post Post { get; set; }
     }
 }

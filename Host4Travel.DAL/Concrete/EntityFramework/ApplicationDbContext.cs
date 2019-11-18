@@ -162,6 +162,12 @@ namespace Host4Travel.UI
                     .HasForeignKey(d => d.OwnerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Post_AspNetUsers");
+                
+                entity.HasOne(d => d.PostCheckIn)
+                    .WithOne(p => p.Post)
+                    .HasForeignKey<PostCheckIn>(d => d.PostId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PostCheckIn_Post");
             });
 
             modelBuilder.Entity<PostApplication>(entity =>
@@ -184,16 +190,22 @@ namespace Host4Travel.UI
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostApplication_AspNetUsers");
                 
-                entity.HasOne(d => d.PostCheckIn)
-                    .WithOne(p => p.Application)
-                    .HasForeignKey<PostCheckIn>(d => d.ApplicationId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PostCheckIn_PostApplication");
+               entity.HasOne(d=>d.PostCheckIn)
+                   .WithOne(p=>p.Application)
+                   .HasForeignKey<PostCheckIn>(x=>x.ApplicationId)
+                   .OnDelete(DeleteBehavior.ClientSetNull)
+                   .HasConstraintName("FK_PostApplication_PostCheckIn");
                 
                 entity.HasOne(d => d.PostRating)
                     .WithOne(p => p.Application)
                     .HasForeignKey<PostRating>(d => d.ApplicationId)
                     .HasConstraintName("FK_PostRating_PostApplication");
+                
+                entity.HasOne(d => d.Post)
+                    .WithMany(p => p.PostApplication)
+                    .HasForeignKey(d => d.PostId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PostApplication_Post");
                 
             });
 

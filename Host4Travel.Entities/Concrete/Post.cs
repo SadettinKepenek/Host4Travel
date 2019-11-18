@@ -36,5 +36,7 @@ namespace Host4Travel.UI
         public virtual ICollection<PostImage> PostImage { get; set; }
         public virtual ICollection<PostRating> PostRating { get; set; }
         public virtual ICollection<PostApplication> PostApplication { get; set; }
+        public virtual PostCheckIn PostCheckIn { get; set; }
+
     }
 }

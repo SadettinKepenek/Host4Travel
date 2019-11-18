@@ -12,7 +12,9 @@ namespace Host4Travel.Entities.Concrete
         public DateTime CheckInEndDate { get; set; }
         public Guid ApplicationId { get; set; }
         public bool IsActive { get; set; }
+        public Guid PostId { get; set; }
 
         public virtual PostApplication Application { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

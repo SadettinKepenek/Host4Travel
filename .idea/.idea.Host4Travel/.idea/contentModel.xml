@@ -361,6 +361,10 @@
           <e p="20191117225358_Modify_Relation.Designer.cs" t="Include" />
           <e p="20191117225538_Modify_Relation_2.cs" t="Include" />
           <e p="20191117225538_Modify_Relation_2.Designer.cs" t="Include" />
+          <e p="20191118182152_Modify_Relations.cs" t="Include" />
+          <e p="20191118182152_Modify_Relations.Designer.cs" t="Include" />
+          <e p="20191118182800_Modify_Relations_2.cs" t="Include" />
+          <e p="20191118182800_Modify_Relations_2.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
