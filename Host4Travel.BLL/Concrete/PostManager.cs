@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
+using Host4Travel.BLL.Validators.PostService;
 using Host4Travel.Core.DTO.PostService;
+using Host4Travel.Core.ExceptionService.Abstract;
+using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.UI;
 
@@ -13,11 +16,13 @@ namespace Host4Travel.BLL.Concrete
     {
         private readonly IPostDal _postDal;
         private IMapper _mapper;
+        private IExceptionHandler _exceptionHandler;
 
-        public PostManager(IPostDal postDal, IMapper mapper)
+        public PostManager(IPostDal postDal, IMapper mapper, IExceptionHandler exceptionHandler)
         {
             _postDal = postDal;
             _mapper = mapper;
+            _exceptionHandler = exceptionHandler;
         }
 
 
@@ -49,24 +54,88 @@ namespace Host4Travel.BLL.Concrete
         {
             try
             {
-                
+                PostAddValidator validator=new PostAddValidator();
+                var validationResult = validator.Validate(model);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+                else
+                {
+                    if (_postDal.IsExists(x=>x.OwnerId==model.OwnerId && x.PostTitle==model.PostTitle && x.PostType==model.PostType && x.Latitude ==model.Latitude && x.Longitude==model.Longitude))
+                    {
+                        throw new UniqueConstraintException("Eklenmek istenilen post zaten mevcut");
+                    }
+                    else
+                    {
+                        var mappedEntity = _mapper.Map<Post>(model);
+                        _postDal.Add(mappedEntity);
+                    }
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;   
+                throw _exceptionHandler.HandleServiceException(e);
             }
-            // TODO
+            
         }
 
         public void UpdatePost(PostUpdateDto model)
         {
-            // TODO
+            try
+            {
+                PostUpdateValidator validator=new PostUpdateValidator();
+                var validationResult = validator.Validate(model);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+                else
+                {
+                    if (!_postDal.IsExists(x=>x.PostId==model.PostId))
+                    {
+                        throw new NullReferenceException("Eklenmek istenilen post bulunamadı");
+                    }
+                    else
+                    {
+                        var mappedEntity = _mapper.Map<Post>(model);
+                        _postDal.Update(mappedEntity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw _exceptionHandler.HandleServiceException(e);
+            }
         }
 
         public void DeletePost(PostDeleteDto model)
         {
-            // TODO
+            try
+            {
+                PostDeleteValidator validator=new PostDeleteValidator();
+                var validationResult = validator.Validate(model);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+                else
+                {
+                    if (!_postDal.IsExists(x=>x.PostId==model.PostId))
+                    {
+                        throw new NullReferenceException("Eklenmek istenilen post bulunamadı");
+                    }
+                    else
+                    {
+                        var mappedEntity = _mapper.Map<Post>(model);
+                        _postDal.Delete(mappedEntity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw _exceptionHandler.HandleServiceException(e);
+            }
         }
     }
 }
