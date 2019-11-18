@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostCheckInService;
 using Host4Travel.Core.DTO.PostDiscussionService;
 using Host4Travel.Core.DTO.PostImageService;
 using Host4Travel.Core.DTO.PostRatingService;
@@ -27,5 +28,6 @@ namespace Host4Travel.Core.DTO.PostService
         public virtual ICollection<PostDiscussionListDto> PostDiscussion { get; set; }
         public virtual ICollection<PostImageListDto> PostImage { get; set; }
         public virtual ICollection<PostRatingListDto> PostRating { get; set; }
+        public virtual PostCheckInListDto PostCheckIn { get; set; }
     }
 }

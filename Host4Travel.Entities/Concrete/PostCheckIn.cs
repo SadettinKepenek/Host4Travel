@@ -16,5 +16,7 @@ namespace Host4Travel.Entities.Concrete
 
         public virtual PostApplication Application { get; set; }
         public virtual Post Post { get; set; }
+        
+        
     }
 }

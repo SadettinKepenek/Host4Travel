@@ -2,6 +2,7 @@
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.DTO.PostCheckInService;
 using Host4Travel.Core.DTO.PostRatingService;
+using Host4Travel.Core.DTO.PostService;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
@@ -20,5 +21,7 @@ namespace Host4Travel.Core.DTO.PostApplicationService
         public virtual ApplicationIdentityUserListDto Applicent { get; set; }
         public virtual PostCheckInListDto PostCheckIn { get; set; }
         public virtual PostRatingListDto PostRating { get; set; }
+        
+        public virtual PostListDto Post { get; set; }
     }
 }
