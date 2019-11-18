@@ -17,9 +17,9 @@ namespace Host4Travel.DAL.Concrete.EntityFramework
             using ApplicationDbContext context = new ApplicationDbContext();
             if (filter==null)
             {
-                return context.Post.Include(x=>x.PostApplication).Include(x => x.PostImage).Include(x => x.PostRating).Include(x=>x.PostDiscussion).Include(x=>x.PostCategoryReward).Include(x => x.Owner).FirstOrDefault();
+                return context.Post.Include(x=>x.PostApplication).Include(x=>x.PostCheckIn).Include(x => x.PostImage).Include(x => x.PostRating).Include(x=>x.PostDiscussion).Include(x=>x.PostCategoryReward).Include(x => x.Owner).FirstOrDefault();
             }
-            return context.Post.Include(x=>x.PostApplication).Include(x => x.PostImage).Include(x => x.PostRating).Include(x=>x.PostDiscussion).Include(x=>x.PostCategoryReward).Include(x => x.Owner).FirstOrDefault(filter);;
+            return context.Post.Include(x=>x.PostApplication).Include(x=>x.PostCheckIn).Include(x => x.PostImage).Include(x => x.PostRating).Include(x=>x.PostDiscussion).Include(x=>x.PostCategoryReward).Include(x => x.Owner).FirstOrDefault(filter);;
         }
 
         public List<Post> GetList(Expression<Func<Post, bool>> filter = null)
@@ -27,9 +27,9 @@ namespace Host4Travel.DAL.Concrete.EntityFramework
             using ApplicationDbContext context = new ApplicationDbContext();
             if (filter==null)
             {
-                return context.Post.Include(x=>x.PostApplication).Include(x => x.PostImage).Include(x => x.PostRating).Include(x => x.Owner).ToList();
+                return context.Post.Include(x=>x.PostApplication).Include(x=>x.PostCheckIn).Include(x => x.PostImage).Include(x => x.PostRating).Include(x => x.Owner).ToList();
             }
-            return context.Post.Include(x=>x.PostApplication).Include(x => x.PostImage).Include(x => x.PostRating).Include(x => x.Owner).Where(filter).ToList();;
+            return context.Post.Include(x=>x.PostApplication).Include(x=>x.PostCheckIn).Include(x => x.PostImage).Include(x => x.PostRating).Include(x => x.Owner).Where(filter).ToList();;
         }
     }
 }
