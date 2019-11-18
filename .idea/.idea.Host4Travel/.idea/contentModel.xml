@@ -100,43 +100,40 @@
             <e p="CategoryRewardDeleteValidator.cs" t="Include" />
             <e p="CategoryRewardUpdateValidator.cs" t="Include" />
           </e>
-          <e p="CategoryRewardValidator.cs" t="Include" />
           <e p="CategoryService" t="Include">
             <e p="AddCategoryValidator.cs" t="Include" />
             <e p="DeleteCategoryValidator.cs" t="Include" />
             <e p="UpdateCategoryValidator.cs" t="Include" />
           </e>
-          <e p="CategoryValidator.cs" t="Include" />
           <e p="ChatMessageValidator.cs" t="Include" />
           <e p="ChatValidator.cs" t="Include" />
           <e p="LogValidator.cs" t="Include" />
-          <e p="PostApplicationValidator.cs" t="Include" />
+          <e p="PostApplicationService" t="Include">
+            <e p="AddPostApplicationValidator.cs" t="Include" />
+            <e p="DeletePostApplicationValidator.cs" t="Include" />
+            <e p="UpdatePostApplicationValidator.cs" t="Include" />
+          </e>
           <e p="PostCategoryRewardService" t="Include">
             <e p="AddPostCategoryRewardValidator.cs" t="Include" />
             <e p="DeletePostCategoryRewardValidator.cs" t="Include" />
           </e>
-          <e p="PostCategoryRewardValidator.cs" t="Include" />
           <e p="PostCheckInValidator.cs" t="Include" />
           <e p="PostDiscussionValidator.cs" t="Include" />
           <e p="PostImageService" t="Include">
             <e p="AddPostImageValidator.cs" t="Include" />
             <e p="DeletePostImageValidator.cs" t="Include" />
           </e>
-          <e p="PostImageValidator.cs" t="Include" />
           <e p="PostRatingValidator.cs" t="Include" />
           <e p="PostService" t="Include">
             <e p="PostAddValidator.cs" t="Include" />
             <e p="PostDeleteValidator.cs" t="Include" />
             <e p="PostUpdateValidator.cs" t="Include" />
           </e>
-          <e p="PostValidator.cs" t="Include" />
           <e p="RewardService" t="Include">
             <e p="AddRewardValidator.cs" t="Include" />
             <e p="DeleteRewardValidator.cs" t="Include" />
             <e p="UpdateRewardValidator.cs" t="Include" />
           </e>
-          <e p="RewardValidator.cs" t="Include" />
-          <e p="UserValidator.cs" t="Include" />
         </e>
       </e>
       <e p="Host4Travel.Core" t="IncludeRecursive">
