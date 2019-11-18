@@ -15,6 +15,7 @@
         <e p="Controllers" t="Include">
           <e p="CategoriesController.cs" t="Include" />
           <e p="CategoriesRewardsController.cs" t="Include" />
+          <e p="PostsController.cs" t="Include" />
           <e p="RewardsController.cs" t="Include" />
           <e p="RolesController.cs" t="Include" />
           <e p="UsersController.cs" t="Include" />
@@ -110,11 +111,24 @@
           <e p="ChatValidator.cs" t="Include" />
           <e p="LogValidator.cs" t="Include" />
           <e p="PostApplicationValidator.cs" t="Include" />
+          <e p="PostCategoryRewardService" t="Include">
+            <e p="AddPostCategoryRewardValidator.cs" t="Include" />
+            <e p="DeletePostCategoryRewardValidator.cs" t="Include" />
+          </e>
           <e p="PostCategoryRewardValidator.cs" t="Include" />
           <e p="PostCheckInValidator.cs" t="Include" />
           <e p="PostDiscussionValidator.cs" t="Include" />
+          <e p="PostImageService" t="Include">
+            <e p="AddPostImageValidator.cs" t="Include" />
+            <e p="DeletePostImageValidator.cs" t="Include" />
+          </e>
           <e p="PostImageValidator.cs" t="Include" />
           <e p="PostRatingValidator.cs" t="Include" />
+          <e p="PostService" t="Include">
+            <e p="PostAddValidator.cs" t="Include" />
+            <e p="PostDeleteValidator.cs" t="Include" />
+            <e p="PostUpdateValidator.cs" t="Include" />
+          </e>
           <e p="PostValidator.cs" t="Include" />
           <e p="RewardService" t="Include">
             <e p="AddRewardValidator.cs" t="Include" />
@@ -139,11 +153,12 @@
         </e>
         <e p="DTO" t="Include">
           <e p="AuthService" t="Include">
-            <e p="DeleteDto.cs" t="Include" />
-            <e p="LoginRequestDto.cs" t="Include" />
-            <e p="LoginResponseDto.cs" t="Include" />
-            <e p="RegisterDto.cs" t="Include" />
-            <e p="UpdateDto.cs" t="Include" />
+            <e p="ApplicationIdentityUserAddDto.cs" t="Include" />
+            <e p="ApplicationIdentityUserDeleteDto.cs" t="Include" />
+            <e p="ApplicationIdentityUserListDto.cs" t="Include" />
+            <e p="ApplicationIdentityUserUpdateDto.cs" t="Include" />
+            <e p="IdentityLoginRequestDto.cs" t="Include" />
+            <e p="IdentityLoginResponseDto.cs" t="Include" />
           </e>
           <e p="CategoryRewardService" t="Include">
             <e p="CategoryRewardAddDto.cs" t="Include" />
@@ -160,6 +175,47 @@
           <e p="LoggerService" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
+          </e>
+          <e p="PostApplicationService" t="Include">
+            <e p="PostApplicationAddDto.cs" t="Include" />
+            <e p="PostApplicationDeleteDto.cs" t="Include" />
+            <e p="PostApplicationListDto.cs" t="Include" />
+            <e p="PostApplicationUpdateDto.cs" t="Include" />
+          </e>
+          <e p="PostCategoryRewardService" t="Include">
+            <e p="PostCategoryRewardAddDto.cs" t="Include" />
+            <e p="PostCategoryRewardDeleteDto.cs" t="Include" />
+            <e p="PostCategoryRewardListDto.cs" t="Include" />
+          </e>
+          <e p="PostCheckInService" t="Include">
+            <e p="PostCheckInAddDto.cs" t="Include" />
+            <e p="PostCheckInDeleteDto.cs" t="Include" />
+            <e p="PostCheckInListDto.cs" t="Include" />
+            <e p="PostCheckInUpdateDto.cs" t="Include" />
+          </e>
+          <e p="PostDiscussionService" t="Include">
+            <e p="PostDiscussionAddDto.cs" t="Include" />
+            <e p="PostDiscussionDeleteDto.cs" t="Include" />
+            <e p="PostDiscussionListDto.cs" t="Include" />
+            <e p="PostDiscussionUpdateDto.cs" t="Include" />
+          </e>
+          <e p="PostImageService" t="Include">
+            <e p="PostImageAddDto.cs" t="Include" />
+            <e p="PostImageDeleteDto.cs" t="Include" />
+            <e p="PostImageListDto.cs" t="Include" />
+          </e>
+          <e p="PostRatingService" t="Include">
+            <e p="PostRatingAddDto.cs" t="Include" />
+            <e p="PostRatingDeleteDto.cs" t="Include" />
+            <e p="PostRatingListDto.cs" t="Include" />
+            <e p="PostRatingUpdateDto.cs" t="Include" />
+          </e>
+          <e p="PostService" t="Include">
+            <e p="PostAddDto.cs" t="Include" />
+            <e p="PostDeleteDto.cs" t="Include" />
+            <e p="PostDetailDto.cs" t="Include" />
+            <e p="PostListDto.cs" t="Include" />
+            <e p="PostUpdateDto.cs" t="Include" />
           </e>
           <e p="RewardService" t="Include">
             <e p="RewardAddDto.cs" t="Include" />
@@ -311,6 +367,14 @@
           <e p="20191116172913_RewardName_UniqueKey.Designer.cs" t="Include" />
           <e p="20191117195036_Add_CategoryName_IX.cs" t="Include" />
           <e p="20191117195036_Add_CategoryName_IX.Designer.cs" t="Include" />
+          <e p="20191117225358_Modify_Relation.cs" t="Include" />
+          <e p="20191117225358_Modify_Relation.Designer.cs" t="Include" />
+          <e p="20191117225538_Modify_Relation_2.cs" t="Include" />
+          <e p="20191117225538_Modify_Relation_2.Designer.cs" t="Include" />
+          <e p="20191118182152_Modify_Relations.cs" t="Include" />
+          <e p="20191118182152_Modify_Relations.Designer.cs" t="Include" />
+          <e p="20191118182800_Modify_Relations_2.cs" t="Include" />
+          <e p="20191118182800_Modify_Relations_2.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />

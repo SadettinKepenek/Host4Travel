@@ -38,7 +38,7 @@ namespace Host4Travel.BLL.Concrete
             _exceptionHandler = exceptionHandler;
         }
 
-        public LoginResponseDto Login(LoginRequestDto dto)
+        public IdentityLoginResponseDto Login(IdentityLoginRequestDto dto)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace Host4Travel.BLL.Concrete
                 if (resultSucceeded)
                 {
                     var generateTokenModel = GenerateToken(user, Configuration.TokenExpirationDate);
-                    var authenticateModel = new LoginResponseDto()
+                    var authenticateModel = new IdentityLoginResponseDto()
                     {
                         Username = user.UserName,
                         Token = generateTokenModel,
@@ -99,12 +99,12 @@ namespace Host4Travel.BLL.Concrete
             return tokenHandler.WriteToken(token);
         }
 
-        public void Register(RegisterDto registerModel, string password)
+        public void Register(ApplicationIdentityUserAddDto applicationIdentityUserAddModel, string password)
         {
             try
             {
                 RegisterValidator validator = new RegisterValidator();
-                var validationResult = validator.Validate(registerModel);
+                var validationResult = validator.Validate(applicationIdentityUserAddModel);
                 if (!validationResult.IsValid)
                 {
                     throw new ValidationFailureException(validationResult.ToString());
@@ -112,12 +112,12 @@ namespace Host4Travel.BLL.Concrete
 
                 var identityUser = new ApplicationIdentityUser
                 {
-                    Email = registerModel.Email,
-                    UserName = registerModel.Username,
-                    Firstname = registerModel.Firstname,
-                    Lastname = registerModel.Lastname,
-                    CookieAcceptIpAddress = registerModel.CookieAcceptIpAddress,
-                    SSN = registerModel.Ssn
+                    Email = applicationIdentityUserAddModel.Email,
+                    UserName = applicationIdentityUserAddModel.Username,
+                    Firstname = applicationIdentityUserAddModel.Firstname,
+                    Lastname = applicationIdentityUserAddModel.Lastname,
+                    CookieAcceptIpAddress = applicationIdentityUserAddModel.CookieAcceptIpAddress,
+                    SSN = applicationIdentityUserAddModel.Ssn
                 };
 
                 var createdUser =
@@ -134,28 +134,28 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public void Update(UpdateDto updateModel, string password)
+        public void Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel, string password)
         {
             try
             {
                 UpdateValidator validator = new UpdateValidator();
-                var validationResult = validator.Validate(updateModel);
+                var validationResult = validator.Validate(applicationIdentityUserUpdateModel);
                 if (!validationResult.IsValid)
                 {
                     throw new ValidationFailureException(validationResult.ToString());
                 }
 
-                var user = _userManager.FindByNameAsync(updateModel.Username).Result;
+                var user = _userManager.FindByNameAsync(applicationIdentityUserUpdateModel.Username).Result;
                 if (user == null)
                 {
                     throw new NullReferenceException();
                 }
 
-                user.Firstname = updateModel.Firstname;
-                user.Lastname = updateModel.Lastname;
+                user.Firstname = applicationIdentityUserUpdateModel.Firstname;
+                user.Lastname = applicationIdentityUserUpdateModel.Lastname;
 
-                user.Email = updateModel.Email;
-                user.SSN = updateModel.Ssn;
+                user.Email = applicationIdentityUserUpdateModel.Email;
+                user.SSN = applicationIdentityUserUpdateModel.Ssn;
                 var newPassword = _passwordHasher.HashPassword(user, password);
                 user.PasswordHash = newPassword;
                 var result = _userManager.UpdateAsync(user).Result;
@@ -170,7 +170,7 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public void Delete(DeleteDto dto)
+        public void Delete(ApplicationIdentityUserDeleteDto dto)
         {
             try
             {
@@ -190,7 +190,7 @@ namespace Host4Travel.BLL.Concrete
                     else
                     {
                         var result = _userManager.DeleteAsync(applicationIdentityUser);
-                        var returnModel = new DeleteDto();
+                        var returnModel = new ApplicationIdentityUserDeleteDto();
                         if (result.IsCompletedSuccessfully)
                         {
                             // Do Nothing
