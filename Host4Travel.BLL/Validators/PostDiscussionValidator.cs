@@ -10,7 +10,7 @@ namespace Host4Travel.BLL.Validators
         public PostDiscussionValidator()
         {
             RuleFor(x => x.Comment).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().WithMessage("Yorum boş olamaz");
-            RuleFor(x => x.Post).SetValidator(new PostValidator());
+//            RuleFor(x => x.Post).SetValidator(new PostValidator());
             RuleFor(x => x.CommentDate).NotNull().NotEmpty().WithMessage("Yorum tarihi boş geçilemez");
             RuleFor(x => x.CommentDate).InclusiveBetween(DateTime.Now.AddMinutes(-10), DateTime.Now.AddMinutes(10))
                 .WithMessage("Yorum tarihi hatalı aralıkta");

@@ -25,7 +25,6 @@
 
     <ItemGroup>
       <Folder Include="Models\Categories" />
-      <Folder Include="Models\Users" />
     </ItemGroup>
 
 </Project>

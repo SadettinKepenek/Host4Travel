@@ -304,9 +304,7 @@ namespace Host4Travel.UI
                 entity.Property(e => e.RatingComment).HasMaxLength(250);
 
                 entity.Property(e => e.RatingReply).HasMaxLength(250);
-
-     
-
+                
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.PostRating)
                     .HasForeignKey(d => d.OwnerId)

@@ -20,7 +20,6 @@ namespace Host4Travel.Core.DTO.PostApplicationService
 
         public virtual ApplicationIdentityUserListDto Applicent { get; set; }
         public virtual PostCheckInListDto PostCheckIn { get; set; }
-        public virtual PostRatingListDto PostRating { get; set; }
         
         public virtual PostListDto Post { get; set; }
     }
