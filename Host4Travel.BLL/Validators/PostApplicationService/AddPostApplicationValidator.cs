@@ -1,12 +1,12 @@
 ﻿using System;
 using FluentValidation;
-using Host4Travel.UI;
+using Host4Travel.Core.DTO.PostApplicationService;
 
-namespace Host4Travel.BLL.Validators
+namespace Host4Travel.BLL.Validators.PostApplicationService
 {
-    public class PostApplicationValidator:AbstractValidator<PostApplication>
+    public class AddPostApplicationValidator:AbstractValidator<PostApplicationAddDto>
     {
-        public PostApplicationValidator()
+        public AddPostApplicationValidator()
         {
             RuleFor(x => x.ApplicationDate).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty()
                 .WithMessage("Başvuru tarihi boş geçilemez");
@@ -27,7 +27,6 @@ namespace Host4Travel.BLL.Validators
                 .WithMessage("Başvuru bitiş tarihi bugüne eşit veya daha ilerisi için olmalıdır");
             RuleFor(x => x.ApplicationEndDate).GreaterThanOrEqualTo(x => x.ApplicationStartDate)
                 .WithMessage("Başvuru bitiş tarihi,başvuru başlangıç tarihine eşit veya daha büyük olmalıdır");
-            
         }
     }
 }

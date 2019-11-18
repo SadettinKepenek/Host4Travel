@@ -1,9 +1,16 @@
-﻿using Host4Travel.UI;
+﻿using System;
+using System.Collections.Generic;
+using Host4Travel.Core.DTO.PostApplicationService;
+using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Abstract
 {
     public interface IPostApplicationService
     {
-        
+        List<PostApplicationListDto> GetAllApplications();
+        PostApplicationListDto GetApplicationById(Guid id);
+        void AddApplication(PostApplicationAddDto dto);
+        void UpdateApplication(PostApplicationUpdateDto dto);
+        void DeleteApplication(PostApplicationDeleteDto dto);
     }
 }

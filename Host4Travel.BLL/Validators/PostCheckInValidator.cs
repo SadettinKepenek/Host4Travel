@@ -8,7 +8,7 @@ namespace Host4Travel.BLL.Validators
     {
         public PostCheckInValidator()
         {
-            RuleFor(x => x.Application).Cascade(CascadeMode.StopOnFirstFailure).SetValidator(new PostApplicationValidator());
+//            RuleFor(x => x.Application).Cascade(CascadeMode.StopOnFirstFailure).SetValidator(new PostApplicationValidator());
             RuleFor(x => x.ApplicationId).NotNull().NotEmpty()
                 .WithMessage("CheckIn hangi başvuru için yapıldığı girilmedi.");
             RuleFor(x => x.IsActive).NotNull().NotEmpty().WithMessage("CheckIn aktiflik durumu belirtilmelidir");
