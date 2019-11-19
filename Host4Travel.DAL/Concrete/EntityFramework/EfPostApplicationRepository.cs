@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Host4Travel.Core.DAL.Concrete.EntityFramework;
 using Host4Travel.DAL.Abstract;
+using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Microsoft.EntityFrameworkCore;
 
