@@ -17,26 +17,5 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public PostDiscussion Get(Expression<Func<PostDiscussion, bool>> filter = null)
-        {
-            return null;
-        }
-
-        public List<PostDiscussion> GetAll(Expression<Func<PostDiscussion, bool>> filter = null)
-        {
-            return null;
-        }
-
-        public void Add(PostDiscussion entity)
-        {
-        }
-
-        public void Update(PostDiscussion entity)
-        {
-        }
-
-        public void Delete(PostDiscussion entity)
-        {
-        }
     }
 }
