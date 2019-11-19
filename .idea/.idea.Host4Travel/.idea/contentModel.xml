@@ -12,8 +12,12 @@
           <e p="CategoriesController.cs" t="Include" />
           <e p="CategoriesRewardsController.cs" t="Include" />
           <e p="PostApplicationsController.cs" t="Include" />
+
           <e p="PostCategoryRewardsController.cs" t="Include" />
           <e p="PostDiscussionsController.cs" t="Include" />
+
+          <e p="PostCheckInsController.cs" t="Include" />
+
           <e p="PostImagesController.cs" t="Include" />
           <e p="PostRatingsController.cs" t="Include" />
           <e p="PostsController.cs" t="Include" />
@@ -117,11 +121,18 @@
             <e p="AddPostCategoryRewardValidator.cs" t="Include" />
             <e p="DeletePostCategoryRewardValidator.cs" t="Include" />
           </e>
+
           <e p="PostCheckInValidator.cs" t="Include" />
           <e p="PostDiscussionService" t="Include">
             <e p="AddPostDiscussionValidator.cs" t="Include" />
             <e p="DeletePostDiscussionValidator.cs" t="Include" />
             <e p="UpdatePostDiscussionValidator.cs" t="Include" />
+
+          <e p="PostCheckInService" t="Include">
+            <e p="AddPostCheckInValidator.cs" t="Include" />
+            <e p="DeletePostCheckInValidator.cs" t="Include" />
+            <e p="UpdatePostCheckInValidator.cs" t="Include" />
+
           </e>
           <e p="PostDiscussionValidator.cs" t="Include" />
           <e p="PostImageService" t="Include">
