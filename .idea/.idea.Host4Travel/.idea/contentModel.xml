@@ -16,6 +16,7 @@
           <e p="CategoriesController.cs" t="Include" />
           <e p="CategoriesRewardsController.cs" t="Include" />
           <e p="PostApplicationsController.cs" t="Include" />
+          <e p="PostImagesController.cs" t="Include" />
           <e p="PostRatingsController.cs" t="Include" />
           <e p="PostsController.cs" t="Include" />
           <e p="RewardsController.cs" t="Include" />
