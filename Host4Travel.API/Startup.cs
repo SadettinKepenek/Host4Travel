@@ -118,6 +118,8 @@ namespace Host4Travel.API
             services.AddScoped<IPostApplicationDal, EfPostApplicationRepository>();
             services.AddScoped<IPostRatingService, PostRatingManager>();
             services.AddScoped<IPostRatingDal, EfPostRatingRepository>();
+            services.AddScoped<IPostCheckInDal, EfPostCheckInRepository>();
+            services.AddScoped<IPostCheckInService, PostCheckInManager>();
             
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
