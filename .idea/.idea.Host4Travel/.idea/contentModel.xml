@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\berka\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.1964724786.00" t="ExcludeRecursive" />
-    <e p="C:\Users\berka\RiderProjects\Host4Travel" t="IncludeFlat">
-      <e p=".git\info\exclude" t="IncludeRecursive" />
+    <e p="C:\Users\Lenovo-2\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Lenovo-2\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.-933768847.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Lenovo-2\RiderProjects\Host4Travel" t="IncludeFlat">
       <e p="Host4Travel.API" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
@@ -15,6 +11,8 @@
         <e p="Controllers" t="Include">
           <e p="CategoriesController.cs" t="Include" />
           <e p="CategoriesRewardsController.cs" t="Include" />
+
+          <e p="PostCategoryRewardsController.cs" t="Include" />
           <e p="PostApplicationsController.cs" t="Include" />
           <e p="PostImagesController.cs" t="Include" />
           <e p="PostRatingsController.cs" t="Include" />
@@ -189,6 +187,7 @@
             <e p="PostCategoryRewardAddDto.cs" t="Include" />
             <e p="PostCategoryRewardDeleteDto.cs" t="Include" />
             <e p="PostCategoryRewardListDto.cs" t="Include" />
+            <e p="PostCategoryRewardUpdateDto.cs" t="Include" />
           </e>
           <e p="PostCheckInService" t="Include">
             <e p="PostCheckInAddDto.cs" t="Include" />
@@ -381,7 +380,6 @@
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
-        <e p="node_modules\jquery" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
