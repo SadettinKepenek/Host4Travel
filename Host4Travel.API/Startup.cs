@@ -15,6 +15,9 @@ using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,17 +45,18 @@ namespace Host4Travel.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+//            services.AddDataProtection().UseCryptographicAlgorithms(new AuthenticatedEncryptorConfiguration()
+//            {
+//                EncryptionAlgorithm = EncryptionAlgorithm.AES_256_GCM,
+//                ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+//            });
+//            
             ConfigureAutoMapperService(services);
             services.AddControllers().AddNewtonsoftJson(opt =>
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             
             
             ConfigureInjections(services);
-
-
-   
-            
-            
             
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
@@ -66,8 +70,8 @@ namespace Host4Travel.API
 
        
             var key = Encoding.ASCII.GetBytes(Core.SystemSettings.Configuration.SecretKey);
-            
-            
+
+
             services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -77,12 +81,14 @@ namespace Host4Travel.API
                 {
                     x.RequireHttpsMetadata = false;
                     x.SaveToken = true;
+                    x.RefreshOnIssuerKeyNotFound = true;
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidateAudience = false,
+
                     };
                 });
 
@@ -120,6 +126,7 @@ namespace Host4Travel.API
             services.AddScoped<IPostRatingDal, EfPostRatingRepository>();
             services.AddScoped<IPostCheckInDal, EfPostCheckInRepository>();
             services.AddScoped<IPostCheckInService, PostCheckInManager>();
+            services.AddScoped<ICrpytoService, CrpytoManager>();
             
             
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

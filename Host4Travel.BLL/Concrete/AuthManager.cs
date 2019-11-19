@@ -26,16 +26,18 @@ namespace Host4Travel.BLL.Concrete
         private readonly UserManager<ApplicationIdentityUser> _userManager;
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly IPasswordHasher<ApplicationIdentityUser> _passwordHasher;
+        private ICrpytoService _crpytoService;
         private IExceptionHandler _exceptionHandler;
 
         public AuthService(UserManager<ApplicationIdentityUser> userManager,
             SignInManager<ApplicationIdentityUser> signInManager,
-            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler)
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
             _exceptionHandler = exceptionHandler;
+            _crpytoService = crpytoService;
         }
 
         public IdentityLoginResponseDto Login(IdentityLoginRequestDto dto)
@@ -51,7 +53,13 @@ namespace Host4Travel.BLL.Concrete
 
                 //
                 var user = _userManager.FindByNameAsync(dto.Username).Result;
-                var resultSucceeded = MatchPasswordAndHash(user, dto.Password);
+                if (user==null)
+                {
+                    throw new NullReferenceException();
+                }
+
+                var decryptedPassword = _crpytoService.Decrypt(dto.Password);
+                var resultSucceeded = MatchPasswordAndHash(user, decryptedPassword);
                 if (resultSucceeded)
                 {
                     var generateTokenModel = GenerateToken(user, Configuration.TokenExpirationDate);
@@ -119,10 +127,10 @@ namespace Host4Travel.BLL.Concrete
                     CookieAcceptIpAddress = applicationIdentityUserAddModel.CookieAcceptIpAddress,
                     SSN = applicationIdentityUserAddModel.Ssn
                 };
-
+                string decryptedPassword = _crpytoService.Decrypt(password);
                 var createdUser =
                     _userManager.CreateAsync(
-                        identityUser, password);
+                        identityUser, decryptedPassword);
                 if (!createdUser.Result.Succeeded)
                 {
                     throw new Exception("Kayıt sırasında hata oluştu.");

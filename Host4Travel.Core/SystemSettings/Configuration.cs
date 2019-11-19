@@ -10,5 +10,7 @@ namespace Host4Travel.Core.SystemSettings
             "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
 
         public static DateTime TokenExpirationDate { get; } = DateTime.UtcNow.AddDays(7);
+
+        public static string CrpytoKey { get; } = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING";
     }
 }
