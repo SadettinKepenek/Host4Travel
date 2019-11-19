@@ -114,6 +114,12 @@ namespace Host4Travel.API
             services.AddScoped<IRewardService, RewardManager>();
             services.AddScoped<ICategoryRewardService, CategoryRewardManager>();
             services.AddScoped<ICategoryRewardDal, EfCategoryRewardRepository>();
+            services.AddScoped<IPostApplicationService, PostApplicationManager>();
+            services.AddScoped<IPostApplicationDal, EfPostApplicationRepository>();
+            services.AddScoped<IPostRatingService, PostRatingManager>();
+            services.AddScoped<IPostRatingDal, EfPostRatingRepository>();
+            
+            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IPasswordHasher<ApplicationIdentityUser>, PasswordHasher<ApplicationIdentityUser>>();
             
