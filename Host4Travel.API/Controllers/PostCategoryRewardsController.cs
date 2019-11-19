@@ -45,7 +45,7 @@ namespace Host4Travel.API.Controllers
             return Ok(postCategoryReward);
         }
         [HttpPost("Add")]
-        public async Task<IActionResult> Add(PostCategoryRewardAddDto dto)
+        public async Task<IActionResult> Add([FromBody]PostCategoryRewardAddDto dto)
         {
             try
             {
