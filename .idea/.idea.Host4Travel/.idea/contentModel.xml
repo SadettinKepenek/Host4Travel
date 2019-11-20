@@ -189,6 +189,16 @@
             <e p="CategoryListDto.cs" t="Include" />
             <e p="CategoryUpdateDto.cs" t="Include" />
           </e>
+          <e p="DocumentService" t="Include">
+            <e p="DocumentAddDto.cs" t="Include" />
+            <e p="DocumentDeleteDto.cs" t="Include" />
+            <e p="DocumentUpdateDto.cs" t="Include" />
+          </e>
+          <e p="DocumentTypeService" t="Include">
+            <e p="DocumentTypeAddDto.cs" t="Include" />
+            <e p="DocumentTypeDeleteDto.cs" t="Include" />
+            <e p="DocumentTypeUpdateDto.cs" t="Include" />
+          </e>
           <e p="LoggerService" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
@@ -289,6 +299,8 @@
           <e p="ICategoryRewardDal.cs" t="Include" />
           <e p="IChatDal.cs" t="Include" />
           <e p="IChatMessageDal.cs" t="Include" />
+          <e p="IDocumentDal.cs" t="Include" />
+          <e p="IDocumentTypeDal.cs" t="Include" />
           <e p="ILogDal.cs" t="Include" />
           <e p="IPostApplicationDal.cs" t="Include" />
           <e p="IPostCategoryRewardDal.cs" t="Include" />
@@ -307,6 +319,8 @@
             <e p="EfCategoryRewardRepository.cs" t="Include" />
             <e p="EfChatMessageRepository.cs" t="Include" />
             <e p="EfChatRepository.cs" t="Include" />
+            <e p="EfDocumentRepository.cs" t="Include" />
+            <e p="EfDocumentTypeRepository.cs" t="Include" />
             <e p="EfLogRepository.cs" t="Include" />
             <e p="EfPostApplicationRepository.cs" t="Include" />
             <e p="EfPostCategoryRewardRepository.cs" t="Include" />

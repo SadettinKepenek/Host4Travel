@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,5 +15,6 @@ namespace Host4Travel.Entities.Concrete
         public string Lastname { get; set; }
         public string SSN { get; set; }
         public string CookieAcceptIpAddress { get; set; }
+        public DateTime CookieAcceptDate { get; set; }
     }
 }
