@@ -2,6 +2,8 @@
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.DTO.CategoryRewardService;
 using Host4Travel.Core.DTO.CategoryService;
+using Host4Travel.Core.DTO.DocumentService;
+using Host4Travel.Core.DTO.DocumentTypeService;
 using Host4Travel.Core.DTO.PostApplicationService;
 using Host4Travel.Core.DTO.PostCategoryRewardService;
 using Host4Travel.Core.DTO.PostCheckInService;
@@ -67,6 +69,17 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostAddDto,Post>();
             CreateMap<PostUpdateDto,Post>();
             CreateMap<PostDiscussionDeleteDto,Post>();
+
+
+            CreateMap<Document, DocumentListDto>().ReverseMap();
+            CreateMap<DocumentAddDto, Document>();
+            CreateMap<DocumentUpdateDto, Document>();
+            CreateMap<DocumentDeleteDto, Document>();
+            
+            CreateMap<DocumentType, DocumentTypeListDto>().ReverseMap();
+            CreateMap<DocumentTypeAddDto, DocumentType>();
+            CreateMap<DocumentTypeUpdateDto, DocumentType>();
+            CreateMap<DocumentTypeDeleteDto, DocumentType>();
 
             CreateMap<ApplicationIdentityUser, ApplicationIdentityUserListDto>().ReverseMap();
             CreateMap<ApplicationIdentityUserAddDto, ApplicationIdentityUser>();

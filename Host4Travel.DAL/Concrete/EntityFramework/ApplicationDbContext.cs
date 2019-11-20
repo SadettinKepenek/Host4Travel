@@ -10,7 +10,8 @@ using Microsoft.Extensions.Options;
 
 namespace Host4Travel.UI
 {
-    public partial class ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser,ApplicationIdentityRole,string>
+    public partial class
+        ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser, ApplicationIdentityRole, string>
     {
         public ApplicationDbContext()
         {
@@ -33,7 +34,7 @@ namespace Host4Travel.UI
         public virtual DbSet<PostImage> PostImage { get; set; }
         public virtual DbSet<PostRating> PostRating { get; set; }
         public virtual DbSet<Reward> Reward { get; set; }
-    
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,7 +48,10 @@ namespace Host4Travel.UI
         {
             modelBuilder.Entity<ApplicationIdentityUser>(b =>
                 {
-                    b.Property(e => e.CookieAcceptIpAddress).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptIpAddress).HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptDate).HasColumnName("datetime").IsRequired();
+                    b.Property(e => e.IsVerified).HasDefaultValueSql("0");
+                    b.Property(e => e.IsActive).IsRequired().HasDefaultValueSql("0");
                     b.Property(e => e.SSN).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Firstname).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Lastname).IsRequired().HasMaxLength(100);
@@ -96,7 +100,8 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<Chat>(entity =>
             {
-                entity.Property(e => e.ChatId).HasDefaultValueSql("NEWID()");;
+                entity.Property(e => e.ChatId).HasDefaultValueSql("NEWID()");
+                ;
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
 
@@ -118,7 +123,8 @@ namespace Host4Travel.UI
 
             modelBuilder.Entity<ChatMessage>(entity =>
             {
-                entity.Property(e => e.ChatMessageId).HasDefaultValueSql("NEWID()");;
+                entity.Property(e => e.ChatMessageId).HasDefaultValueSql("NEWID()");
+                ;
 
                 entity.Property(e => e.Message).IsRequired();
 
@@ -162,14 +168,12 @@ namespace Host4Travel.UI
                     .HasForeignKey(d => d.OwnerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Post_AspNetUsers");
-                
+
                 entity.HasOne(d => d.PostCheckIn)
                     .WithOne(p => p.Post)
                     .HasForeignKey<PostCheckIn>(d => d.PostId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostCheckIn_Post");
-                
-                
             });
 
             modelBuilder.Entity<PostApplication>(entity =>
@@ -185,30 +189,29 @@ namespace Host4Travel.UI
                 entity.Property(e => e.ApplicentId)
                     .IsRequired()
                     .HasMaxLength(450);
-                
+
                 entity.HasOne(d => d.Applicent)
                     .WithMany(p => p.PostApplication)
                     .HasForeignKey(d => d.ApplicentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostApplication_AspNetUsers");
-                
-               entity.HasOne(d=>d.PostCheckIn)
-                   .WithOne(p=>p.Application)
-                   .HasForeignKey<PostCheckIn>(x=>x.ApplicationId)
-                   .OnDelete(DeleteBehavior.ClientSetNull)
-                   .HasConstraintName("FK_PostApplication_PostCheckIn");
-                
+
+                entity.HasOne(d => d.PostCheckIn)
+                    .WithOne(p => p.Application)
+                    .HasForeignKey<PostCheckIn>(x => x.ApplicationId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PostApplication_PostCheckIn");
+
                 entity.HasOne(d => d.PostRating)
                     .WithOne(p => p.Application)
                     .HasForeignKey<PostRating>(d => d.ApplicationId)
                     .HasConstraintName("FK_PostRating_PostApplication");
-                
+
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.PostApplication)
                     .HasForeignKey(d => d.PostId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PostApplication_Post");
-                
             });
 
             modelBuilder.Entity<PostCategoryReward>(entity =>
@@ -247,9 +250,6 @@ namespace Host4Travel.UI
                 entity.Property(e => e.CheckInEndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.CheckInStartDate).HasColumnType("datetime");
-
-                
-                
             });
 
             modelBuilder.Entity<PostDiscussion>(entity =>
@@ -304,7 +304,7 @@ namespace Host4Travel.UI
                 entity.Property(e => e.RatingComment).HasMaxLength(250);
 
                 entity.Property(e => e.RatingReply).HasMaxLength(250);
-                
+
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.PostRating)
                     .HasForeignKey(d => d.OwnerId)
@@ -328,6 +328,29 @@ namespace Host4Travel.UI
                     .IsRequired()
                     .HasMaxLength(250);
                 entity.HasIndex(p => new {p.RewardName}).IsUnique();
+            });
+
+            modelBuilder.Entity<Document>(entity =>
+            {
+                entity.Property(e => e.DocumentId).HasDefaultValueSql("NEWID()");
+                entity.Property(e => e.DocumentUrl).IsRequired().HasMaxLength(250);
+                entity.Property(e => e.DocumentUploadDate).IsRequired().HasColumnType("datetime");
+                entity.Property(e => e.OwnerId).IsRequired().HasMaxLength(450);
+                entity.Property(e => e.DocumentTypeId).IsRequired();
+                entity.Property(x => x.IsActive).IsRequired();
+                entity.Property(x => x.IsVerified).HasDefaultValueSql("0");
+
+                entity.HasOne(d => d.Owner).WithMany(x => x.Documents).HasForeignKey(d => d.OwnerId)
+                    .HasConstraintName("FK_Document_ApplicationIdentityUser");
+            });
+
+            modelBuilder.Entity<DocumentType>(entity =>
+            {
+                entity.Property(x => x.DocumentTypeId).UseIdentityColumn();
+                entity.Property(x => x.DocumentTypeName).IsRequired().HasMaxLength(400);
+                entity.Property(x => x.IsActive).IsRequired();
+                entity.HasMany(x => x.Documents).WithOne(x => x.DocumentType).HasForeignKey(x => x.DocumentTypeId)
+                    .HasConstraintName("FK_DocumentType_Document");
             });
 
             modelBuilder.Entity<Log>(entity =>

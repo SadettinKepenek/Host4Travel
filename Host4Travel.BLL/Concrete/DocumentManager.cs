@@ -1,61 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using AutoMapper;
+using FluentValidation;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.BLL.Validators.PostService;
-using Host4Travel.Core.DTO.PostService;
+using Host4Travel.BLL.Validators.DocumentService;
+using Host4Travel.Core.DTO.DocumentService;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.Entities.Concrete;
-using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Concrete
 {
-    public class PostManager : IPostService
+    public class DocumentManager:IDocumentService
     {
-        private readonly IPostDal _postDal;
-        private IMapper _mapper;
         private IExceptionHandler _exceptionHandler;
+        private IDocumentDal _documentDal;
+        private IMapper _mapper;
 
-        public PostManager(IPostDal postDal, IMapper mapper, IExceptionHandler exceptionHandler)
+        public DocumentManager(IExceptionHandler exceptionHandler, IDocumentDal documentDal, IMapper mapper)
         {
-            _postDal = postDal;
-            _mapper = mapper;
             _exceptionHandler = exceptionHandler;
-      
+            _documentDal = documentDal;
+            _mapper = mapper;
         }
-
-        public List<PostListDto> GetAllPosts()
+        public List<DocumentListDto> GetAll()
         {
-            var posts = _postDal.GetList();
-            if (posts==null)
+            var documents = _documentDal.GetList();
+            if (documents==null)
             {
                 return null;
             }
 
-            var mappedPosts = _mapper.Map<List<PostListDto>>(posts);
-            return mappedPosts;
+            var mappedDocuments = _mapper.Map<List<DocumentListDto>>(documents);
+            return mappedDocuments;
         }
 
-        public PostDetailDto GetPost(Guid postId)
+        public DocumentListDto GetById(Guid id)
         {
-            var post = _postDal.Get(x=>x.PostId==postId);
-            if (post==null)
+            var document = _documentDal.Get(x => x.DocumentId == id);
+            if (document==null)
             {
                 return null;
             }
 
-            var mappedPost = _mapper.Map<PostDetailDto>(post);
-            return mappedPost;
+            var mappedDocument = _mapper.Map<DocumentListDto>(document);
+            return mappedDocument;
         }
 
-        public void AddPost(PostAddDto model)
+        public void Add(DocumentAddDto model)
         {
             try
             {
-                PostAddValidator validator=new PostAddValidator();
+                AddDocumentValidator validator=new AddDocumentValidator();
                 var validationResult = validator.Validate(model);
                 if (!validationResult.IsValid)
                 {
@@ -63,46 +60,14 @@ namespace Host4Travel.BLL.Concrete
                 }
                 else
                 {
-                    if (_postDal.IsExists(x=>x.OwnerId==model.OwnerId && x.PostTitle==model.PostTitle && x.PostType==model.PostType && x.Latitude ==model.Latitude && x.Longitude==model.Longitude))
+                    if (_documentDal.IsExists(x=>x.DocumentTypeId==model.DocumentTypeId && x.OwnerId==model.OwnerId))
                     {
-                        throw new UniqueConstraintException("Eklenmek istenilen post zaten mevcut");
+                        throw new UniqueConstraintException("Kullanıcı için belirtilen türde döküman zaten var");
                     }
                     else
                     {
-                        var mappedEntity = _mapper.Map<Post>(model);
-                        _postDal.Add(mappedEntity);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw _exceptionHandler.HandleServiceException(e);
-            }
-            
-        }
-
-    
-
-        public void UpdatePost(PostUpdateDto model)
-        {
-            try
-            {
-                PostUpdateValidator validator=new PostUpdateValidator();
-                var validationResult = validator.Validate(model);
-                if (!validationResult.IsValid)
-                {
-                    throw new ValidationFailureException(validationResult.ToString());
-                }
-                else
-                {
-                    if (!_postDal.IsExists(x=>x.PostId==model.PostId))
-                    {
-                        throw new NullReferenceException("Eklenmek istenilen post bulunamadı");
-                    }
-                    else
-                    {
-                        var mappedEntity = _mapper.Map<Post>(model);
-                        _postDal.Update(mappedEntity);
+                        var mappedEntity = _mapper.Map<Document>(model);
+                        _documentDal.Add(mappedEntity);
                     }
                 }
             }
@@ -112,11 +77,11 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public void DeletePost(PostDeleteDto model)
+        public void Update(DocumentUpdateDto model)
         {
             try
             {
-                PostDeleteValidator validator=new PostDeleteValidator();
+                UpdateDocumentValidator validator=new UpdateDocumentValidator();
                 var validationResult = validator.Validate(model);
                 if (!validationResult.IsValid)
                 {
@@ -124,15 +89,43 @@ namespace Host4Travel.BLL.Concrete
                 }
                 else
                 {
-                    if (!_postDal.IsExists(x=>x.PostId==model.PostId))
+                    if (!_documentDal.IsExists(x=>x.DocumentId==model.DocumentId))
                     {
-                        throw new NullReferenceException("Eklenmek istenilen post bulunamadı");
+                        throw new NullReferenceException();
                     }
                     else
                     {
-                        var mappedEntity = _mapper.Map<Post>(model);
-                        
-                        _postDal.Delete(mappedEntity);
+                        var mappedEntity = _mapper.Map<Document>(model);
+                        _documentDal.Update(mappedEntity);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw _exceptionHandler.HandleServiceException(e);
+            }
+        }
+
+        public void Delete(DocumentDeleteDto model)
+        {
+            try
+            {
+                DeleteDocumentValidator validator=new DeleteDocumentValidator();
+                var validationResult = validator.Validate(model);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(validationResult.ToString());
+                }
+                else
+                {
+                    if (!_documentDal.IsExists(x=>x.DocumentId==model.DocumentId))
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else
+                    {
+                        var mappedEntity = _mapper.Map<Document>(model);
+                        _documentDal.Delete(mappedEntity);
                     }
                 }
             }

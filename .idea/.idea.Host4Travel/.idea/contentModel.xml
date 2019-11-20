@@ -59,6 +59,8 @@
           <e p="IChatMessageService.cs" t="Include" />
           <e p="IChatService.cs" t="Include" />
           <e p="ICrpytoService.cs" t="Include" />
+          <e p="IDocumentService.cs" t="Include" />
+          <e p="IDocumentTypeService.cs" t="Include" />
           <e p="ILogService.cs" t="Include" />
           <e p="IPostApplicationService.cs" t="Include" />
           <e p="IPostCategoryRewardService.cs" t="Include" />
@@ -78,6 +80,8 @@
           <e p="ChatMessageManager.cs" t="Include" />
           <e p="CrpytoManager.cs" t="Include" />
           <e p="DatabaseLogManager.cs" t="Include" />
+          <e p="DocumentManager.cs" t="Include" />
+          <e p="DocumentTypeManager.cs" t="Include" />
           <e p="PostApplicationManager.cs" t="Include" />
           <e p="PostCategoryRewardManager.cs" t="Include" />
           <e p="PostCheckInManager.cs" t="Include" />
@@ -114,6 +118,16 @@
           </e>
           <e p="ChatMessageValidator.cs" t="Include" />
           <e p="ChatValidator.cs" t="Include" />
+          <e p="DocumentService" t="Include">
+            <e p="AddDocumentValidator.cs" t="Include" />
+            <e p="DeleteDocumentValidator.cs" t="Include" />
+            <e p="UpdateDocumentValidator.cs" t="Include" />
+          </e>
+          <e p="DocumentTypeService" t="Include">
+            <e p="AddDocumentTypeValidator.cs" t="Include" />
+            <e p="DeleteDocumentTypeValidator.cs" t="Include" />
+            <e p="UpdateDocumentTypeValidator.cs" t="Include" />
+          </e>
           <e p="LogValidator.cs" t="Include" />
           <e p="PostApplicationService" t="Include">
             <e p="AddPostApplicationValidator.cs" t="Include" />
@@ -188,6 +202,18 @@
             <e p="CategoryDeleteDto.cs" t="Include" />
             <e p="CategoryListDto.cs" t="Include" />
             <e p="CategoryUpdateDto.cs" t="Include" />
+          </e>
+          <e p="DocumentService" t="Include">
+            <e p="DocumentAddDto.cs" t="Include" />
+            <e p="DocumentDeleteDto.cs" t="Include" />
+            <e p="DocumentListDto.cs" t="Include" />
+            <e p="DocumentUpdateDto.cs" t="Include" />
+          </e>
+          <e p="DocumentTypeService" t="Include">
+            <e p="DocumentTypeAddDto.cs" t="Include" />
+            <e p="DocumentTypeDeleteDto.cs" t="Include" />
+            <e p="DocumentTypeListDto.cs" t="Include" />
+            <e p="DocumentTypeUpdateDto.cs" t="Include" />
           </e>
           <e p="LoggerService" t="Include">
             <e p="LogLevel.cs" t="Include" />
@@ -289,6 +315,8 @@
           <e p="ICategoryRewardDal.cs" t="Include" />
           <e p="IChatDal.cs" t="Include" />
           <e p="IChatMessageDal.cs" t="Include" />
+          <e p="IDocumentDal.cs" t="Include" />
+          <e p="IDocumentTypeDal.cs" t="Include" />
           <e p="ILogDal.cs" t="Include" />
           <e p="IPostApplicationDal.cs" t="Include" />
           <e p="IPostCategoryRewardDal.cs" t="Include" />
@@ -307,6 +335,8 @@
             <e p="EfCategoryRewardRepository.cs" t="Include" />
             <e p="EfChatMessageRepository.cs" t="Include" />
             <e p="EfChatRepository.cs" t="Include" />
+            <e p="EfDocumentRepository.cs" t="Include" />
+            <e p="EfDocumentTypeRepository.cs" t="Include" />
             <e p="EfLogRepository.cs" t="Include" />
             <e p="EfPostApplicationRepository.cs" t="Include" />
             <e p="EfPostCategoryRewardRepository.cs" t="Include" />
@@ -337,6 +367,8 @@
           <e p="CategoryReward.cs" t="Include" />
           <e p="Chat.cs" t="Include" />
           <e p="ChatMessage.cs" t="Include" />
+          <e p="Document.cs" t="Include" />
+          <e p="DocumentType.cs" t="Include" />
           <e p="Log.cs" t="Include" />
           <e p="Post.cs" t="Include" />
           <e p="PostApplication.cs" t="Include" />
@@ -393,6 +425,10 @@
           <e p="20191118182152_Modify_Relations.Designer.cs" t="Include" />
           <e p="20191118182800_Modify_Relations_2.cs" t="Include" />
           <e p="20191118182800_Modify_Relations_2.Designer.cs" t="Include" />
+          <e p="20191120204053_Add_User_Documents.cs" t="Include" />
+          <e p="20191120204053_Add_User_Documents.Designer.cs" t="Include" />
+          <e p="20191120205807_Add_ApplicationIdentityUser_Columns.cs" t="Include" />
+          <e p="20191120205807_Add_ApplicationIdentityUser_Columns.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
