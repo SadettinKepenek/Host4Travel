@@ -337,6 +337,8 @@
           <e p="CategoryReward.cs" t="Include" />
           <e p="Chat.cs" t="Include" />
           <e p="ChatMessage.cs" t="Include" />
+          <e p="Document.cs" t="Include" />
+          <e p="DocumentType.cs" t="Include" />
           <e p="Log.cs" t="Include" />
           <e p="Post.cs" t="Include" />
           <e p="PostApplication.cs" t="Include" />
