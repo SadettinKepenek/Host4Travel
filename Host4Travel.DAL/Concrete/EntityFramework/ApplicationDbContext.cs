@@ -48,7 +48,10 @@ namespace Host4Travel.UI
         {
             modelBuilder.Entity<ApplicationIdentityUser>(b =>
                 {
-                    b.Property(e => e.CookieAcceptIpAddress).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptIpAddress).HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptDate).HasColumnName("datetime").IsRequired();
+                    b.Property(e => e.IsVerified).HasDefaultValueSql("0");
+                    b.Property(e => e.IsActive).IsRequired().HasDefaultValueSql("0");
                     b.Property(e => e.SSN).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Firstname).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Lastname).IsRequired().HasMaxLength(100);

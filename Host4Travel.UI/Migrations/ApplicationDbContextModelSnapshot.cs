@@ -58,8 +58,11 @@ namespace Host4Travel.UI.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CookieAcceptDate")
+                        .HasColumnName("datetime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("CookieAcceptIpAddress")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -74,6 +77,19 @@ namespace Host4Travel.UI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
+
+                    b.Property<bool>("IsCookieAccepted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVerified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValueSql("0");
 
                     b.Property<string>("Lastname")
                         .IsRequired()

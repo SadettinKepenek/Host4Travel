@@ -16,5 +16,8 @@ namespace Host4Travel.Entities.Concrete
         public string SSN { get; set; }
         public string CookieAcceptIpAddress { get; set; }
         public DateTime CookieAcceptDate { get; set; }
+        public bool IsCookieAccepted { get; set; }
+        public bool IsVerified { get; set; }
+        public bool IsActive { get; set; }
     }
 }
