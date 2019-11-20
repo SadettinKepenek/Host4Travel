@@ -81,6 +81,7 @@
           <e p="CrpytoManager.cs" t="Include" />
           <e p="DatabaseLogManager.cs" t="Include" />
           <e p="DocumentManager.cs" t="Include" />
+          <e p="DocumentTypeManager.cs" t="Include" />
           <e p="PostApplicationManager.cs" t="Include" />
           <e p="PostCategoryRewardManager.cs" t="Include" />
           <e p="PostCheckInManager.cs" t="Include" />

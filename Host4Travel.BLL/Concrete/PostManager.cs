@@ -16,7 +16,6 @@ namespace Host4Travel.BLL.Concrete
     public class PostManager : IPostService
     {
         private readonly IPostDal _postDal;
-   
         private IMapper _mapper;
         private IExceptionHandler _exceptionHandler;
 
@@ -27,7 +26,6 @@ namespace Host4Travel.BLL.Concrete
             _exceptionHandler = exceptionHandler;
       
         }
-
 
         public List<PostListDto> GetAllPosts()
         {
