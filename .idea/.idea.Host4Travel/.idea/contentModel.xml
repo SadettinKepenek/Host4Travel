@@ -59,6 +59,8 @@
           <e p="IChatMessageService.cs" t="Include" />
           <e p="IChatService.cs" t="Include" />
           <e p="ICrpytoService.cs" t="Include" />
+          <e p="IDocumentService.cs" t="Include" />
+          <e p="IDocumentTypeService.cs" t="Include" />
           <e p="ILogService.cs" t="Include" />
           <e p="IPostApplicationService.cs" t="Include" />
           <e p="IPostCategoryRewardService.cs" t="Include" />
@@ -78,6 +80,7 @@
           <e p="ChatMessageManager.cs" t="Include" />
           <e p="CrpytoManager.cs" t="Include" />
           <e p="DatabaseLogManager.cs" t="Include" />
+          <e p="DocumentManager.cs" t="Include" />
           <e p="PostApplicationManager.cs" t="Include" />
           <e p="PostCategoryRewardManager.cs" t="Include" />
           <e p="PostCheckInManager.cs" t="Include" />
@@ -202,11 +205,13 @@
           <e p="DocumentService" t="Include">
             <e p="DocumentAddDto.cs" t="Include" />
             <e p="DocumentDeleteDto.cs" t="Include" />
+            <e p="DocumentListDto.cs" t="Include" />
             <e p="DocumentUpdateDto.cs" t="Include" />
           </e>
           <e p="DocumentTypeService" t="Include">
             <e p="DocumentTypeAddDto.cs" t="Include" />
             <e p="DocumentTypeDeleteDto.cs" t="Include" />
+            <e p="DocumentTypeListDto.cs" t="Include" />
             <e p="DocumentTypeUpdateDto.cs" t="Include" />
           </e>
           <e p="LoggerService" t="Include">
