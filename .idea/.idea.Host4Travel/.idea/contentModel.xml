@@ -114,6 +114,16 @@
           </e>
           <e p="ChatMessageValidator.cs" t="Include" />
           <e p="ChatValidator.cs" t="Include" />
+          <e p="DocumentService" t="Include">
+            <e p="AddDocumentValidator.cs" t="Include" />
+            <e p="DeleteDocumentValidator.cs" t="Include" />
+            <e p="UpdateDocumentValidator.cs" t="Include" />
+          </e>
+          <e p="DocumentTypeService" t="Include">
+            <e p="AddDocumentTypeValidator.cs" t="Include" />
+            <e p="DeleteDocumentTypeValidator.cs" t="Include" />
+            <e p="UpdateDocumentTypeValidator.cs" t="Include" />
+          </e>
           <e p="LogValidator.cs" t="Include" />
           <e p="PostApplicationService" t="Include">
             <e p="AddPostApplicationValidator.cs" t="Include" />
@@ -411,6 +421,8 @@
           <e p="20191118182800_Modify_Relations_2.Designer.cs" t="Include" />
           <e p="20191120204053_Add_User_Documents.cs" t="Include" />
           <e p="20191120204053_Add_User_Documents.Designer.cs" t="Include" />
+          <e p="20191120205807_Add_ApplicationIdentityUser_Columns.cs" t="Include" />
+          <e p="20191120205807_Add_ApplicationIdentityUser_Columns.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
