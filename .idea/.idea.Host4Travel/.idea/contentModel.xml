@@ -395,6 +395,8 @@
           <e p="20191118182152_Modify_Relations.Designer.cs" t="Include" />
           <e p="20191118182800_Modify_Relations_2.cs" t="Include" />
           <e p="20191118182800_Modify_Relations_2.Designer.cs" t="Include" />
+          <e p="20191120204053_Add_User_Documents.cs" t="Include" />
+          <e p="20191120204053_Add_User_Documents.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
