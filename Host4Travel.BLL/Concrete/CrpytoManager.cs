@@ -36,6 +36,7 @@ namespace Host4Travel.BLL.Concrete
 
         public string Encrypt(string input)
         {
+            return input;
             // Salt and IV is randomly generated each time, but is preprended to encrypted cipher text
             // so that the same Salt and IV values can be used when decrypting.  
             byte[] saltStringBytes = GenerateBitsOfRandomEntropy(32);
@@ -65,6 +66,7 @@ namespace Host4Travel.BLL.Concrete
 
         public string Decrypt(string cipherText)
         {
+            return cipherText;
             // Get the complete stream of bytes that represent:
             // [32 bytes of Salt] + [16 bytes of IV] + [n bytes of CipherText]
             byte[] cipherTextBytesWithSaltAndIv = Convert.FromBase64String(cipherText); 
