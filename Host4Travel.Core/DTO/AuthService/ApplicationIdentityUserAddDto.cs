@@ -11,5 +11,6 @@ namespace Host4Travel.Core.DTO.AuthService
         public string Ssn { get; set; }
         public string CookieAcceptIpAddress { get; set; }
         public string Email { get; set; }
+        
     }
 }

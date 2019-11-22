@@ -28,7 +28,14 @@
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="ResponseModelBase.cs" t="Include" />
+          </e>
           <e p="Categories" t="Include" />
+          <e p="ResponseModels" t="Include">
+            <e p="ResponseModel.cs" t="Include" />
+            <e p="ResponseModelWithData.cs" t="Include" />
+          </e>
           <e p="Roles" t="Include">
             <e p="RolesAddModel.cs" t="Include" />
             <e p="RolesAssignRoleModel.cs" t="Include" />
