@@ -53,7 +53,10 @@ namespace Host4Travel.API
 //            
             ConfigureAutoMapperService(services);
             services.AddControllers().AddNewtonsoftJson(opt =>
-                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                opt.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            });
             
             
             ConfigureInjections(services);
