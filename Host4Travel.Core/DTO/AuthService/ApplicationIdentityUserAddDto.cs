@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace Host4Travel.Core.DTO.AuthService
 {
@@ -11,5 +12,9 @@ namespace Host4Travel.Core.DTO.AuthService
         public string Ssn { get; set; }
         public string CookieAcceptIpAddress { get; set; }
         public string Email { get; set; }
+        public DateTime CookieAcceptDate { get; set; }
+        public bool IsCookieAccepted { get; set; }
+        public bool IsVerified { get; set; }
+        public bool IsActive { get; set; }
     }
 }
