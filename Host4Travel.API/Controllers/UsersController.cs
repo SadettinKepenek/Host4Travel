@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Host4Travel.API.Extensions;
 using Host4Travel.API.Models;
+using Host4Travel.API.Models.Abstract;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -45,23 +47,34 @@ namespace Host4Travel.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] IdentityLoginRequestDto userModel)
         {
-            
+           
             try
             {
                 
                 var result = _authService.Login(userModel);
                 if (result==null)
                 {
-                    return BadRequest();
+                    ResponseModelBase responseModel=new ResponseModel();
+                    responseModel.StatusCode = HttpStatusCode.BadRequest;
+                    responseModel.Message = "No Content";
+                    return BadRequest(responseModel);
                 }
                 else
                 {
-                    return Ok(result);
+                    ResponseModelWithData<IdentityLoginResponseDto> responseModelWithData=new ResponseModelWithData<IdentityLoginResponseDto>();
+                    responseModelWithData.Message = "OK";
+                    responseModelWithData.StatusCode = HttpStatusCode.OK;
+                    responseModelWithData.Data = result;
+                    return Ok(responseModelWithData);
                 }
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel()
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                });
             }
             
 
@@ -76,12 +89,19 @@ namespace Host4Travel.API.Controllers
             
             try
             {
+                ResponseModel responseModel=new ResponseModel();
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Kayıt Başarılı";
                 _authService.Register(user,user.Password);
-                return Ok("Kayıt başarılı");
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                });
             }
         }
 
