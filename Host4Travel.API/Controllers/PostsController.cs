@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -25,12 +28,23 @@ namespace Host4Travel.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAll()
         {
+            
             var posts = _postService.GetAllPosts();
             if (posts==null)
             {
-                return NotFound("Herhangi bir kayıt bulunamadı");
+                ResponseModel model=new ResponseModel()
+                {
+                    Message = "No content",
+                    StatusCode = HttpStatusCode.NoContent
+                };
+                return BadRequest(model);
             }
-            return Ok(posts);
+            return Ok(new ResponseModelWithData<List<PostListDto>>()
+            {
+                Data = posts,
+                Message = "OK",
+                StatusCode = HttpStatusCode.OK
+            });
         }
 
         [HttpGet("Get")]
