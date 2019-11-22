@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\berka\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.1964724786.00" t="ExcludeRecursive" />
-    <e p="C:\Users\berka\RiderProjects\Host4Travel" t="IncludeFlat">
-      <e p=".git\info\exclude" t="IncludeRecursive" />
+    <e p="C:\Users\baris\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\baris\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.-326246080.00" t="ExcludeRecursive" />
+    <e p="C:\Users\baris\RiderProjects" t="IncludeFlat">
       <e p="Host4Travel.API" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
@@ -32,7 +28,14 @@
         </e>
         <e p="Host4Travel.API.csproj" t="IncludeRecursive" />
         <e p="Models" t="Include">
+          <e p="Abstract" t="Include">
+            <e p="ResponseModelBase.cs" t="Include" />
+          </e>
           <e p="Categories" t="Include" />
+          <e p="ResponseModels" t="Include">
+            <e p="ResponseModel.cs" t="Include" />
+            <e p="ResponseModelWithData.cs" t="Include" />
+          </e>
           <e p="Roles" t="Include">
             <e p="RolesAddModel.cs" t="Include" />
             <e p="RolesAssignRoleModel.cs" t="Include" />
