@@ -7,6 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Host4Travel.API.Extensions;
+using Host4Travel.API.Models;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.AuthService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -44,6 +45,7 @@ namespace Host4Travel.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] IdentityLoginRequestDto userModel)
         {
+            
             try
             {
                 
