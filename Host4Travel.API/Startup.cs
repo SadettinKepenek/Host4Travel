@@ -55,7 +55,7 @@ namespace Host4Travel.API
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
-                opt.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                opt.SerializerSettings.DateFormatString="yyyy-MM-dd HH:mm:ss";
             });
             
             
