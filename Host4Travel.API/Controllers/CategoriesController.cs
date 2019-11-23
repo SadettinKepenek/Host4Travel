@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.Abstract;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.CategoryService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -27,26 +30,42 @@ namespace Host4Travel.API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var categories = _categoryService.GetAllCategories();
-           
+            
             if (categories==null)
             {
-                return NotFound("Herhangi bir kategori bulunamadı");
+                ResponseModelBase responseModel = new ResponseModel();
+                responseModel.StatusCode = HttpStatusCode.NotFound;
+                responseModel.Message = "Herhangi bir kategori bulunamadı";
+                return NotFound(responseModel);
             }
-      
-            return Ok(categories);
+
+            ResponseModelWithData<List<CategoryListDto>> responseModelWithData = new ResponseModelWithData<List<CategoryListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = categories;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody]CategoryAddDto category)
         {
+            
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryService.AddCategory(category);
-                return Ok("Kategori başarı ile eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Kategori başarı ile eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                        
+                });
             }
         }
 
@@ -55,12 +74,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryService.UpdateCategory(categoryUpdateDto);
-                return Ok("Kategori başarı ile güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Kategori başarı ile güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -69,12 +95,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryService.DeleteCategory(deleteDto);
-                return Ok("Kategori başarı ile silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Kategori başarı ile silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
     }
