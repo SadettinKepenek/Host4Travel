@@ -436,6 +436,8 @@
           <e p="20191120204053_Add_User_Documents.Designer.cs" t="Include" />
           <e p="20191120205807_Add_ApplicationIdentityUser_Columns.cs" t="Include" />
           <e p="20191120205807_Add_ApplicationIdentityUser_Columns.Designer.cs" t="Include" />
+          <e p="20191123162403_DeleteApplicationIdentityUserColumns.cs" t="Include" />
+          <e p="20191123162403_DeleteApplicationIdentityUserColumns.Designer.cs" t="Include" />
           <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Models" t="Include" />
