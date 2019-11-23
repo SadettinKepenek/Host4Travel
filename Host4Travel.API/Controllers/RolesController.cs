@@ -1,6 +1,10 @@
-﻿﻿using System.Linq;
+﻿﻿using System.Collections.Generic;
+ using System.Linq;
+ using System.Net;
  using System.Threading.Tasks;
  using Host4Travel.API.Models.Concrete.Roles;
+ using Host4Travel.API.Models.ResponseModels;
+ using Host4Travel.Core.DTO.RewardService;
  using Host4Travel.Entities.Concrete;
  using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -31,9 +35,17 @@ using Microsoft.AspNetCore.Mvc;
             var roles = _roleManager.Roles.ToList();
             if (roles.Count==0)
             {
-                return NotFound();
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-            return Ok(roles);
+            ResponseModelWithData<List<ApplicationIdentityRole>> responseModelWithData = new ResponseModelWithData<List<ApplicationIdentityRole>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = roles;
+            return Ok(responseModelWithData);
         }
         [HttpPost("AddRole")]
         public async Task<IActionResult> Add([FromBody] RolesAddModel role)
@@ -41,16 +53,28 @@ using Microsoft.AspNetCore.Mvc;
             bool isRoleExists = await _roleManager.RoleExistsAsync(role.RoleName);
             if (isRoleExists)
             {
-                return BadRequest("Rol zaten mevcut");
+                
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "Rol zaten mevcut"
+                });
             }
             var identityRole=new ApplicationIdentityRole();
             identityRole.Name = role.RoleName;
             var result = await _roleManager.CreateAsync(identityRole);
             if (!result.Succeeded)
             {
-                return Problem("Rol eklenirken hata oluştu lütfen site sahibi ile iletişime geçiniz.");
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "Rol eklenirken hata oluştu lütfen site sahibi ile iletişime geçiniz."
+                });
             }
-            return Ok(identityRole);
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.StatusCode = HttpStatusCode.OK;
+            responseModel.Message = "Rol başarıyla eklendi";
+            return Ok(responseModel);
         }
 
         [HttpPost("AssignRole")]
@@ -60,22 +84,36 @@ using Microsoft.AspNetCore.Mvc;
             var role = await _roleManager.FindByNameAsync(roleModel.Rolename);
             if (user==null)
             {
-                return BadRequest("Kullanıcı bulunamadı");
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "Kullanıcı bulunamadı"
+                });
             }
 
             if (role==null)
             {
-                return BadRequest("Rol Bulunamadı");
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = "Rol bulunamadı"
+                });
             }
 
             var result = await _userManager.AddToRoleAsync(user, role.Name);
             if (result.Succeeded)
             {
-                return Ok("Rol atama işlemi başarılı");
+                return Ok(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Message = "Rol atama işlemi başarılı"
+                });
             }
             
-            
-            return Problem("Rol atama işlemi yapılamadı lütfen site yöneticisi ile iletişime geçin");
+            ResponseModel responseModel = new ResponseModel();
+            responseModel.StatusCode = HttpStatusCode.BadRequest;
+            responseModel.Message = "Rol atama işlemi yapılamadı lütfen site yöneticisi ile iletişime geçin";
+            return BadRequest(responseModel);
         }
         
         
