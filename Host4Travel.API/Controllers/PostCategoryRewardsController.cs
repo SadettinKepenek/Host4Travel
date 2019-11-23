@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostCategoryRewardService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,10 +31,17 @@ namespace Host4Travel.API.Controllers
             
             if (postCategoryRewards == null)
             {
-                return NotFound($"Herhangi bir kayıt bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayit bulunamadi"
+                });
             }
-
-            return Ok(postCategoryRewards);
+            ResponseModelWithData<List<PostCategoryRewardListDto>> responseModelWithData = new ResponseModelWithData<List<PostCategoryRewardListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = postCategoryRewards;
+            return Ok(responseModelWithData);
         }
         [HttpGet("Get")]
         public async Task<IActionResult> Get(Guid id)
@@ -39,22 +49,36 @@ namespace Host4Travel.API.Controllers
             var postCategoryReward = _postCategoryRewardService.GetRelationById(id);
             if (postCategoryReward == null)
             {
-                return NotFound($"{id} için kayıt bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = $"{id} için kayıt bulunamadı"
+                });
             }
-
-            return Ok(postCategoryReward);
+            ResponseModelWithData<PostCategoryRewardListDto> responseModelWithData = new ResponseModelWithData<PostCategoryRewardListDto>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = $"{id} başarıyla getirildi";
+            responseModelWithData.Data = postCategoryReward;
+            return Ok(responseModelWithData);
         }
         [HttpPost("Add")]
         public async Task<IActionResult> Add([FromBody]PostCategoryRewardAddDto dto)
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCategoryRewardService.Add(dto);
-                return Ok("Post category reward başarıyla eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post category reward başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         [HttpPut("Update")]
@@ -62,12 +86,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCategoryRewardService.Update(dto);
-                return Ok("Post category reward başarıyla güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post category reward başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         [HttpDelete("Delete")]
@@ -75,12 +106,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCategoryRewardService.Delete(dto);
-                return Ok("Post category reward başarıyla silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post category reward başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostCheckInService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,9 +31,17 @@ namespace Host4Travel.API.Controllers
             var entities = _postCheckInService.GetAll();
             if (entities==null)
             {
-                return NotFound("Herhangi bir sonuç bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Herhangi bir kayıt bulunamadı"
+                });
             }
-            return Ok(entities);
+            ResponseModelWithData<List<PostCheckInListDto>> responseModelWithData = new ResponseModelWithData<List<PostCheckInListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
@@ -38,12 +49,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCheckInService.Add(model);
-                return Ok("PostCheckIn Başarıyla eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostCheckIn Başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
@@ -52,12 +70,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCheckInService.Update(model);
-                return Ok("PostCheckIn Başarıyla güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostCheckIn başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
@@ -66,12 +91,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postCheckInService.Delete(model);
-                return Ok("PostCheckIn Başarıyla silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostCheckIn başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
     }

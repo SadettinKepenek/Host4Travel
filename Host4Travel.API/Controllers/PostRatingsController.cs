@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostRatingService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -29,9 +32,17 @@ namespace Host4Travel.API.Controllers
             var entities = _postRatingService.GetAllRatings();
             if (entities==null)
             {
-                return NotFound();
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-            return Ok(entities);
+            ResponseModelWithData<List<PostRatingListDto>> responseModelWithData  = new ResponseModelWithData<List<PostRatingListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
         }
 
         [HttpPut("Update")]
@@ -39,12 +50,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postRatingService.UpdateRating(model);
-                return Ok("Post Rating başarıyla güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Rating başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
@@ -53,12 +71,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postRatingService.AddRating(model);
-                return Ok("Post Rating Başarıyla Eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Rating başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -67,12 +92,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postRatingService.DeleteRating(model);
-                return Ok("Post Rating Başarıyla Silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Rating başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         

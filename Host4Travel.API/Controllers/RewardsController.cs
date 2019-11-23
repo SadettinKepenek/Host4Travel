@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.RewardService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,10 +31,18 @@ namespace Host4Travel.API.Controllers
             var rewards = _rewardService.GetAllRewards();
             if (rewards==null)
             {
-                return NotFound("Herhangi bir reward bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-
-            return Ok(rewards);
+            
+            ResponseModelWithData<List<RewardListDto>> responseModelWithData = new ResponseModelWithData<List<RewardListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = rewards;
+            return Ok(responseModelWithData);
         }
 
         [HttpGet("{id}")]
@@ -40,9 +51,17 @@ namespace Host4Travel.API.Controllers
             var reward = _rewardService.GetRewardById(id);
             if (reward==null)
             {
-                return NotFound($"{id} için istenilen reward bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = $"{id} için kayıt bulunamadı"
+                });
             }
-            return Ok(reward);
+            ResponseModelWithData<RewardListDto> responseModelWithData = new ResponseModelWithData<RewardListDto>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = $"{id} başarıyla getirildi";
+            responseModelWithData.Data = reward;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("AddReward")]
@@ -50,12 +69,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _rewardService.AddReward(model);
-                return Ok("Reward başarıyla eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Reward başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         [HttpPut("UpdateReward")]
@@ -63,12 +89,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _rewardService.UpdateReward(model);
-                return Ok("Reward başarıyla güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Reward başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         [HttpDelete("DeleteReward")]
@@ -76,12 +109,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _rewardService.DeleteReward(model);
-                return Ok("Reward başarıyla silindi.");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Reward başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
     }
