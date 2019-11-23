@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostImageService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,9 +31,17 @@ namespace Host4Travel.API.Controllers
             var entities = _postImageService.GetAllImages();
             if (entities==null)
             {
-                return NotFound("Herhangi bir kayıt bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-            return Ok(entities);
+            ResponseModelWithData<List<PostImageListDto>> responseModelWithData = new ResponseModelWithData<List<PostImageListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
@@ -38,12 +49,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postImageService.AddImage(model);
-                return Ok("PostImage başarıyla eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostImage başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
@@ -52,12 +70,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postImageService.UpdateImage(model);
-                return Ok("PostImage başarıyla Güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostImage başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -66,12 +91,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postImageService.DeleteImage(model);
-                return Ok("Resim başarıyla silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "PostImage başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
