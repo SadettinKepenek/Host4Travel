@@ -1,14 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-using Host4Travel.Core.DAL;
-using Host4Travel.Core.SystemSettings;
+﻿using Host4Travel.Core.SystemSettings;
 using Host4Travel.Entities.Concrete;
+using Host4Travel.UI;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 
-namespace Host4Travel.UI
+namespace Host4Travel.DAL.Concrete.EntityFramework
 {
     public partial class
         ApplicationDbContext : IdentityDbContext<ApplicationIdentityUser, ApplicationIdentityRole, string>
@@ -48,13 +44,14 @@ namespace Host4Travel.UI
         {
             modelBuilder.Entity<ApplicationIdentityUser>(b =>
                 {
-                    b.Property(e => e.CookieAcceptIpAddress).HasMaxLength(100);
-                    b.Property(e => e.CookieAcceptDate).HasColumnName("datetime").IsRequired();
-                    b.Property(e => e.IsVerified).HasDefaultValueSql("0");
-                    b.Property(e => e.IsActive).IsRequired().HasDefaultValueSql("0");
-                    b.Property(e => e.SSN).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Firstname).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Lastname).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptIpAddress).HasMaxLength(100);
+                    b.Property(e => e.CookieAcceptDate).HasColumnName("datetime");
+                    b.Property(e => e.IsCookieAccepted).HasDefaultValueSql("0");
+                    b.Property(e => e.IsVerified).HasDefaultValueSql("0");
+                    b.Property(e => e.IsActive).HasDefaultValueSql("0");
+                 
                 }
             );
             modelBuilder.Entity<Category>(entity =>
