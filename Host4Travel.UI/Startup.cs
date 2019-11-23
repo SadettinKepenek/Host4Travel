@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Host4Travel.DAL.Concrete.EntityFramework;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI.Middlewares;
 using Microsoft.AspNetCore.Authorization;
