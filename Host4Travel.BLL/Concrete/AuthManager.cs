@@ -125,7 +125,8 @@ namespace Host4Travel.BLL.Concrete
                     Firstname = applicationIdentityUserAddModel.Firstname,
                     Lastname = applicationIdentityUserAddModel.Lastname,
                     CookieAcceptIpAddress = applicationIdentityUserAddModel.CookieAcceptIpAddress,
-                    SSN = applicationIdentityUserAddModel.Ssn
+                    IsVerified = applicationIdentityUserAddModel.IsVerified,
+                    IsCookieAccepted = applicationIdentityUserAddModel.IsCookieAccepted,
                 };
                 string decryptedPassword = _crpytoService.Decrypt(password);
                 var createdUser =
@@ -158,14 +159,16 @@ namespace Host4Travel.BLL.Concrete
                 {
                     throw new NullReferenceException();
                 }
-
+                var newPassword = _passwordHasher.HashPassword(user, password);
                 user.Firstname = applicationIdentityUserUpdateModel.Firstname;
                 user.Lastname = applicationIdentityUserUpdateModel.Lastname;
-
                 user.Email = applicationIdentityUserUpdateModel.Email;
-                user.SSN = applicationIdentityUserUpdateModel.Ssn;
-                var newPassword = _passwordHasher.HashPassword(user, password);
                 user.PasswordHash = newPassword;
+                user.CookieAcceptDate = applicationIdentityUserUpdateModel.CookieAcceptDate;
+                user.CookieAcceptIpAddress = applicationIdentityUserUpdateModel.CookieAcceptIpAddress;
+                user.IsCookieAccepted = applicationIdentityUserUpdateModel.IsCookieAccepted;
+                user.IsVerified = applicationIdentityUserUpdateModel.IsVerified;
+                user.IsActive = applicationIdentityUserUpdateModel.IsActive;
                 var result = _userManager.UpdateAsync(user).Result;
                 if (!result.Succeeded)
                 {
