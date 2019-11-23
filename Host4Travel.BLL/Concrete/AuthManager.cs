@@ -109,6 +109,7 @@ namespace Host4Travel.BLL.Concrete
 
         public void Register(ApplicationIdentityUserAddDto applicationIdentityUserAddModel, string password)
         {
+            //
             try
             {
                 RegisterValidator validator = new RegisterValidator();
