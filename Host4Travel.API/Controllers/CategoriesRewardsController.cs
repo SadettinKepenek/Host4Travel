@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.CategoryRewardService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,9 +31,17 @@ namespace Host4Travel.API.Controllers
             var entities = _categoryRewardService.GetAllRelationsWithDetails();
             if (entities==null)
             {
-                return NotFound("Herhangi bir sonuç bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-            return Ok(entities);
+            ResponseModelWithData<List<CategoryRewardListDto>> responseModelWithData = new ResponseModelWithData<List<CategoryRewardListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
         }
 
         [HttpGet("Get")]
@@ -39,9 +50,18 @@ namespace Host4Travel.API.Controllers
             var entity = _categoryRewardService.GetRelationByIdWithDetails(id);
             if (entity==null)
             {
-                return NotFound();
+                
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
             }
-            return Ok(entity);
+            ResponseModelWithData<CategoryRewardListDto> responseModelWithData = new ResponseModelWithData<CategoryRewardListDto>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıt başarıyla getirildi";
+            responseModelWithData.Data = entity;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
@@ -49,12 +69,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryRewardService.AddRelation(model);
-                return Ok("Category Reward Relationı başarı ile eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Category Reward Relationı başarı ile eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         [HttpPut("Update")]
@@ -62,12 +89,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryRewardService.UpdateRelation(model);
-                return Ok("Category Reward Relationı başarı ile güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Category Reward Relationı başarı ile güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -76,12 +110,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _categoryRewardService.DeleteRelation(model);
-                return Ok("Category Reward Relationı başarı ile silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Category Reward Relationı başarı ile silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
