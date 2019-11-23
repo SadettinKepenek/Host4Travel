@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
+using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.PostApplicationService;
 using Host4Travel.Core.ExceptionService.Abstract;
@@ -28,9 +31,17 @@ namespace Host4Travel.API.Controllers
             var entities = _postApplicationService.GetAllApplications();
             if (entities==null)
             {
-                return NotFound("Herhangi bir kayıt bulunamadı");
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Herhangi bir kayıt bulunamadı"
+                });
             }
-            return Ok(entities);
+            ResponseModelWithData<List<PostApplicationListDto>> responseModelWithData = new ResponseModelWithData<List<PostApplicationListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
@@ -38,12 +49,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postApplicationService.AddApplication(model);
-                return Ok("Başvuru başarıyla eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Başvuru başarıyla eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -52,12 +70,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postApplicationService.UpdateApplication(model);
-                return Ok("Başvuru başarıyla güncellendi");
-            }
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Başvuru başarıyla güncellendi";
+                return Ok(responseModel);
+;            }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -66,12 +91,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postApplicationService.DeleteApplication(model);
-                return Ok("Başvuru başarıyla silindi.");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Başvuru başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
     }
