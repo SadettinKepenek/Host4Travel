@@ -53,10 +53,18 @@ namespace Host4Travel.API.Controllers
             var post = _postService.GetPost(id);
             if (post==null)
             {
-                return NotFound($"{id} için kayıt bulunamadı");
+                
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = $"{id} için kayıt bulunamadı"
+                });
             }
-
-            return Ok(post);
+            ResponseModelWithData<PostDetailDto> responseModelWithData = new ResponseModelWithData<PostDetailDto>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = $"{id} başarıyla getirildi";
+            responseModelWithData.Data = post;
+            return Ok(responseModelWithData);
         }
 
         [HttpPost("Add")]
@@ -64,12 +72,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postService.AddPost(postAddDto);
-                return Ok("Post Başarıyla Eklendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Başarıyla Eklendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
 
@@ -78,12 +93,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postService.UpdatePost(postUpdateDto);
-                return Ok("Post Başarıyla Güncellendi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Başarıyla güncellendi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
         
@@ -92,12 +114,19 @@ namespace Host4Travel.API.Controllers
         {
             try
             {
+                ResponseModel responseModel = new ResponseModel();
                 _postService.DeletePost(deleteDto);
-                return Ok("Post Başarıyla Silindi");
+                responseModel.StatusCode = HttpStatusCode.OK;
+                responseModel.Message = "Post Başarıyla silindi";
+                return Ok(responseModel);
             }
             catch (Exception e)
             {
-                return BadRequest(_exceptionHandler.HandleControllerException(e));
+                return BadRequest(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    Message = _exceptionHandler.HandleControllerException(e)
+                });
             }
         }
     }
