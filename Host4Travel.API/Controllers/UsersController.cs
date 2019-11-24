@@ -149,5 +149,35 @@ namespace Host4Travel.API.Controllers
             }
          
         }
+        [HttpPost("CheckIsTokenAlive")]
+        [Authorize]
+        public async Task<IActionResult> CheckIsTokenAlive()
+        {
+            try
+            {
+                if (_authService.CheckTokenExpiration())
+                {
+                    return Ok(new ResponseModel
+                    {
+                        Message = "OK",
+                        StatusCode = HttpStatusCode.OK
+                    });
+                }
+
+                return Unauthorized(new ResponseModel()
+                {
+                    Message = "Token has been expired",
+                    StatusCode = HttpStatusCode.Unauthorized
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseModel()
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                });;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
@@ -27,17 +28,19 @@ namespace Host4Travel.BLL.Concrete
         private readonly SignInManager<ApplicationIdentityUser> _signInManager;
         private readonly IPasswordHasher<ApplicationIdentityUser> _passwordHasher;
         private ICrpytoService _crpytoService;
+        private IHttpContextAccessor _httpContext;
         private IExceptionHandler _exceptionHandler;
 
         public AuthService(UserManager<ApplicationIdentityUser> userManager,
             SignInManager<ApplicationIdentityUser> signInManager,
-            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService)
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
             _exceptionHandler = exceptionHandler;
             _crpytoService = crpytoService;
+            _httpContext = httpContext;
         }
 
         public IdentityLoginResponseDto Login(IdentityLoginRequestDto dto)
@@ -224,9 +227,16 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public bool CheckTokenExpiration(string expirationTime)
+        public bool CheckTokenExpiration()
         {
-            return DateTime.Now.Millisecond <= int.Parse(expirationTime);
+            var expClaim = _httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "exp");
+            if (expClaim==null)
+            {
+                throw new UnauthorizedAccessException("Geçerliliği kontrol edilmek istenilen token hatalı.");
+            }
+            DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(Convert.ToDouble(expClaim.Value)).ToLocalTime();
+            return dtDateTime>DateTime.Now;
         }
 
         private bool MatchPasswordAndHash(ApplicationIdentityUser applicationIdentityUser, string password)
