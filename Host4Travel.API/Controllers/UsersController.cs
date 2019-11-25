@@ -209,5 +209,38 @@ namespace Host4Travel.API.Controllers
                 });
             }
         }
+        [HttpGet("GetUserProfile")]
+        [Authorize]
+        public async Task<IActionResult> GetMyProfile(string userId)
+        {
+            try
+            {
+                var user = _authService.GetUserDetail(userId);
+                if (user == null)
+                {
+                    return BadRequest(
+                        new ResponseModel
+                        {
+                            Message = "Kullanıcı bulunamadı",
+                            StatusCode = HttpStatusCode.NoContent
+                        });
+                }
+
+                return Ok(new ResponseModelWithData<ApplicationIdentityUserDetailDto>
+                {
+                    Data = user,
+                    Message = "OK",
+                    StatusCode = HttpStatusCode.OK
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                });
+            }
+        }
     }
 }

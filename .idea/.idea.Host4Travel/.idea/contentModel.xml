@@ -193,6 +193,7 @@
           <e p="AuthService" t="Include">
             <e p="ApplicationIdentityUserAddDto.cs" t="Include" />
             <e p="ApplicationIdentityUserDeleteDto.cs" t="Include" />
+            <e p="ApplicationIdentityUserDetailDto.cs" t="Include" />
             <e p="ApplicationIdentityUserListDto.cs" t="Include" />
             <e p="ApplicationIdentityUserUpdateDto.cs" t="Include" />
             <e p="IdentityLoginRequestDto.cs" t="Include" />

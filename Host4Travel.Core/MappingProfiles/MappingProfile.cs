@@ -82,6 +82,7 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<DocumentTypeDeleteDto, DocumentType>();
 
             CreateMap<ApplicationIdentityUser, ApplicationIdentityUserListDto>().ReverseMap();
+            CreateMap<ApplicationIdentityUser, ApplicationIdentityUserDetailDto>().ReverseMap();
             CreateMap<ApplicationIdentityUserAddDto, ApplicationIdentityUser>();
             CreateMap<ApplicationIdentityUserUpdateDto, ApplicationIdentityUser>();
             CreateMap<ApplicationIdentityUserDeleteDto, ApplicationIdentityUser>();

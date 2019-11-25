@@ -254,6 +254,23 @@ namespace Host4Travel.BLL.Concrete
             return mappedUser;
         }
 
+        public ApplicationIdentityUserDetailDto GetUserDetail(string userId)
+        {
+            var dbUser = _userManager.Users.
+                Include(x => x.PostApplication).
+                Include(x => x.Post).
+                Include(x=>x.Documents).
+                Include(x=>x.PostRating)
+                .FirstOrDefault(x => x.Id == userId);
+            if (dbUser==null)
+            {
+                throw new NullReferenceException("");
+            }
+
+            var mappedUser = _mapper.Map<ApplicationIdentityUserDetailDto>(dbUser);
+            return mappedUser;
+        }
+
         public bool CheckTokenExpiration()
         {
             var expClaim = _httpContext.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "exp");
