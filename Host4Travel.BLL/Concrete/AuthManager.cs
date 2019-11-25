@@ -17,6 +17,7 @@ using Host4Travel.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -238,7 +239,12 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
-            var dbUser = _userManager.FindByNameAsync(user).Result;
+            var dbUser = _userManager.Users.
+                Include(x => x.PostApplication).
+                Include(x => x.Post).
+                Include(x=>x.Documents).
+                Include(x=>x.PostRating)
+                .FirstOrDefault(x => x.NormalizedUserName == user);
             if (dbUser==null)
             {
                 throw new NullReferenceException("");
