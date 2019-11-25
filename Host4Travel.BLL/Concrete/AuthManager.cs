@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.AuthService;
 using Host4Travel.Core.DTO.AuthService;
@@ -30,10 +31,11 @@ namespace Host4Travel.BLL.Concrete
         private ICrpytoService _crpytoService;
         private IHttpContextAccessor _httpContext;
         private IExceptionHandler _exceptionHandler;
+        private IMapper _mapper;
 
         public AuthService(UserManager<ApplicationIdentityUser> userManager,
             SignInManager<ApplicationIdentityUser> signInManager,
-            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext)
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -41,6 +43,7 @@ namespace Host4Travel.BLL.Concrete
             _exceptionHandler = exceptionHandler;
             _crpytoService = crpytoService;
             _httpContext = httpContext;
+            _mapper = mapper;
         }
 
         public IdentityLoginResponseDto Login(IdentityLoginRequestDto dto)
@@ -225,6 +228,24 @@ namespace Host4Travel.BLL.Concrete
             {
                 throw _exceptionHandler.HandleServiceException(e);
             }
+        }
+
+        public ApplicationIdentityUserListDto GetUser()
+        {
+            var user = _httpContext.HttpContext.User.Identity.Name;
+            if (user==null)
+            {
+                throw new NullReferenceException("");
+            }
+
+            var dbUser = _userManager.FindByNameAsync(user).Result;
+            if (dbUser==null)
+            {
+                throw new NullReferenceException("");
+            }
+
+            var mappedUser = _mapper.Map<ApplicationIdentityUserListDto>(dbUser);
+            return mappedUser;
         }
 
         public bool CheckTokenExpiration()

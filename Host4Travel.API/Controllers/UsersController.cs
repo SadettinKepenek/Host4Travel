@@ -34,9 +34,10 @@ namespace Host4Travel.API.Controllers
         private readonly IAuthService _authService;
         private UserManager<ApplicationIdentityUser> _userManager;
         private IExceptionHandler _exceptionHandler;
-        
 
-        public UsersController(IAuthService authService, UserManager<ApplicationIdentityUser> userManager, IExceptionHandler exceptionHandler)
+
+        public UsersController(IAuthService authService, UserManager<ApplicationIdentityUser> userManager,
+            IExceptionHandler exceptionHandler)
         {
             _authService = authService;
             _userManager = userManager;
@@ -47,21 +48,20 @@ namespace Host4Travel.API.Controllers
         [HttpPost("Login")]
         public IActionResult Login([FromBody] IdentityLoginRequestDto userModel)
         {
-           
             try
             {
-                
                 var result = _authService.Login(userModel);
-                if (result==null)
+                if (result == null)
                 {
-                    ResponseModelBase responseModel=new ResponseModel();
+                    ResponseModelBase responseModel = new ResponseModel();
                     responseModel.StatusCode = HttpStatusCode.BadRequest;
                     responseModel.Message = "No Content";
                     return BadRequest(responseModel);
                 }
                 else
                 {
-                    ResponseModelWithData<IdentityLoginResponseDto> responseModelWithData=new ResponseModelWithData<IdentityLoginResponseDto>();
+                    ResponseModelWithData<IdentityLoginResponseDto> responseModelWithData =
+                        new ResponseModelWithData<IdentityLoginResponseDto>();
                     responseModelWithData.Message = "OK";
                     responseModelWithData.StatusCode = HttpStatusCode.OK;
                     responseModelWithData.Data = result;
@@ -76,8 +76,6 @@ namespace Host4Travel.API.Controllers
                     StatusCode = HttpStatusCode.BadRequest
                 });
             }
-            
-
         }
 
 
@@ -85,14 +83,12 @@ namespace Host4Travel.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] ApplicationIdentityUserAddDto user)
         {
-          
-            
             try
             {
-                ResponseModel responseModel=new ResponseModel();
+                ResponseModel responseModel = new ResponseModel();
                 responseModel.StatusCode = HttpStatusCode.OK;
                 responseModel.Message = "Kayıt Başarılı";
-                _authService.Register(user,user.Password);
+                _authService.Register(user, user.Password);
                 return Ok(responseModel);
             }
             catch (Exception e)
@@ -118,7 +114,6 @@ namespace Host4Travel.API.Controllers
             }
             catch (Exception e)
             {
-                
                 return BadRequest(new ResponseModel
                 {
                     StatusCode = HttpStatusCode.BadRequest,
@@ -128,27 +123,27 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel,string password)
+        public async Task<IActionResult> Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel,
+            string password)
         {
             try
             {
                 ResponseModel responseModel = new ResponseModel();
-                _authService.Update(applicationIdentityUserUpdateModel,password);
+                _authService.Update(applicationIdentityUserUpdateModel, password);
                 responseModel.StatusCode = HttpStatusCode.OK;
                 responseModel.Message = "Başarı ile güncellendi";
                 return Ok(responseModel);
             }
             catch (Exception e)
             {
-                
                 return BadRequest(new ResponseModel
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     Message = _exceptionHandler.HandleControllerException(e)
                 });
             }
-         
         }
+
         [HttpPost("CheckIsTokenAlive")]
         [Authorize]
         public async Task<IActionResult> CheckIsTokenAlive()
@@ -176,7 +171,42 @@ namespace Host4Travel.API.Controllers
                 {
                     Message = _exceptionHandler.HandleControllerException(e),
                     StatusCode = HttpStatusCode.BadRequest
-                });;
+                });
+                ;
+            }
+        }
+
+        [HttpGet("GetMyProfile")]
+        [Authorize]
+        public async Task<IActionResult> GetMyProfile()
+        {
+            try
+            {
+                var user = _authService.GetUser();
+                if (user == null)
+                {
+                    return BadRequest(
+                        new ResponseModel
+                        {
+                            Message = "Kullanıcı bulunamadı",
+                            StatusCode = HttpStatusCode.NoContent
+                        });
+                }
+
+                return Ok(new ResponseModelWithData<ApplicationIdentityUserListDto>
+                {
+                    Data = user,
+                    Message = "OK",
+                    StatusCode = HttpStatusCode.OK
+                });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Message = _exceptionHandler.HandleControllerException(e),
+                    StatusCode = HttpStatusCode.BadRequest
+                });
             }
         }
     }

@@ -15,7 +15,7 @@ namespace Host4Travel.BLL.Abstract
 
         void Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel, string password);
         void Delete(ApplicationIdentityUserDeleteDto dto);
-
+        ApplicationIdentityUserListDto GetUser();
 
     }
 }
