@@ -12,6 +12,7 @@ using Host4Travel.Core.DTO.PostImageService;
 using Host4Travel.Core.DTO.PostRatingService;
 using Host4Travel.Core.DTO.PostService;
 using Host4Travel.Core.DTO.RewardService;
+using Host4Travel.Core.DTO.UserService;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
@@ -83,6 +84,7 @@ namespace Host4Travel.Core.MappingProfiles
 
             CreateMap<ApplicationIdentityUser, ApplicationIdentityUserListDto>().ReverseMap();
             CreateMap<ApplicationIdentityUser, ApplicationIdentityUserDetailDto>().ReverseMap();
+            CreateMap<ApplicationIdentityUser, UserListDto>().ReverseMap();
             CreateMap<ApplicationIdentityUserAddDto, ApplicationIdentityUser>();
             CreateMap<ApplicationIdentityUserUpdateDto, ApplicationIdentityUser>();
             CreateMap<ApplicationIdentityUserDeleteDto, ApplicationIdentityUser>();

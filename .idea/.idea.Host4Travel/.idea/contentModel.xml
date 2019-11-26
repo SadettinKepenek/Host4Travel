@@ -275,6 +275,9 @@
             <e p="RewardListDto.cs" t="Include" />
             <e p="RewardUpdateDto.cs" t="Include" />
           </e>
+          <e p="UserService" t="Include">
+            <e p="UserListDto.cs" t="Include" />
+          </e>
         </e>
         <e p="Entities" t="Include">
           <e p="Abstract" t="Include">

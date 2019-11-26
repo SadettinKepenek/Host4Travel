@@ -7,6 +7,7 @@ using Host4Travel.Core.DTO.PostCheckInService;
 using Host4Travel.Core.DTO.PostDiscussionService;
 using Host4Travel.Core.DTO.PostImageService;
 using Host4Travel.Core.DTO.PostRatingService;
+using Host4Travel.Core.DTO.UserService;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 
@@ -28,7 +29,7 @@ namespace Host4Travel.Core.DTO.PostService
 
         
         public virtual PostCheckInListDto PostCheckIn { get; set; }
-        public virtual ApplicationIdentityUserListDto Owner { get; set; }
+        public virtual UserListDto Owner { get; set; }
         public virtual ICollection<PostImageListDto> PostImage { get; set; }
         public virtual ICollection<PostRatingListDto> PostRating { get; set; }
         public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
