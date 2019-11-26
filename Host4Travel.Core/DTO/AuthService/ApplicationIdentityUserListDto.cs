@@ -20,9 +20,6 @@ namespace Host4Travel.Core.DTO.AuthService
         public bool IsCookieAccepted { get; set; }
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<PostListDto> Post { get; set; }
-        public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
-        public virtual ICollection<PostRatingListDto> PostRating { get; set; }
-        public virtual ICollection<DocumentListDto> Documents { get; set; }
+
     }
 }
