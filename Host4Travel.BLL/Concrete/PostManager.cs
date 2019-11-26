@@ -57,7 +57,7 @@ namespace Host4Travel.BLL.Concrete
             var posts = _postDal.GetList(x=>x.OwnerId==userId);
             if (posts==null)
             {
-                return new List<PostListDto>();
+                return null;
             }
 
             var mappedPosts = _mapper.Map<List<PostListDto>>(posts);

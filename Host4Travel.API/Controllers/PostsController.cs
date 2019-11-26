@@ -47,6 +47,27 @@ namespace Host4Travel.API.Controllers
             });
         }
 
+        [HttpGet("GetByUser")]
+        public async Task<IActionResult> GetByUser(string userId)
+        {
+            
+            var posts = _postService.GetByUser(userId);
+            if (posts==null)
+            {
+                ResponseModel model=new ResponseModel()
+                {
+                    Message = "No content",
+                    StatusCode = HttpStatusCode.NoContent
+                };
+                return BadRequest(model);
+            }
+            return Ok(new ResponseModelWithData<List<PostListDto>>()
+            {
+                Data = posts,
+                Message = "OK",
+                StatusCode = HttpStatusCode.OK
+            });
+        }
         [HttpGet("Get")]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -87,6 +108,8 @@ namespace Host4Travel.API.Controllers
                 });
             }
         }
+        
+        
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update(PostUpdateDto postUpdateDto)
