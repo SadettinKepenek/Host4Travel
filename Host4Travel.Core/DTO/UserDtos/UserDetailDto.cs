@@ -19,9 +19,9 @@ namespace Host4Travel.Core.DTO.UserDtos
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
         public virtual ICollection<PostListDto> Post { get; set; }
-        public virtual ICollection<PostApplicationDetailDto> PostApplication { get; set; }
-        public virtual ICollection<PostRatingDetailDto> PostRating { get; set; }
-        public virtual ICollection<DocumentDetailDto> Documents { get; set; }
+        public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
+        public virtual ICollection<PostRatingListDto> PostRating { get; set; }
+        public virtual ICollection<DocumentListDto> Documents { get; set; }
         
 
     }

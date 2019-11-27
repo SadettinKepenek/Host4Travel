@@ -9,7 +9,7 @@ namespace Host4Travel.Core.DTO.CategoryDtos
         public string CategoryDescription { get; set; }
         public string CategoryUrl { get; set; }
         public bool IsActive { get; set; } 
-        public virtual CategoryDetailDto CategoryParent { get; set; }
-        public virtual ICollection<CategoryDetailDto> InverseCategoryParent { get; set; }
+        public virtual CategoryListDto CategoryParent { get; set; }
+        public virtual ICollection<CategoryListDto> InverseCategoryParent { get; set; }
     }
 }

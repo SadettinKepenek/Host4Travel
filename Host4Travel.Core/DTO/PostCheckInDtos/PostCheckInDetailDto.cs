@@ -14,6 +14,6 @@ namespace Host4Travel.Core.DTO.PostCheckInDtos
         public Guid PostId { get; set; }
 
         public virtual PostListDto Post { get; set; }
-        public virtual PostApplicationDetailDto Application { get; set; }
+        public virtual PostApplicationListDto Application { get; set; }
     }
 }

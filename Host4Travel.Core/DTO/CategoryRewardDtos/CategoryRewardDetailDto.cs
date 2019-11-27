@@ -11,7 +11,7 @@ namespace Host4Travel.Core.DTO.CategoryRewardDtos
         public int RewardId { get; set; }
         public bool IsActive { get; set; }
         
-        public virtual CategoryDetailDto Category { get; set; }
-        public virtual RewardDetailDto Reward { get; set; }
+        public virtual CategoryListDto Category { get; set; }
+        public virtual RewardListDto Reward { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Host4Travel.Core.DTO.PostRatingDtos
         public string OwnerId { get; set; }
         public Guid? ApplicationId { get; set; }
 
-        public virtual PostApplicationDetailDto Application { get; set; }
+        public virtual PostApplicationListDto Application { get; set; }
         public virtual UserDetailDto Owner { get; set; }
         public virtual PostListDto Post { get; set; }
     }

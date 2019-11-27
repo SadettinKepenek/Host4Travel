@@ -11,7 +11,7 @@ namespace Host4Travel.Core.DTO.DocumentDtos
         public DateTime DocumentUploadDate { get; set; }
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
-        public virtual DocumentTypeDetailDto DocumentType { get; set; }
-        public virtual UserDetailDto Owner { get; set; }
+        public virtual DocumentTypeListDto DocumentType { get; set; }
+        public virtual UserListDto Owner { get; set; }
     }
 }

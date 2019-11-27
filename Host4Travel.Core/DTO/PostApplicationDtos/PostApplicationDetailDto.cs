@@ -15,8 +15,8 @@ namespace Host4Travel.Core.DTO.PostApplicationDtos
         public DateTime ApplicationEndDate { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual UserDetailDto Applicent { get; set; }
-        public virtual PostCheckInDetailDto PostCheckIn { get; set; }
+        public virtual UserListDto Applicent { get; set; }
+        public virtual PostCheckInListDto PostCheckIn { get; set; }
         
         public virtual PostListDto Post { get; set; }
     }
