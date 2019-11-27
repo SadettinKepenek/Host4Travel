@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostApplicationService
     {
-        List<PostApplicationDetailDto> GetAllApplications();
+        List<PostApplicationListDto> GetAllApplications();
         PostApplicationDetailDto GetApplicationById(Guid id);
         void AddApplication(PostApplicationAddDto dto);
         void UpdateApplication(PostApplicationUpdateDto dto);

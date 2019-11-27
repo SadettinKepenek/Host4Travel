@@ -27,7 +27,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostApplicationDetailDto> GetAllApplications()
+        public List<PostApplicationListDto> GetAllApplications()
         {
             var applications = _postApplicationDal.GetList();
             if (applications==null)
@@ -35,7 +35,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedApplications = _mapper.Map<List<PostApplicationDetailDto>>(applications);
+            var mappedApplications = _mapper.Map<List<PostApplicationListDto>>(applications);
             return mappedApplications;
         }
 

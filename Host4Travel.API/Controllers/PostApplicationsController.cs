@@ -37,7 +37,7 @@ namespace Host4Travel.API.Controllers
                     Message = "Herhangi bir kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<List<PostApplicationDetailDto>> responseModelWithData = new ResponseModelWithData<List<PostApplicationDetailDto>>();
+            ResponseModelWithData<List<PostApplicationListDto>> responseModelWithData = new ResponseModelWithData<List<PostApplicationListDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = entities;
