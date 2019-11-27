@@ -5,7 +5,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IDocumentTypeService
     {
-        List<DocumentTypeDetailDto> GetAll();
+        List<DocumentTypeListDto> GetAll();
         DocumentTypeDetailDto GetById(int id);
         void Add(DocumentTypeAddDto model);
         void Update(DocumentTypeUpdateDto model);
