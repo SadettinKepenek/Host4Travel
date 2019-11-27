@@ -232,6 +232,7 @@
             <e p="PostCategoryRewardAddDto.cs" t="Include" />
             <e p="PostCategoryRewardDeleteDto.cs" t="Include" />
             <e p="PostCategoryRewardDetailDto.cs" t="Include" />
+            <e p="PostCategoryRewardListDto.cs" t="Include" />
             <e p="PostCategoryRewardUpdateDto.cs" t="Include" />
           </e>
           <e p="PostCheckInDtos" t="Include">
