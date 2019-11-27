@@ -44,6 +44,26 @@ namespace Host4Travel.API.Controllers
             responseModelWithData.Data = entities;
             return Ok(responseModelWithData);
         }
+        
+        [HttpGet("GetUsersRatings")]
+        public async Task<IActionResult> GetUsersRatings(string userId)
+        {
+            var entities = _postRatingService.GetUsersRatings(userId);
+            if (entities==null)
+            {
+                return NotFound(new ResponseModel
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    Message = "Kayıt bulunamadı"
+                });
+            }
+            ResponseModelWithData<List<PostRatingListDto>> responseModelWithData  = new ResponseModelWithData<List<PostRatingListDto>>();
+            responseModelWithData.StatusCode = HttpStatusCode.OK;
+            responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
+            responseModelWithData.Data = entities;
+            return Ok(responseModelWithData);
+        }
+        
 
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] PostRatingUpdateDto model)

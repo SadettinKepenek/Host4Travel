@@ -9,6 +9,9 @@ namespace Host4Travel.BLL.Abstract
     {
         List<PostRatingListDto> GetAllRatings();
         PostRatingDetailDto GetById(Guid ratingId);
+
+        List<PostRatingListDto> GetUsersRatings(string id);
+        
         void AddRating(PostRatingAddDto dto);
         void UpdateRating(PostRatingUpdateDto dto);
         void DeleteRating(PostRatingDeleteDto dto);
