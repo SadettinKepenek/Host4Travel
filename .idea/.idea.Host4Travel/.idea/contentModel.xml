@@ -259,6 +259,7 @@
             <e p="PostImageAddDto.cs" t="Include" />
             <e p="PostImageDeleteDto.cs" t="Include" />
             <e p="PostImageDetailDto.cs" t="Include" />
+            <e p="PostImageListDto.cs" t="Include" />
           </e>
           <e p="PostRatingDtos" t="Include">
             <e p="PostRatingAddDto.cs" t="Include" />
