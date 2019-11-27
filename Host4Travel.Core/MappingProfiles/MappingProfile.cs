@@ -60,6 +60,7 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostCategoryRewardDeleteDto, PostCategoryReward>();
 
             CreateMap<PostCheckIn, PostCheckInDetailDto>().ReverseMap();
+            CreateMap<PostCheckIn, PostCheckInListDto>().ReverseMap();
             CreateMap<PostCheckInAddDto, PostCheckIn>();
             CreateMap<PostCheckInUpdateDto, PostCheckIn>();
             CreateMap<PostCheckInDeleteDto, PostCheckIn>();
