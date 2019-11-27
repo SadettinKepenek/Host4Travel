@@ -38,7 +38,7 @@ namespace Host4Travel.API.Controllers
                 });
             }
             
-            ResponseModelWithData<List<RewardDetailDto>> responseModelWithData = new ResponseModelWithData<List<RewardDetailDto>>();
+            ResponseModelWithData<List<RewardListDto>> responseModelWithData = new ResponseModelWithData<List<RewardListDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = rewards;

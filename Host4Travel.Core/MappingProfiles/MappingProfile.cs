@@ -33,6 +33,8 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<CategoryDeleteDto, Category>();
 
             CreateMap<Reward, RewardDetailDto>().ReverseMap();
+            CreateMap<Reward, RewardListDto>().ReverseMap();
+
             CreateMap<RewardAddDto, Reward>();
             CreateMap<RewardUpdateDto, Reward>();
             CreateMap<RewardDeleteDto, Reward>();
