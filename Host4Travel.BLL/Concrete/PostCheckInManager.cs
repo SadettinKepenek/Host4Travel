@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
             _mapper = mapper;
         }
 
-        public List<PostCheckInDetailDto> GetAll()
+        public List<PostCheckInListDto> GetAll()
         {
             var entities = _postCheckInDal.GetList();
             if (entities==null)
@@ -34,7 +34,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<PostCheckInDetailDto>>(entities);
+            var mappedEntities = _mapper.Map<List<PostCheckInListDto>>(entities);
             return mappedEntities;
         }
 
