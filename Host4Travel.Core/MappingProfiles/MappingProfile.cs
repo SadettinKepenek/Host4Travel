@@ -60,7 +60,21 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostCategoryRewardDeleteDto, PostCategoryReward>();
 
             CreateMap<PostCheckIn, PostCheckInDetailDto>().ReverseMap();
-            CreateMap<PostCheckIn, PostCheckInListDto>().ReverseMap();
+            CreateMap<PostCheckIn, PostCheckInListDto>()
+                .ForMember(c=>c.OwnerId,d=>d.MapFrom(c=>c.Application.ApplicentId))
+                .ForMember(c=>c.OwnerEmail,d=>d.MapFrom(c=>c.Application.Applicent.Email))
+                .ForMember(c=>c.OwnerUserName,d=>d.MapFrom(c=>c.Application.Applicent.UserName))
+                .ForMember(c=>c.OwnerFirstname,d=>d.MapFrom(c=>c.Application.Applicent.Firstname))
+                .ForMember(c=>c.OwnerLastname,d=>d.MapFrom(c=>c.Application.Applicent.Lastname))
+                .ForMember(c=>c.PostDescription,d=>d.MapFrom(c=>c.Post.PostDescription))
+                .ForMember(c=>c.PostTitle,d=>d.MapFrom(c=>c.Post.PostTitle))
+                .ForMember(c=>c.PostType,d=>d.MapFrom(c=>c.Post.PostType))
+                .ForMember(c=>c.ApplicationDate,d=>d.MapFrom(c=>c.Application.ApplicationDate))
+                .ForMember(c=>c.ApplicationStartDate,d=>d.MapFrom(c=>c.Application.ApplicationStartDate))
+                .ForMember(c=>c.ApplicationEndDate,d=>d.MapFrom(c=>c.Application.ApplicationEndDate))
+                .ForMember(c=>c.ApplicationId,d=>d.MapFrom(c=>c.Application.PostApplicationId))
+                .ForMember(c=>c.PostId,d=>d.MapFrom(c=>c.Post.PostId))
+                .ReverseMap();
             CreateMap<PostCheckInAddDto, PostCheckIn>();
             CreateMap<PostCheckInUpdateDto, PostCheckIn>();
             CreateMap<PostCheckInDeleteDto, PostCheckIn>();
