@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Host4Travel.Core.DTO.CategoryRewardService;
+using Host4Travel.Core.DTO.CategoryRewardDtos;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Abstract

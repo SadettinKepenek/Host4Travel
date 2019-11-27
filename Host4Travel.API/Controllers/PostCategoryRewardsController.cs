@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostCategoryRewardDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

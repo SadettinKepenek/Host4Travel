@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Host4Travel.Core.DTO.PostCheckInService;
+using Host4Travel.Core.DTO.PostCheckInDtos;
 
 namespace Host4Travel.BLL.Validators.PostCheckInService
 {

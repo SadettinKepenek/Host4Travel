@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Host4Travel.Core.DTO.DocumentService;
+using Host4Travel.Core.DTO.DocumentDtos;
 
 namespace Host4Travel.BLL.Validators.DocumentService
 {

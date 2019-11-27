@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.DocumentTypeService;
-using Host4Travel.Core.DTO.DocumentTypeService;
+using Host4Travel.Core.DTO.DocumentTypeDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;

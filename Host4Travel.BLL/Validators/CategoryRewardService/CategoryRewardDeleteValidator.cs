@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Host4Travel.Core.DTO.CategoryRewardService;
+using Host4Travel.Core.DTO.CategoryRewardDtos;
 
 namespace Host4Travel.BLL.Validators.CategoryRewardService
 {

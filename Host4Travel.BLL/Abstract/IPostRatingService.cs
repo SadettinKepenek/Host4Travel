@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Host4Travel.Core.DTO.PostRatingService;
+using Host4Travel.Core.DTO.PostRatingDtos;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Abstract

@@ -5,7 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostRatingService;
-using Host4Travel.Core.DTO.PostRatingService;
+using Host4Travel.Core.DTO.PostRatingDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;

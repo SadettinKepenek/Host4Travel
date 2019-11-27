@@ -1,20 +1,20 @@
 ﻿using AutoMapper;
 using Host4Travel.Core.DTO.AuthService;
-using Host4Travel.Core.DTO.CategoryRewardService;
-using Host4Travel.Core.DTO.CategoryService;
-using Host4Travel.Core.DTO.DocumentService;
-using Host4Travel.Core.DTO.DocumentTypeService;
-using Host4Travel.Core.DTO.PostApplicationService;
-using Host4Travel.Core.DTO.PostCategoryRewardService;
-using Host4Travel.Core.DTO.PostCheckInService;
-using Host4Travel.Core.DTO.PostDiscussionService;
-using Host4Travel.Core.DTO.PostImageService;
-using Host4Travel.Core.DTO.PostRatingService;
-using Host4Travel.Core.DTO.PostService;
-using Host4Travel.Core.DTO.RewardService;
-using Host4Travel.Core.DTO.UserService;
+using Host4Travel.Core.DTO.CategoryDtos;
+using Host4Travel.Core.DTO.CategoryRewardDtos;
+using Host4Travel.Core.DTO.DocumentDtos;
+using Host4Travel.Core.DTO.DocumentTypeDtos;
+using Host4Travel.Core.DTO.PostApplicationDtos;
+using Host4Travel.Core.DTO.PostCategoryRewardDtos;
+using Host4Travel.Core.DTO.PostCheckInDtos;
+using Host4Travel.Core.DTO.PostDiscussionDtos;
+using Host4Travel.Core.DTO.PostDtos;
+using Host4Travel.Core.DTO.PostImageDtos;
+using Host4Travel.Core.DTO.PostRatingDtos;
+using Host4Travel.Core.DTO.RewardDtos;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
+using UserListDto = Host4Travel.Core.DTO.UserDtos.UserListDto;
 
 namespace Host4Travel.Core.MappingProfiles
 {
@@ -82,12 +82,11 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<DocumentTypeUpdateDto, DocumentType>();
             CreateMap<DocumentTypeDeleteDto, DocumentType>();
 
-            CreateMap<ApplicationIdentityUser, ApplicationIdentityUserListDto>().ReverseMap();
-            CreateMap<ApplicationIdentityUser, ApplicationIdentityUserDetailDto>().ReverseMap();
             CreateMap<ApplicationIdentityUser, UserListDto>().ReverseMap();
-            CreateMap<ApplicationIdentityUserAddDto, ApplicationIdentityUser>();
-            CreateMap<ApplicationIdentityUserUpdateDto, ApplicationIdentityUser>();
-            CreateMap<ApplicationIdentityUserDeleteDto, ApplicationIdentityUser>();
+            CreateMap<ApplicationIdentityUser, UserDetailDto>().ReverseMap();
+            CreateMap<UserAddDto, ApplicationIdentityUser>();
+            CreateMap<UserUpdateDto, ApplicationIdentityUser>();
+            CreateMap<UserDeleteDto, ApplicationIdentityUser>();
             
         }
     }

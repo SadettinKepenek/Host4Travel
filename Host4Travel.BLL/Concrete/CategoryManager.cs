@@ -6,7 +6,7 @@ using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators;
 using Host4Travel.BLL.Validators.CategoryService;
-using Host4Travel.Core.DTO.CategoryService;
+using Host4Travel.Core.DTO.CategoryDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Host4Travel.API.Models.Abstract;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.CategoryService;
+using Host4Travel.Core.DTO.CategoryDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.UI;
 using Microsoft.AspNetCore.Authorization;

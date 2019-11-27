@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostApplicationService;
-using Host4Travel.Core.DTO.PostApplicationService;
+using Host4Travel.Core.DTO.PostApplicationDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;

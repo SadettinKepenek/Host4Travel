@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Host4Travel.Core.DTO.DocumentTypeService;
+using Host4Travel.Core.DTO.DocumentTypeDtos;
 
 namespace Host4Travel.BLL.Abstract
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.LoggerService;
+using Host4Travel.Core.DTO.LogDtos;
 using Host4Travel.DAL.Abstract;
 using Host4Travel.Entities.Concrete;
 

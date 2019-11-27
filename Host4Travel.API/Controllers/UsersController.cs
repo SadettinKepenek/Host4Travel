@@ -12,6 +12,7 @@ using Host4Travel.API.Models.Abstract;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.Core.DTO.AuthService;
+using Host4Travel.Core.DTO.UserDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
@@ -46,7 +47,7 @@ namespace Host4Travel.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("Login")]
-        public IActionResult Login([FromBody] IdentityLoginRequestDto userModel)
+        public IActionResult Login([FromBody] LoginRequestDto userModel)
         {
             try
             {
@@ -60,8 +61,8 @@ namespace Host4Travel.API.Controllers
                 }
                 else
                 {
-                    ResponseModelWithData<IdentityLoginResponseDto> responseModelWithData =
-                        new ResponseModelWithData<IdentityLoginResponseDto>();
+                    ResponseModelWithData<LoginResponseDto> responseModelWithData =
+                        new ResponseModelWithData<LoginResponseDto>();
                     responseModelWithData.Message = "OK";
                     responseModelWithData.StatusCode = HttpStatusCode.OK;
                     responseModelWithData.Data = result;
@@ -81,7 +82,7 @@ namespace Host4Travel.API.Controllers
 
         [HttpPost("Register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] ApplicationIdentityUserAddDto user)
+        public async Task<IActionResult> Register([FromBody] UserAddDto user)
         {
             try
             {
@@ -102,7 +103,7 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task<IActionResult> Delete(ApplicationIdentityUserDeleteDto dto)
+        public async Task<IActionResult> Delete(UserDeleteDto dto)
         {
             try
             {
@@ -123,13 +124,13 @@ namespace Host4Travel.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel,
+        public async Task<IActionResult> Update(UserUpdateDto userUpdateModel,
             string password)
         {
             try
             {
                 ResponseModel responseModel = new ResponseModel();
-                _authService.Update(applicationIdentityUserUpdateModel, password);
+                _authService.Update(userUpdateModel, password);
                 responseModel.StatusCode = HttpStatusCode.OK;
                 responseModel.Message = "Başarı ile güncellendi";
                 return Ok(responseModel);
@@ -193,7 +194,7 @@ namespace Host4Travel.API.Controllers
                         });
                 }
 
-                return Ok(new ResponseModelWithData<ApplicationIdentityUserListDto>
+                return Ok(new ResponseModelWithData<UserListDto>
                 {
                     Data = user,
                     Message = "OK",
@@ -226,7 +227,7 @@ namespace Host4Travel.API.Controllers
                         });
                 }
 
-                return Ok(new ResponseModelWithData<ApplicationIdentityUserDetailDto>
+                return Ok(new ResponseModelWithData<UserDetailDto>
                 {
                     Data = user,
                     Message = "OK",

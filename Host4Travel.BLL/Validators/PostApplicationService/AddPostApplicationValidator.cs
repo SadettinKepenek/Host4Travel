@@ -1,6 +1,6 @@
 ﻿using System;
 using FluentValidation;
-using Host4Travel.Core.DTO.PostApplicationService;
+using Host4Travel.Core.DTO.PostApplicationDtos;
 
 namespace Host4Travel.BLL.Validators.PostApplicationService
 {

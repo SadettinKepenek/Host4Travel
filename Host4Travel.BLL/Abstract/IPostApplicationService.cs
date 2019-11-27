@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Host4Travel.Core.DTO.PostApplicationService;
+using Host4Travel.Core.DTO.PostApplicationDtos;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Abstract

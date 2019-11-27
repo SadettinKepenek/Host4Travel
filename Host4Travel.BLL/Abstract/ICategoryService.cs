@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Host4Travel.Core.DTO.CategoryService;
+using Host4Travel.Core.DTO.CategoryDtos;
 using Host4Travel.UI;
 
 namespace Host4Travel.BLL.Abstract

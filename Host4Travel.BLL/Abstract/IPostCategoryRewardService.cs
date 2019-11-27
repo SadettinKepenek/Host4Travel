@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostCategoryRewardDtos;
 using Host4Travel.Entities.Concrete;
 using Host4Travel.UI;
 

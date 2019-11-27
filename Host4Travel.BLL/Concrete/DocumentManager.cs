@@ -4,7 +4,7 @@ using AutoMapper;
 using FluentValidation;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.DocumentService;
-using Host4Travel.Core.DTO.DocumentService;
+using Host4Travel.Core.DTO.DocumentDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
