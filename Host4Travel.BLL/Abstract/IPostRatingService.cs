@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostRatingService
     {
-        List<PostRatingDetailDto> GetAllRatings();
+        List<PostRatingListDto> GetAllRatings();
         PostRatingDetailDto GetById(Guid ratingId);
         void AddRating(PostRatingAddDto dto);
         void UpdateRating(PostRatingUpdateDto dto);

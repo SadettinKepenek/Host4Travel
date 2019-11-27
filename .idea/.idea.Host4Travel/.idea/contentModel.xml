@@ -258,6 +258,7 @@
             <e p="PostRatingAddDto.cs" t="Include" />
             <e p="PostRatingDeleteDto.cs" t="Include" />
             <e p="PostRatingDetailDto.cs" t="Include" />
+            <e p="PostRatingListDto.cs" t="Include" />
             <e p="PostRatingUpdateDto.cs" t="Include" />
           </e>
           <e p="RewardDtos" t="Include">

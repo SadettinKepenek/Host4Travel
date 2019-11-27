@@ -78,6 +78,11 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostImageDeleteDto, PostImage>();
 
             CreateMap<PostRating, PostRatingDetailDto>().ReverseMap();
+            CreateMap<PostRating, PostRatingListDto>()
+                .ForMember(x => x.PostApplicationId,c => c.MapFrom(d => d.ApplicationId))
+                .ForMember(x => x.Username,c => c.MapFrom(d=> d.Owner.UserName))
+                .ReverseMap();
+
             CreateMap<PostRatingAddDto, PostRating>();
             CreateMap<PostRatingUpdateDto, PostRating>();
             CreateMap<PostRatingDeleteDto, PostRating>();
