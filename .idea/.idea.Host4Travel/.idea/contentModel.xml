@@ -191,13 +191,13 @@
         </e>
         <e p="DTO" t="Include">
           <e p="AuthService" t="Include">
-            <e p="ApplicationIdentityUserAddDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserDeleteDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserDetailDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserListDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserUpdateDto.cs" t="Include" />
-            <e p="IdentityLoginRequestDto.cs" t="Include" />
-            <e p="IdentityLoginResponseDto.cs" t="Include" />
+            <e p="LoginRequestDto.cs" t="Include" />
+            <e p="LoginResponseDto.cs" t="Include" />
+            <e p="UserAddDto.cs" t="Include" />
+            <e p="UserDeleteDto.cs" t="Include" />
+            <e p="UserListDto.cs" t="Include" />
+            <e p="UserProfileDto.cs" t="Include" />
+            <e p="UserUpdateDto.cs" t="Include" />
           </e>
           <e p="CategoryRewardService" t="Include">
             <e p="CategoryRewardAddDto.cs" t="Include" />

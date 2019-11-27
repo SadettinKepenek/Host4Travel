@@ -20,6 +20,7 @@ namespace Host4Travel.Core.DTO.AuthService
         public bool IsCookieAccepted { get; set; }
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
+        
 
     }
 }
