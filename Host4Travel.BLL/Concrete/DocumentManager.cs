@@ -24,7 +24,7 @@ namespace Host4Travel.BLL.Concrete
             _documentDal = documentDal;
             _mapper = mapper;
         }
-        public List<DocumentDetailDto> GetAll()
+        public List<DocumentListDto> GetAll()
         {
             var documents = _documentDal.GetList();
             if (documents==null)
@@ -32,7 +32,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedDocuments = _mapper.Map<List<DocumentDetailDto>>(documents);
+            var mappedDocuments = _mapper.Map<List<DocumentListDto>>(documents);
             return mappedDocuments;
         }
 

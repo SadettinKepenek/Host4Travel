@@ -82,6 +82,14 @@ namespace Host4Travel.Core.MappingProfiles
 
 
             CreateMap<Document, DocumentDetailDto>().ReverseMap();
+            CreateMap<Document, DocumentListDto>()
+                .ForMember(x=>x.OwnerId,c=>c.MapFrom(d=>d.Owner.Id))
+                .ForMember(x=>x.OwnerName,c=>c.MapFrom(d=>d.Owner.Firstname))
+                .ForMember(x=>x.OwnerSurname,c=>c.MapFrom(d=>d.Owner.Lastname))
+                .ForMember(x=>x.OwnerUserName,c=>c.MapFrom(d=>d.Owner.UserName))
+                .ForMember(x=>x.DocumentTypeId,c=>c.MapFrom(d=>d.DocumentTypeId))
+                .ForMember(x=>x.DocumentTypeName,c=>c.MapFrom(d=>d.DocumentType.DocumentTypeName))
+                .ReverseMap();
             CreateMap<DocumentAddDto, Document>();
             CreateMap<DocumentUpdateDto, Document>();
             CreateMap<DocumentDeleteDto, Document>();

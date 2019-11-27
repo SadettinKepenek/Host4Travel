@@ -9,5 +9,7 @@ namespace Host4Travel.Core.DTO.CategoryRewardDtos
         public int RewardId { get; set; }
         public string CategoryName { get; set; }
         public string RewardName { get; set; }
+        public bool IsActive { get; set; }
+
     }
 }
