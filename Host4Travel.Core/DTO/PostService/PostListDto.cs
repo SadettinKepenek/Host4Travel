@@ -27,9 +27,8 @@ namespace Host4Travel.Core.DTO.PostService
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
 
-        
+        public virtual ApplicationIdentityUserListDto Owner { get; set; }
         public virtual PostCheckInListDto PostCheckIn { get; set; }
-        public virtual UserListDto Owner { get; set; }
         public virtual ICollection<PostImageListDto> PostImage { get; set; }
         public virtual ICollection<PostRatingListDto> PostRating { get; set; }
         public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
