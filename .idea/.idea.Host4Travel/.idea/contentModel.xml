@@ -215,6 +215,7 @@
             <e p="DocumentTypeAddDto.cs" t="Include" />
             <e p="DocumentTypeDeleteDto.cs" t="Include" />
             <e p="DocumentTypeDetailDto.cs" t="Include" />
+            <e p="DocumentTypeListDto.cs" t="Include" />
             <e p="DocumentTypeUpdateDto.cs" t="Include" />
           </e>
           <e p="LogDtos" t="Include">
