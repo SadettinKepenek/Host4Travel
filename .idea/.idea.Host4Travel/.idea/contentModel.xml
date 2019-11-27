@@ -201,6 +201,7 @@
             <e p="CategoryRewardAddDto.cs" t="Include" />
             <e p="CategoryRewardDeleteDto.cs" t="Include" />
             <e p="CategoryRewardDetailDto.cs" t="Include" />
+            <e p="CategoryRewardListDto.cs" t="Include" />
             <e p="CategoryRewardUpdateDto.cs" t="Include" />
           </e>
           <e p="DocumentDtos" t="Include">

@@ -40,7 +40,7 @@ namespace Host4Travel.BLL.Concrete
             return mappedEntities;
         }
 
-        public List<CategoryRewardDetailDto> GetAllRelationsWithDetails()
+        public List<CategoryRewardListDto> GetAllRelationsWithDetails()
         {
             var entities = _categoryRewardDal.GetAllWithDetails();
             if (entities == null)
@@ -48,7 +48,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<CategoryRewardDetailDto>>(entities);
+            var mappedEntities = _mapper.Map<List<CategoryRewardListDto>>(entities);
             return mappedEntities;
         }
 

@@ -8,7 +8,7 @@ namespace Host4Travel.BLL.Abstract
     public interface ICategoryRewardService
     {
         List<CategoryRewardDetailDto> GetAllRelations();
-        List<CategoryRewardDetailDto> GetAllRelationsWithDetails();
+        List<CategoryRewardListDto> GetAllRelationsWithDetails();
         CategoryRewardDetailDto GetRelationById(Guid id);
         CategoryRewardDetailDto GetRelationByIdWithDetails(Guid id);
         void AddRelation(CategoryRewardAddDto model);
