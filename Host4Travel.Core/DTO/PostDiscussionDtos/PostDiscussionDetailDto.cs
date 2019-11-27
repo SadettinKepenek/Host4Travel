@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Host4Travel.Core.DTO.PostDtos;
+using Host4Travel.Core.DTO.UserDtos;
 
 namespace Host4Travel.Core.DTO.PostDiscussionDtos
 {
@@ -18,5 +19,6 @@ namespace Host4Travel.Core.DTO.PostDiscussionDtos
         public virtual PostDiscussionListDto CommentNavigation { get; set; }
         public virtual PostListDto Post { get; set; }
         public virtual ICollection<PostDiscussionListDto> InverseCommentNavigation { get; set; }
+        public virtual UserListDto Owner { get; set; }
     }
 }

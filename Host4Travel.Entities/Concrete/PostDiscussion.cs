@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Host4Travel.Entities.Concrete;
 
 namespace Host4Travel.UI
 {
@@ -22,6 +23,7 @@ namespace Host4Travel.UI
         public DateTime CommentDate { get; set; }
 
         public virtual PostDiscussion CommentNavigation { get; set; }
+        public virtual ApplicationIdentityUser Owner { get; set; }
         public virtual Post Post { get; set; }
         public virtual ICollection<PostDiscussion> InverseCommentNavigation { get; set; }
     }

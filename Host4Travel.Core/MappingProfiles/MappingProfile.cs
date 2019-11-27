@@ -95,6 +95,14 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostDiscussion, PostDiscussionDetailDto>().ReverseMap();
             CreateMap<PostDiscussion, PostDiscussionListDto>()
                 .ForMember(x => x.PostDiscussionParentId,c => c.MapFrom(d => d.CommentNavigation.PostDiscussionId))
+                .ForMember(x=> x.OwnerFirstname,c =>c.MapFrom(d => d.Owner.Firstname))
+                .ForMember(x=> x.OwnerLastname,c =>c.MapFrom(d => d.Owner.Lastname))
+                .ForMember(x=> x.OwnerId,c =>c.MapFrom(d => d.Owner.Id))
+                .ForMember(x=> x.OwnerEmail,c =>c.MapFrom(d => d.Owner.Email))
+                .ForMember(c => c.PostTitle, d => d.MapFrom(c => c.Post.PostTitle))
+                .ForMember(c => c.PostDescription, d => d.MapFrom(c => c.Post.PostDescription))
+                .ForMember(c => c.ParentOwnerId, d => d.MapFrom(c => c.CommentNavigation.OwnerId))
+                .ForMember(c => c.ParentComment, d => d.MapFrom(c => c.CommentNavigation.Comment))
                 .ReverseMap();
 
             CreateMap<PostDiscussionAddDto, PostDiscussion>();
@@ -113,6 +121,14 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostRating, PostRatingListDto>()
                 .ForMember(x => x.PostApplicationId,c => c.MapFrom(d => d.ApplicationId))
                 .ForMember(x => x.Username,c => c.MapFrom(d=> d.Owner.UserName))
+                .ForMember(x=> x.Username,c =>c.MapFrom(d => d.Application.Applicent.UserName))
+                .ForMember(x=> x.Firstname,c =>c.MapFrom(d => d.Application.Applicent.Firstname))
+                .ForMember(x=> x.Lastname,c =>c.MapFrom(d => d.Application.Applicent.Lastname))
+                .ForMember(x=> x.Email,c =>c.MapFrom(d => d.Application.Applicent.Email))
+                .ForMember(x=> x.UserId,c =>c.MapFrom(d => d.Application.Applicent.Id))
+                .ForMember(x=> x.PostTitle,c =>c.MapFrom(d => d.Post.PostTitle))
+                .ForMember(x=> x.PostDescription,c =>c.MapFrom(d => d.Post.PostDescription))
+                
                 .ReverseMap();
 
             CreateMap<PostRatingAddDto, PostRating>();
