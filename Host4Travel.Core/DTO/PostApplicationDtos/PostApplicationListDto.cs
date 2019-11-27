@@ -11,5 +11,12 @@ namespace Host4Travel.Core.DTO.PostApplicationDtos
         public DateTime ApplicationEndDate { get; set; }
         public bool IsActive { get; set; }
         public string UserName { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string Email { get; set; }
+        public string UserId { get; set; }
+        public string PostTitle { get; set; }
+        public string PostDescription { get; set; }
+        
     }
 }

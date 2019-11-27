@@ -51,6 +51,12 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostApplication, PostApplicationDetailDto>().ReverseMap();
             CreateMap<PostApplication, PostApplicationListDto>()
                 .ForMember(x=> x.UserName,c =>c.MapFrom(d => d.Applicent.UserName))
+                .ForMember(x=> x.Firstname,c =>c.MapFrom(d => d.Applicent.Firstname))
+                .ForMember(x=> x.Lastname,c =>c.MapFrom(d => d.Applicent.Lastname))
+                .ForMember(x=> x.Email,c =>c.MapFrom(d => d.Applicent.Email))
+                .ForMember(x=> x.UserId,c =>c.MapFrom(d => d.Applicent.Id))
+                .ForMember(x=> x.PostTitle,c =>c.MapFrom(d => d.Post.PostTitle))
+                .ForMember(x=> x.PostDescription,c =>c.MapFrom(d => d.Post.PostDescription))
                 .ReverseMap();
 
             CreateMap<PostApplicationAddDto, PostApplication>();
@@ -61,6 +67,7 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostCategoryReward, PostCategoryRewardListDto>()
                 .ForMember(x => x.CategoryName, c => c.MapFrom(d => d.Category.CategoryName))
                 .ForMember(x => x.RewardName, c => c.MapFrom(d => d.Reward.RewardName))
+                
                 .ReverseMap();
             CreateMap<PostCategoryRewardAddDto, PostCategoryReward>();
             CreateMap<PostCategoryRewardDeleteDto, PostCategoryReward>();
