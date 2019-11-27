@@ -32,14 +32,14 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<CategoryDetailDto> GetAllCategories()
+        public List<CategoryListDto> GetAllCategories()
         {
             var categories = _categoryDal.GetList();
             if (categories==null)
             {
                 return null;
             }
-            var categoriesList = _mapper.Map<List<CategoryDetailDto>>(categories);
+            var categoriesList = _mapper.Map<List<CategoryListDto>>(categories);
             return categoriesList;
         }
 

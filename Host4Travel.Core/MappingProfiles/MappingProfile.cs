@@ -18,11 +18,16 @@ using Host4Travel.UI;
 
 namespace Host4Travel.Core.MappingProfiles
 {
-    public class MappingProfile:Profile
+    public class MappingProfile : Profile
     {
-        public MappingProfile() {
+        public MappingProfile()
+        {
             // Add as many of these lines as you need to map your objects
             CreateMap<Category, CategoryDetailDto>().ReverseMap();
+            CreateMap<Category, CategoryListDto>()
+                .ForMember(c => c.CategoryParentName, opt => opt.MapFrom(c => c.CategoryParent.CategoryName))
+                .ForMember(c=>c.CategoryParentId,opt=>opt.MapFrom(c=>c.CategoryParentId))
+                .ReverseMap();
             CreateMap<CategoryAddDto, Category>();
             CreateMap<CategoryUpdateDto, Category>();
             CreateMap<CategoryDeleteDto, Category>();
@@ -31,52 +36,52 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<RewardAddDto, Reward>();
             CreateMap<RewardUpdateDto, Reward>();
             CreateMap<RewardDeleteDto, Reward>();
-            
+
             CreateMap<CategoryReward, CategoryRewardDetailDto>().ReverseMap();
-            CreateMap<CategoryRewardAddDto,CategoryReward>();
-            CreateMap<CategoryRewardUpdateDto,CategoryReward>();
-            CreateMap<CategoryRewardDeleteDto,CategoryReward>();
-            
+            CreateMap<CategoryRewardAddDto, CategoryReward>();
+            CreateMap<CategoryRewardUpdateDto, CategoryReward>();
+            CreateMap<CategoryRewardDeleteDto, CategoryReward>();
+
             CreateMap<PostApplication, PostApplicationDetailDto>().ReverseMap();
-            CreateMap<PostApplicationAddDto,PostApplication>();
-            CreateMap<PostApplicationUpdateDto,PostApplication>();
-            CreateMap<PostApplicationDeleteDto,PostApplication>();
-            
+            CreateMap<PostApplicationAddDto, PostApplication>();
+            CreateMap<PostApplicationUpdateDto, PostApplication>();
+            CreateMap<PostApplicationDeleteDto, PostApplication>();
+
             CreateMap<PostCategoryReward, PostCategoryRewardDetailDto>().ReverseMap();
-            CreateMap<PostCategoryRewardAddDto,PostCategoryReward>();
-            CreateMap<PostCategoryRewardDeleteDto,PostCategoryReward>();
-            
+            CreateMap<PostCategoryRewardAddDto, PostCategoryReward>();
+            CreateMap<PostCategoryRewardDeleteDto, PostCategoryReward>();
+
             CreateMap<PostCheckIn, PostCheckInDetailDto>().ReverseMap();
-            CreateMap<PostCheckInAddDto,PostCheckIn>();
-            CreateMap<PostCheckInUpdateDto,PostCheckIn>();
-            CreateMap<PostCheckInDeleteDto,PostCheckIn>();
-            
+            CreateMap<PostCheckInAddDto, PostCheckIn>();
+            CreateMap<PostCheckInUpdateDto, PostCheckIn>();
+            CreateMap<PostCheckInDeleteDto, PostCheckIn>();
+
             CreateMap<PostDiscussion, PostDiscussionDetailDto>().ReverseMap();
-            CreateMap<PostDiscussionAddDto,PostDiscussion>();
-            CreateMap<PostDiscussionUpdateDto,PostDiscussion>();
-            CreateMap<PostDiscussionDeleteDto,PostDiscussion>();
-            
+            CreateMap<PostDiscussionAddDto, PostDiscussion>();
+            CreateMap<PostDiscussionUpdateDto, PostDiscussion>();
+            CreateMap<PostDiscussionDeleteDto, PostDiscussion>();
+
             CreateMap<PostImage, PostImageDetailDto>().ReverseMap();
-            CreateMap<PostImageAddDto,PostImage>();
-            CreateMap<PostImageDeleteDto,PostImage>();
-            
+            CreateMap<PostImageAddDto, PostImage>();
+            CreateMap<PostImageDeleteDto, PostImage>();
+
             CreateMap<PostRating, PostRatingDetailDto>().ReverseMap();
-            CreateMap<PostRatingAddDto,PostRating>();
-            CreateMap<PostRatingUpdateDto,PostRating>();
-            CreateMap<PostRatingDeleteDto,PostRating>();
-            
+            CreateMap<PostRatingAddDto, PostRating>();
+            CreateMap<PostRatingUpdateDto, PostRating>();
+            CreateMap<PostRatingDeleteDto, PostRating>();
+
             CreateMap<Post, PostListDto>().ReverseMap();
             CreateMap<Post, PostDetailDto>().ReverseMap();
-            CreateMap<PostAddDto,Post>();
-            CreateMap<PostUpdateDto,Post>();
-            CreateMap<PostDiscussionDeleteDto,Post>();
+            CreateMap<PostAddDto, Post>();
+            CreateMap<PostUpdateDto, Post>();
+            CreateMap<PostDiscussionDeleteDto, Post>();
 
 
             CreateMap<Document, DocumentDetailDto>().ReverseMap();
             CreateMap<DocumentAddDto, Document>();
             CreateMap<DocumentUpdateDto, Document>();
             CreateMap<DocumentDeleteDto, Document>();
-            
+
             CreateMap<DocumentType, DocumentTypeDetailDto>().ReverseMap();
             CreateMap<DocumentTypeAddDto, DocumentType>();
             CreateMap<DocumentTypeUpdateDto, DocumentType>();
@@ -87,7 +92,6 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<UserAddDto, ApplicationIdentityUser>();
             CreateMap<UserUpdateDto, ApplicationIdentityUser>();
             CreateMap<UserDeleteDto, ApplicationIdentityUser>();
-            
         }
     }
 }

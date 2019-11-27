@@ -6,7 +6,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface ICategoryService
     {
-        List<CategoryDetailDto> GetAllCategories();
+        List<CategoryListDto> GetAllCategories();
         CategoryDetailDto GetCategoryById(int categoryId);
         void AddCategory(CategoryAddDto model);
         void UpdateCategory(CategoryUpdateDto model);

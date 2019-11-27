@@ -194,6 +194,7 @@
             <e p="CategoryAddDto.cs" t="Include" />
             <e p="CategoryDeleteDto.cs" t="Include" />
             <e p="CategoryDetailDto.cs" t="Include" />
+            <e p="CategoryListDto.cs" t="Include" />
             <e p="CategoryUpdateDto.cs" t="Include" />
           </e>
           <e p="CategoryRewardDtos" t="Include">
