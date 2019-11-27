@@ -3,7 +3,7 @@ using Host4Travel.Core.DTO.PostDtos;
 
 namespace Host4Travel.Core.DTO.PostImageDtos
 {
-    public class PostImageListDto
+    public class PostImageDetailDto
     {
         public Guid ImageId { get; set; }
         public Guid PostId { get; set; }

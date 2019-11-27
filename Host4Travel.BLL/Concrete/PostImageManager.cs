@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostImageListDto> GetAllImages()
+        public List<PostImageDetailDto> GetAllImages()
         {
             var images = _postImageDal.GetList();
             if (images==null)
@@ -34,11 +34,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedImages = _mapper.Map<List<PostImageListDto>>(images);
+            var mappedImages = _mapper.Map<List<PostImageDetailDto>>(images);
             return mappedImages;
         }
 
-        public PostImageListDto GetImageById(Guid id)
+        public PostImageDetailDto GetImageById(Guid id)
         {
             var image = _postImageDal.Get(x=>x.ImageId==id);
             if (image==null)
@@ -46,7 +46,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedImage = _mapper.Map<PostImageListDto>(image);
+            var mappedImage = _mapper.Map<PostImageDetailDto>(image);
             return mappedImage;
         }
 

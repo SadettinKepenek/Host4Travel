@@ -5,7 +5,7 @@ using Host4Travel.Core.DTO.RewardDtos;
 
 namespace Host4Travel.Core.DTO.PostCategoryRewardDtos
 {
-    public class PostCategoryRewardListDto
+    public class PostCategoryRewardDetailDto
     {
         public Guid PostCategoryRewardId { get; set; }
         public Guid PostId { get; set; }
@@ -14,8 +14,8 @@ namespace Host4Travel.Core.DTO.PostCategoryRewardDtos
         public string RewardValue { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual CategoryListDto Category { get; set; }
+        public virtual CategoryDetailDto Category { get; set; }
         public virtual PostListDto Post { get; set; }
-        public virtual RewardListDto Reward { get; set; }
+        public virtual RewardDetailDto Reward { get; set; }
     }
 }

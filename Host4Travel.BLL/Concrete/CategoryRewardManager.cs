@@ -28,7 +28,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<CategoryRewardListDto> GetAllRelations()
+        public List<CategoryRewardDetailDto> GetAllRelations()
         {
             var entities = _categoryRewardDal.GetList();
             if (entities == null)
@@ -36,11 +36,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<CategoryRewardListDto>>(entities);
+            var mappedEntities = _mapper.Map<List<CategoryRewardDetailDto>>(entities);
             return mappedEntities;
         }
 
-        public List<CategoryRewardListDto> GetAllRelationsWithDetails()
+        public List<CategoryRewardDetailDto> GetAllRelationsWithDetails()
         {
             var entities = _categoryRewardDal.GetAllWithDetails();
             if (entities == null)
@@ -48,11 +48,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<CategoryRewardListDto>>(entities);
+            var mappedEntities = _mapper.Map<List<CategoryRewardDetailDto>>(entities);
             return mappedEntities;
         }
 
-        public CategoryRewardListDto GetRelationById(Guid id)
+        public CategoryRewardDetailDto GetRelationById(Guid id)
         {
             var entity = _categoryRewardDal.Get(x => x.CategoryRewardId == id);
             if (entity == null)
@@ -60,11 +60,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntity = _mapper.Map<CategoryRewardListDto>(entity);
+            var mappedEntity = _mapper.Map<CategoryRewardDetailDto>(entity);
             return mappedEntity;
         }
 
-        public CategoryRewardListDto GetRelationByIdWithDetails(Guid id)
+        public CategoryRewardDetailDto GetRelationByIdWithDetails(Guid id)
         {
             var entity = _categoryRewardDal.GetWithDetails(x => x.CategoryRewardId == id);
             if (entity == null)
@@ -72,7 +72,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntity = _mapper.Map<CategoryRewardListDto>(entity);
+            var mappedEntity = _mapper.Map<CategoryRewardDetailDto>(entity);
             return mappedEntity;
         }
 

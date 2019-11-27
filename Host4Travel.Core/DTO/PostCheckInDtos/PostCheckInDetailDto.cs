@@ -4,7 +4,7 @@ using Host4Travel.Core.DTO.PostDtos;
 
 namespace Host4Travel.Core.DTO.PostCheckInDtos
 {
-    public class PostCheckInListDto
+    public class PostCheckInDetailDto
     {
         public Guid PostCheckInId { get; set; }
         public DateTime CheckInStartDate { get; set; }
@@ -14,6 +14,6 @@ namespace Host4Travel.Core.DTO.PostCheckInDtos
         public Guid PostId { get; set; }
 
         public virtual PostListDto Post { get; set; }
-        public virtual PostApplicationListDto Application { get; set; }
+        public virtual PostApplicationDetailDto Application { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Host4Travel.Core.DTO.UserDtos;
 
 namespace Host4Travel.Core.DTO.PostRatingDtos
 {
-    public class PostRatingListDto
+    public class PostRatingDetailDto
     {
         public Guid PostRatingId { get; set; }
         public Guid? PostId { get; set; }
@@ -16,8 +16,8 @@ namespace Host4Travel.Core.DTO.PostRatingDtos
         public string OwnerId { get; set; }
         public Guid? ApplicationId { get; set; }
 
-        public virtual PostApplicationListDto Application { get; set; }
-        public virtual UserListDto Owner { get; set; }
+        public virtual PostApplicationDetailDto Application { get; set; }
+        public virtual UserDetailDto Owner { get; set; }
         public virtual PostListDto Post { get; set; }
     }
 }

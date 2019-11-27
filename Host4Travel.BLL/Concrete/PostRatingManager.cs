@@ -28,7 +28,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostRatingListDto> GetAllRatings()
+        public List<PostRatingDetailDto> GetAllRatings()
         {
             var ratings = _postRatingDal.GetList();
             if (ratings==null)
@@ -36,11 +36,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedRatings = _mapper.Map<List<PostRatingListDto>>(ratings);
+            var mappedRatings = _mapper.Map<List<PostRatingDetailDto>>(ratings);
             return mappedRatings;
         }
 
-        public PostRatingListDto GetById(Guid ratingId)
+        public PostRatingDetailDto GetById(Guid ratingId)
         {
             var rating = _postRatingDal.Get(x => x.PostRatingId == ratingId);
             if (rating==null)
@@ -48,7 +48,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedRating = _mapper.Map<PostRatingListDto>(rating);
+            var mappedRating = _mapper.Map<PostRatingDetailDto>(rating);
             return mappedRating;
         }
 

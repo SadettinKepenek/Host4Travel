@@ -8,8 +8,8 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostCategoryRewardService
     {
-        List<PostCategoryRewardListDto> GetAllRelations();
-        PostCategoryRewardListDto GetRelationById(Guid id);
+        List<PostCategoryRewardDetailDto> GetAllRelations();
+        PostCategoryRewardDetailDto GetRelationById(Guid id);
 
         void Add(PostCategoryRewardAddDto dto);
         void Update(PostCategoryRewardAddDto dto);

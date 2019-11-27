@@ -32,18 +32,18 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<CategoryListDto> GetAllCategories()
+        public List<CategoryDetailDto> GetAllCategories()
         {
             var categories = _categoryDal.GetList();
             if (categories==null)
             {
                 return null;
             }
-            var categoriesList = _mapper.Map<List<CategoryListDto>>(categories);
+            var categoriesList = _mapper.Map<List<CategoryDetailDto>>(categories);
             return categoriesList;
         }
 
-        public CategoryListDto GetCategoryById(int categoryId)
+        public CategoryDetailDto GetCategoryById(int categoryId)
         {
             var category = _categoryDal.Get(x => x.CategoryId == categoryId);
             if (category==null)
@@ -51,7 +51,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var categoryReturn = _mapper.Map<CategoryListDto>(category);
+            var categoryReturn = _mapper.Map<CategoryDetailDto>(category);
             return categoryReturn;
         }
 

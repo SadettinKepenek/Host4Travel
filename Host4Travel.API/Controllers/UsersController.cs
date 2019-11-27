@@ -194,7 +194,7 @@ namespace Host4Travel.API.Controllers
                         });
                 }
 
-                return Ok(new ResponseModelWithData<UserListDto>
+                return Ok(new ResponseModelWithData<UserDetailDto>
                 {
                     Data = user,
                     Message = "OK",
@@ -227,7 +227,7 @@ namespace Host4Travel.API.Controllers
                         });
                 }
 
-                return Ok(new ResponseModelWithData<UserDetailDto>
+                return Ok(new ResponseModelWithData<UserProfileDto>
                 {
                     Data = user,
                     Message = "OK",

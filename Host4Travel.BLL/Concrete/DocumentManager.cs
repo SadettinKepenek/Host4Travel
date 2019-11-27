@@ -24,7 +24,7 @@ namespace Host4Travel.BLL.Concrete
             _documentDal = documentDal;
             _mapper = mapper;
         }
-        public List<DocumentListDto> GetAll()
+        public List<DocumentDetailDto> GetAll()
         {
             var documents = _documentDal.GetList();
             if (documents==null)
@@ -32,11 +32,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedDocuments = _mapper.Map<List<DocumentListDto>>(documents);
+            var mappedDocuments = _mapper.Map<List<DocumentDetailDto>>(documents);
             return mappedDocuments;
         }
 
-        public DocumentListDto GetById(Guid id)
+        public DocumentDetailDto GetById(Guid id)
         {
             var document = _documentDal.Get(x => x.DocumentId == id);
             if (document==null)
@@ -44,7 +44,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedDocument = _mapper.Map<DocumentListDto>(document);
+            var mappedDocument = _mapper.Map<DocumentDetailDto>(document);
             return mappedDocument;
         }
 

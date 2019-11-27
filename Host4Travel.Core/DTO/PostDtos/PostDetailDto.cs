@@ -23,11 +23,11 @@ namespace Host4Travel.Core.DTO.PostDtos
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
 
-        public virtual UserListDto Owner { get; set; }
-        public virtual ICollection<PostCategoryRewardListDto> PostCategoryReward { get; set; }
-        public virtual ICollection<PostDiscussionListDto> PostDiscussion { get; set; }
-        public virtual ICollection<PostImageListDto> PostImage { get; set; }
-        public virtual ICollection<PostRatingListDto> PostRating { get; set; }
-        public virtual PostCheckInListDto PostCheckIn { get; set; }
+        public virtual UserDetailDto Owner { get; set; }
+        public virtual ICollection<PostCategoryRewardDetailDto> PostCategoryReward { get; set; }
+        public virtual ICollection<PostDiscussionDetailDto> PostDiscussion { get; set; }
+        public virtual ICollection<PostImageDetailDto> PostImage { get; set; }
+        public virtual ICollection<PostRatingDetailDto> PostRating { get; set; }
+        public virtual PostCheckInDetailDto PostCheckIn { get; set; }
     }
 }

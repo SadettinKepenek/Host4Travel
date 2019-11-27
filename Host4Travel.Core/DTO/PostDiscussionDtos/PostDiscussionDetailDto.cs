@@ -4,7 +4,7 @@ using Host4Travel.Core.DTO.PostDtos;
 
 namespace Host4Travel.Core.DTO.PostDiscussionDtos
 {
-    public class PostDiscussionListDto
+    public class PostDiscussionDetailDto
     {
         public Guid PostDiscussionId { get; set; }
         public Guid PostId { get; set; }
@@ -15,8 +15,8 @@ namespace Host4Travel.Core.DTO.PostDiscussionDtos
         public bool IsActive { get; set; }
         public DateTime CommentDate { get; set; }
 
-        public virtual PostDiscussionListDto CommentNavigation { get; set; }
+        public virtual PostDiscussionDetailDto CommentNavigation { get; set; }
         public virtual PostListDto Post { get; set; }
-        public virtual ICollection<PostDiscussionListDto> InverseCommentNavigation { get; set; }
+        public virtual ICollection<PostDiscussionDetailDto> InverseCommentNavigation { get; set; }
     }
 }

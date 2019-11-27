@@ -232,7 +232,7 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public UserListDto GetUser()
+        public UserDetailDto GetUser()
         {
             var user = _httpContext.HttpContext.User.Identity.Name;
             if (user==null)
@@ -251,11 +251,11 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
-            var mappedUser = _mapper.Map<UserListDto>(dbUser);
+            var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
             return mappedUser;
         }
 
-        public UserDetailDto GetUserDetail(string userId)
+        public UserProfileDto GetUserDetail(string userId)
         {
             var dbUser = _userManager.Users.
                 Include(x => x.PostApplication).
@@ -268,7 +268,7 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
-            var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
+            var mappedUser = _mapper.Map<UserProfileDto>(dbUser);
             return mappedUser;
         }
 

@@ -38,7 +38,7 @@ namespace Host4Travel.API.Controllers
                 });
             }
             
-            ResponseModelWithData<List<RewardListDto>> responseModelWithData = new ResponseModelWithData<List<RewardListDto>>();
+            ResponseModelWithData<List<RewardDetailDto>> responseModelWithData = new ResponseModelWithData<List<RewardDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = rewards;
@@ -57,7 +57,7 @@ namespace Host4Travel.API.Controllers
                     Message = $"{id} için kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<RewardListDto> responseModelWithData = new ResponseModelWithData<RewardListDto>();
+            ResponseModelWithData<RewardDetailDto> responseModelWithData = new ResponseModelWithData<RewardDetailDto>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = $"{id} başarıyla getirildi";
             responseModelWithData.Data = reward;

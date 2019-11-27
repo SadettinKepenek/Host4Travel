@@ -16,8 +16,8 @@ namespace Host4Travel.BLL.Abstract
 
         void Update(UserUpdateDto userUpdateModel, string password);
         void Delete(UserDeleteDto dto);
-        UserListDto GetUser();
-        UserDetailDto GetUserDetail(string userId);
+        UserDetailDto GetUser();
+        UserProfileDto GetUserDetail(string userId);
 
 
     }

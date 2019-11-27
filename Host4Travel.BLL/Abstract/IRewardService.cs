@@ -6,8 +6,8 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IRewardService
     {
-        List<RewardListDto> GetAllRewards();
-        RewardListDto GetRewardById(int rewardId);      
+        List<RewardDetailDto> GetAllRewards();
+        RewardDetailDto GetRewardById(int rewardId);      
         void AddReward(RewardAddDto model);
         void UpdateReward(RewardUpdateDto model);
         void DeleteReward(RewardDeleteDto model);

@@ -1,6 +1,6 @@
 ﻿namespace Host4Travel.Core.DTO.DocumentTypeDtos
 {
-    public class DocumentTypeListDto
+    public class DocumentTypeDetailDto
     {
         public int DocumentTypeId { get; set; }
         public string DocumentTypeName { get; set; }

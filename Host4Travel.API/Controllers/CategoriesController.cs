@@ -39,7 +39,7 @@ namespace Host4Travel.API.Controllers
                 return NotFound(responseModel);
             }
 
-            ResponseModelWithData<List<CategoryListDto>> responseModelWithData = new ResponseModelWithData<List<CategoryListDto>>();
+            ResponseModelWithData<List<CategoryDetailDto>> responseModelWithData = new ResponseModelWithData<List<CategoryDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = categories;

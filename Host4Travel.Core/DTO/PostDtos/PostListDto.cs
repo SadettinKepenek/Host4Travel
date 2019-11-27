@@ -4,7 +4,7 @@ using Host4Travel.Core.DTO.PostApplicationDtos;
 using Host4Travel.Core.DTO.PostCheckInDtos;
 using Host4Travel.Core.DTO.PostImageDtos;
 using Host4Travel.Core.DTO.PostRatingDtos;
-using UserListDto = Host4Travel.Core.DTO.UserDtos.UserListDto;
+using Host4Travel.Core.DTO.UserDtos;
 
 namespace Host4Travel.Core.DTO.PostDtos
 {
@@ -22,11 +22,11 @@ namespace Host4Travel.Core.DTO.PostDtos
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
 
-        public virtual UserListDto Owner { get; set; }
-        public virtual PostCheckInListDto PostCheckIn { get; set; }
-        public virtual ICollection<PostImageListDto> PostImage { get; set; }
-        public virtual ICollection<PostRatingListDto> PostRating { get; set; }
-        public virtual ICollection<PostApplicationListDto> PostApplication { get; set; }
+        public virtual UserDetailDto Owner { get; set; }
+        public virtual PostCheckInDetailDto PostCheckIn { get; set; }
+        public virtual ICollection<PostImageDetailDto> PostImage { get; set; }
+        public virtual ICollection<PostRatingDetailDto> PostRating { get; set; }
+        public virtual ICollection<PostApplicationDetailDto> PostApplication { get; set; }
 
     }
 }
