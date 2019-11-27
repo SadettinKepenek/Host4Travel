@@ -65,6 +65,10 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostCheckInDeleteDto, PostCheckIn>();
 
             CreateMap<PostDiscussion, PostDiscussionDetailDto>().ReverseMap();
+            CreateMap<PostDiscussion, PostDiscussionListDto>()
+                .ForMember(x => x.PostDiscussionParentId,c => c.MapFrom(d => d.CommentNavigation.PostDiscussionId))
+                .ReverseMap();
+
             CreateMap<PostDiscussionAddDto, PostDiscussion>();
             CreateMap<PostDiscussionUpdateDto, PostDiscussion>();
             CreateMap<PostDiscussionDeleteDto, PostDiscussion>();

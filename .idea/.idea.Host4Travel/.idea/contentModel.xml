@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\berka\.Rider2019.2\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\berka\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.1964724786.00" t="ExcludeRecursive" />
-    <e p="C:\Users\berka\RiderProjects\Host4Travel" t="IncludeFlat">
-      <e p=".git\info\exclude" t="IncludeRecursive" />
+    <e p="C:\Users\Lenovo-2\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Lenovo-2\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Host4Travel.-933768847.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Lenovo-2\RiderProjects\Host4Travel" t="IncludeFlat">
       <e p="Host4Travel.API" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
@@ -224,6 +220,7 @@
             <e p="PostApplicationAddDto.cs" t="Include" />
             <e p="PostApplicationDeleteDto.cs" t="Include" />
             <e p="PostApplicationDetailDto.cs" t="Include" />
+            <e p="PostApplicationListDto.cs" t="Include" />
             <e p="PostApplicationUpdateDto.cs" t="Include" />
           </e>
           <e p="PostCategoryRewardDtos" t="Include">
@@ -242,6 +239,7 @@
             <e p="PostDiscussionAddDto.cs" t="Include" />
             <e p="PostDiscussionDeleteDto.cs" t="Include" />
             <e p="PostDiscussionDetailDto.cs" t="Include" />
+            <e p="PostDiscussionListDto.cs" t="Include" />
             <e p="PostDiscussionUpdateDto.cs" t="Include" />
           </e>
           <e p="PostDtos" t="Include">

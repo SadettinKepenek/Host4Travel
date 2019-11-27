@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
             _exceptionHandler = exceptionHandler;
         }
         
-        public List<PostDiscussionDetailDto> GetAll()
+        public List<PostDiscussionListDto> GetAll()
         {
             var entities = _postDiscussionDal.GetList();
             if (entities == null)
@@ -34,7 +34,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedPostDiscussions = _mapper.Map<List<PostDiscussionDetailDto>>(entities);
+            var mappedPostDiscussions = _mapper.Map<List<PostDiscussionListDto>>(entities);
             return mappedPostDiscussions;
         }
 

@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostDiscussionService
     {
-        List<PostDiscussionDetailDto> GetAll();
+        List<PostDiscussionListDto> GetAll();
         PostDiscussionDetailDto GetById(Guid id);
         void Add(PostDiscussionAddDto dto);
         void Update(PostDiscussionUpdateDto dto);
