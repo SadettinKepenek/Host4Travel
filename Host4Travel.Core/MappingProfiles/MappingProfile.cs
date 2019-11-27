@@ -26,7 +26,7 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<Category, CategoryDetailDto>().ReverseMap();
             CreateMap<Category, CategoryListDto>()
                 .ForMember(c => c.CategoryParentName, opt => opt.MapFrom(c => c.CategoryParent.CategoryName))
-                .ForMember(c=>c.CategoryParentId,opt=>opt.MapFrom(c=>c.CategoryParentId))
+                .ForMember(c => c.CategoryParentId, opt => opt.MapFrom(c => c.CategoryParentId))
                 .ReverseMap();
             CreateMap<CategoryAddDto, Category>();
             CreateMap<CategoryUpdateDto, Category>();
@@ -41,8 +41,8 @@ namespace Host4Travel.Core.MappingProfiles
 
             CreateMap<CategoryReward, CategoryRewardDetailDto>().ReverseMap();
             CreateMap<CategoryReward, CategoryRewardListDto>()
-                .ForMember(x=>x.CategoryName,c=>c.MapFrom(d=>d.Category.CategoryName))
-                .ForMember(x=>x.RewardName,c=>c.MapFrom(d=>d.Reward.RewardName))
+                .ForMember(x => x.CategoryName, c => c.MapFrom(d => d.Category.CategoryName))
+                .ForMember(x => x.RewardName, c => c.MapFrom(d => d.Reward.RewardName))
                 .ReverseMap();
             CreateMap<CategoryRewardAddDto, CategoryReward>();
             CreateMap<CategoryRewardUpdateDto, CategoryReward>();
@@ -58,10 +58,29 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostApplicationDeleteDto, PostApplication>();
 
             CreateMap<PostCategoryReward, PostCategoryRewardDetailDto>().ReverseMap();
+            CreateMap<PostCategoryReward, PostCategoryRewardListDto>()
+                .ForMember(x => x.CategoryName, c => c.MapFrom(d => d.Category.CategoryName))
+                .ForMember(x => x.RewardName, c => c.MapFrom(d => d.Reward.RewardName))
+                .ReverseMap();
             CreateMap<PostCategoryRewardAddDto, PostCategoryReward>();
             CreateMap<PostCategoryRewardDeleteDto, PostCategoryReward>();
 
             CreateMap<PostCheckIn, PostCheckInDetailDto>().ReverseMap();
+            CreateMap<PostCheckIn, PostCheckInListDto>()
+                .ForMember(c => c.OwnerId, d => d.MapFrom(c => c.Application.ApplicentId))
+                .ForMember(c => c.OwnerEmail, d => d.MapFrom(c => c.Application.Applicent.Email))
+                .ForMember(c => c.OwnerUserName, d => d.MapFrom(c => c.Application.Applicent.UserName))
+                .ForMember(c => c.OwnerFirstname, d => d.MapFrom(c => c.Application.Applicent.Firstname))
+                .ForMember(c => c.OwnerLastname, d => d.MapFrom(c => c.Application.Applicent.Lastname))
+                .ForMember(c => c.PostDescription, d => d.MapFrom(c => c.Post.PostDescription))
+                .ForMember(c => c.PostTitle, d => d.MapFrom(c => c.Post.PostTitle))
+                .ForMember(c => c.PostType, d => d.MapFrom(c => c.Post.PostType))
+                .ForMember(c => c.ApplicationDate, d => d.MapFrom(c => c.Application.ApplicationDate))
+                .ForMember(c => c.ApplicationStartDate, d => d.MapFrom(c => c.Application.ApplicationStartDate))
+                .ForMember(c => c.ApplicationEndDate, d => d.MapFrom(c => c.Application.ApplicationEndDate))
+                .ForMember(c => c.ApplicationId, d => d.MapFrom(c => c.Application.PostApplicationId))
+                .ForMember(c => c.PostId, d => d.MapFrom(c => c.Post.PostId))
+                .ReverseMap();
             CreateMap<PostCheckInAddDto, PostCheckIn>();
             CreateMap<PostCheckInUpdateDto, PostCheckIn>();
             CreateMap<PostCheckInDeleteDto, PostCheckIn>();
@@ -76,6 +95,10 @@ namespace Host4Travel.Core.MappingProfiles
             CreateMap<PostDiscussionDeleteDto, PostDiscussion>();
 
             CreateMap<PostImage, PostImageDetailDto>().ReverseMap();
+            CreateMap<PostImage, PostImageListDto>()
+                .ForMember(x => x.PostTitle, d => d.MapFrom(c => c.Post.PostTitle))
+                .ForMember(x => x.PostDescription, d => d.MapFrom(c => c.Post.PostDescription))
+                .ReverseMap();
             CreateMap<PostImageAddDto, PostImage>();
             CreateMap<PostImageDeleteDto, PostImage>();
 
@@ -97,6 +120,14 @@ namespace Host4Travel.Core.MappingProfiles
 
 
             CreateMap<Document, DocumentDetailDto>().ReverseMap();
+            CreateMap<Document, DocumentListDto>()
+                .ForMember(x => x.OwnerId, c => c.MapFrom(d => d.Owner.Id))
+                .ForMember(x => x.OwnerName, c => c.MapFrom(d => d.Owner.Firstname))
+                .ForMember(x => x.OwnerSurname, c => c.MapFrom(d => d.Owner.Lastname))
+                .ForMember(x => x.OwnerUserName, c => c.MapFrom(d => d.Owner.UserName))
+                .ForMember(x => x.DocumentTypeId, c => c.MapFrom(d => d.DocumentTypeId))
+                .ForMember(x => x.DocumentTypeName, c => c.MapFrom(d => d.DocumentType.DocumentTypeName))
+                .ReverseMap();
             CreateMap<DocumentAddDto, Document>();
             CreateMap<DocumentUpdateDto, Document>();
             CreateMap<DocumentDeleteDto, Document>();

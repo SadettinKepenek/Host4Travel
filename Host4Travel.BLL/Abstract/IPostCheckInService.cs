@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostCheckInService
     {
-        List<PostCheckInDetailDto> GetAll();
+        List<PostCheckInListDto> GetAll();
         PostCheckInDetailDto GetById(Guid id);
         void Add(PostCheckInAddDto model);
         void Update(PostCheckInUpdateDto model);

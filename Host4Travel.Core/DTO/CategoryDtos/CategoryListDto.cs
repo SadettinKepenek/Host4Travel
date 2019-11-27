@@ -7,5 +7,7 @@
         public string CategoryDescription { get; set; }
         public string CategoryParentId { get; set; }
         public string CategoryParentName { get; set; }
+        public bool IsActive { get; set; } 
+
     }
 }

@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostImageDetailDto> GetAllImages()
+        public List<PostImageListDto> GetAllImages()
         {
             var images = _postImageDal.GetList();
             if (images==null)
@@ -34,7 +34,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedImages = _mapper.Map<List<PostImageDetailDto>>(images);
+            var mappedImages = _mapper.Map<List<PostImageListDto>>(images);
             return mappedImages;
         }
 

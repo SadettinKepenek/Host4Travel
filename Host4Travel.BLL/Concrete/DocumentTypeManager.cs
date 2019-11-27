@@ -23,7 +23,7 @@ namespace Host4Travel.BLL.Concrete
             _mapper = mapper;
             _exceptionHandler = exceptionHandler;
         }
-        public List<DocumentTypeDetailDto> GetAll()
+        public List<DocumentTypeListDto> GetAll()
         {
             var entities = _documentTypeDal.GetList();
             if (entities==null)
@@ -31,7 +31,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<DocumentTypeDetailDto>>(entities);
+            var mappedEntities = _mapper.Map<List<DocumentTypeListDto>>(entities);
             return mappedEntities;
         }
 

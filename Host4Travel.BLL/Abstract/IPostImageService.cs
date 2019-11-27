@@ -7,7 +7,7 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IPostImageService
     {
-        List<PostImageDetailDto> GetAllImages();
+        List<PostImageListDto> GetAllImages();
         PostImageDetailDto GetImageById(Guid id);
         void AddImage(PostImageAddDto dto);
         void UpdateImage(PostImageAddDto dto);
