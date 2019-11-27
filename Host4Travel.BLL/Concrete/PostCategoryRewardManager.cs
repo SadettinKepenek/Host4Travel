@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostCategoryRewardService;
-using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostCategoryRewardDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -27,7 +27,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostCategoryRewardListDto> GetAllRelations()
+        public List<PostCategoryRewardDetailDto> GetAllRelations()
         {
             var entities = _postCategoryRewardDal.GetList();
             if (entities==null)
@@ -35,11 +35,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<PostCategoryRewardListDto>>(entities);
+            var mappedEntities = _mapper.Map<List<PostCategoryRewardDetailDto>>(entities);
             return mappedEntities;
         }
 
-        public PostCategoryRewardListDto GetRelationById(Guid id)
+        public PostCategoryRewardDetailDto GetRelationById(Guid id)
         {
             var entity = _postCategoryRewardDal.Get(x => x.PostCategoryRewardId == id);
             if (entity==null)
@@ -47,7 +47,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntity = _mapper.Map<PostCategoryRewardListDto>(entity);
+            var mappedEntity = _mapper.Map<PostCategoryRewardDetailDto>(entity);
             return mappedEntity;
         }
 

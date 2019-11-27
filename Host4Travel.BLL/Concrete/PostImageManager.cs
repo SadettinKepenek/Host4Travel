@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostImageService;
-using Host4Travel.Core.DTO.PostImageService;
+using Host4Travel.Core.DTO.PostImageDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostImageListDto> GetAllImages()
+        public List<PostImageDetailDto> GetAllImages()
         {
             var images = _postImageDal.GetList();
             if (images==null)
@@ -34,11 +34,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedImages = _mapper.Map<List<PostImageListDto>>(images);
+            var mappedImages = _mapper.Map<List<PostImageDetailDto>>(images);
             return mappedImages;
         }
 
-        public PostImageListDto GetImageById(Guid id)
+        public PostImageDetailDto GetImageById(Guid id)
         {
             var image = _postImageDal.Get(x=>x.ImageId==id);
             if (image==null)
@@ -46,7 +46,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedImage = _mapper.Map<PostImageListDto>(image);
+            var mappedImage = _mapper.Map<PostImageDetailDto>(image);
             return mappedImage;
         }
 

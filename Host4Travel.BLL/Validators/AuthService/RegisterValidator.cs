@@ -3,7 +3,7 @@ using Host4Travel.Core.DTO.AuthService;
 
 namespace Host4Travel.BLL.Validators.AuthService
 {
-    public class RegisterValidator:AbstractValidator<ApplicationIdentityUserAddDto>
+    public class RegisterValidator:AbstractValidator<UserAddDto>
     {
         public RegisterValidator()
         {

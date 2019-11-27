@@ -190,93 +190,90 @@
           </e>
         </e>
         <e p="DTO" t="Include">
-          <e p="AuthService" t="Include">
-            <e p="ApplicationIdentityUserAddDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserDeleteDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserDetailDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserListDto.cs" t="Include" />
-            <e p="ApplicationIdentityUserUpdateDto.cs" t="Include" />
-            <e p="IdentityLoginRequestDto.cs" t="Include" />
-            <e p="IdentityLoginResponseDto.cs" t="Include" />
-          </e>
-          <e p="CategoryRewardService" t="Include">
-            <e p="CategoryRewardAddDto.cs" t="Include" />
-            <e p="CategoryRewardDeleteDto.cs" t="Include" />
-            <e p="CategoryRewardListDto.cs" t="Include" />
-            <e p="CategoryRewardUpdateDto.cs" t="Include" />
-          </e>
-          <e p="CategoryService" t="Include">
+          <e p="CategoryDtos" t="Include">
             <e p="CategoryAddDto.cs" t="Include" />
             <e p="CategoryDeleteDto.cs" t="Include" />
-            <e p="CategoryListDto.cs" t="Include" />
+            <e p="CategoryDetailDto.cs" t="Include" />
             <e p="CategoryUpdateDto.cs" t="Include" />
           </e>
-          <e p="DocumentService" t="Include">
+          <e p="CategoryRewardDtos" t="Include">
+            <e p="CategoryRewardAddDto.cs" t="Include" />
+            <e p="CategoryRewardDeleteDto.cs" t="Include" />
+            <e p="CategoryRewardDetailDto.cs" t="Include" />
+            <e p="CategoryRewardUpdateDto.cs" t="Include" />
+          </e>
+          <e p="DocumentDtos" t="Include">
             <e p="DocumentAddDto.cs" t="Include" />
             <e p="DocumentDeleteDto.cs" t="Include" />
-            <e p="DocumentListDto.cs" t="Include" />
+            <e p="DocumentDetailDto.cs" t="Include" />
             <e p="DocumentUpdateDto.cs" t="Include" />
           </e>
-          <e p="DocumentTypeService" t="Include">
+          <e p="DocumentTypeDtos" t="Include">
             <e p="DocumentTypeAddDto.cs" t="Include" />
             <e p="DocumentTypeDeleteDto.cs" t="Include" />
-            <e p="DocumentTypeListDto.cs" t="Include" />
+            <e p="DocumentTypeDetailDto.cs" t="Include" />
             <e p="DocumentTypeUpdateDto.cs" t="Include" />
           </e>
-          <e p="LoggerService" t="Include">
+          <e p="LogDtos" t="Include">
             <e p="LogLevel.cs" t="Include" />
             <e p="LogModel.cs" t="Include" />
           </e>
-          <e p="PostApplicationService" t="Include">
+          <e p="PostApplicationDtos" t="Include">
             <e p="PostApplicationAddDto.cs" t="Include" />
             <e p="PostApplicationDeleteDto.cs" t="Include" />
-            <e p="PostApplicationListDto.cs" t="Include" />
+            <e p="PostApplicationDetailDto.cs" t="Include" />
             <e p="PostApplicationUpdateDto.cs" t="Include" />
           </e>
-          <e p="PostCategoryRewardService" t="Include">
+          <e p="PostCategoryRewardDtos" t="Include">
             <e p="PostCategoryRewardAddDto.cs" t="Include" />
             <e p="PostCategoryRewardDeleteDto.cs" t="Include" />
-            <e p="PostCategoryRewardListDto.cs" t="Include" />
+            <e p="PostCategoryRewardDetailDto.cs" t="Include" />
             <e p="PostCategoryRewardUpdateDto.cs" t="Include" />
           </e>
-          <e p="PostCheckInService" t="Include">
+          <e p="PostCheckInDtos" t="Include">
             <e p="PostCheckInAddDto.cs" t="Include" />
             <e p="PostCheckInDeleteDto.cs" t="Include" />
-            <e p="PostCheckInListDto.cs" t="Include" />
+            <e p="PostCheckInDetailDto.cs" t="Include" />
             <e p="PostCheckInUpdateDto.cs" t="Include" />
           </e>
-          <e p="PostDiscussionService" t="Include">
+          <e p="PostDiscussionDtos" t="Include">
             <e p="PostDiscussionAddDto.cs" t="Include" />
             <e p="PostDiscussionDeleteDto.cs" t="Include" />
-            <e p="PostDiscussionListDto.cs" t="Include" />
+            <e p="PostDiscussionDetailDto.cs" t="Include" />
             <e p="PostDiscussionUpdateDto.cs" t="Include" />
           </e>
-          <e p="PostImageService" t="Include">
-            <e p="PostImageAddDto.cs" t="Include" />
-            <e p="PostImageDeleteDto.cs" t="Include" />
-            <e p="PostImageListDto.cs" t="Include" />
-          </e>
-          <e p="PostRatingService" t="Include">
-            <e p="PostRatingAddDto.cs" t="Include" />
-            <e p="PostRatingDeleteDto.cs" t="Include" />
-            <e p="PostRatingListDto.cs" t="Include" />
-            <e p="PostRatingUpdateDto.cs" t="Include" />
-          </e>
-          <e p="PostService" t="Include">
+          <e p="PostDtos" t="Include">
             <e p="PostAddDto.cs" t="Include" />
             <e p="PostDeleteDto.cs" t="Include" />
             <e p="PostDetailDto.cs" t="Include" />
             <e p="PostListDto.cs" t="Include" />
             <e p="PostUpdateDto.cs" t="Include" />
           </e>
-          <e p="RewardService" t="Include">
+          <e p="PostImageDtos" t="Include">
+            <e p="PostImageAddDto.cs" t="Include" />
+            <e p="PostImageDeleteDto.cs" t="Include" />
+            <e p="PostImageDetailDto.cs" t="Include" />
+          </e>
+          <e p="PostRatingDtos" t="Include">
+            <e p="PostRatingAddDto.cs" t="Include" />
+            <e p="PostRatingDeleteDto.cs" t="Include" />
+            <e p="PostRatingDetailDto.cs" t="Include" />
+            <e p="PostRatingUpdateDto.cs" t="Include" />
+          </e>
+          <e p="RewardDtos" t="Include">
             <e p="RewardAddDto.cs" t="Include" />
             <e p="RewardDeleteDto.cs" t="Include" />
-            <e p="RewardListDto.cs" t="Include" />
+            <e p="RewardDetailDto.cs" t="Include" />
             <e p="RewardUpdateDto.cs" t="Include" />
           </e>
-          <e p="UserService" t="Include">
-            <e p="UserListDto.cs" t="Include" />
+          <e p="UserDtos" t="Include">
+            <e p="LoginRequestDto.cs" t="Include" />
+            <e p="LoginResponseDto.cs" t="Include" />
+            <e p="UserAddDto.cs" t="Include" />
+            <e p="UserDeleteDto.cs" t="Include" />
+            <e p="UserDetailDto.cs" t="Include" />
+            <e p="UserProfileDto.cs" t="Include" />
+            <e p="UserUpdateDto.cs" t="Include" />
           </e>
         </e>
         <e p="Entities" t="Include">

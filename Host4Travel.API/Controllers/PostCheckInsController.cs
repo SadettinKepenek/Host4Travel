@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.PostCheckInService;
+using Host4Travel.Core.DTO.PostCheckInDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +37,7 @@ namespace Host4Travel.API.Controllers
                     Message = "Herhangi bir kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<List<PostCheckInListDto>> responseModelWithData = new ResponseModelWithData<List<PostCheckInListDto>>();
+            ResponseModelWithData<List<PostCheckInDetailDto>> responseModelWithData = new ResponseModelWithData<List<PostCheckInDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = entities;

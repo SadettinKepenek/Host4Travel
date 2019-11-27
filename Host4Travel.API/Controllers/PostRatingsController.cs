@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.PostRatingService;
+using Host4Travel.Core.DTO.PostRatingDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +38,7 @@ namespace Host4Travel.API.Controllers
                     Message = "Kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<List<PostRatingListDto>> responseModelWithData  = new ResponseModelWithData<List<PostRatingListDto>>();
+            ResponseModelWithData<List<PostRatingDetailDto>> responseModelWithData  = new ResponseModelWithData<List<PostRatingDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = entities;

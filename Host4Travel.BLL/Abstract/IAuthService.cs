@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Host4Travel.Core.DTO.AuthService;
+using Host4Travel.Core.DTO.UserDtos;
 using Host4Travel.Entities.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -8,15 +9,15 @@ namespace Host4Travel.BLL.Abstract
 {
     public interface IAuthService
     {
-        IdentityLoginResponseDto Login(IdentityLoginRequestDto model);
+        LoginResponseDto Login(LoginRequestDto model);
         bool CheckTokenExpiration();
 
-        void Register(ApplicationIdentityUserAddDto applicationIdentityUserAddModel, string password);
+        void Register(UserAddDto userAddModel, string password);
 
-        void Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel, string password);
-        void Delete(ApplicationIdentityUserDeleteDto dto);
-        ApplicationIdentityUserListDto GetUser();
-        ApplicationIdentityUserDetailDto GetUserDetail(string userId);
+        void Update(UserUpdateDto userUpdateModel, string password);
+        void Delete(UserDeleteDto dto);
+        UserDetailDto GetUser();
+        UserProfileDto GetUserDetail(string userId);
 
 
     }

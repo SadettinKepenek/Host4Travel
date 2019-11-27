@@ -5,7 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostCheckInService;
-using Host4Travel.Core.DTO.PostCheckInService;
+using Host4Travel.Core.DTO.PostCheckInDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
             _mapper = mapper;
         }
 
-        public List<PostCheckInListDto> GetAll()
+        public List<PostCheckInDetailDto> GetAll()
         {
             var entities = _postCheckInDal.GetList();
             if (entities==null)
@@ -34,11 +34,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<PostCheckInListDto>>(entities);
+            var mappedEntities = _mapper.Map<List<PostCheckInDetailDto>>(entities);
             return mappedEntities;
         }
 
-        public PostCheckInListDto GetById(Guid id)
+        public PostCheckInDetailDto GetById(Guid id)
         {
             var entity = _postCheckInDal.Get(x=>x.PostCheckInId==id);
             if (entity==null)
@@ -46,7 +46,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<PostCheckInListDto>(entity);
+            var mappedEntities = _mapper.Map<PostCheckInDetailDto>(entity);
             return mappedEntities;
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.DocumentTypeService;
-using Host4Travel.Core.DTO.DocumentTypeService;
+using Host4Travel.Core.DTO.DocumentTypeDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -23,7 +23,7 @@ namespace Host4Travel.BLL.Concrete
             _mapper = mapper;
             _exceptionHandler = exceptionHandler;
         }
-        public List<DocumentTypeListDto> GetAll()
+        public List<DocumentTypeDetailDto> GetAll()
         {
             var entities = _documentTypeDal.GetList();
             if (entities==null)
@@ -31,11 +31,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntities = _mapper.Map<List<DocumentTypeListDto>>(entities);
+            var mappedEntities = _mapper.Map<List<DocumentTypeDetailDto>>(entities);
             return mappedEntities;
         }
 
-        public DocumentTypeListDto GetById(int id)
+        public DocumentTypeDetailDto GetById(int id)
         {
             var entity = _documentTypeDal.Get(x=>x.DocumentTypeId==id);
             if (entity==null)
@@ -43,7 +43,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedEntity = _mapper.Map<DocumentTypeListDto>(entity);
+            var mappedEntity = _mapper.Map<DocumentTypeDetailDto>(entity);
             return mappedEntity;
         }
 

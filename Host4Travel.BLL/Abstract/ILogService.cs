@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Host4Travel.Core.DTO.LoggerService;
+using Host4Travel.Core.DTO.LogDtos;
 using Host4Travel.Entities.Concrete;
 using Microsoft.Extensions.Logging;
-using LogLevel = Host4Travel.Core.DTO.LoggerService.LogLevel;
+using LogLevel = Host4Travel.Core.DTO.LogDtos.LogLevel;
 
 namespace Host4Travel.BLL.Abstract
 {

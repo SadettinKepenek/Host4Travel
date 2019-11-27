@@ -10,6 +10,7 @@ using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.AuthService;
 using Host4Travel.Core.DTO.AuthService;
+using Host4Travel.Core.DTO.UserDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.Core.SystemSettings;
@@ -47,7 +48,7 @@ namespace Host4Travel.BLL.Concrete
             _mapper = mapper;
         }
 
-        public IdentityLoginResponseDto Login(IdentityLoginRequestDto dto)
+        public LoginResponseDto Login(LoginRequestDto dto)
         {
             try
             {
@@ -70,7 +71,7 @@ namespace Host4Travel.BLL.Concrete
                 if (resultSucceeded)
                 {
                     var generateTokenModel = GenerateToken(user, Configuration.TokenExpirationDate);
-                    var authenticateModel = new IdentityLoginResponseDto()
+                    var authenticateModel = new LoginResponseDto()
                     {
                         Username = user.UserName,
                         Token = generateTokenModel,
@@ -114,13 +115,13 @@ namespace Host4Travel.BLL.Concrete
             return tokenHandler.WriteToken(token);
         }
 
-        public void Register(ApplicationIdentityUserAddDto applicationIdentityUserAddModel, string password)
+        public void Register(UserAddDto userAddModel, string password)
         {
             //
             try
             {
                 RegisterValidator validator = new RegisterValidator();
-                var validationResult = validator.Validate(applicationIdentityUserAddModel);
+                var validationResult = validator.Validate(userAddModel);
                 if (!validationResult.IsValid)
                 {
                     throw new ValidationFailureException(validationResult.ToString());
@@ -128,13 +129,13 @@ namespace Host4Travel.BLL.Concrete
 
                 var identityUser = new ApplicationIdentityUser
                 {
-                    Email = applicationIdentityUserAddModel.Email,
-                    UserName = applicationIdentityUserAddModel.Username,
-                    Firstname = applicationIdentityUserAddModel.Firstname,
-                    Lastname = applicationIdentityUserAddModel.Lastname,
-                    CookieAcceptIpAddress = applicationIdentityUserAddModel.CookieAcceptIpAddress,
-                    IsVerified = applicationIdentityUserAddModel.IsVerified,
-                    IsCookieAccepted = applicationIdentityUserAddModel.IsCookieAccepted,
+                    Email = userAddModel.Email,
+                    UserName = userAddModel.Username,
+                    Firstname = userAddModel.Firstname,
+                    Lastname = userAddModel.Lastname,
+                    CookieAcceptIpAddress = userAddModel.CookieAcceptIpAddress,
+                    IsVerified = userAddModel.IsVerified,
+                    IsCookieAccepted = userAddModel.IsCookieAccepted,
                 };
                 string decryptedPassword = _crpytoService.Decrypt(password);
                 var createdUser =
@@ -151,32 +152,32 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public void Update(ApplicationIdentityUserUpdateDto applicationIdentityUserUpdateModel, string password)
+        public void Update(UserUpdateDto userUpdateModel, string password)
         {
             try
             {
                 UpdateValidator validator = new UpdateValidator();
-                var validationResult = validator.Validate(applicationIdentityUserUpdateModel);
+                var validationResult = validator.Validate(userUpdateModel);
                 if (!validationResult.IsValid)
                 {
                     throw new ValidationFailureException(validationResult.ToString());
                 }
 
-                var user = _userManager.FindByNameAsync(applicationIdentityUserUpdateModel.Username).Result;
+                var user = _userManager.FindByNameAsync(userUpdateModel.Username).Result;
                 if (user == null)
                 {
                     throw new NullReferenceException();
                 }
                 var newPassword = _passwordHasher.HashPassword(user, password);
-                user.Firstname = applicationIdentityUserUpdateModel.Firstname;
-                user.Lastname = applicationIdentityUserUpdateModel.Lastname;
-                user.Email = applicationIdentityUserUpdateModel.Email;
+                user.Firstname = userUpdateModel.Firstname;
+                user.Lastname = userUpdateModel.Lastname;
+                user.Email = userUpdateModel.Email;
                 user.PasswordHash = newPassword;
-                user.CookieAcceptDate = applicationIdentityUserUpdateModel.CookieAcceptDate;
-                user.CookieAcceptIpAddress = applicationIdentityUserUpdateModel.CookieAcceptIpAddress;
-                user.IsCookieAccepted = applicationIdentityUserUpdateModel.IsCookieAccepted;
-                user.IsVerified = applicationIdentityUserUpdateModel.IsVerified;
-                user.IsActive = applicationIdentityUserUpdateModel.IsActive;
+                user.CookieAcceptDate = userUpdateModel.CookieAcceptDate;
+                user.CookieAcceptIpAddress = userUpdateModel.CookieAcceptIpAddress;
+                user.IsCookieAccepted = userUpdateModel.IsCookieAccepted;
+                user.IsVerified = userUpdateModel.IsVerified;
+                user.IsActive = userUpdateModel.IsActive;
                 var result = _userManager.UpdateAsync(user).Result;
                 if (!result.Succeeded)
                 {
@@ -189,7 +190,7 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public void Delete(ApplicationIdentityUserDeleteDto dto)
+        public void Delete(UserDeleteDto dto)
         {
             try
             {
@@ -209,7 +210,7 @@ namespace Host4Travel.BLL.Concrete
                     else
                     {
                         var result = _userManager.DeleteAsync(applicationIdentityUser);
-                        var returnModel = new ApplicationIdentityUserDeleteDto();
+                        var returnModel = new UserDeleteDto();
                         if (result.IsCompletedSuccessfully)
                         {
                             // Do Nothing
@@ -231,7 +232,7 @@ namespace Host4Travel.BLL.Concrete
             }
         }
 
-        public ApplicationIdentityUserListDto GetUser()
+        public UserDetailDto GetUser()
         {
             var user = _httpContext.HttpContext.User.Identity.Name;
             if (user==null)
@@ -250,11 +251,11 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
-            var mappedUser = _mapper.Map<ApplicationIdentityUserListDto>(dbUser);
+            var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
             return mappedUser;
         }
 
-        public ApplicationIdentityUserDetailDto GetUserDetail(string userId)
+        public UserProfileDto GetUserDetail(string userId)
         {
             var dbUser = _userManager.Users.
                 Include(x => x.PostApplication).
@@ -267,7 +268,7 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
-            var mappedUser = _mapper.Map<ApplicationIdentityUserDetailDto>(dbUser);
+            var mappedUser = _mapper.Map<UserProfileDto>(dbUser);
             return mappedUser;
         }
 

@@ -4,7 +4,6 @@
  using System.Threading.Tasks;
  using Host4Travel.API.Models.Concrete.Roles;
  using Host4Travel.API.Models.ResponseModels;
- using Host4Travel.Core.DTO.RewardService;
  using Host4Travel.Entities.Concrete;
  using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

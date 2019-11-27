@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostApplicationService;
-using Host4Travel.Core.DTO.PostApplicationService;
+using Host4Travel.Core.DTO.PostApplicationDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -27,7 +27,7 @@ namespace Host4Travel.BLL.Concrete
         }
 
 
-        public List<PostApplicationListDto> GetAllApplications()
+        public List<PostApplicationDetailDto> GetAllApplications()
         {
             var applications = _postApplicationDal.GetList();
             if (applications==null)
@@ -35,11 +35,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedApplications = _mapper.Map<List<PostApplicationListDto>>(applications);
+            var mappedApplications = _mapper.Map<List<PostApplicationDetailDto>>(applications);
             return mappedApplications;
         }
 
-        public PostApplicationListDto GetApplicationById(Guid id)
+        public PostApplicationDetailDto GetApplicationById(Guid id)
         {
             var application = _postApplicationDal.Get(x => x.PostApplicationId == id);
             if (application==null)
@@ -47,7 +47,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedApplication = _mapper.Map<PostApplicationListDto>(application);
+            var mappedApplication = _mapper.Map<PostApplicationDetailDto>(application);
             return mappedApplication;
         }
 

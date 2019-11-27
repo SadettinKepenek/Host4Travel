@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using AutoMapper;
 using Host4Travel.BLL.Abstract;
 using Host4Travel.BLL.Validators.PostDiscussionService;
-using Host4Travel.Core.DTO.PostDiscussionService;
+using Host4Travel.Core.DTO.PostDiscussionDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Host4Travel.Core.ExceptionService.Exceptions;
 using Host4Travel.DAL.Abstract;
@@ -26,7 +26,7 @@ namespace Host4Travel.BLL.Concrete
             _exceptionHandler = exceptionHandler;
         }
         
-        public List<PostDiscussionListDto> GetAll()
+        public List<PostDiscussionDetailDto> GetAll()
         {
             var entities = _postDiscussionDal.GetList();
             if (entities == null)
@@ -34,11 +34,11 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedPostDiscussions = _mapper.Map<List<PostDiscussionListDto>>(entities);
+            var mappedPostDiscussions = _mapper.Map<List<PostDiscussionDetailDto>>(entities);
             return mappedPostDiscussions;
         }
 
-        public PostDiscussionListDto GetById(Guid id)
+        public PostDiscussionDetailDto GetById(Guid id)
         {
             var entity = _postDiscussionDal.Get(x => x.PostDiscussionId == id);
             if (entity == null)
@@ -46,7 +46,7 @@ namespace Host4Travel.BLL.Concrete
                 return null;
             }
 
-            var mappedPostDiscussion = _mapper.Map<PostDiscussionListDto>(entity);
+            var mappedPostDiscussion = _mapper.Map<PostDiscussionDetailDto>(entity);
             return mappedPostDiscussion;
 
         }

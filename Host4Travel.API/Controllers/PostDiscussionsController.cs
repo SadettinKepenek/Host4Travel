@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.PostDiscussionService;
+using Host4Travel.Core.DTO.PostDiscussionDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +37,7 @@ namespace Host4Travel.API.Controllers
                     Message = "Kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<List<PostDiscussionListDto>> responseModelWithData = new ResponseModelWithData<List<PostDiscussionListDto>>();
+            ResponseModelWithData<List<PostDiscussionDetailDto>> responseModelWithData = new ResponseModelWithData<List<PostDiscussionDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıla getirildi";
             responseModelWithData.Data = entities;

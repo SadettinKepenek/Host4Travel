@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Host4Travel.API.Models.ResponseModels;
 using Host4Travel.BLL.Abstract;
-using Host4Travel.Core.DTO.PostCategoryRewardService;
+using Host4Travel.Core.DTO.PostCategoryRewardDtos;
 using Host4Travel.Core.ExceptionService.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +37,7 @@ namespace Host4Travel.API.Controllers
                     Message = "Kayit bulunamadi"
                 });
             }
-            ResponseModelWithData<List<PostCategoryRewardListDto>> responseModelWithData = new ResponseModelWithData<List<PostCategoryRewardListDto>>();
+            ResponseModelWithData<List<PostCategoryRewardDetailDto>> responseModelWithData = new ResponseModelWithData<List<PostCategoryRewardDetailDto>>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = "Kayıtlar başarıyla getirildi";
             responseModelWithData.Data = postCategoryRewards;
@@ -55,7 +55,7 @@ namespace Host4Travel.API.Controllers
                     Message = $"{id} için kayıt bulunamadı"
                 });
             }
-            ResponseModelWithData<PostCategoryRewardListDto> responseModelWithData = new ResponseModelWithData<PostCategoryRewardListDto>();
+            ResponseModelWithData<PostCategoryRewardDetailDto> responseModelWithData = new ResponseModelWithData<PostCategoryRewardDetailDto>();
             responseModelWithData.StatusCode = HttpStatusCode.OK;
             responseModelWithData.Message = $"{id} başarıyla getirildi";
             responseModelWithData.Data = postCategoryReward;
