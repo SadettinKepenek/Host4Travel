@@ -212,7 +212,7 @@ namespace Host4Travel.API.Controllers
         }
         [HttpGet("GetUserProfile")]
         [Authorize]
-        public async Task<IActionResult> GetMyProfile(string userId)
+        public async Task<IActionResult> GetUserProfile(string userId)
         {
             try
             {

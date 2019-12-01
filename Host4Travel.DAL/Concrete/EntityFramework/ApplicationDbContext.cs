@@ -51,7 +51,10 @@ namespace Host4Travel.DAL.Concrete.EntityFramework
                     b.Property(e => e.IsCookieAccepted).HasDefaultValueSql("0");
                     b.Property(e => e.IsVerified).HasDefaultValueSql("0");
                     b.Property(e => e.IsActive).HasDefaultValueSql("0");
-                 
+                    b.HasMany(d => d.PostRating)
+                        .WithOne(p => p.Owner)
+                        .HasForeignKey(d => d.OwnerId)
+                        .HasConstraintName("FK_PostRating_AspNetUsers");
                 }
             );
             modelBuilder.Entity<Category>(entity =>

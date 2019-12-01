@@ -15,7 +15,7 @@ namespace Host4Travel.UI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -572,12 +572,17 @@ namespace Host4Travel.UI.Migrations
                     b.Property<Guid?>("OwnerId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("OwnerId1")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PostDiscussionId");
 
                     b.HasIndex("CommentId");
+
+                    b.HasIndex("OwnerId1");
 
                     b.HasIndex("PostId");
 
@@ -894,6 +899,10 @@ namespace Host4Travel.UI.Migrations
                         .WithMany("InverseCommentNavigation")
                         .HasForeignKey("CommentId")
                         .HasConstraintName("FK_PostDiscussion_PostDiscussion");
+
+                    b.HasOne("Host4Travel.Entities.Concrete.ApplicationIdentityUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId1");
 
                     b.HasOne("Host4Travel.UI.Post", "Post")
                         .WithMany("PostDiscussion")

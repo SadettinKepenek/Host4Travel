@@ -12,6 +12,6 @@ namespace Host4Travel.Core.DTO.UserDtos
         public string Lastname { get; set; }
         public string Email { get; set; }
         public virtual ICollection<PostListDto> Post { get; set; }
-        public virtual ICollection<PostRatingDetailDto> PostRating { get; set; }
+        public virtual ICollection<PostRatingListDto> PostRating { get; set; }
     }
 }
