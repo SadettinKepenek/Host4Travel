@@ -75,7 +75,8 @@ namespace Host4Travel.BLL.Concrete
                     {
                         Username = user.UserName,
                         Token = generateTokenModel,
-                        TokenExpireDate = Configuration.TokenExpirationDate
+                        TokenExpireDate = Configuration.TokenExpirationDate,
+                        Id = user.Id
                     };
                     return authenticateModel;
                 }

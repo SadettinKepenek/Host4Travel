@@ -9,6 +9,8 @@ namespace Host4Travel.Core.DTO.UserDtos
 {
     public class UserDetailDto
     {
+        public string Id { get; set; }  
+
         public string UserName { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
