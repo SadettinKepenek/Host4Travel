@@ -245,7 +245,8 @@ namespace Host4Travel.BLL.Concrete
                 Include(x => x.PostApplication).
                 Include(x => x.Post).
                 Include(x=>x.Documents).
-                Include(x=>x.PostRating)
+                Include(x=>x.PostRating).
+                Include(x=>x.PostCheckIn)
                 .FirstOrDefault(x => x.NormalizedUserName == user);
             if (dbUser==null)
             {
