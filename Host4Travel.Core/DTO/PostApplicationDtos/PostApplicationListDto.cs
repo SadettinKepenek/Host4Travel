@@ -1,4 +1,5 @@
 ﻿using System;
+using Host4Travel.Core.DTO.PostCheckInDtos;
 
 namespace Host4Travel.Core.DTO.PostApplicationDtos
 {
@@ -17,6 +18,8 @@ namespace Host4Travel.Core.DTO.PostApplicationDtos
         public string UserId { get; set; }
         public string PostTitle { get; set; }
         public string PostDescription { get; set; }
+
+        public PostCheckInListDto PostCheckIn { get; set; }
         
     }
 }
