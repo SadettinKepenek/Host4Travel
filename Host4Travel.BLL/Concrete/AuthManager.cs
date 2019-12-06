@@ -34,10 +34,10 @@ namespace Host4Travel.BLL.Concrete
         private IHttpContextAccessor _httpContext;
         private IExceptionHandler _exceptionHandler;
         private IMapper _mapper;
-
+        private IPostCheckInService _postCheckInService;
         public AuthService(UserManager<ApplicationIdentityUser> userManager,
             SignInManager<ApplicationIdentityUser> signInManager,
-            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext, IMapper mapper)
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext, IMapper mapper, IPostCheckInService postCheckInService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -46,6 +46,7 @@ namespace Host4Travel.BLL.Concrete
             _crpytoService = crpytoService;
             _httpContext = httpContext;
             _mapper = mapper;
+            _postCheckInService = postCheckInService;
         }
 
         public LoginResponseDto Login(LoginRequestDto dto)
@@ -248,12 +249,14 @@ namespace Host4Travel.BLL.Concrete
                 Include(x=>x.Documents).
                 Include(x=>x.PostRating)
                 .FirstOrDefault(x => x.NormalizedUserName == user);
+            
             if (dbUser==null)
             {
                 throw new NullReferenceException("");
             }
 
             var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
+            mappedUser.PostCheckIn = _postCheckInService.GetUserCheckIns(dbUser.Id);
             return mappedUser;
         }
 
