@@ -50,6 +50,7 @@ namespace Host4Travel.Core.MappingProfiles
 
             CreateMap<PostApplication, PostApplicationDetailDto>().ReverseMap();
             CreateMap<PostApplication, PostApplicationListDto>()
+                .ForMember(x=> x.UserId,c =>c.MapFrom(d => d.Applicent.Id))
                 .ForMember(x=> x.UserName,c =>c.MapFrom(d => d.Applicent.UserName))
                 .ForMember(x=> x.Firstname,c =>c.MapFrom(d => d.Applicent.Firstname))
                 .ForMember(x=> x.Lastname,c =>c.MapFrom(d => d.Applicent.Lastname))

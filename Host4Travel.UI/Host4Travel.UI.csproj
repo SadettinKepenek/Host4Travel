@@ -5,6 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Migrations\20191206000832_ChangeAIU.cs" />
+      <Compile Remove="Migrations\20191206000832_ChangeAIU.Designer.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Areas" />
       <Folder Include="Controllers" />
       <Folder Include="ExtensionMethods" />

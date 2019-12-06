@@ -19,7 +19,7 @@ namespace Host4Travel.Core.DTO.PostApplicationDtos
         public string PostTitle { get; set; }
         public string PostDescription { get; set; }
 
-        public PostCheckInListDto PostCheckIn { get; set; }
+        //public PostCheckInListDto PostCheckIn { get; set; }
         
     }
 }

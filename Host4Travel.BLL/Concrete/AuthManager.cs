@@ -243,10 +243,10 @@ namespace Host4Travel.BLL.Concrete
 
             var dbUser = _userManager.Users.
                 Include(x => x.PostApplication).
+                ThenInclude(y=>y.PostCheckIn).
                 Include(x => x.Post).
                 Include(x=>x.Documents).
-                Include(x=>x.PostRating).
-                Include(x=>x.PostCheckIn)
+                Include(x=>x.PostRating)
                 .FirstOrDefault(x => x.NormalizedUserName == user);
             if (dbUser==null)
             {
