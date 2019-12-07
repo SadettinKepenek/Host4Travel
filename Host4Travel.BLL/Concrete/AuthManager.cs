@@ -250,7 +250,8 @@ namespace Host4Travel.BLL.Concrete
 
             var dbUser = _userManager.Users.
                 Include(x => x.PostApplication).
-                Include(x=>x.Documents)
+                Include(x=>x.Documents).
+                Include(x=>x.Post)
                 .FirstOrDefault(x => x.NormalizedUserName == user);
             
             if (dbUser==null)
