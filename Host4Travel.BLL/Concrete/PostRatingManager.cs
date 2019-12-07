@@ -64,6 +64,18 @@ namespace Host4Travel.BLL.Concrete
             return mappedRatings;
         }
 
+        public List<PostRatingListDto> GetMyPostRatings(string userId)
+        {
+            var ratings = _postRatingDal.GetList(x => x.Post.OwnerId == userId);
+            if (ratings == null)
+            {
+                return null;
+            }
+
+            var mappedRatings = _mapper.Map<List<PostRatingListDto>>(ratings);
+            return mappedRatings;
+        }
+
         public void AddRating(PostRatingAddDto dto)
         {
             try
