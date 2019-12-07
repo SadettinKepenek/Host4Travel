@@ -62,6 +62,18 @@ namespace Host4Travel.BLL.Concrete
             return mappedEntities;
         }
 
+        public List<PostCheckInListDto> GetMyPostCheckIns(string userId)
+        {
+            var entities = _postCheckInDal.GetList(x => x.Application.Post.OwnerId == userId);
+            if (entities == null)
+            {
+                return null;
+            }
+
+            var mappedEntities = _mapper.Map<List<PostCheckInListDto>>(entities);
+            return mappedEntities;
+        }
+
         public void Add(PostCheckInAddDto model)
         {
             try

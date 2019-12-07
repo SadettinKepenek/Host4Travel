@@ -34,10 +34,13 @@ namespace Host4Travel.BLL.Concrete
         private IHttpContextAccessor _httpContext;
         private IExceptionHandler _exceptionHandler;
         private IMapper _mapper;
+        private IPostApplicationService _postApplicationService;
+        private IPostService _postService;
         private IPostCheckInService _postCheckInService;
+        private IPostRatingService _postRatingService;
         public AuthService(UserManager<ApplicationIdentityUser> userManager,
             SignInManager<ApplicationIdentityUser> signInManager,
-            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext, IMapper mapper, IPostCheckInService postCheckInService)
+            IPasswordHasher<ApplicationIdentityUser> passwordHasher, IExceptionHandler exceptionHandler, ICrpytoService crpytoService, IHttpContextAccessor httpContext, IMapper mapper, IPostCheckInService postCheckInService, IPostService postService, IPostApplicationService postApplicationService, IPostRatingService postRatingService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -47,6 +50,9 @@ namespace Host4Travel.BLL.Concrete
             _httpContext = httpContext;
             _mapper = mapper;
             _postCheckInService = postCheckInService;
+            _postService = postService;
+            _postApplicationService = postApplicationService;
+            _postRatingService = postRatingService;
         }
 
         public LoginResponseDto Login(LoginRequestDto dto)
@@ -244,10 +250,7 @@ namespace Host4Travel.BLL.Concrete
 
             var dbUser = _userManager.Users.
                 Include(x => x.PostApplication).
-                ThenInclude(y=>y.PostCheckIn).
-                Include(x => x.Post).
-                Include(x=>x.Documents).
-                Include(x=>x.PostRating)
+                Include(x=>x.Documents)
                 .FirstOrDefault(x => x.NormalizedUserName == user);
             
             if (dbUser==null)
@@ -255,25 +258,27 @@ namespace Host4Travel.BLL.Concrete
                 throw new NullReferenceException("");
             }
 
+
             var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
-            mappedUser.PostCheckIn = _postCheckInService.GetUserCheckIns(dbUser.Id);
+            mappedUser.PostApplication = _postApplicationService.GetMyPostApplications(dbUser.Id);
+            mappedUser.PostCheckIn = _postCheckInService.GetMyPostCheckIns(dbUser.Id);
+            mappedUser.PostRating = _postRatingService.GetMyPostRatings(dbUser.Id);
             return mappedUser;
         }
 
         public UserProfileDto GetUserDetail(string userId)
         {
             var dbUser = _userManager.Users.
-                Include(x => x.PostApplication).
-                Include(x => x.Post).
-                Include(x=>x.Documents).
-                Include(x=>x.PostRating)
+                Include(x => x.Post)
                 .FirstOrDefault(x => x.Id == userId);
+            
             if (dbUser==null)
             {
                 throw new NullReferenceException("");
             }
 
             var mappedUser = _mapper.Map<UserProfileDto>(dbUser);
+            mappedUser.PostRating = _postRatingService.GetMyPostRatings(dbUser.Id);
             return mappedUser;
         }
 
