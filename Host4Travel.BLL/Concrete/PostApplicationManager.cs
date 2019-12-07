@@ -137,5 +137,17 @@ namespace Host4Travel.BLL.Concrete
                 throw _exceptionHandler.HandleServiceException(e);
             }
         }
+
+        public List<PostApplicationListDto> GetMyPostApplications(string userId)
+        {
+            var applications = _postApplicationDal.GetList(x=>x.Post.OwnerId==userId);
+            if (applications == null)
+            {
+                return null;
+            }
+
+            var mappedApplications = _mapper.Map<List<PostApplicationListDto>>(applications);
+            return mappedApplications;
+        }
     }
 }

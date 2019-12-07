@@ -11,6 +11,9 @@ namespace Host4Travel.BLL.Abstract
         PostCheckInDetailDto GetById(Guid id);
 
         List<PostCheckInListDto> GetUserCheckIns(string userId);
+
+        List<PostCheckInListDto> GetMyPostCheckIns(string userId);
+
         void Add(PostCheckInAddDto model);
         void Update(PostCheckInUpdateDto model);
         void Delete(PostCheckInDeleteDto model);

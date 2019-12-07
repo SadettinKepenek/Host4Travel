@@ -12,5 +12,7 @@ namespace Host4Travel.BLL.Abstract
         void AddApplication(PostApplicationAddDto dto);
         void UpdateApplication(PostApplicationUpdateDto dto);
         void DeleteApplication(PostApplicationDeleteDto dto);
+
+        List<PostApplicationListDto> GetMyPostApplications(string userId);
     }
 }
