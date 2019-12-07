@@ -51,6 +51,10 @@ namespace Host4Travel.UI.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AboutMe")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
@@ -73,10 +77,18 @@ namespace Host4Travel.UI.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FacebookUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("InstagramUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -97,6 +109,10 @@ namespace Host4Travel.UI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("LinkedInUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -124,12 +140,20 @@ namespace Host4Travel.UI.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TwitterUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("ViberUrl")
+                        .HasColumnType("nvarchar(250)")
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 

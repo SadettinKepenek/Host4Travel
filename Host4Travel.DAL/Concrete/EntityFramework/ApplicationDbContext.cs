@@ -55,6 +55,12 @@ namespace Host4Travel.DAL.Concrete.EntityFramework
                         .WithOne(p => p.Owner)
                         .HasForeignKey(d => d.OwnerId)
                         .HasConstraintName("FK_PostRating_AspNetUsers");
+                    b.Property(x => x.AboutMe).HasMaxLength(500);
+                    b.Property(x => x.FacebookUrl).HasMaxLength(250);
+                    b.Property(x => x.TwitterUrl).HasMaxLength(250);
+                    b.Property(x => x.ViberUrl).HasMaxLength(250);
+                    b.Property(x => x.InstagramUrl).HasMaxLength(250);
+                    b.Property(x => x.LinkedInUrl).HasMaxLength(250);
                 }
             );
             modelBuilder.Entity<Category>(entity =>
