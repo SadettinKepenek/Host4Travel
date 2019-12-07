@@ -27,7 +27,12 @@ namespace Host4Travel.Core.DTO.UserDtos
         public virtual ICollection<DocumentListDto> Documents { get; set; }
         public virtual ICollection<PostCheckInListDto> PostCheckIn { get; set; }
 
-
+        public string? AboutMe { get; set; }
+        public string? LinkedInUrl { get; set; }
+        public string? TwitterUrl { get; set; }
+        public string? FacebookUrl { get; set; }
+        public string? InstagramUrl { get; set; }
+        public string? ViberUrl { get; set; }
 
 
     }

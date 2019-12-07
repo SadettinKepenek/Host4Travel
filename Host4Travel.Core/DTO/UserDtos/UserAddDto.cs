@@ -15,6 +15,13 @@ namespace Host4Travel.Core.DTO.AuthService
         public bool IsCookieAccepted { get; set; }
         public bool IsVerified { get; set; }
         public bool IsActive { get; set; }
-        
+
+        public string AboutMe { get; set; }
+        public string LinkedInUrl { get; set; }
+        public string TwitterUrl { get; set; }
+        public string FacebookUrl { get; set; }
+        public string InstagramUrl { get; set; }
+        public string ViberUrl { get; set; }
+
     }
 }
